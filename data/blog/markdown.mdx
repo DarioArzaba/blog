@@ -1,0 +1,298 @@
+---
+title: Markdown 1
+date: '2021-05-15'
+tags: ['markdown', 'cheatsheet', 'example']
+draft: false
+summary: 'How'
+---
+
+# Title 1
+## Title 2
+### Title 3
+#### Title 4
+##### Title 5
+###### Title 6
+
+This blog uses Markdown, with GitHub's flavor[^1]. To parse the markdown it uses some remark and rehype ([unified](https://github.com/unifiedjs/unified)) packages like `next-mdx-remote`and `next-prism`.
+
+[^1]: Markdown is a plain text format developed by John Gruber in 2004 as a [syntax](https://daringfireball.net/projects/markdown/syntax) and Perl script to convert MD to HTML. The main goal was to develop a way to write readable plan text that could be used as HTML. Many [implementations](https://github.com/markdown/markdown.github.com/wiki/Implementations) of the script or [flavors](https://github.com/commonmark/commonmark-spec/wiki/markdown-flavors) of the syntax have been made like the popular [GitHub's flavor](https://github.github.com/gfm/).
+
+This is normal text.
+
+**This is bold text.**
+
+*This is italics text.*
+
+[This is a link](http://example.com/)
+
+[This is a link with title](http://example.com/ "With a Title")
+
+[This is a reference link][2]
+
+This is a footnote reference [^3]
+
+[2]: http://example.com/  "Google"
+
+[^3]: Footnote reference text or link.
+
+Next are two types of lists:
+
++ Item 1
+* Item 2
+	- Item 3
+
+1. Item 1
+2. Item 2
+	1. Item 3
+
+Next is a line separator:
+
+***
+
+This is `inline code`.
+
+Next is a code block in Python 🐍:
+
+```python
+def fib():
+    a, b = 0, 1
+    while True:            # First iteration:
+        yield a            # yield 0 to start with and then
+        a, b = b, a + b    # a will now be 1, and b will also be 1, (0 + 1)
+
+for index, fibonacci_number in zip(range(10), fib()):
+     print('{i:3}: {f:3}'.format(i=index, f=fibonacci_number))
+```
+
+> In the new computer age the proliferation of typefaces and type manipulations represents a new level of visual pollution threatening our culture. Out of thousands of typefaces, all we need are a few basic ones, and trash the rest.
+>
+— Massimo Vignelli
+
+
+
+![Original Bible](/static/images/random/42-line-bible.jpg "Optional Title")
+
+*The 42–Line Bible, printed by Gutenberg.*
+
+[![Gutenberg Author](/static/images/random/Gutenberg.jpg "Optional Title")](https://en.wikipedia.org/wiki/Johannes_Gutenberg)
+
+![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+
+
+
+<figure>
+	<blockquote>
+		<p>Knowledge of the quality of a typeface is of the greatest importance for the functional, aesthetic and psychological effect.</p>
+		<footer>
+			<cite>— Josef Mueller-Brockmann</cite>
+		</footer>
+	</blockquote>
+</figure>
+
+<figure>
+	<blockquote>
+		<p>All that has been written to me about that marvelous man seen at Frankfurt is true. I have not seen complete Bibles but only a number of quires of various books of the Bible. The script was very neat and legible, not at all difficult to follow—your grace would be able to read it without effort, and indeed without glasses.</p>
+		<footer>
+			<cite>—Future pope Pius II in a letter to Cardinal Carvajal, March 1455</cite>
+		</footer>
+	</blockquote>
+</figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Next is an autolink:
+
+https://www.webfx.com/tools/emoji-cheat-sheet/
+
+:metal:
+:+1:
+:sparkles:
+:camel:
+:tada:
+:rocket:
+:octocat:
+
+Hey @kneath
+
+Automail example@example.com
+
+~~This was mistaken text~~
+
+**This text is _extremely_ important**
+
+***All this text is important***
+
+
+| First Header                | Second Header                |
+| --------------------------- | ---------------------------- |
+| Content from cell 1         | Content from cell 2          |
+| Content in the first column | Content in the second column |
+
+- [x] Finish my changes
+- [ ] Push my commits to GitHub
+- [ ] Open a pull request
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Template
+
+This is a [Next.js](https://nextjs.org/), [Tailwind CSS 2.0](https://tailwindcss.com/) starter.
+
+- [Demo Blog](https://tailwind-nextjs-starter-blog.vercel.app/) - this repo
+- [My personal blog](https://www.timlrx.com) - modified to auto-generate blog posts with dates
+- [Lee Robinson's blog](https://github.com/leerob/leerob.io) - inspiration.
+- [Tailwindlabs blog](https://github.com/tailwindlabs/blog.tailwindcss.com) - design
+- [beautiful-jekyll](https://github.com/daattali/beautiful-jekyll) - features
+- [Hugo Academic](https://github.com/wowchemy/wowchemy-hugo-modules) - fuatures.
+
+Styling with tailwind 2.0
+Lighthouse score good
+Lightweight, uses Preact in production build
+Mobile friendly
+Light, dark theme.
+MDX to use JSX inside markdown
+Server side syntax highlighting with rehype-prism
+Math display with KaTeX
+Image optimization with next/image (nextjs)
+Flexible data retrieval with next-mdx-remote
+SEO friendly with RSS, sitemap etc.
+Icons with heroicons or copy a svg file from simple icons.
+
+Start Guide
+
+1. `npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git`
+2. Personalize `siteMetadata.json`, `projectsData.js`, `headerNavLinks.js`
+3. Style with `css/tailwind.css`.
+4. Pass JSX or React component by adding to `components/MDXComponents.js`
+4. Run `npm install`, `npm rebuild`.
+5. Add mdx or md blog posts to `Pages/Blog`. 
+6. Run`npm run build`, `npm run dev`. Deploy to Vercel.
+
+Frontmatter (Hugo standard)
+
+Fields required is title (string), date (YY-MM-DD), tags (array).
+Fields optional lastmod (YY-MM-DD), draft (false), summary (String), images (array).
+
+Script compose.js creates a prefiled frontmatter post
+Just run `node ./scripts/compose.js "My First Post" .md`
+Will create `./data/blog/my-first-post.md`
+
+
+
+
+
+
+
+## Images
+
+For images it uses the `next/Image` react component, for convenience a script replaces the markdown `img` tag to the correct `Image` component. You can also call it directly inside MDX but need to specify width and height.
+
+```js
+	<Image src="/static/images/avatar.jpg" alt="Picture of the author" width={500} height={500} />
+```
+
+We use this react component because it:
+
+1. Optimizes images (30% more than jpeg).
+2. Makes them responsive.
+3. Applies lazy loading (loads them on demand).
+4. Easy to organize using flexbox and tailwind css.
+
+This comes at the cost of a call to a CDN highly optimized image server that only Vercel hosting fully supports. You could use another package like `next-optimized-images` however most of them use webpack and with higher load times, you could use other hosting options like Imgix or Cloudinary or you could disable the processing entirely by deleting `lib/img-to-jsx.js` and it's references. Also some browsers will treat the image with the `webp` format.
+
+Example Gallery:
+
+<div className="flex flex-wrap -mx-2 overflow-hidden xl:-mx-2">
+  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+    <Image alt="Maple" src="/static/images/canada/maple.jpg" width={640} height={427} />
+  </div>
+  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+    <Image alt="Lake" src="/static/images/canada/lake.jpg" width={640} height={427} />
+  </div>
+  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+    <Image alt="Mountains" src="/static/images/canada/mountains.jpg" width={640} height={427} />
+  </div>
+  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+    <Image alt="Toronto" src="/static/images/canada/toronto.jpg" width={640} height={427} />
+  </div>
+</div>
+
+## Math
+
+We can parse and display math equations with `remark-math` and `rehype-katex` that use [KaTex](https://katex.org/docs/supported.html). Both are enabled in `_document.js` for every page. 
+
+For inline math use the `$` symbol like $2+4x = y$ this.
+
+For math code blocks use the `$$` symbol.
+
+$$
+\mathbf{Y} = \left[\begin{array}
+	{c}
+	y_1 \\
+	. \\
+	y_n
+\end{array}\right]
+$$
+
+**Result**:
+
+$$
+\mathbf{X} = \left[\begin{array}
+	{ccccc}
+	x_{11} & . & . & . & x_{1k} \\
+	. & . & . & . & .  \\
+	x_{n1} & . & . & . & x_{nn}
+\end{array}\right] =
+\left[\begin{array}
+	{c}
+	\mathbf{x}'_1 \\
+	. \\
+	\mathbf{x}'_n
+\end{array}\right]
+$$
+
+**Given**:
+
+$$
+Q = \sum_{i=1}^{n}{u_i^2} = \sum_{i=1}^{n}{(y_i - \mathbf{x}'_i\beta)^2} = (Y-X\beta)'(Y-X\beta)
+$$
+
+**Finally**:  
+
+$$
+\begin{aligned}
+	\min Q           & = \min_{\beta} \mathbf{Y}'\mathbf{Y} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
+	                 & = \min_{\beta} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
+	\text{[FOC]}~~~0 & =  - 2\mathbf{X}'\mathbf{Y} + 2\mathbf{X}'\mathbf{X}\hat{\beta}                  \\
+	\hat{\beta}      & = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}                              \\
+	                 & = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
+\end{aligned}
+$$

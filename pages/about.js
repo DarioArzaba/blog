@@ -35,9 +35,12 @@ export default function About() {
           </div>
           <div className="pt-8 pb-8 prose dark:prose-dark max-w-none xl:col-span-2">
             <p>
-              Tails Azimuth is a professor of atmospheric sciences at the Stanford AI Lab. His
-              research interests includes complexity modelling of tailwinds, headwinds and
-              crosswinds.
+			Darío Arzaba
+			Toluca, México.
+​			![*Foto incognito durante un atardecer inolvidable. Playa Assateague 2016*](./FotoBio.webp)
+			*Foto incognito durante un atardecer inolvidable. Playa Assateague 2016*
+			Ingeniero Mecatrónico con una pasión por la ciencia y la tecnología.
+			TLDR: Filosofo, poeta, cinéfilo, pintor, esgrimista y pianista.
             </p>
             <p>
               He leads the clean energy group which develops 3D air pollution-climate models, writes
