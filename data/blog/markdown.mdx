@@ -3,7 +3,7 @@ title: Markdown 1
 date: '2021-05-15'
 tags: ['markdown', 'cheatsheet', 'example']
 draft: false
-summary: 'How'
+summary: 'This blog uses Markdown, with GitHubs flavor. To parse the markdown it uses some remark and rehype (Unified) packages like next-mdx-remote and next-prism.'
 ---
 
 # Title 1
@@ -11,7 +11,6 @@ summary: 'How'
 ### Title 3
 #### Title 4
 ##### Title 5
-###### Title 6
 
 This blog uses Markdown, with GitHub's flavor[^1]. To parse the markdown it uses some remark and rehype ([unified](https://github.com/unifiedjs/unified)) packages like `next-mdx-remote`and `next-prism`.
 
@@ -29,11 +28,11 @@ This is normal text.
 
 [This is a reference link][2]
 
-This is a footnote reference [^3]
+[2]: http://example.com/  "Reference Title"
 
-[2]: http://example.com/  "Google"
+This is a footnote reference [^2]
 
-[^3]: Footnote reference text or link.
+[^2]: Footnote reference text or link.
 
 Next are two types of lists:
 
@@ -65,71 +64,23 @@ for index, fibonacci_number in zip(range(10), fib()):
 ```
 
 > In the new computer age the proliferation of typefaces and type manipulations represents a new level of visual pollution threatening our culture. Out of thousands of typefaces, all we need are a few basic ones, and trash the rest.
->
+> 
 — Massimo Vignelli
-
 
 
 ![Original Bible](/static/images/random/42-line-bible.jpg "Optional Title")
 
-*The 42–Line Bible, printed by Gutenberg.*
+Next is the author of the bible:
 
-[![Gutenberg Author](/static/images/random/Gutenberg.jpg "Optional Title")](https://en.wikipedia.org/wiki/Johannes_Gutenberg)
+[![Gutenberg Author](/static/images/random/Gutenberg.jpg "This image is also a link")](https://en.wikipedia.org/wiki/Johannes_Gutenberg)
 
-![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+## GitHub flavor
 
+This is an autolink: https://www.example.com/
 
+This is an automail: example@example.com
 
-<figure>
-	<blockquote>
-		<p>Knowledge of the quality of a typeface is of the greatest importance for the functional, aesthetic and psychological effect.</p>
-		<footer>
-			<cite>— Josef Mueller-Brockmann</cite>
-		</footer>
-	</blockquote>
-</figure>
-
-<figure>
-	<blockquote>
-		<p>All that has been written to me about that marvelous man seen at Frankfurt is true. I have not seen complete Bibles but only a number of quires of various books of the Bible. The script was very neat and legible, not at all difficult to follow—your grace would be able to read it without effort, and indeed without glasses.</p>
-		<footer>
-			<cite>—Future pope Pius II in a letter to Cardinal Carvajal, March 1455</cite>
-		</footer>
-	</blockquote>
-</figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Next is an autolink:
-
-https://www.webfx.com/tools/emoji-cheat-sheet/
-
-:metal:
-:+1:
-:sparkles:
-:camel:
-:tada:
-:rocket:
-:octocat:
-
-Hey @kneath
-
-Automail example@example.com
+Next are additional emphasis:
 
 ~~This was mistaken text~~
 
@@ -137,79 +88,18 @@ Automail example@example.com
 
 ***All this text is important***
 
+Next is a table:
 
 | First Header                | Second Header                |
 | --------------------------- | ---------------------------- |
 | Content from cell 1         | Content from cell 2          |
 | Content in the first column | Content in the second column |
 
+Next is a list of tasks:
+
 - [x] Finish my changes
 - [ ] Push my commits to GitHub
 - [ ] Open a pull request
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Template
-
-This is a [Next.js](https://nextjs.org/), [Tailwind CSS 2.0](https://tailwindcss.com/) starter.
-
-- [Demo Blog](https://tailwind-nextjs-starter-blog.vercel.app/) - this repo
-- [My personal blog](https://www.timlrx.com) - modified to auto-generate blog posts with dates
-- [Lee Robinson's blog](https://github.com/leerob/leerob.io) - inspiration.
-- [Tailwindlabs blog](https://github.com/tailwindlabs/blog.tailwindcss.com) - design
-- [beautiful-jekyll](https://github.com/daattali/beautiful-jekyll) - features
-- [Hugo Academic](https://github.com/wowchemy/wowchemy-hugo-modules) - fuatures.
-
-Styling with tailwind 2.0
-Lighthouse score good
-Lightweight, uses Preact in production build
-Mobile friendly
-Light, dark theme.
-MDX to use JSX inside markdown
-Server side syntax highlighting with rehype-prism
-Math display with KaTeX
-Image optimization with next/image (nextjs)
-Flexible data retrieval with next-mdx-remote
-SEO friendly with RSS, sitemap etc.
-Icons with heroicons or copy a svg file from simple icons.
-
-Start Guide
-
-1. `npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git`
-2. Personalize `siteMetadata.json`, `projectsData.js`, `headerNavLinks.js`
-3. Style with `css/tailwind.css`.
-4. Pass JSX or React component by adding to `components/MDXComponents.js`
-4. Run `npm install`, `npm rebuild`.
-5. Add mdx or md blog posts to `Pages/Blog`. 
-6. Run`npm run build`, `npm run dev`. Deploy to Vercel.
-
-Frontmatter (Hugo standard)
-
-Fields required is title (string), date (YY-MM-DD), tags (array).
-Fields optional lastmod (YY-MM-DD), draft (false), summary (String), images (array).
-
-Script compose.js creates a prefiled frontmatter post
-Just run `node ./scripts/compose.js "My First Post" .md`
-Will create `./data/blog/my-first-post.md`
-
-
-
-
-
-
 
 ## Images
 
@@ -296,3 +186,21 @@ $$
 	                 & = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
 \end{aligned}
 $$
+
+
+
+## About this template
+
+This [template](https://tailwind-nextjs-starter-blog.vercel.app/) is a [Next.js](https://nextjs.org/) and [Tailwind CSS 2.0](https://tailwindcss.com/) starter. You can see the [demo](https://tailwind-nextjs-starter-blog.vercel.app/) a [real example](https://www.timlrx.com) or the [inspiration](https://leerob.io/) behind it. The design is mostly a copy of the [Tailwind Blog](https://blog.tailwindcss.com/). It has most of the features of the popular [Beautiful Jekyll](https://beautifuljekyll.com/) starter, including: Good lighthouse score, lightweight with `preact`, responsive, dark theme, MDX for JSX code, syntax highlighting using `rehype-prism`, math with KaTeX, image optimization with `next/image`, data retrieval with `next-mdx-remote`, SEO, RSS, Sitemap, and Heroicons.
+
+### Quick start
+
+1. `npx degit https://github.com/timlrx/tailwind-nextjs-starter-blog.git`
+2. Personalize `siteMetadata.json`, `projectsData.js`, `headerNavLinks.js`
+3. Run `npm install`, `npm rebuild`.
+4. Add mdx or md blog posts to `Pages/Blog`. 
+5. Run`npm run build`, `npm run dev`. Deploy to Vercel.
+6. Style it with `css/tailwind.css`.
+7. Pass JSX or React components by adding them to `components/MDXComponents.js`
+
+Posts use the Hugo Standard frontmatter meaning they require a title (string), date (YY-MM-DD) and tags (array). Optional fields are lastmod (YY-MM-DD), draft (boolean), summary (string), images (array). Also the script `compose.js` creates a prefilled frontmatter post, use it by running `node ./scripts/compose.js "PostTitle".md`
