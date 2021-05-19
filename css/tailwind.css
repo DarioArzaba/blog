@@ -17,3 +17,11 @@
 html {
   scroll-behavior: smooth;
 }
+
+.task-list-item {
+	margin: -10px !important
+}
+
+.p-2 {
+	padding: 0.5rem;
+}

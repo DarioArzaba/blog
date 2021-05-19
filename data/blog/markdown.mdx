@@ -1,18 +1,20 @@
 ---
-title: Markdown 1
+title: Markdown
 date: '2021-05-15'
-tags: ['markdown', 'cheatsheet', 'example']
+tags: ['markdown', 'cheat sheet', 'example']
 draft: false
 summary: 'This blog uses Markdown, with GitHubs flavor. To parse the markdown it uses some remark and rehype (Unified) packages like next-mdx-remote and next-prism.'
 ---
+
+This blog uses Markdown, with GitHub's flavor[^1]. To parse the markdown it uses some remark and rehype ([unified](https://github.com/unifiedjs/unified)) packages like `next-mdx-remote`and `next-prism`.
+
+***
 
 # Title 1
 ## Title 2
 ### Title 3
 #### Title 4
 ##### Title 5
-
-This blog uses Markdown, with GitHub's flavor[^1]. To parse the markdown it uses some remark and rehype ([unified](https://github.com/unifiedjs/unified)) packages like `next-mdx-remote`and `next-prism`.
 
 [^1]: Markdown is a plain text format developed by John Gruber in 2004 as a [syntax](https://daringfireball.net/projects/markdown/syntax) and Perl script to convert MD to HTML. The main goal was to develop a way to write readable plan text that could be used as HTML. Many [implementations](https://github.com/markdown/markdown.github.com/wiki/Implementations) of the script or [flavors](https://github.com/commonmark/commonmark-spec/wiki/markdown-flavors) of the syntax have been made like the popular [GitHub's flavor](https://github.github.com/gfm/).
 
@@ -34,8 +36,6 @@ This is a footnote reference [^2]
 
 [^2]: Footnote reference text or link.
 
-Next are two types of lists:
-
 + Item 1
 * Item 2
 	- Item 3
@@ -43,10 +43,6 @@ Next are two types of lists:
 1. Item 1
 2. Item 2
 	1. Item 3
-
-Next is a line separator:
-
-***
 
 This is `inline code`.
 
@@ -80,22 +76,16 @@ This is an autolink: https://www.example.com/
 
 This is an automail: example@example.com
 
-Next are additional emphasis:
-
 ~~This was mistaken text~~
 
 **This text is _extremely_ important**
 
 ***All this text is important***
 
-Next is a table:
-
 | First Header                | Second Header                |
 | --------------------------- | ---------------------------- |
 | Content from cell 1         | Content from cell 2          |
 | Content in the first column | Content in the second column |
-
-Next is a list of tasks:
 
 - [x] Finish my changes
 - [ ] Push my commits to GitHub
@@ -120,24 +110,24 @@ This comes at the cost of a call to a CDN highly optimized image server that onl
 
 Example Gallery:
 
-<div className="flex flex-wrap -mx-2 overflow-hidden xl:-mx-2">
-  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+<div className="flex flex-wrap -mx-4 overflow-hidden">
+  <div className="md:w-1/2 p-2">
     <Image alt="Maple" src="/static/images/canada/maple.jpg" width={640} height={427} />
   </div>
-  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+  <div className="md:w-1/2 p-2">
     <Image alt="Lake" src="/static/images/canada/lake.jpg" width={640} height={427} />
   </div>
-  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+  <div className="md:w-1/2 p-2">
     <Image alt="Mountains" src="/static/images/canada/mountains.jpg" width={640} height={427} />
   </div>
-  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+  <div className="md:w-1/2 p-2">
     <Image alt="Toronto" src="/static/images/canada/toronto.jpg" width={640} height={427} />
   </div>
 </div>
 
 ## Math
 
-We can parse and display math equations with `remark-math` and `rehype-katex` that use [KaTex](https://katex.org/docs/supported.html). Both are enabled in `_document.js` for every page. 
+We can parse and display math equations with `remark-math` and `rehype-katex` that use [KaTeX](https://katex.org/docs/supported.html). Both are enabled in `_document.js` for every page. 
 
 For inline math use the `$` symbol like $2+4x = y$ this.
 
@@ -189,7 +179,7 @@ $$
 
 
 
-## About this template
+## Template
 
 This [template](https://tailwind-nextjs-starter-blog.vercel.app/) is a [Next.js](https://nextjs.org/) and [Tailwind CSS 2.0](https://tailwindcss.com/) starter. You can see the [demo](https://tailwind-nextjs-starter-blog.vercel.app/) a [real example](https://www.timlrx.com) or the [inspiration](https://leerob.io/) behind it. The design is mostly a copy of the [Tailwind Blog](https://blog.tailwindcss.com/). It has most of the features of the popular [Beautiful Jekyll](https://beautifuljekyll.com/) starter, including: Good lighthouse score, lightweight with `preact`, responsive, dark theme, MDX for JSX code, syntax highlighting using `rehype-prism`, math with KaTeX, image optimization with `next/image`, data retrieval with `next-mdx-remote`, SEO, RSS, Sitemap, and Heroicons.
 

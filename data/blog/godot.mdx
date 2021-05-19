@@ -1,0 +1,490 @@
+---
+title: Godot
+date: '2021-05-16'
+tags: ['godot', 'tutorial', 'videogames']
+draft: false
+summary: 'How'
+---
+
+Godot is a free, open source videogame engine. It uses nodes as building blocks and scenes for grouping them. For scripting you can use GDScript or C#. To learn more you can visit their site, Facebook, twitter, reddit or GitHub.
+
+- 3D engine with MSAA, BSDF, scattering, anisotropy etc.
+- 2D engine with title maps, grid shape, layers, lights etc.
+- Official languages GDScript, C#, C++, VisualScript
+- Export to iOS, Android, Windows, maxOS, Linux, UWP, BSD, Haiku.
+- Files with Git, Subversion, Mercurial, PlasticSCM, Perforce.
+- Plugins for Python and Nim compatibility.
+- Blender models exported with Collada
+
+## Starting Godot
+
+When you open Godot you encounter the *Project Administrator*, use it to edit, play, search, create, import, rename or delete your projects. The templates section has example projects to quick start an idea. Every project needs a unique name, folder and selected backend (GLES2 or GLES3). To import a project use the search option and open the folder that contains a `project.godot` file.
+
+When you open a project you encounter the *Project editor* that is divided in:
+
+- Main Menus (Scene, Project, Debug, Editor, Help)
+- Workspaces (2D, 3D, Script, Assets)
+- Playtest Buttons (Play project, pause, stop, play scene, play custom)
+- A Toolbar that reacts to the selected workspace.
+- Bottom Panel: Output, Debugger, Animation, Audio.
+
+The *Viewport* is divided into 6 docks:
+
+- Scene: Every node of the opened scene.
+- Import: Properties when importing an asset to the selected node.
+- FileSystem: Organize files and assets of the project.
+- Inspector: Properties of the selected node.
+- Node: Implementation, functions and signals of the selected node.
+
+With the **Scene** menu you basically create, open, save, reload and close scenes (with `tscn` extension). With the **Project** menu you can modify the settings, select a version control or export the project. In the project settings `Aplication-Run-MainScene` we can select the main starting scene. With the **Editor** menu you can manage export templates, and control multiple aspects of the editor itself across projects.
+
+## Scenes and Nodes
+
+A **Node** is the basic unit of Godot, every node has universal attributes:
+
+1. A Unique name
+2. Can have editable properties
+3. Can receive a callback each frame
+4. Can be extended with functions
+5. Can be the child of other node
+
+A **Scene** is the hierarchical organization of nodes that create a tree of nodes:
+
+1. A scene has a root node
+2. Is is independent of other scenes via a unique file
+3. Can be instanced (used inside another scene)
+
+When we run the project what we are actually doing is instancing the root node of the main scene of the project, Godot can be described simply as a scene editor where we change the scenes by modifying the nodes that compose them. Note that instancing effectively allows us to use scenes inside other scenes treating them as nodes.
+
+In the example proyect we have a Ball Scene and a Main scene. Ball is composed of a RigidBody2D node while Main contains obstacles made of StaticBody2D nodes. To instance the Ball scene inside Main we use the link button.
+
+SHOW THE LINK BUTTON AND IMAGES
+
+By default when modifying a scene every instance is updated, if we want to change the value only to the selected instance we indicate it with the option Make Unique, a gray return icon indicates that the general value is diferent from the one in the current instance.
+
+By using a sistem of nodes and scenes we dont have to use design patterns like MVC or Entity Relationship and we can focus on terms of visual elements, it is therefore recomended to create a diagram of most scenes and nodes before starting a new ptoyect.
+
+
+![Node Relationships](/static/public/images/godot/NodeRelations.jpg)
+
+It is recomended that each element of the diagram has its own scene until it can be described using only nodes, it is perfectly normal to have scenes composed onlty of other scenes.
+
+![Scene Relationships](/static/public/images/godot/SceneRelations.jpg)
+
+
+
+
+
+
+
+
+## Scripting
+
+
+
+
+Scripting
+GDScript es el lenguaje oficial. Sin embargo se puede usar VisualScript, C# y C++. Ejemplificaremos el uso de scripts en Hello World al crear un Boton que al apretarlo cambie el texto de un Label.
+
+El script por defecto de un panel incluye la funcion _ready() la cual se ejecuta una vez que el nodo y todos sus hijos esten presentes en una escena activa. Es importante mencionar que el constructor de nuevas instancias no es ready() sino _init().
+
+Cuando un nodo realiza una accion generalmente emite una señal, esta se puede vincular a cualquier funcion de cualquier script. Si no existe una señal adecuada se pueden implementar manualmente.
+
+Para vincular una señal con un nodo se puede dar click derecho en la señal dentro del panel Node y dar click en Connect..., asi apareceran los nodos de la escena con el nodo que va a emitir la señal en rojo. El recuadro nos pide el Path del nodo a cuyo script vamos a vincular la señal.
+
+Al vincular una señal con un script se creara automaticamente una funcion denominada por defecto _on_[Emmiter]_[Signal] dentro del script al que se vinculo. Dentro de esta funcion se determina como actuara el nodo una vez que el emisor envie la señal.
+
+Para vincular manualmente al boton con el label obtenemos el path del boton mediante Node.get_node(), despues conectamos una señal que el boton emite con una funcion dentro del script mediante Node.connect() y finalmente implementamos la funcion que en este caso cambia el texto del label:
+
+```gdscript
+extend Panel
+func _ready():
+    get_node('Button').connect('pressed', self, '_on_Button_pressed')
+func _on_Button_pressed():
+    get_node('Label').text = 'Hello'
+```
+
+Existen funciones que se ejecutan continuamente cada idle frame del juego, esta funcion se denomina Node._process() y se llama despues de cada Physics Step. Podemos activar o desactivar esta funcion mediante Node.set_process().
+
+Dado que los fps varian con el tiempo para mantener las llamadas a process constantes se utiliza el parametro delta que contiene el tiempo en segundos desde la ultima vez que se llamo la funcion. Por ejemplo si un objeto se mueve a una velocidad queremos que la distancia que recorra en la pantalla sea la misma sin importar la cantidad de frames que se hayan dibujado.
+
+La funcion Node._physics_process() es similar pero se utiliza para la fisica de los nodos y se llama antes de cada Physics Step, es decir 60 veces por segundo. Para cambiar el intervalo se usa Project Settings - Physics - Common - Physics Fps.
+
+Los grupos son una forma de organizar los nodos de una escena, los cuales se pueden agregar a un grupo en particular de forma automatica (desde el panel Node) o mediante la funcion Node.add_to_group().
+
+Por ejemplo si todos los enemigos de un juego estan bajo el grupo de enemies y uno detecta al jugador se puede enviar una señal personalizada a todos los demas miembros del grupo para que ejecuten una funcion en particular:
+
+```gdscript
+# Para todos los enemigos
+func _ready():
+    add_to_group('enemies')
+# Llamar la funcion player_was_discovered de todos los miembros del grupo
+func _on_discovered():
+    get_tree().call_group('enemies', 'player_was_discovered')
+```
+
+Se puede obtener una lista con todos los miembros de un grupo mediante SceneTree.get_nodes_in_group(). Note que este metodo proviene de la clase SceneTree, esta clase tiene otros metodos utiles como cambiar de escena, pausar o salir del juego.
+
+Algunas de las funciones mas comunes de la clase Node son:
+
+_Enter_Tree(): Se llama cuando el nodo entra en la escena y se vuelve activo, a diferencia de ready() no toma en cuenta el estado de los hijos.
+_Ready(): Se llama despues de enter_tree() cuando el nodo entra en la escena, en este caso se espera a que los hijos del nodo se hayan activado.
+_Exit_Tree(): Se llama cuando el nodo sale de la escena, solo puede suceder despues de que todos los hijos hayan salido y se encuentren inactivos.
+_Process(delta): Se llama cada nuevo frame dibujado.
+_Physiscs_Process(delta): Se llama cada physics frame calculado.
+Existe un sistema de notificaciones de bajo nivel que son utilizadas por la clase Object para implementar los metodos anteriores de Node y tambien los metodos de Scene Tree:
+
+```gdscript
+func _notification(what):
+    match what:
+        NOTIFICATION_READY:
+            print("Same as _ready() ")
+        NOTIFICATION_PROCESS:
+            print("Same as _process() ")
+```
+
+Para crear nuevos nodos utilizamos el metodo Node.new(), para agregar el nodo creado como un hijo del script actual utilizamos Node.add_child(s). Para eliminar inmediatamente a un nodo y todos sus hijos de la escena utilizamos Node.free(), tomando en cuenta que si lo eliminamos mientras esta bloqueado emitiendo una señal o llamando una funcion se cerrara el juego. Para eliminarlo de forma segura utilizamos Node.queue_free().
+
+Para instanciar una escena primero tenemos que cargar el archivo de la escena en la memoria (packed scene), esto se puede realizar cuando se haya cargado el nodo del script o antes (preload).
+
+```gdscript
+var scene = load("res://myscene.tscn") 
+# Or preload
+var scene = preload("res://myscene.tscn")
+```
+
+Despues de que hayamos cargado el packed scene podemos instanciarla como un nodo mediante el metodo PackedScene.instance() el cual genera todos los nodos del arbol los cuales podemos agregar finalmente como hijos del nodo actual mediante Node.add_child().
+
+```gdscript
+var node = scene.instance()
+add_child(node)
+```
+
+Extra: Si quisieramos guardar un script para que aparesca en el menu de Nodos necesitamos crear un icono (16x16) y establecer un nombre mediante el siguiente codigo:
+
+```gdscript
+extends Node
+class_name MyNodeScript, "res://path/to/optional/icon.svg"
+func _ready():
+    var this = MyNodeScript
+    var cppNode = MyCppNode.new()
+    cppNode.queue_free()
+```
+
+Lo que realmente hace class_name es importar MyNodeScript a todos los demas scripts mediante el codigo const MyNodeScript = preload(thisScript.gd). Esto provoca que los condicionales parse-time fallen aunque los run-time sigan funcionando.
+
+Signals
+El patron observer se implementa en Godot mediante señales, se programan los juegos asi para poder decouple los objetos. La idea es eliminar condicionales que constanemente chequen el estado los objetos que estamos observando y en cambio concentrarnos vincular los oyentes con las señales adecuadas.
+
+```gdscript
+# Apagar y prender sprite cada segundo
+extends Node
+onready var OneSecondTimer = $Timer
+onready var MainSpriteImage = $Sprite
+func _ready():
+    OneSecondTimer.connect("timeout", self, "_on_Timer_timeout")
+func _on_Timer_timeout() -> void:
+    MainSpriteImage.visible = !MainSpriteImage.visible
+```
+
+Nota: En el codigo anterior una manera equivalente a Node.get_node() para obtener el path de un nodo es utilizar un signo de dinero $ seguido del path, el cual se recomienda guardar en una variable onready por si se mueve el nodo de lugar solo tendremos que modificar esta variable.
+
+Finalmente si quisieramos que un nodo emita nuestras señales personalizadas las declaramos mediante el keyword signal:
+
+```gdscript
+# El nodo emite (my_signal) cuando se crea
+extends Node
+signal my_signal
+func _ready():
+    emit_signal("my_signal")
+```
+
+Ejemplo - Dodge the Creeps
+Descargamos los assets de dodge_assets.zip y abrimos un nuevo proyecto. Crearemos las escenas Main, Player, HUD y Mob. En Proyect-Settings-Display-Window cambiamos width a 480 y height a 720.
+
+PLAYER
+
+Creamos un Area2D y renombramos Player
+Seleccionamos opcion (no seleccionar hijos) en el viewport toolbar
+Creamos un hijo AnimatedSprite
+Creamos un SpriteFrames
+Creamos dos animaciones una llamada Up y otra Right
+Agregamos imagenes correspondientes a cada animacion
+Seleccionamos animacion por defecto Right
+En Node2D-Scale reducimos el tamaño a la mitad (0.5)
+Creamos un CollisionShape2D
+Agregamos un CapsuleShape2D como el Shape del sprite
+Ajustamos al tamano de la animacion en el viewport.
+Agregamos un script al Player
+extends Area2D 
+
+```gdscript
+signal hitByEnemy
+onready var velocity = Vector2()
+export var speed = 400  # Speed in pixels per second
+var screen_size
+
+# Si el mismo Area2D emite bodyEntered ejecutar funcion
+func _ready():
+    screen_size = get_viewport_rect().size
+    $".".connect("body_entered", self, "_on_Player_body_entered")
+    hide()
+
+# Movimientos, limites y flips de animaciones
+func _process(delta):
+    velocity = Vector2(0,0)
+    if Input.is_action_pressed("ui_right"):
+        velocity.x += 1
+    if Input.is_action_pressed("ui_left"):
+        velocity.x -= 1
+    if Input.is_action_pressed("ui_down"):
+        velocity.y += 1
+    if Input.is_action_pressed("ui_up"):
+        velocity.y -= 1
+    if velocity.length() > 0:
+        velocity = velocity.normalized() * speed
+        $AnimatedSprite.play()
+    else:
+        $AnimatedSprite.stop()
+    position += velocity * delta
+    position.x = clamp(position.x, 0, screen_size.x)
+    position.y = clamp(position.y, 0, screen_size.y)
+    # Horizontal o diagonal usar right, desactivar flip vertical.
+    # Activar flip horizontal si vamoa a la izquierda.
+    if velocity.x != 0:
+        $AnimatedSprite.animation = "right"
+        $AnimatedSprite.flip_v = false
+        $AnimatedSprite.flip_h = (velocity.x < 0) #Shorthand boolean
+    # Vertical usar up, activar flip vertical si vamos abajo.
+    elif velocity.y != 0:
+        $AnimatedSprite.animation = "up"
+        $AnimatedSprite.flip_v = (velocity.y > 0)
+
+# Que pasa cuando el jugador es tocado
+func _on_Player_body_entered(body):
+    hide()
+    emit_signal("hitByEnemy")
+    # Desactiva colision para evitar mas senales
+    # Deferred hace un queue para que no interfiera con colisiones
+    $CollisionShape2D.set_deferred("disabled", true)
+
+# Iniciar el jugador y activar colision
+func start(pos):
+    position = pos
+    show()
+    $CollisionShape2D.disabled = false
+
+```
+
+Cuando el jugador (Area2D) es tocado por un enemigo (RigidBody2D) emite la señal (body_entered). Nosotros conectamos esa señal con la funcion (on_Player_body_entered) la cual esconde al jugador y hace que mita otra señal personalizada (hitByEnemy). Tambien se desactiva el ColissionShape para evitar que se generen señales adicionales.
+
+La velocidad del jugador esta dada por un vector unitario (velocity) que le da su direccion, mientras que la magnitud se obtiene al multiplicar por la variable (speed). El sprite avanza una cantidad de pixeles por segundo iguales a al tamaño o magnitud del vector.
+
+Obtenemos el tamaño de la pantalla en (screen_size) y utilizamos la funcion Clamp para que la posicion del sprite nunca supere los bordes de la pantalla. La velocidad se multiplica por delta para que la distancia recorrida sea la misma sin importar la cantidad de frames que hayan pasado.
+
+El vector unitario toma una direccion dependiendo de cuatro teclas presionadas, para evitar que la velocidad se duplique al apretar dos o mas teclas normalizamos el vector (forzamos su longitud a 1) mediante Vector.normalized(). Si el jugador esta en movimiento activamos su animacion, si no esta en movimiento desactivamos su animacion y su valor se vuelve (0,0).
+
+Finalmente utilizamos shorthand boolean para activar o desactivar el flip en la animacion dependiendo del valor del vector unitario, tomando en cuenta el movimiento en diagonal. Tambien creamos la funcion (start) que inicializa el sprite en la posicion indicada y activa su colision.
+
+MOB
+
+Creamos un RigidBody2D y lo renombramos Mob
+Seleccionamos gravedad = 0
+Seleccionamos PhysicsBody2D-Mask y desactivamos el primer recuadro
+Asi evitamos que los enemigos colisionen entre si
+Seleccionamos opcion (no seleccionar hijos) en el viewport toolbar
+Creamos un hijo AnimatedSprite
+Creamos un SpriteFrames
+Creamos animaciones para fly, swim y walk
+Agregamos imagenes correspondientes a cada animacion
+Activamos propiedad Playing to On para que se active automaticamente
+Ajustamos el FPS, 3 para fly, y 4 para swim y walk.
+Seleccionamos animacion por defecto Right
+En Node2D-Scale reducimos el tamaño a (0.75)
+Creamos un CollisionShape2D
+Agregamos un CapsuleShape2D como el Shape del sprite
+Rotamos el Shape 90 grados
+Ajustamos al tamano de la animacion en el viewport.
+Agregamos un Visibility Notifier 2D como Visibility
+Agregamos un Script al Mob
+
+```gdscript
+extends RigidBody2D
+export var min_speed = 150  # Minimum speed range.
+export var max_speed = 250  # Maximum speed range.
+var mob_types = ["walk", "swim", "fly"]
+func _ready():
+    $AnimatedSprite.animation = mob_types[randi() % mob_types.size()]
+    $VisibilityNotifier2D.connect("screen_exited", self, "_on_Visibility_screen_exited")
+func _on_Visibility_screen_exited():
+    queue_free()
+func _on_start_game():
+    queue_free()
+La velocidad inicial y animacion de cada mob nuevo se da al azar dentro de un rango determinado. La forma estandar para obtener un numero entero entre 0 y n-1 es mediante randi()%n, con esto podemos obtener un index para la animacion. Cuando el VisibilityNotifier2D emite screen_exited se activa la funcion (on_Visibility_screen_exited()) que elimina la instancia. El queue_free() de on_start_game elimina todos los mobs cuando se inicia una nueva ronda.
+
+```
+
+MAIN
+
+Creamos un Node llamado Main
+Instanciamos Player y Mob
+Agregamos un MobTimer (spawn), ScoreTimer (more score per second), StartTimer (delay before starting) y un Position2D como StartPosition
+Ponemos el MobTimer a 0.5, ScoreTimer a 1 (One Shot) y StartTimer a 2
+Ponemos StartPosition a (240, 450)
+Agregamos un Path2D como MobPath y agregamos cuatro puntos en las esquinas
+Cerramos el path, los puntos tienen que estar en sentido horario para que el spawn sea interno
+Agregamos un PathFallow2D como MobSpawnLocation y como hijo de MobPath
+Agregamos un Script a Main
+El PathFallow2D va a seguir el Path2D y cada que pase el MobTimer termine se crea una nueva instancia de Mob rotando al azar medainte randomize() para que se muevan en direcicones aleatorias.
+
+```gdscript
+extends Node
+export (PackedScene) var Mob
+var score
+
+func _ready():
+    randomize()
+    $ScoreTimer.connect("timeout", self, "_on_ScoreTimer_timeout")
+    $MobTimer.connect("timeout", self, "_on_MobTimer_timeout")
+    $StartTimer.connect("timeout", self, "_on_StartTimer_timeout")
+    $Player.connect("hitByEnemy", self, "game_over")
+    $HUD.connect("start_game", self, "new_game")
+
+func game_over():
+    $ScoreTimer.stop()
+    $MobTimer.stop()
+    $HUD.show_game_over()
+    $Music.stop()
+    $DeathSound.play()
+
+func new_game():
+    score = 0
+    <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>l</mi><mi>a</mi><mi>y</mi><mi>e</mi><mi>r</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>t</mi><mi>a</mi><mi>r</mi><mi>t</mi><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">Player.start(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord">.</span><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span><span class="mopen">(</span></span></span></span>StartPosition.position)
+    $StartTimer.start()
+    $HUD.update_score(score)
+    $HUD.show_message("Get Ready")
+    $Music.play()
+
+func _on_StartTimer_timeout():
+    $MobTimer.start()
+    $ScoreTimer.start()
+
+func _on_ScoreTimer_timeout():
+    score += 1
+    $HUD.update_score(score)
+
+func _on_MobTimer_timeout():
+    # Choose a random location on Path2D.
+    $MobPath/MobSpawnLocation.set_offset(randi())
+    var mob = Mob.instance()
+    add_child(mob)
+    # Set the mob's direction perpendicular to the path direction.
+    var direction = $MobPath/MobSpawnLocation.rotation + PI / 2
+    # Set the mob's position to a random location.
+    mob.position = $MobPath/MobSpawnLocation.position
+    # Add some randomness to the direction.
+    direction += rand_range(-PI / 4, PI / 4)
+    mob.rotation = direction
+    # Set the velocity (speed & direction).
+    mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
+    mob.linear_velocity = mob.linear_velocity.rotated(direction)
+    $HUD.connect("start_game", mob, "_on_start_game")
+```
+
+La variable exportada Mob utiliza un archivo PackedScene que se utilizara al instanciar los Mobs. Tambien guarda la variable (score) de la escena HUD la cual aumenta cada segundo mediante el timer (ScoreTimer). El (StartTimer) solo se activa una vez al iniciar el juego el cual solo inicia cuando se presiona el boton de Start del HUD. Finalmente el tercer timer selecciona un lugar random del Path para crear nuevos Mobs y los rota al azar utilizando rand_range.
+
+Game over se ejecuta solo cuando el Player emite la señal personalizada hitByEnemy. En las funciones que requieren angulos GDScript utiliza radianes por defecto, para pasar a grados y viceverza utilizar deg2rad() y rad2deg().
+
+HUD
+
+Creamos un CanvasLayer como HUD
+Creamos ScoreLabel, MessageLabel, StartButton y MessageTimer.
+En ScoreLabel ponemos 0, cambiamos la fuente a Xolonium y el size a 64.
+Utilizamos el layout para controlar automaticamente la posicion
+Para ajustar manualmente utilizamos las variables anchor y margin.
+Agregamos el siguiente script a HUD.
+extends CanvasLayer
+signal start_game
+
+```gdscript
+func _ready() -> void:
+    $MessageTimer.connect("timeout", self, "_on_MessageTimer_timeout")
+    $StartButton.connect("pressed", self, "_on_StartButton_pressed")
+func _on_MessageTimer_timeout():
+    $MessageLabel.hide()
+func _on_StartButton_pressed():
+    $StartButton.hide()
+    emit_signal("start_game")
+func show_message(text):
+    $MessageLabel.text = text
+    $MessageLabel.show()
+    $MessageTimer.start()
+func show_game_over():
+    show_message("Game Over")
+    yield($MessageTimer, "timeout")
+    $MessageLabel.text = "Dodge the\nCreeps!"
+    $MessageLabel.show()
+    yield(get_tree().create_timer(1), "timeout")
+    $StartButton.show()
+func update_score(score):
+    $ScoreLabel.text = str(score)
+```
+
+El CanvasLayer a diferencia de un panel se dibuja por encima del juego, al iniciar el juego desaparecemos el mensaje del titulo y el boton. Luego cambiamos el texto del titulo a (Get ready) por dos segundos que dura el (MessageTimer) y actualizamos el Score con el texto de ScoreLabel.
+
+En el caso de que termine el juego mostramos el mensaje (Game Over), la funcion yield nos permite forzar la emision de una señal. Despues de dos segundos volvemos al titulo original y despues de 1 segundo volvemos a aparecer el boton de Start.
+
+Para cambiar el background utilizamos un ColorRect en Main. Para agregar efectos de sonido utilizamos AudioStreamPlayer y llamamos a sus funciones play y stop. Para que el boton de start se active al presionar la tecla de espacio agregamos un Shortcut a sus propiedades.
+
+Exportar
+Nos vamos a Project-Settings-InputDevices-Pointing y activamos la opcion para emular touch a partir de un mouse, esto nos permitira dar click en el boton de start en un touchscreen. Para distintas pantallas activamos Stretch 2D con Keep Aspect. Para mover el Player mediante touch utilizamos los siguientes cambios a su Script:
+
+```gdscript
+#TouchTarget Vector
+onready var target = Vector2()
+# Funcion del TouchTarget Vector
+func _input(event):
+    if event is InputEventScreenTouch and event.pressed:
+        target = event.position
+func _process(delta):
+    # Moverse hacia TouchTarget parar cuando lleguemos
+    if position.distance_to(target) > 10:
+        velocity = (target - position).normalized() * speed
+    else:
+        velocity = Vector2()
+    # Eliminar inputs de keyboard
+func start(pos):
+    #TouchTarget Initial Pos
+    target = pos
+```
+
+Finalmente utilizamos Editor-ManageTemplates para seleccionar los targets a los que exportaremos el juego. Editamos los detalles del export mediante Project-Export. Creamos un nuevo preset y seleccionamos la plataforma.
+
+Para Windows, Linux y MacOS genera directamente los archivos ejecutables. Para Android se necesita tener AndroidSDK y JavaJDK, en AndroidStudio se instala el AndroidSDKPlatformTools que a su vez instala el comando adb. Godot utilizara el abd y la direccion de un keystore para exportar a Android:
+
+```gdscript
+
+keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
+
+```
+Al exportar a Android se genera un apk que puede ser descargado en el telefono si esta en modo developer. Si Godot detecta el telefono conectado en vez de exportar el apk aparecera un boton para crearlo y descargarlo automaticamente al telefono.
+
+Para IOS se necesita tener macOS y Xcode instalado, Godot necesitara el App Store Team ID dentro de la membresia, luego necesitara iconos e imagenes obligatorias del dispositivo. Los archivos que Godot generara estaran listos para ser abiertos en Xcode y compilados.
+
+Para HTML5 se crean varios archivos que pueden ser ejecutados por cualquier servidor, incluso uno local ya que necesitan de un puerto para ejecutar los cripts. Se puede crear un server rapidamente mediante python -m http.server 9000 dentro del directorio que contiene los archivos. Si la exportacion incluye la consola de debug se puede desactivar con Export With Debug.
+
+
+Diseño
+Nodos de Control
+Pantalla de Titulo
+GUI
+GUI by Code
+Splash Screen
+Animaciones
+Recursos
+Archivos
+SceneTree
+Singletons
+
+Editor Manual
+https://godotengine.org/news https://godotengine.org/community https://www.facebook.com/groups/godotengine/ https://twitter.com/godotengine https://github.com/godotengine https://www.reddit.com/r/godot/
