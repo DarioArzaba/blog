@@ -1,12 +1,12 @@
 ---
 title: Godot
-date: '2021-05-16'
+date: '2021-05-14'
 tags: ['godot', 'tutorial', 'videogames']
-draft: false
-summary: 'How'
 ---
 
-Godot is a free, open source videogame engine. It uses nodes as building blocks and scenes for grouping them. For scripting you can use GDScript or C#. To learn more you can visit their site, Facebook, twitter, reddit or GitHub.
+![Godot Logo](/static/images/godot/GodotLogo.png)
+
+The [Godot](https://godotengine.org/download/windows) engine is a free, open source, videogame engine with many [assets](https://godotengine.org/asset-library/asset). To know more you can visit their [blog](https://godotengine.org/news), or use one of their [community channels](https://godotengine.org/community). To actually learn Godot you can use their [docs](https://docs.godotengine.org/en/stable/).
 
 - 3D engine with MSAA, BSDF, scattering, anisotropy etc.
 - 2D engine with title maps, grid shape, layers, lights etc.
@@ -18,72 +18,88 @@ Godot is a free, open source videogame engine. It uses nodes as building blocks 
 
 ## Starting Godot
 
-When you open Godot you encounter the *Project Administrator*, use it to edit, play, search, create, import, rename or delete your projects. The templates section has example projects to quick start an idea. Every project needs a unique name, folder and selected backend (GLES2 or GLES3). To import a project use the search option and open the folder that contains a `project.godot` file.
+When you open Godot you encounter the **Project Administrator**, use it to edit, play, search, create, import, rename or delete your projects. 
 
-When you open a project you encounter the *Project editor* that is divided in:
+![Godot First Open](/static/images/godot/project_manager_first_open.png)
 
-- Main Menus (Scene, Project, Debug, Editor, Help)
-- Workspaces (2D, 3D, Script, Assets)
-- Playtest Buttons (Play project, pause, stop, play scene, play custom)
-- A Toolbar that reacts to the selected workspace.
+The templates section has online starters.  
+
+![Godot Templates](/static/images/godot/editor_ui_intro_project_manager_03.png)
+
+Every project needs a unique name, folder and selected backend (GLES2 or GLES3).
+
+![Godot Project Manager](/static/images/godot/editor_ui_intro_project_manager_04.png)
+
+To import a project use the search option and open the folder that contains a `project.godot` file.
+
+![Godot Project Import](/static/images/godot/editor_ui_intro_project_manager_05.png)
+
+When you open a project you encounter the **Project editor** that is divided in:
+
+![Godot Editor Overview](/static/images/godot/editor_ui_intro_editor_interface_overview.png)
+
+- Main Menus: Scene, Project, Debug, Editor, Help.
+- Workspaces: 2D, 3D, Script, Assets.
+- Playtest: Play project, pause, stop, play scene, play custom.
+- Toolbar: Reacts to the selected workspace.
+- Viewport: How the game currently looks.
 - Bottom Panel: Output, Debugger, Animation, Audio.
+- Docks:
+	* Scene: Shows every node of the current scene.
+	* Import: Properties when importing an asset to the selected node.
+	* FileSystem: Organize files and assets of the project.
+	* Inspector: Classes, Sections and Properties of the selected node.
+	* Node: Implementation, functions and signals of the selected node.
 
-The *Viewport* is divided into 6 docks:
+With the **Scene Menu** you create, open, save, reload and close scenes (with `tscn` extension). With the **Project Menu** you can modify the settings, select a version control or export the project. With the **Editor Menu** you can manage export templates, and control multiple aspects of the editor itself across projects.
 
-- Scene: Every node of the opened scene.
-- Import: Properties when importing an asset to the selected node.
-- FileSystem: Organize files and assets of the project.
-- Inspector: Properties of the selected node.
-- Node: Implementation, functions and signals of the selected node.
-
-With the **Scene** menu you basically create, open, save, reload and close scenes (with `tscn` extension). With the **Project** menu you can modify the settings, select a version control or export the project. In the project settings `Aplication-Run-MainScene` we can select the main starting scene. With the **Editor** menu you can manage export templates, and control multiple aspects of the editor itself across projects.
+***
 
 ## Scenes and Nodes
 
 A **Node** is the basic unit of Godot, every node has universal attributes:
 
-1. A Unique name
-2. Can have editable properties
-3. Can receive a callback each frame
-4. Can be extended with functions
-5. Can be the child of other node
+1. A unique name.
+2. Can have editable properties.
+3. Can receive a callback each frame.
+4. Can be extended with functions.
+5. Can be the child of other node.
 
-A **Scene** is the hierarchical organization of nodes that create a tree of nodes:
+A **Scene** is the hierarchical organization of nodes to create a tree of nodes:
 
-1. A scene has a root node
-2. Is is independent of other scenes via a unique file
-3. Can be instanced (used inside another scene)
+1. A scene has a root node.
+2. Is is independent of other scenes with a unique file.
+3. Can be instanced or used inside another scene as a node.
 
-When we run the project what we are actually doing is instancing the root node of the main scene of the project, Godot can be described simply as a scene editor where we change the scenes by modifying the nodes that compose them. Note that instancing effectively allows us to use scenes inside other scenes treating them as nodes.
+In the project settings `Aplication-Run-MainScene` we can select the MainScene. When we run a Godot project what we are actually doing is instancing the root node of the MainScene.
 
-In the example proyect we have a Ball Scene and a Main scene. Ball is composed of a RigidBody2D node while Main contains obstacles made of StaticBody2D nodes. To instance the Ball scene inside Main we use the link button.
+![Godot Main Scene](/static/images/godot/main_scene.png)
 
-SHOW THE LINK BUTTON AND IMAGES
+### Instancing example
 
-By default when modifying a scene every instance is updated, if we want to change the value only to the selected instance we indicate it with the option Make Unique, a gray return icon indicates that the general value is diferent from the one in the current instance.
+In [this example](https://docs.godotengine.org/en/stable/_downloads/0f77439a03c9c1eb57dab630d028b82d/instancing.zip) we have a Main scene and a Ball scene. Ball is composed of a `RigidBody2D` *ball* node, while Main is composed of multiple `StaticBody2D` *obstacle* nodes. We can add Ball to Main like every other node using the link button.
 
-By using a sistem of nodes and scenes we dont have to use design patterns like MVC or Entity Relationship and we can focus on terms of visual elements, it is therefore recomended to create a diagram of most scenes and nodes before starting a new ptoyect.
+![Godot Link Button](/static/images/godot/instancing_linkbutton.png)
+![Godot Multiball](/static/images/godot/instancing_multiball.png.png)
+
+If we modify Ball every instance of Ball inside Main will be updated with the new information, if we want to change a particular instance we indicate it with the **Make Unique** option, then a gray icon indicates that *this* parameter is different from the original Ball scene.
+
+![Godot Return Button](/static/images/godot/instancing_property.png)
+
+This design system of nodes and scenes focuses on the visual elements of the screen. It is therefore recommended to create a basic diagram of every visual element that will be expected and how they will relate to each other.
+
+![Node Relationships](/static/images/godot/NodeRelations.jpg)
+
+The lowest elements of the diagram are the ones expected to be described using nodes, meaning that most scenes will be composed of other scenes.
+
+![Scene Relationships](/static/images/godot/SceneRelations.png)
+
+***
+
+## My first game
 
 
-![Node Relationships](/static/public/images/godot/NodeRelations.jpg)
 
-It is recomended that each element of the diagram has its own scene until it can be described using only nodes, it is perfectly normal to have scenes composed onlty of other scenes.
-
-![Scene Relationships](/static/public/images/godot/SceneRelations.jpg)
-
-
-
-
-
-
-
-
-## Scripting
-
-
-
-
-Scripting
 GDScript es el lenguaje oficial. Sin embargo se puede usar VisualScript, C# y C++. Ejemplificaremos el uso de scripts en Hello World al crear un Boton que al apretarlo cambie el texto de un Label.
 
 El script por defecto de un panel incluye la funcion _ready() la cual se ejecuta una vez que el nodo y todos sus hijos esten presentes en una escena activa. Es importante mencionar que el constructor de nuevas instancias no es ready() sino _init().
