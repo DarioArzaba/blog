@@ -96,104 +96,137 @@ The lowest elements of the diagram are the ones expected to be described using n
 
 ***
 
-## My first game
+## My First Script
 
+The official scripting language is GDScript (loosely based on Python), let's start by creating a button that when pressed displays *Hello World!*. We will add three nodes to the MainScene:
 
+1. Panel: Rectangular opaque background used to contain other Control nodes. It inherits from `Control < CanvasItem < Node < Object`.
+	1. Button: Default button, its methods like `_pressed()` come from `BaseButton`. It inherits from `BaseButton < Control < CanvasItem < Node < Object`.
+	2. Label: Rectangular plain text box. We will change its `text` property. It inherits from `Control < CanvasItem < Node < Object`.
 
-GDScript es el lenguaje oficial. Sin embargo se puede usar VisualScript, C# y C++. Ejemplificaremos el uso de scripts en Hello World al crear un Boton que al apretarlo cambie el texto de un Label.
+![Script Added](/static/images/godot/script_added.png)
 
-El script por defecto de un panel incluye la funcion _ready() la cual se ejecuta una vez que el nodo y todos sus hijos esten presentes en una escena activa. Es importante mencionar que el constructor de nuevas instancias no es ready() sino _init().
+With all three nodes created we can add a script to the Panel node. All nodes than inherit from `Node` trigger a `_ready()` callback when they finish loading into the scene tree. Note that `_ready()` is not the node constructor but `_init()` instead, also note that the new script inherits everything from its parent node.
 
-Cuando un nodo realiza una accion generalmente emite una señal, esta se puede vincular a cualquier funcion de cualquier script. Si no existe una señal adecuada se pueden implementar manualmente.
+![Script Template](/static/images/godot/script_template.png)
 
-Para vincular una señal con un nodo se puede dar click derecho en la señal dentro del panel Node y dar click en Connect..., asi apareceran los nodos de la escena con el nodo que va a emitir la señal en rojo. El recuadro nos pide el Path del nodo a cuyo script vamos a vincular la señal.
+Nodes naturally emit **Signals** when a specific action happens to them, the signals can then be **connected** to functions inside scripts that execute an action afterwards. We can implement our own signals if the default nodes do not emit a signal when we want.
 
-Al vincular una señal con un script se creara automaticamente una funcion denominada por defecto _on_[Emmiter]_[Signal] dentro del script al que se vinculo. Dentro de esta funcion se determina como actuara el nodo una vez que el emisor envie la señal.
+![Signals](/static/images/godot/signals.png)
 
-Para vincular manualmente al boton con el label obtenemos el path del boton mediante Node.get_node(), despues conectamos una señal que el boton emite con una funcion dentro del script mediante Node.connect() y finalmente implementamos la funcion que en este caso cambia el texto del label:
+Luckily the Button node emits the `_pressed()` signal. To connect the signal to the script we will use the `Node.get_node()` function, this will fetch the `Object Path` of the Button node relative to the script, then we will use the `Object.connect()` function to listen for `_pressed()` and finally execute the function `_on_Button_pressed()` each time the signal is emitted.
 
 ```gdscript
 extend Panel
+
 func _ready():
     get_node('Button').connect('pressed', self, '_on_Button_pressed')
+
 func _on_Button_pressed():
     get_node('Label').text = 'Hello'
 ```
 
-Existen funciones que se ejecutan continuamente cada idle frame del juego, esta funcion se denomina Node._process() y se llama despues de cada Physics Step. Podemos activar o desactivar esta funcion mediante Node.set_process().
-
-Dado que los fps varian con el tiempo para mantener las llamadas a process constantes se utiliza el parametro delta que contiene el tiempo en segundos desde la ultima vez que se llamo la funcion. Por ejemplo si un objeto se mueve a una velocidad queremos que la distancia que recorra en la pantalla sea la misma sin importar la cantidad de frames que se hayan dibujado.
-
-La funcion Node._physics_process() es similar pero se utiliza para la fisica de los nodos y se llama antes de cada Physics Step, es decir 60 veces por segundo. Para cambiar el intervalo se usa Project Settings - Physics - Common - Physics Fps.
-
-Los grupos son una forma de organizar los nodos de una escena, los cuales se pueden agregar a un grupo en particular de forma automatica (desde el panel Node) o mediante la funcion Node.add_to_group().
-
-Por ejemplo si todos los enemigos de un juego estan bajo el grupo de enemies y uno detecta al jugador se puede enviar una señal personalizada a todos los demas miembros del grupo para que ejecuten una funcion en particular:
+There are two ways of saving an `Object Path` into a variable for multiple uses across the script:
 
 ```gdscript
-# Para todos los enemigos
+# First way
+var my_label
+func _ready():
+	my_label = get_node("MyLabel")
+
+# Second way
+onready var my_label = get_node("MyLabel")
+```
+
+### Processing
+
+Godot includes two functions that are executed continuously. 
+
+The first one is `Node._process()` and when implemented on any script it activates Godot's idle processing calling it every **Idle Frame**, in other words the frequency of the calls will vary depending on the FPS of the application. If the implementation needs to simulate a constant action the **Delta** parameter counts the time that each frame took so that you can scale the action accordingly. Note that once activated you can stop Godot's idle processing with `Node.set_process()`.
+
+The second one is `Node._physics_process()`, this one is called each time before a **Physics Step** is calculated, for example to check if a key is still being pressed. By default 60 physics steps are calculated per second. You can change this setting on `Project Settings - Physics - Common - Physics FPS`. Note that even in an optimized game `_process()` will be called *after* the physics step.
+
+### Groups
+
+We can group nodes with `Node.add_to_group()`, groups allows us to execute a function implemented by its members with `SceneTree.call_group()`. 
+
+For example if every *enemy* member of a *enemies* group listens for a *discovered* signal emitted by the *player* then the first *enemy* intercepts the signal it can send an order to the *enemies* group members to execute their `player_was_discovered` function.
+
+```gdscript
 func _ready():
     add_to_group('enemies')
-# Llamar la funcion player_was_discovered de todos los miembros del grupo
+
 func _on_discovered():
     get_tree().call_group('enemies', 'player_was_discovered')
 ```
 
-Se puede obtener una lista con todos los miembros de un grupo mediante SceneTree.get_nodes_in_group(). Note que este metodo proviene de la clase SceneTree, esta clase tiene otros metodos utiles como cambiar de escena, pausar o salir del juego.
+You can get a list of every member in a group with the `SceneTree.get_nodes_in_group()` function. Note that the `SceneTree` object includes other useful methods for manipulating nodes, changing the scene and pausing or exiting the game. 
 
-Algunas de las funciones mas comunes de la clase Node son:
+### Notifications
 
-_Enter_Tree(): Se llama cuando el nodo entra en la escena y se vuelve activo, a diferencia de ready() no toma en cuenta el estado de los hijos.
-_Ready(): Se llama despues de enter_tree() cuando el nodo entra en la escena, en este caso se espera a que los hijos del nodo se hayan activado.
-_Exit_Tree(): Se llama cuando el nodo sale de la escena, solo puede suceder despues de que todos los hijos hayan salido y se encuentren inactivos.
-_Process(delta): Se llama cada nuevo frame dibujado.
-_Physiscs_Process(delta): Se llama cada physics frame calculado.
-Existe un sistema de notificaciones de bajo nivel que son utilizadas por la clase Object para implementar los metodos anteriores de Node y tambien los metodos de Scene Tree:
+On a low level, methods like `_ready()` are actually *overridable* virtual methods that get called through a notification system, you may need to access the notification system directly.
 
 ```gdscript
 func _notification(what):
     match what:
         NOTIFICATION_READY:
-            print("Same as _ready() ")
-        NOTIFICATION_PROCESS:
-            print("Same as _process() ")
+            print("Same as implementing _ready().")
 ```
 
-Para crear nuevos nodos utilizamos el metodo Node.new(), para agregar el nodo creado como un hijo del script actual utilizamos Node.add_child(s). Para eliminar inmediatamente a un nodo y todos sus hijos de la escena utilizamos Node.free(), tomando en cuenta que si lo eliminamos mientras esta bloqueado emitiendo una señal o llamando una funcion se cerrara el juego. Para eliminarlo de forma segura utilizamos Node.queue_free().
+Overridable `Node` methods:
 
-Para instanciar una escena primero tenemos que cargar el archivo de la escena en la memoria (packed scene), esto se puede realizar cuando se haya cargado el nodo del script o antes (preload).
+1. `_enter_tree()`: Called when only the node finishes loading becomes active. 
+2. `_ready()`: Called after `_enter_Tree()`, when every child node has been loaded and become active.
+3. `_exit_tree()`: Called when the node and every child node has unloaded and become inactive.
+4. `_process(delta)`: Called every idle frame as soon as it can.
+5. `_physics_process(delta)`: Called every before every physics step.
+
+### Nodes
+
+To create new nodes we use `Node.new()`. To add the node as a child of the Script's node we use `Node.add_child()`. To delete a node and immediately we use `Note.free()`. Note that freeing a node while it's emitting a signal or executing a function will terminate the app. To wait for the signal or function to finish before freeing the node we use `Node.queue_free()`.
+
+```gdscript
+var s
+func _ready():
+    s = Sprite.new()
+    add_child(s)
+
+func _someaction():
+    s.queue_free()
+```
+
+### Scenes
+
+To link a scene we first need to load its file into memory as a `PackedScene` object, we can do this while parsing the script with `preload()` or after the script's node has loaded into the scene with `load()`. 
+
+Then we convert the `PackedScene` object into a tree of nodes using the `PackedScene.instance()` method. This is a two step process because when we have the scene already loaded into memory we can instance it multiple times with minimal performance cost.
 
 ```gdscript
 var scene = load("res://myscene.tscn") 
-# Or preload
-var scene = preload("res://myscene.tscn")
-```
-
-Despues de que hayamos cargado el packed scene podemos instanciarla como un nodo mediante el metodo PackedScene.instance() el cual genera todos los nodos del arbol los cuales podemos agregar finalmente como hijos del nodo actual mediante Node.add_child().
-
-```gdscript
 var node = scene.instance()
-add_child(node)
+func _ready():
+	add_child(node)
 ```
 
-Extra: Si quisieramos guardar un script para que aparesca en el menu de Nodos necesitamos crear un icono (16x16) y establecer un nombre mediante el siguiente codigo:
+We can load a script file inside another script or we can register the script as a new `Class` and then extend it. To create a new class we use the keyword `class_name` and an optional icon. Registering a class means makes it global and can be accessed anywhere, however it cannot be unloaded from memory and you may run into a cyclic reference error: You can't reference a registered class *foo* in the fields of another registered class *bar* if *bar* has referenced *foo* or another script that depends on *foo*.
 
 ```gdscript
 extends Node
-class_name MyNodeScript, "res://path/to/optional/icon.svg"
+class_name MyClassName, "res://path/to/icon16x16.png"
 func _ready():
-    var this = MyNodeScript
+    var this = MyClassName
     var cppNode = MyCppNode.new()
-    cppNode.queue_free()
+	cppNode.queue_free()
 ```
 
-Lo que realmente hace class_name es importar MyNodeScript a todos los demas scripts mediante el codigo const MyNodeScript = preload(thisScript.gd). Esto provoca que los condicionales parse-time fallen aunque los run-time sigan funcionando.
+### Signals
 
-Signals
-El patron observer se implementa en Godot mediante señales, se programan los juegos asi para poder decouple los objetos. La idea es eliminar condicionales que constanemente chequen el estado los objetos que estamos observando y en cambio concentrarnos vincular los oyentes con las señales adecuadas.
+The *observer* pattern focuses on the emitters and their signal rather than on the listener continuously checking on an action, in this way the listener can wait idle and then act upon hearing the signal. 
+
+The relationship between emitter and listener is *decoupled* meaning that in a way the emitter is sending its signal to no one in particular and the same with the listener.
 
 ```gdscript
-# Apagar y prender sprite cada segundo
+# Blinking Sprite
 extends Node
 onready var OneSecondTimer = $Timer
 onready var MainSpriteImage = $Sprite
@@ -203,106 +236,138 @@ func _on_Timer_timeout() -> void:
     MainSpriteImage.visible = !MainSpriteImage.visible
 ```
 
-Nota: En el codigo anterior una manera equivalente a Node.get_node() para obtener el path de un nodo es utilizar un signo de dinero $ seguido del path, el cual se recomienda guardar en una variable onready por si se mueve el nodo de lugar solo tendremos que modificar esta variable.
+Note the use of the dollar sign as shorthand code for `Node.get_node()`. 
 
-Finalmente si quisieramos que un nodo emita nuestras señales personalizadas las declaramos mediante el keyword signal:
+To custom signals we declare them with the keyword `signal`.
 
 ```gdscript
-# El nodo emite (my_signal) cuando se crea
+# Now this node emits my_signal upon loading into the scene.
 extends Node
-signal my_signal
+signal my_signal(value, other_value)
 func _ready():
-    emit_signal("my_signal")
+    emit_signal("my_signal", true, 42)
 ```
 
-Ejemplo - Dodge the Creeps
-Descargamos los assets de dodge_assets.zip y abrimos un nuevo proyecto. Crearemos las escenas Main, Player, HUD y Mob. En Proyect-Settings-Display-Window cambiamos width a 480 y height a 720.
+***
 
-PLAYER
+## My First Game
 
-Creamos un Area2D y renombramos Player
-Seleccionamos opcion (no seleccionar hijos) en el viewport toolbar
-Creamos un hijo AnimatedSprite
-Creamos un SpriteFrames
-Creamos dos animaciones una llamada Up y otra Right
-Agregamos imagenes correspondientes a cada animacion
-Seleccionamos animacion por defecto Right
-En Node2D-Scale reducimos el tamaño a la mitad (0.5)
-Creamos un CollisionShape2D
-Agregamos un CapsuleShape2D como el Shape del sprite
-Ajustamos al tamano de la animacion en el viewport.
-Agregamos un script al Player
-extends Area2D 
+We will create the [Dodge the Creeps](https://docs.godotengine.org/en/stable/_downloads/e79a087a28c8eb4d140359198a122c0f/dodge_assets.zip) game. 
+
+* Create the scenes **Main**, **Player**, **HUD** and **Mob**. 
+* Change `width` to 480 and `height` to 720 inside `Proyect - Settings - Display - Window`.
+* Set the `Mode` to 2D and the `Apect` to keep. This will allow rescaling of the window.
+
+In the **Player** scene we:
+
+1. Create an Area2D and rename it Player. This area will detect collisions via overlaps.
+2. Select the option in the toolbar to make the object's children non selectable.
+3. Add an AnimatedSprite to the Area2D. This will render the appearance of the player.
+4. In the AnimatedSprite Frames add a SpriteFrames resource.
+5. In the SpriteFrames panel add 2 animations, one called `up` and another called `walk`.
+6. Add the corresponding pair of images to each animation.
+7. Reduce the `AnimatedSprite - Node2D - Scale` to half (0.5, 0.5).
+8. Add a CollisionShape2D to the Area2D. This will be the hitbox shape for the collisions.
+9. In the CollisionShape2D Shape add a CapsuleShape2D.
+10. Adjust the size of the Capsule in the viewport area.
+11. Create a script for the Player node that extends Area2D.
 
 ```gdscript
-signal hitByEnemy
-onready var velocity = Vector2()
-export var speed = 400  # Speed in pixels per second
+extends Area2D
+signal hit
 var screen_size
+# Touchscreen target
+var target = Vector2()
+# Speed in pixels/sec
+export var speed = 400  
 
-# Si el mismo Area2D emite bodyEntered ejecutar funcion
 func _ready():
-    screen_size = get_viewport_rect().size
-    $".".connect("body_entered", self, "_on_Player_body_entered")
-    hide()
+	# Get the viewport screen size
+	screen_size = get_viewport_rect().size
+	# Hide the player until we start a new round
+	hide()
+	# Listen itself for the Area2D body_entered signal
+	self.connect("body_entered", self, "_on_Player_body_entered")
 
-# Movimientos, limites y flips de animaciones
+# If touchscreen is detected update target's location
+func _input(event):
+	if event is InputEventScreenTouch and event.pressed:
+		target = event.position
+
 func _process(delta):
-    velocity = Vector2(0,0)
-    if Input.is_action_pressed("ui_right"):
-        velocity.x += 1
-    if Input.is_action_pressed("ui_left"):
-        velocity.x -= 1
-    if Input.is_action_pressed("ui_down"):
-        velocity.y += 1
-    if Input.is_action_pressed("ui_up"):
-        velocity.y -= 1
-    if velocity.length() > 0:
-        velocity = velocity.normalized() * speed
-        $AnimatedSprite.play()
-    else:
-        $AnimatedSprite.stop()
-    position += velocity * delta
-    position.x = clamp(position.x, 0, screen_size.x)
-    position.y = clamp(position.y, 0, screen_size.y)
-    # Horizontal o diagonal usar right, desactivar flip vertical.
-    # Activar flip horizontal si vamoa a la izquierda.
-    if velocity.x != 0:
-        $AnimatedSprite.animation = "right"
-        $AnimatedSprite.flip_v = false
-        $AnimatedSprite.flip_h = (velocity.x < 0) #Shorthand boolean
-    # Vertical usar up, activar flip vertical si vamos abajo.
-    elif velocity.y != 0:
-        $AnimatedSprite.animation = "up"
-        $AnimatedSprite.flip_v = (velocity.y > 0)
+	# Stop all movement, movement vector 0
+	var velocity = Vector2(0,0) 
+	
+	# If the OS isn't windows then enable touchscreen
+	if OS.get_name() != "Windows":
+		# Use the updated target to modify movement vector
+		if position.distance_to(target) > 10:
+			velocity = target - self.position
+	
+	# If touchscreen isn't active use keyboard instead
+	# Modify movement vector based on key pressed
+	if Input.is_action_pressed("ui_right"):
+		velocity.x += 1
+	if Input.is_action_pressed("ui_left"):
+		velocity.x -= 1
+	if Input.is_action_pressed("ui_down"):
+		velocity.y += 1
+	if Input.is_action_pressed("ui_up"):
+		velocity.y -= 1
+	
+	# If vector is not 0 then keys are being pressed
+	if velocity.length() > 0:
+		# Correct for diagonal movement
+		velocity = velocity.normalized() * speed
+		# Play the animation, a key is being pressed
+		$AnimatedSprite.play()
+	else:
+		# Keys are not being pressed, stop the animation
+		$AnimatedSprite.stop()
+		
+	# Change Player's position based on the current vector state.
+	self.position += velocity * delta
+	# Limit Player's position to the screen size.
+	self.position.x = clamp(self.position.x, 0, screen_size.x)
+	self.position.y = clamp(self.position.y, 0, screen_size.y)
+	
+	if velocity.x != 0:
+		# For right or diagonal use Walk and disable V-Flip
+		$AnimatedSprite.animation = "walk"
+		$AnimatedSprite.flip_v = false
+		# If left use Walk but activate H-Flip.
+		$AnimatedSprite.flip_h = velocity.x < 0
+	elif velocity.y != 0:
+		# For up use Up. For down use Up but activate V-Flip.
+		$AnimatedSprite.animation = "up"
+		$AnimatedSprite.flip_v = velocity.y > 0
 
-# Que pasa cuando el jugador es tocado
+# Function executed when itself emits body_entered
 func _on_Player_body_entered(body):
-    hide()
-    emit_signal("hitByEnemy")
-    # Desactiva colision para evitar mas senales
-    # Deferred hace un queue para que no interfiera con colisiones
-    $CollisionShape2D.set_deferred("disabled", true)
+	# Turn off collisions, stop additional emissions of the signal
+	# Deferred makes a queue because they may be multiple collisions
+	$CollisionShape2D.set_deferred("disabled", true)
+	# Hide the player, it has died
+	hide()
+	# Emit the hit by enemy signal to other control nodes
+	emit_signal("hit")
 
-# Iniciar el jugador y activar colision
+# Function executed when we start a new round
 func start(pos):
-    position = pos
-    show()
-    $CollisionShape2D.disabled = false
-
+	# Turn collisions back on
+	$CollisionShape2D.disabled = false
+	# New round, go to starting position and show the player
+	self.position = pos
+	target = pos
+	show()
 ```
 
-Cuando el jugador (Area2D) es tocado por un enemigo (RigidBody2D) emite la señal (body_entered). Nosotros conectamos esa señal con la funcion (on_Player_body_entered) la cual esconde al jugador y hace que mita otra señal personalizada (hitByEnemy). Tambien se desactiva el ColissionShape para evitar que se generen señales adicionales.
+In the **Mob** scene we:
 
-La velocidad del jugador esta dada por un vector unitario (velocity) que le da su direccion, mientras que la magnitud se obtiene al multiplicar por la variable (speed). El sprite avanza una cantidad de pixeles por segundo iguales a al tamaño o magnitud del vector.
+1. Create a RigidBody2D and name it Mob
+2. Select RigidBody2D gravity to 0.
+3. Select `PhysicsBody2D - Mask` and deactivate first option
 
-Obtenemos el tamaño de la pantalla en (screen_size) y utilizamos la funcion Clamp para que la posicion del sprite nunca supere los bordes de la pantalla. La velocidad se multiplica por delta para que la distancia recorrida sea la misma sin importar la cantidad de frames que hayan pasado.
-
-El vector unitario toma una direccion dependiendo de cuatro teclas presionadas, para evitar que la velocidad se duplique al apretar dos o mas teclas normalizamos el vector (forzamos su longitud a 1) mediante Vector.normalized(). Si el jugador esta en movimiento activamos su animacion, si no esta en movimiento desactivamos su animacion y su valor se vuelve (0,0).
-
-Finalmente utilizamos shorthand boolean para activar o desactivar el flip en la animacion dependiendo del valor del vector unitario, tomando en cuenta el movimiento en diagonal. Tambien creamos la funcion (start) que inicializa el sprite en la posicion indicada y activa su colision.
-
-MOB
 
 Creamos un RigidBody2D y lo renombramos Mob
 Seleccionamos gravedad = 0
