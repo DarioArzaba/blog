@@ -364,208 +364,183 @@ func start(pos):
 
 In the **Mob** scene we:
 
-1. Create a RigidBody2D and name it Mob
-2. Select RigidBody2D gravity to 0.
-3. Select `PhysicsBody2D - Mask` and deactivate first option
-
-
-Creamos un RigidBody2D y lo renombramos Mob
-Seleccionamos gravedad = 0
-Seleccionamos PhysicsBody2D-Mask y desactivamos el primer recuadro
-Asi evitamos que los enemigos colisionen entre si
-Seleccionamos opcion (no seleccionar hijos) en el viewport toolbar
-Creamos un hijo AnimatedSprite
-Creamos un SpriteFrames
-Creamos animaciones para fly, swim y walk
-Agregamos imagenes correspondientes a cada animacion
-Activamos propiedad Playing to On para que se active automaticamente
-Ajustamos el FPS, 3 para fly, y 4 para swim y walk.
-Seleccionamos animacion por defecto Right
-En Node2D-Scale reducimos el tamaño a (0.75)
-Creamos un CollisionShape2D
-Agregamos un CapsuleShape2D como el Shape del sprite
-Rotamos el Shape 90 grados
-Ajustamos al tamano de la animacion en el viewport.
-Agregamos un Visibility Notifier 2D como Visibility
-Agregamos un Script al Mob
+1. Create a RigidBody2D and name it Mob, modify its gravity to 0.
+2. Select `PhysicsBody2D - Mask` and disable the first option
+	1. We do this to disable collisions between enemies.
+2. Select the option in the toolbar to make the object's children non selectable.
+3. Add an AnimatedSprite. In the SpriteFrames panel add `fly`, `swim` and `walk`.
+4. Change the speed to 3 FPS and preview with the inspector option `playing`.
+5. Reduce the `AnimatedSprite - Node2D - Scale` to (0.75, 0.75).
+6. Add a CollisionShape2D and another CapsuleShape2D to it. 
+7. Rotate and adjust the CapsuleShape2D in the viewport.
+8. In the CollisionShape2D Shape add a CapsuleShape2D.
+9. Create a VisibilityNotifier2D node that emits the `screen_exited` signal.
+10. Create a script for the Mob node that extends RigidBody2D.
 
 ```gdscript
 extends RigidBody2D
-export var min_speed = 150  # Minimum speed range.
-export var max_speed = 250  # Maximum speed range.
-var mob_types = ["walk", "swim", "fly"]
-func _ready():
-    $AnimatedSprite.animation = mob_types[randi() % mob_types.size()]
-    $VisibilityNotifier2D.connect("screen_exited", self, "_on_Visibility_screen_exited")
-func _on_Visibility_screen_exited():
-    queue_free()
-func _on_start_game():
-    queue_free()
-La velocidad inicial y animacion de cada mob nuevo se da al azar dentro de un rango determinado. La forma estandar para obtener un numero entero entre 0 y n-1 es mediante randi()%n, con esto podemos obtener un index para la animacion. Cuando el VisibilityNotifier2D emite screen_exited se activa la funcion (on_Visibility_screen_exited()) que elimina la instancia. El queue_free() de on_start_game elimina todos los mobs cuando se inicia una nueva ronda.
+# Minimum and maximum randomized starting speed
+export var min_speed = 150 
+export var max_speed = 250
 
+func _ready():
+	# Add to mobs group 
+	self.add_to_group("mobs")
+	# Assign a random animation and play it
+	var mob_types = $AnimatedSprite.frames.get_animation_names()
+	$AnimatedSprite.animation = mob_types[randi() % mob_types.size()]
+	$AnimatedSprite.play()
+	$VisibilityNotifier2D.connect("screen_exited", self, "_on_Visibility_screen_exited")
+	
+# When this particular mob exits the screen delete it
+func _on_Visibility_screen_exited():
+	queue_free()
 ```
 
-MAIN
+The function `randi()%n` selects a random integer between 0 and (n-1). Note however that `randi()` always has the same seed, in order to change the seed we will need to add the function `randomize()` later into the **Main** scene.
 
-Creamos un Node llamado Main
-Instanciamos Player y Mob
-Agregamos un MobTimer (spawn), ScoreTimer (more score per second), StartTimer (delay before starting) y un Position2D como StartPosition
-Ponemos el MobTimer a 0.5, ScoreTimer a 1 (One Shot) y StartTimer a 2
-Ponemos StartPosition a (240, 450)
-Agregamos un Path2D como MobPath y agregamos cuatro puntos en las esquinas
-Cerramos el path, los puntos tienen que estar en sentido horario para que el spawn sea interno
-Agregamos un PathFallow2D como MobSpawnLocation y como hijo de MobPath
-Agregamos un Script a Main
-El PathFallow2D va a seguir el Path2D y cada que pase el MobTimer termine se crea una nueva instancia de Mob rotando al azar medainte randomize() para que se muevan en direcicones aleatorias.
+In the **Main** scene we:
+
+1. Create a Node and call it Main.
+2. Add a ColorRect and a Position2D call it StartPosition (240, 450).
+	1. You can use a texture instead of a color with TextureRect.
+3. Add 2 AudioStreamPlayer and call them Music and DeathSound.
+4. Timers are MobTimer (spawn), ScoreTimer (score per sec) and StartTimer (delay). 
+5. MobTimer (0.5), ScoreTimer (1 One Shot), StartTimer (2)
+6. Instance Player and Mob scenes using the link button.
+7. Add a Path2D (MobPath) and select the 4 corners of the screen.
+8. Close the path clockwise so that the mob spawning happens to its right.
+9. Add a PathFallow2D (MobSpawnLocation) as a child of MobPath.
+	1. This location will move along the path spawning new mobs.
+10. Create a script for Main node that extends Node.
 
 ```gdscript
 extends Node
+# Import the Mob scene into memory
 export (PackedScene) var Mob
 var score
 
 func _ready():
-    randomize()
-    $ScoreTimer.connect("timeout", self, "_on_ScoreTimer_timeout")
-    $MobTimer.connect("timeout", self, "_on_MobTimer_timeout")
-    $StartTimer.connect("timeout", self, "_on_StartTimer_timeout")
-    $Player.connect("hitByEnemy", self, "game_over")
-    $HUD.connect("start_game", self, "new_game")
+	# Start a round when we click the HUD button
+	$HUD.connect("start_game", self, "new_game")
+	# When the Player is hit stop the round
+	$Player.connect("hit", self, "game_over")
+	# Functions to execute when the timers run out
+	$StartTimer.connect("timeout", self, "_on_StartTimer_timeout")
+	$ScoreTimer.connect("timeout", self, "_on_ScoreTimer_timeout")
+	$MobTimer.connect("timeout", self, "_on_MobTimer_timeout")
+	# Randomize the randi seed across all nodes
+	randomize() 
 
+# When the player is hit stop all timers and delete all mobs
+# Stop music, play death sound and show the game over text
 func game_over():
-    $ScoreTimer.stop()
-    $MobTimer.stop()
-    $HUD.show_game_over()
-    $Music.stop()
-    $DeathSound.play()
+	$ScoreTimer.stop()
+	$MobTimer.stop()
+	get_tree().call_group("mobs", "queue_free")
+	$DeathSound.play()
+	$Music.stop()
+	$HUD.show_game_over()
 
-func new_game():
-    score = 0
-    <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>l</mi><mi>a</mi><mi>y</mi><mi>e</mi><mi>r</mi><mi mathvariant="normal">.</mi><mi>s</mi><mi>t</mi><mi>a</mi><mi>r</mi><mi>t</mi><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">Player.start(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord">.</span><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span><span class="mopen">(</span></span></span></span>StartPosition.position)
-    $StartTimer.start()
-    $HUD.update_score(score)
-    $HUD.show_message("Get Ready")
-    $Music.play()
-
+# After the delay start spawing mobs and start the score
 func _on_StartTimer_timeout():
-    $MobTimer.start()
-    $ScoreTimer.start()
+	$MobTimer.start()
+	$ScoreTimer.start()
 
+# Add to the score each time the score timer runs out
 func _on_ScoreTimer_timeout():
-    score += 1
-    $HUD.update_score(score)
+	score += 1
+	$HUD.update_score(score)
 
+# Spawn a new mob using the timer on a random location
 func _on_MobTimer_timeout():
-    # Choose a random location on Path2D.
-    $MobPath/MobSpawnLocation.set_offset(randi())
-    var mob = Mob.instance()
-    add_child(mob)
-    # Set the mob's direction perpendicular to the path direction.
-    var direction = $MobPath/MobSpawnLocation.rotation + PI / 2
-    # Set the mob's position to a random location.
-    mob.position = $MobPath/MobSpawnLocation.position
-    # Add some randomness to the direction.
-    direction += rand_range(-PI / 4, PI / 4)
-    mob.rotation = direction
-    # Set the velocity (speed & direction).
-    mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
-    mob.linear_velocity = mob.linear_velocity.rotated(direction)
-    $HUD.connect("start_game", mob, "_on_start_game")
+	# Set a random location along the Path 2D
+	$MobPath/MobSpawnLocation.offset = randi()
+	# Spawn a mob and put its direction inward
+	var mob = Mob.instance()
+	add_child(mob)
+	mob.position = $MobPath/MobSpawnLocation.position
+	var direction = $MobPath/MobSpawnLocation.rotation + PI / 2
+	# Add a little randomness to the ortogonal direction
+	direction += rand_range(-PI / 4, PI / 4)
+	mob.rotation = direction
+	# Add a velocity vector with a random speed from the allowed interval
+	mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
+	# Start a constant movement using the direction and the velocity vector
+	mob.linear_velocity = mob.linear_velocity.rotated(direction)
+
+# When we start a new game restart the score and the player position.
+# Restart the delay, show the start game text and start the music
+func new_game():
+	score = 0
+	$Player.start($StartPosition.position)
+	$StartTimer.start()
+	$HUD.update_score(score)
+	$HUD.show_message("Get Ready")
+	$Music.play()
 ```
 
-La variable exportada Mob utiliza un archivo PackedScene que se utilizara al instanciar los Mobs. Tambien guarda la variable (score) de la escena HUD la cual aumenta cada segundo mediante el timer (ScoreTimer). El (StartTimer) solo se activa una vez al iniciar el juego el cual solo inicia cuando se presiona el boton de Start del HUD. Finalmente el tercer timer selecciona un lugar random del Path para crear nuevos Mobs y los rota al azar utilizando rand_range.
+In the **HUD** scene we:
 
-Game over se ejecuta solo cuando el Player emite la señal personalizada hitByEnemy. En las funciones que requieren angulos GDScript utiliza radianes por defecto, para pasar a grados y viceverza utilizar deg2rad() y rad2deg().
+1. Create a CanvasLayer and call it HUD. Add label (ScoreLabel).
+3. Add label (MessageLabel), button (StartButton) and timer (MessageTimer).
+4. Use the toolbar Layout button or adjust the anchors and margins manually.
+	1. ScoreLabel, Top Wide, align Center, text 0, font Xolonium, size 64.
+	2. MessageLabel, HCenter Wide, align Center, autowrap on.
+	3. StartButton, Center Bottom, Margin Top -200, Bottom -100.
+	4. MessageTimer, Wait Time 2 (One Shot)
+5. Add a Space key shortcut in the StartButton properties. 
+6. Create a script for HUD node that extends CanvasLayer.
 
-HUD
-
-Creamos un CanvasLayer como HUD
-Creamos ScoreLabel, MessageLabel, StartButton y MessageTimer.
-En ScoreLabel ponemos 0, cambiamos la fuente a Xolonium y el size a 64.
-Utilizamos el layout para controlar automaticamente la posicion
-Para ajustar manualmente utilizamos las variables anchor y margin.
-Agregamos el siguiente script a HUD.
+```gdscript
 extends CanvasLayer
+# Emit this signal when the start button is used
 signal start_game
 
-```gdscript
-func _ready() -> void:
-    $MessageTimer.connect("timeout", self, "_on_MessageTimer_timeout")
-    $StartButton.connect("pressed", self, "_on_StartButton_pressed")
-func _on_MessageTimer_timeout():
-    $MessageLabel.hide()
-func _on_StartButton_pressed():
-    $StartButton.hide()
-    emit_signal("start_game")
+func _ready():
+	$StartButton.connect("pressed", self, "_on_StartButton_pressed")
+	$MessageTimer.connect("timeout", self, "_on_MessageTimer_timeout")
+
+# Show a message as long as the message timer is running
 func show_message(text):
-    $MessageLabel.text = text
-    $MessageLabel.show()
-    $MessageTimer.start()
+	$Message.text = text
+	$Message.show()
+	$MessageTimer.start()
+
+# If the game ends show a game over text and 
 func show_game_over():
-    show_message("Game Over")
-    yield($MessageTimer, "timeout")
-    $MessageLabel.text = "Dodge the\nCreeps!"
-    $MessageLabel.show()
-    yield(get_tree().create_timer(1), "timeout")
-    $StartButton.show()
+	show_message("Game Over")
+	# After the game over text display the main text
+	yield($MessageTimer, "timeout")
+	$Message.text = "Dodge the\nCreeps!"
+	$Message.show()
+	# After a brief delay show the start button
+	yield(get_tree().create_timer(1), "timeout")
+	$StartButton.show()
+
+# Function used to update the score elsewhere
 func update_score(score):
-    $ScoreLabel.text = str(score)
+	$ScoreLabel.text = str(score)
+
+# Hide the button and start the game after being pressed
+func _on_StartButton_pressed():
+	$StartButton.hide()
+	emit_signal("start_game")
+
+# Hide the message text after its timer runs out
+func _on_MessageTimer_timeout():
+	$Message.hide()
 ```
 
-El CanvasLayer a diferencia de un panel se dibuja por encima del juego, al iniciar el juego desaparecemos el mensaje del titulo y el boton. Luego cambiamos el texto del titulo a (Get ready) por dos segundos que dura el (MessageTimer) y actualizamos el Score con el texto de ScoreLabel.
+Note that control nodes have position and size but also have anchors and margins. Anchors define the origin, the reference point used to define the edges of the node. Margins update automatically as you move or resize the node, they represent the distance from the edges to their anchor.
 
-En el caso de que termine el juego mostramos el mensaje (Game Over), la funcion yield nos permite forzar la emision de una señal. Despues de dos segundos volvemos al titulo original y despues de 1 segundo volvemos a aparecer el boton de Start.
+### Export The Game
 
-Para cambiar el background utilizamos un ColorRect en Main. Para agregar efectos de sonido utilizamos AudioStreamPlayer y llamamos a sus funciones play y stop. Para que el boton de start se active al presionar la tecla de espacio agregamos un Shortcut a sus propiedades.
+To enable touch emulation with the mouse we activate `Project Settings - InputDevices - Pointing`. 
 
-Exportar
-Nos vamos a Project-Settings-InputDevices-Pointing y activamos la opcion para emular touch a partir de un mouse, esto nos permitira dar click en el boton de start en un touchscreen. Para distintas pantallas activamos Stretch 2D con Keep Aspect. Para mover el Player mediante touch utilizamos los siguientes cambios a su Script:
-
-```gdscript
-#TouchTarget Vector
-onready var target = Vector2()
-# Funcion del TouchTarget Vector
-func _input(event):
-    if event is InputEventScreenTouch and event.pressed:
-        target = event.position
-func _process(delta):
-    # Moverse hacia TouchTarget parar cuando lleguemos
-    if position.distance_to(target) > 10:
-        velocity = (target - position).normalized() * speed
-    else:
-        velocity = Vector2()
-    # Eliminar inputs de keyboard
-func start(pos):
-    #TouchTarget Initial Pos
-    target = pos
-```
-
-Finalmente utilizamos Editor-ManageTemplates para seleccionar los targets a los que exportaremos el juego. Editamos los detalles del export mediante Project-Export. Creamos un nuevo preset y seleccionamos la plataforma.
-
-Para Windows, Linux y MacOS genera directamente los archivos ejecutables. Para Android se necesita tener AndroidSDK y JavaJDK, en AndroidStudio se instala el AndroidSDKPlatformTools que a su vez instala el comando adb. Godot utilizara el abd y la direccion de un keystore para exportar a Android:
+To select the export targets we use `Editor - Manage Templates`. To start the exporting process we use `Project - Export`, we create a new export preset and select the desired platform. For Windows, Linux and MacOS exporting creates the executables directly. For IOS you need a Mac, Xcode and an App Store Team ID. HTML creates all the necessary files but needs a running server, create one quickly with `python -m http.server 9000`. For Android we need to have AndroidSDK and JavaJDK installed, then when we install AndroidStudio and AndroidSDKPlatformTools we get access to the `adb` command that Godot needs:
 
 ```gdscript
-
 keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
-
+adb install dodge.apk
 ```
-Al exportar a Android se genera un apk que puede ser descargado en el telefono si esta en modo developer. Si Godot detecta el telefono conectado en vez de exportar el apk aparecera un boton para crearlo y descargarlo automaticamente al telefono.
-
-Para IOS se necesita tener macOS y Xcode instalado, Godot necesitara el App Store Team ID dentro de la membresia, luego necesitara iconos e imagenes obligatorias del dispositivo. Los archivos que Godot generara estaran listos para ser abiertos en Xcode y compilados.
-
-Para HTML5 se crean varios archivos que pueden ser ejecutados por cualquier servidor, incluso uno local ya que necesitan de un puerto para ejecutar los cripts. Se puede crear un server rapidamente mediante python -m http.server 9000 dentro del directorio que contiene los archivos. Si la exportacion incluye la consola de debug se puede desactivar con Export With Debug.
-
-
-Diseño
-Nodos de Control
-Pantalla de Titulo
-GUI
-GUI by Code
-Splash Screen
-Animaciones
-Recursos
-Archivos
-SceneTree
-Singletons
-
-Editor Manual
-https://godotengine.org/news https://godotengine.org/community https://www.facebook.com/groups/godotengine/ https://twitter.com/godotengine https://github.com/godotengine https://www.reddit.com/r/godot/
