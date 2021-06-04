@@ -1,0 +1,99 @@
+---
+title: Django
+date: '2019-11-20'
+tags: ['next js', 'math', 'ols']
+---
+## Introducción
+
+Al visitar un sitio web tu navegador envía el URL junto con tu IP a tu ISP, quien mediante sus servidores NAP y DNS transforma el URL en la IP del servidor final. Se abre una conexión entre tu IP y la IP del servidor para que el servidor pueda enviar su respuesta en forma de paquetes. Se denomina Front-End al contenido de los paquetes y Back-End al sistema en el servidor que le permite decidir que paquetes enviar. Si el servidor nunca cambia el contenido de los paquetes decimos que tiene un sitio estático.
+
+![internetconection.jpg](./internetconection.png)
+
+### HTML
+
+Iniciamos creando un archivo ejemplo de HTML llamado `basics.html`. Este archivo muestra ciertos componentes básicos de HTML como declarar el documento, incluir meta información, el titulo, texto, negritas, itálicas, links, imágenes, listas, subtítulos, links en imágenes, divs, spans, tablas y formas.
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Titulo del Documento</title>
+	</head>
+
+	<body>
+
+		<h1>Titulo de Bienvenida!</h1>
+		<p>Texto de ejemplo. Que puedes hacer en <strong>negritas</strong> o <em>italica</em>.</p>
+		<a href="https://www.djangoproject.com/">Link de Ejemplo</a>
+		<img src="python-logo-master-v3-TM.png" alt="Python Logo" width="200px">
+		<p>Ejemplo de Lista Ordenada:</p>
+		<ol>
+			<li>Item 1</li>
+			<li>Item 2</li>
+			<li>Item 3</li>
+		</ol>
+		<p>Ejemplo de Lista Sin Ordenar:</p>
+		<ul>
+			<li>Some item</li>
+			<li>Some other item</li>
+			<li>Third bullet point</li>
+		</ul>
+
+		<h2>Subtitulo de Bienvenida!</h2>
+		<p>Ejemplo de link en una imagen.</p>
+		<a href="https://www.djangoproject.com/">
+			<img src="django.png" width="200px">
+		</a>
+		<p>Ejemplo de texto dentro de div:</p>
+		<div class="">
+			<p>Este texto se encuentra dentro de un DIV!</p>
+		</div>
+		<p>Ejemplo de texto afuera de span, <span>adentro de span
+		</span>, afuera de span. </p>
+		<p>Ejemplo de tabla.</p>
+		<table border="2">
+			<thead>
+				<th>Country Name</th>
+				<th>Country Flag</th>
+				<th>GDP (Millions of USD)</th>
+			</thead>
+			<tr>
+				<td>USA</td>
+				<td><img src="/190px-Flag_of_the_United_States.svg.png" alt="" width="200px"></td>
+				<td> 18,561,930</td>
+			</tr>
+			<tr>
+				<td>India</td>
+				<td><img src="/150px-Flag_of_India.svg.png" alt="" width="200px"></td>
+				<td> 2,250,990</td>
+			</tr>
+			<tr>
+				<td>United Kingdom</td>
+				<td><img src="/200px-Flag_of_the_United_Kingdom.svg.png" alt="" width="200px"></td>
+				<td>2,649,890</td>
+			</tr>
+		</table>
+		<p>Ejemplo de forma.</p>
+		<form action="http://www.google.com" method="get">
+			<label> EMAIL:
+				<input type="email" name="useremail" value="Email Here">
+			</label>
+			<label > PASSWORD:
+				<input type="password" name="password" placeholder="Password">
+			</label>
+			<label for="userinput">TEXT:</label>
+			<input type="text" id="userinput"name="input" placeholder="Enter Text Here" required>
+			<input type="submit" >
+			<input type="submit" name="" value="Submit Feedback">
+		</form>
+
+	</body>
+</html>
+```
+
+![htmlexample.jpg](./htmlejemplo.png)
+
+### CSS Basics
+
+### Javascript Basics
