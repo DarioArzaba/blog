@@ -26,3 +26,15 @@ html {
 	padding: 0.5rem;
 }
 
+.prose blockquote {
+    border-left-color: #86aeff !important
+}
+
+.dark .dark\:prose-dark strong {
+    color: #ec91ff !important;
+	font-weight: 700 !important;
+}
+
+.prose strong {
+    font-weight: 700 !important;
+}

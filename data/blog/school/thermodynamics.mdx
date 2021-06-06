@@ -1,68 +1,115 @@
 ---
 title: Thermodynamics 1
-date: '2019-11-17'
+date: '2021-01-10'
 tags: ['science', 'thermodynamics', 'school', 'notes']
 ---
 
-Thermodynamics is the science of energy, its transformations and its relationship with matter.
-Energy is the universal quantity that allows for a body or system perfom a job or increase their heat with respect to another system.
-Thermodynamic work is the capacity of a body with energy of transmiting that energy via macroscopic movements in a particular direction manifesting in forces and ordered displacements.
-Positive work is done when a gas is compressed (it absorbs energy) or negative when a gas expands (it emmits energy) or neutral when there are no total forcez or torques neto. 
-Heat is the capacity of a body with energy of transmitir such energy via microscopic termal colitions in every direction, manifesting in unordered temperatre differentials.
-Positive heat is when ambient temperature is higher (it absorbs energy), negative when atmbient temperature is lower (it memmits energy), or neutral when there is no temperature differential.
-The internal energy.
- La **Energia Interna** de un sistema es la cantidad total de **Energia Cinética** y **Energia Potencial** que tienen todas las partículas, estas cantidades están determinadas por la cantidad de calor y trabajo que han entrado o salido. Un **Cambio de Energia** se define como el diferencial de la energia que entra con respecto a la que sale $\Delta E = E_{in} - E_{out}$. El termino termodinámica proviene **Etimológicamente** del griego *therme* (calor) y *dynamis* (fuerza) y tiene sus orígenes en los primeros intentos por convertir el calor en trabajo. Surgió como parte de las primeras maquinas de vapor atmosféricas de Thomas Savery en 1697 y Thomas Newcomen en 1712. El **Principio de Conservación de la Energía** expresa que la energía puede cambiar de forma pero su cantidad total siempre permanece constante, esto implica que no se puede crear ni destruir energía. Aunque la energia es la misma esta suele clasificarse en cinética (movimiento) o potencial (posición en un campo). Las manifestaciones cinéticas y potenciales a su vez se dividen en mecánicas, eléctricas, magnéticas, gravitatorias, químicas, ionizantes, nucleares, elásticas, onda mecánica, sonido, radiante, reposo, térmica etc. 
+# Introduction
 
-![Termodinámica](./TermodinamicaUno.png)
+Thermodynamics is the science of energy, its transformations and relation with matter. 
 
-La **Primer Ley** de la termodinámica expresa que la energia es una propiedad termodinámica y que sigue cumpliendo el principio de conservación. Esto implica que la energia interna (cinética y potencial) no se puede crear o destruir y solo puede cambiar al provenir de la entrada o salida de trabajo o calor $IE = \Delta Q - \Delta W$. La primer ley se cumple hasta un nivel químico pero no es valida para sistemas cuánticos. La **Segunda Ley** afirma que en todo proceso la energia total de un sistema con su entorno se mantiene constante pero aunque no cambia su cantidad la energia si se dispersa, es decir que siempre incrementa la entropia total. La **Entropía** es una medida de la dispersión de la energia en cualquier proceso, la energia termica dispersada que se genera en todo proceso ya no se puede volver a convertir en trabajo a menos que se aplique un trabajo externo que dispersaría aun mas energia, esta es la razón por la que la entropia total universal y de cualquier sistema espontaneo (aislado) siempre esta en aumento. La entropia es una propiedad emergente que se origina en el constante cambio de configuraciones energéticas y la mayor probabilidad de que la siguiente configuración energética espontanea sea dispersa (asimétrico y desordenado) en vez de ser agrupada (simétrico y ordenado), esto se debe simplemente a que existe un mayor numero de posibles configuraciones o microestados dispersos. Un ejemplo claro de la entropia es el trabajo que obtenemos del **Flujo de Calor** ocasionado por un sistema con configuración energética agrupada, por ejemplo en donde existe un diferencial de temperatura. Conforme pasa el tiempo la configuración del diferencial de temperatura tiende a dispersarse igualando la temperatura hasta que desaparece el flujo de calor y ya no se puede generar mas trabajo, en otras palabras la entropia es la causante de que el calor fluya de la temperatura mas alta a la temperatura mas baja del sistema hasta que se equilibre la energia termica. Ambas leyes surgieron simultáneamente en 1850 gracias a William Rankine, Rudolph Clausius y Lord Kelvin, Kelvin fue quien uso por primera vez el termino de termodinámica en 1849, mientras que Rankine escribió el primer tratado sobre el tema en 1859. La **Tercera Ley** propuesta por Walther Nernst afirma que la entropía solo puede ser cero (orden absoluto) en un cristal solido perfecto con temperatura de 0 Kelvin.
+**Energy**
 
-![Termodinámica](./TermodinamicaDos.png)
+Universal quantity that allows a body or system to perform a job or increase their heat compared to another system. Thermodynamics comes from the Greek word *therme* meaning heat and *dynamis* meaning force, it originated from the first attempts at transforming heat into work using the first atmospheric steam machines made by Thomas Savery in 1697 and Thomas Newcomen in 1712.
 
-Las sustancias están construidas por moléculas y las propiedades de la sustancia están sujetas al comportamiento de estas moléculas. La **Termodinámica Clásica** estudia el comportamiento promedio de un grupo de moléculas con energia en casi equilibrio sin tomar en cuenta su comportamiento individual, utiliza las leyes de la termodinámica para predecir el intercambio de energia mediante trabajo y calor. La **Termodinámica Estadística** o mecánica estadística estudia el comportamiento de grupos de partículas tomando en cuenta su comportamiento individual y estados cuánticos. En la naturaleza casi toda actividad representa una interacción entre energia y materia y esto tiene  **Aplicaciones** desde biológicas con el intercambio energético celular hasta objetos que utilizamos diariamente como la ropa, el refrigerador, la calefacción, la regadera, la computadora y en la ingeniería para el diseño de motores, cohetes, aviones, paneles solares etc. 
+![Thomas Savery](/static/images/thermodynamics/ThomasSavery.png)
 
-![Termodinámica](./TermodinamicaTres.png)
+![Thomas Newcomen](/static/images/thermodynamics/ThomasNewcomen.png)
 
-## Dimensiones y Unidades
+**Work**
 
-Toda cantidad física tiene una **Dimensión** asociada, las **Unidades** son las magnitudes de las dimensiones físicas. En todo **Sistema de Unidades** existen algunas dimensiones **Primarias** o fundamentales que se utilizan para derivar el resto de las dimensiones **Secundarias**. En la actualidad se utiliza el **Sistema de Unidades Ingles** o United States Customary System (USCS) y el **Sistema de Unidades Internacional** (SI). En el sistema internacional existen 7 unidades fundamentales: Masa en kilogramos (kg), Longitud en metros (m), Tiempo en segundos (s), Temperatura en kelvin (K), Corriente en ampere (A), Luminosidad en candela (cd) y Cantidad de Materia en mol (mol). Hasta 1875 se realizaron tratados internacionales de estandarización al sistema métrico con 17 países que firmaron el **Tratado de Convención Métrica** y el acuerdo de la **Conferencia General de Pesos y Medidas** cada 6 años, en la conferencia de 1960 se creo el SI y en 1971 se agregaría el mol. La **Notación** de 1967 establecería que todas las unidades se escriben en minúsculas con excepción de las abreviaciones para unidades de nombres propios, también se prohíbe el uso del punto en la abreviación y se define una serie de **Prefijos** que denotarían múltiplos decimales de las unidades. En **Estados Unidos** el cambio al SI inicio en 1968 con un decreto de estudio del congreso, posteriormente con un decreto de conversión en 1975 y finalmente una ley comercial en 1988 que tendría un plazo limite de 1992, sin embargo los plazos nunca fueron impuestos por ninguna institución y la conversión voluntaria nunca se llevo a cabo por completo.
+Capacity of a body with energy of transferring that energy to another body via macroscopic movements in a particular direction, represented by forces and displacements. For example, work can be positive when a gas is compressed (absorbing energy), negative when a gas expands (releasing energy) or neutral when there is no net force or torque.
 
-![Termodinámica](./TermodinamicaCuatro.png)
-![Termodinámica](./UnidadesSI.png)
-![Termodinámica](./PrefijosSI.png)
+**Heat**
 
-En la siguiente tabla podemos encontrar equivalencias entre libras masa, pies, libras fuerza etc. Cuando hablamos de **Peso** nos referimos a la fuerza que surge cuando una masa esta en un campo gravitatorio, el peso por volumen unitario de una sustancia dada es su **Peso Especifico** el cual se relaciona con la **Densidad** de la sustancia por medio de $\gamma = \rho g$. La **Energia** en USCS es la Btu o unidad termica británica (energia para elevar 1F la T de 1 lbm de agua a 68F), en el SI es la Cal o caloría (energia para elevar 1C la T de 1g de agua a 14C) y equivale a 4.1868 Joules. Toda ecuación en física necesita ser dimensionalmente **Homogénea** es decir que se debe tener la misma unidad de ambos lados de la ecuación, si esto no se cumple la ecuación no puede ser una equivalencia física valida, una ecuación heterogénea es falsa pero una ecuación homogénea no siempre es verdadera. Al transformar unidades se recomienda utilizar **Relaciones de Conversión**, dado que estas relaciones tienen una magnitud de 1 no modifican las unidades únicamente las dimensiones equivalentes. 
+Capacity of a body with energy of transferring that energy via microscopic thermal collisions in random directions, represented by temperature differentials. Heat is positive when ambient temperature is higher (absorbing energy), negative when ambient temperature is lower (releasing energy) or neutral when there is no temperature differential.
 
-![Termodinámica](./Conversion.png)
-![Termodinámica](./ConversionDos.png)
+**Internal Energy**
 
-## Sistema cerrado y abierto
+Represents the total total kinetic and potential energy from every particle in a system. It is quantified as the total change in energy, where a change in energy is a differential of the input energy with respect to the output energy. $\Delta E = E_{in} - E_{out}$. 
 
-Un **Sistema** es una cantidad determinada de materia o una región determinada en el espacio. Los **Alrededores** son toda masa o región fuera del sistema. La superficie que separa al sistema con los alrededores es la **Frontera**. La frontera puede ser fija o móvil. Los **Sistemas Cerrados** o masas de control son cantidades fijas de masa en donde ninguna otra masa puede cruzar su frontera, sin embargo la energia si puede cruzar. Un **Sistema Aislado** es un caso especial de un sistema cerrado en donde la energia tampoco puede cruzar la frontera. Un **Sistema Abierto** o volumen de control es una región del espacio que generalmente se refiere al interior de dispositivo con **Flujo Másico** como un compresor, turbina o tobera y en donde tanto la masa como energia pueden cruzar su frontera. Las fronteras de un volumen de control se conocen como superficies de control y generalmente coinciden con las paredes internas del dispositivo.
+**Law of conservation of energy**
+
+This law states that energy can change form but its total quantity inside a system will remain constant, meaning that you can't create nor destroy it. Energy forms can be classified into kinetic (movement), subdivided into thermal, mechanical, electrical, radiant, sound or mechanical wave; or into potential (position inside a field), subdivided into magnetic, gravitational, chemical, ionizing, nuclear or elastic.
+
+**First law**
+
+This law states that energy is a thermodynamic property that follows the law of conservation of energy, this means that the internal energy of a system can change only after a transfer of energy with another system via heat or work. $IE = \Delta Q - \Delta W$. Note that the first law is valid up to a chemical level but isn't reliable when describing quantum systems. 
+
+**Second law**
+
+This law states that the total quantity of energy in a system and its environment will remain constant, however the energy quality may change, usually decreasing in quality or dispersing and therefore increasing the system entropy. 
+
+**Entropy**
+
+Measure of energy dispersal in a system, dispersed energy needs an external source of energy to be transformed back into localized energy, that external source of energy will overall disperse more energy, this necessarily means that the total universal entropy is always increasing.
+
+Entropy is an emergent statistical property that arises from the spontaneous change in energy configurations or microstates and the higher quantity of dispersed microstates, meaning that the next spontaneous energy change will more likely be disperse (asymmetric and unordered) instead of localized (symmetrical and ordered).
+
+**Heat Flow** 
+
+Transfer of energy through heat, represented by a temperature differential. Notice that heat flow originates in entropy, having a higher temperature just means that the region has localized energy and as time goes on its next spontaneous microstate will likely be dispersed instead of retaining that order by itself.
+
+**Third law**
+
+This law states that entropy becomes constant when a system approaches a temperature of 0 K, it was proposed by Walther Nernst in 1906. 
+
+At higher temperatures the atomic vibrations allow for multiple dispersal energy microstates, however as you lower the temperature this number decreases until you are left with the *ground state* as the only possible energy configuration.
+
+The first and second laws where created simultaneously in 1850 by Macquorn Rankine, Rudolph Clausius and Lord Kelvin. Kelvin was the first one to use the term *thermodynamics* in 1849 while Rankine wrote the first treaty about it in 1859 and Clausius introduced the concept of entropy in 1865.
+
+![Founders Thermodynamics](/static/images/thermodynamics/FoundersThermo.png)
+
+**Classic thermodynamics**
+
+Studies the average behavior of a group of molecules neglecting their individual behavior. It uses the laws of thermodynamics to predict changes in the internal energy of a system.
+
+**Statistical thermodynamics**
+
+Also called mechanical statistics, it studies the behavior of groups of particles taking into account their individual behavior and energy states.
+
+**Units System**
+
+Composed of primary or fundamental units and secondary or derived units. Today most countries use the International System of Units (SI), the United States Customary System (USCS) or the Imperial System of Units.
+
+[Learn more about unit systems](/blog/school/units)
+
+**Homogeneity**
+
+Physics equations need to have dimensional homogeneity, they must maintain the same unit on both sides. If the equation is heterogeneous it *must* be a false physical equivalence, however this doesn't mean every homogeneous equation is true.
+
+***
+
+# System
+
+
+
+A ** System ** is a certain amount of matter or a certain region in space. The ** Surroundings ** are any mass or region outside the system. The surface that separates the system from the surroundings is the ** Border **. The border can be fixed or mobile. The ** Closed Systems ** or control masses are fixed quantities of mass where no other mass can cross its border, however energy can cross. An ** Isolated System ** is a special case of a closed system where energy cannot cross the border either. An ** Open System ** or control volume is a region of space that generally refers to the interior of a device with ** Mass Flow ** such as a compressor, turbine or nozzle and where both mass and energy can cross its boundary. . The boundaries of a control volume are known as control surfaces and generally coincide with the internal walls of the device.
 
 ![Termodinámica](./TermodinamicaCinco.png)
 
 ## Propiedades de un sistema
 
-Una **Propiedad** es una característica de un sistema: temperatura, presión, volumen, masa, viscosidad, conductividad térmica, elasticidad, expansión térmica, resistividad eléctrica, velocidad, elevación etc. Las **Propiedades Intensivas** con aquellas independientes de la masa como temperatura, presión y densidad. Las **Propiedades Extensivas** son aquellas cuyos valores dependen de la masa como la masa total, volumen total, cantidad de movimiento. La **Propiedades Especificas** son las propiedades extensivas expresadas por cada unidad de masa, por ejemplo el volumen especifico $v = V/m$ o la energia total especifica $e = E/m$. La materia tiene **Espacios Intermoleculares** pero en termodinámica clásica es conveniente considerar a la materia como una masa homogénea sin huecos denominada **Continuo**. Específicamente el modelo continuo solo aplica si la longitud del sistema es mucho mayor a la **Trayectoria Libre** media de las moléculas, siendo la trayectoria libre la distancia promedio que viajan las partículas en el vacío antes de chocar con otra molécula. En caso de que la Trayectoria Libre sea demasiado grande se debe usar la **Teoría de Flujo de Gas Enrarecido** para considerar el impacto de cada molécula.
+A ** Property ** is a characteristic of a system: temperature, pressure, volume, mass, viscosity, thermal conductivity, elasticity, thermal expansion, electrical resistivity, speed, elevation etc. The ** Intensive Properties ** with those independent of mass such as temperature, pressure and density. The ** Extensive Properties ** are those whose values ​​depend on mass such as total mass, total volume, momentum. The ** Specific Properties ** are the extensive properties expressed by each unit of mass, for example the specific volume $ v = V / m $ or the specific total energy $ e = E / m $. Matter has ** Intermolecular Spaces ** but in classical thermodynamics it is convenient to consider matter as a homogeneous mass without holes called ** Continuous **. Specifically, the continuous model only applies if the length of the system is much greater than the average ** Free Path ** of the molecules, the free path being the average distance that the particles travel in a vacuum before colliding with another molecule. In case the Free Path is too large, the ** Rare Gas Flow Theory ** should be used to consider the impact of each molecule.
 
 ![Termodinámica](./TermodinamicaSeis.png)
 
 ## Densidad 
 
-La **Densidad** se define la masa por unidad de volumen $\rho = \frac{m}{V}$, su reciproco es el **Volumen Especifico** definido como volumen por unidad de masa $v = \frac{V}{m}$. El peso de una unidad de volumen se denomina **Peso Especifico** $\gamma_s = \rho g$. En general la densidad depende de la temperatura y de la presión, la densidad de los gases es proporcional a la presión e inversamente proporcional a la temperatura. Los líquidos y solidos son en esencia **No Comprensibles** ya que su variación de densidad por presión suele ser insignificante. La densidad de líquidos y solidos depende en mayor medida de la temperatura. La densidad puede estar expresada en forma relativa a la densidad de otra substancia en este caso se denomina Gravedad Especifica o **Densidad Relativa** y se define como la densidad de una sustancia entre la densidad de otra sustancia estándar (a una temperatura especifica). La densidad relativa es adimensional sin embargo se suele utilizar $g/cm^3$ o $kg/L$. Si la densidad relativa de una sustancia A es menor a otra B entonces A flotara en B. 
+The ** Density ** is defined as the mass per unit of volume $ \ rho = \ frac {m} {V} $, its reciprocal is the ** Specific Volume ** defined as volume per unit of mass $ v = \ frac {V} {m} $. The weight of a unit of volume is called ** Specific Weight ** $ \ gamma_s = \ rho g $. In general, density depends on temperature and pressure, the density of gases is proportional to pressure and inversely proportional to temperature. Liquids and solids are essentially ** Not Understandable ** since their variation in density due to pressure is usually negligible. The density of liquids and solids is more dependent on temperature. Density can be expressed relative to the density of another substance in this case it is called Specific Gravity or ** Relative Density ** and is defined as the density of a substance divided by the density of another standard substance (at a specific temperature) . The relative density is dimensionless, however it is usually used $ g / cm ^ 3 $ or $ kg / L $. If the relative density of a substance A is less than another B then A will float in B.
 
 ![Termodinámica](./TermodinamicaSiete.png)
 
 ## Estado y Equilibrio
 
-Un **Estado del Sistema** es un punto en el tiempo de un sistema termodinámico que no experimenta cambios y del cual se saben todas sus propiedades. Los **Estados de Equilibrio** son estados en donde el sistema no experimenta fuerzas internas. Si existe la misma temperatura en todo el sistema entonces se encuentra en **Equilibrio Térmico**, si existe la misma presión entonces se encuentra en **Equilibrio Mecánico**. El equilibrio mecánico suele ignorar el gradiente de presión causado por fuerzas gravitatorias. Si la composición química se mantiene constante entonces se encuentra en **Equilibrio químico**. Dependiendo de la complejidad del sistema podemos obtener o solo aproximar su estado. El **Postulado del Estado** dice que el estado de un sistema **Compresible Simple** se puede fijar únicamente conociendo el valor de dos propiedades intensivas independientes. Con propiedades **Independientes** nos referimos a que el cambio en una no produce un cambio en la otra. La temperatura y el volumen especifico de un contenedor son propiedades intensivas independientes, siempre y cuando la sustancia en su interior no cambie de fase. Si en un sistema conviven mas de una fase el sistema se encuentra en su **Fase de Equilibrio** cuando la masa de cada una de las fases estén al mismo tiempo en equilibrio.
-
+A ** System State ** is a point in time of a thermodynamic system that does not undergo changes and of which all its properties are known. The ** States of Equilibrium ** are states where the system does not experience internal forces. If there is the same temperature in the whole system then it is in ** Thermal Equilibrium **, if there is the same pressure then it is in ** Mechanical Equilibrium **. Mechanical equilibrium usually ignores the pressure gradient caused by gravitational forces. If the chemical composition remains constant then it is in ** Chemical Equilibrium **. Depending on the complexity of the system we can obtain or only approximate its status. The ** State Postulate ** says that the state of a ** Simple Compressible ** system can be fixed only by knowing the value of two independent intensive properties. With ** Independent ** properties we mean that the change in one does not produce a change in the other. The temperature and the specific volume of a container are independent intensive properties, as long as the substance inside does not change phase. If more than one phase coexists in a system, the system is in its ** Equilibrium Phase ** when the mass of each of the phases is in equilibrium at the same time.
 ![Termodinámica](./TermodinamicaOcho.png)
 
 ## Procesos y Ciclos
 
-Un **Proceso** es el cambio de un estado de equilibrio a otro estado de equilibrio. Una **Trayectoria** es la serie continua de estados por la que pasa el sistema en un proceso. Un proceso se describe por completo mediante su estado inicial, trayectoria y estado final. Un **Ciclo** es un proceso donde el estado inicial y el final es el mismo. Si la trayectoria de un proceso se compone por estados infinitesimalmente cerca del equilibrio entonces es un **Proceso Cuasiestatico** o en cuasiequilibrio, normalmente son procesos que suceden lentamente y le permiten al sistema ajustarse continuamente para que ninguna de sus partes cambie mas rápido que el resto. Si el proceso es repentino y el sistema no se puede ajustar rápidamente entonces la trayectoria se compondrá de estados en desequilibrio (No Cuasiestatico). Un ejemplo es la compresión de un gas en un cilindro, al comprimirlo lentamente las moléculas empujadas por el embolo pueden redistribuirse a lo largo del volumen por lo que la presión del cilindro aumenta de igual forma en cualquier punto (proceso cuasiestatico), si la compresión es repentina las moléculas se amontonan junto al embolo creando una región de alta presión y provocando un desequilibrio mecánico durante la trayectoria (proceso no cuasiestatico). Se utilizan **Diagramas** con propiedades en sus ejes para representar a los procesos, usando líneas continuas para procesos cuasiestáticas y líneas discontinuas para procesos no cuasiestaticas. Si alguna propiedad durante el proceso permanece constante clasificamos a los procesos en **Isotérmico** (temperatura constante), **Isobárico** (presión constante) e **Isométrico** o Isocórico (volumen especifico constante). Un proceso estable o **Estacionario** es aquel en donde al pasar el tiempo ninguna de sus propiedades cambia, aunque esto no significa que el proceso este en equilibrio. Un proceso **Uniforme** es aquel en donde al cambiar de posición ninguna de sus propiedades cambia (esta en equilibrio) aunque al pasar el tiempo si puede que sus propiedades cambien. Un **Proceso de Flujo Estacionario** es un proceso estacionario en donde existe una salida y/o entrada de masa al sistema pero se mantiene estable.
+Un **Proceso** es el cambio de un estado de equilibrio a otro estado de equilibrio. Una **Trayectoria** es la serie continua de estados por la que pasa el sistema en un proceso. Un proceso se describe por completo mediante su estado inicial, trayectoria y estado final. Un **Ciclo** es un proceso donde el estado inicial y el final es el mismo. Si la trayectoria de un proceso se compone por estados infinitesimalmente cerca del equilibrio entonces es un **Proceso Cuasiestatico** o en cuasiequilibrio, normalmente son procesos que suceden lentamente y le permiten al sistema ajustarse continuamente para que ninguna de sus partes cambie mas rápido que el resto. Si el proceso es repentino y el sistema no se puede ajustar rápidamente entonces la trayectoria se compondrá de estados en desequilibrio (No Cuasiestatico). Un ejemplo es la compresión de un gas en un cilindro, al comprimirlo lentamente las moléculas empujadas por el embolo pueden redistribuirse a lo largo del volumen por lo que la presión del cilindro aumenta de igual forma en cualquier punto (proceso cuasiestatico), si la compresión es repentina las moléculas se amontonan junto al embolo creando una región de alta presión y provocando un desequilibrio mecánico durante la trayectoria (proceso no cuasiestatico). 
+
+Se utilizan **Diagramas** con propiedades en sus ejes para representar a los procesos, usando líneas continuas para procesos cuasiestáticas y líneas discontinuas para procesos no cuasiestaticas. Si alguna propiedad durante el proceso permanece constante clasificamos a los procesos en **Isotérmico** (temperatura constante), **Isobárico** (presión constante) e **Isométrico** o Isocórico (volumen especifico constante). Un proceso estable o **Estacionario** es aquel en donde al pasar el tiempo ninguna de sus propiedades cambia, aunque esto no significa que el proceso este en equilibrio. Un proceso **Uniforme** es aquel en donde al cambiar de posición ninguna de sus propiedades cambia (esta en equilibrio) aunque al pasar el tiempo si puede que sus propiedades cambien. Un **Proceso de Flujo Estacionario** es un proceso estacionario en donde existe una salida y/o entrada de masa al sistema pero se mantiene estable.
 
 ![Termodinámica](./TermodinamicaNueve.png)
 
@@ -113,3 +160,6 @@ En proceso isotermicos se conecta a un sistema que atrapa el calor un contenedor
 En los isotermicos dado que la temperatura es 0 por definicion no existe un cambio de energia interna en el sistema por la primer ley significa que la cantidad de trabajo que el sistema genera sera igual a la cantidad de calor que absorbe. 
 
 En los adiabatic procesos no se agrega calor al sistema pero si se le permite cambiar de volumen temperatura o presion al comprimir o expandir el gas,en este caso cambio de calor es 0 y por la primer ley el cambio en la energia interna sera el negativo del trabajo realizado por el sistema.
+
+
+
