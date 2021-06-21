@@ -1,12 +1,13 @@
 ---
 title: Microelectronics P2
 date: '2021-02-04'
-tags: ['science', 'microelectronics', 'school', 'problems', 'circuits']
+tags: ['school', 'circuits']
 ---
 
 ## Diodos
 
 Formulas
+
 $$
 \begin{gathered}
 	\text{Rectificador de Media Onda}\\
@@ -15,11 +16,13 @@ $$
 	V\_{O(avg)} = f \int^{T}\_{0} V_O(t) dt = \frac{1}{T} \int^{T}\_{0} V_O(t) dt\\
 \end{gathered}
 $$
+
 -----
 
 **2.1** Considere el circuito de la imagen, sabemos que $R=1k\Omega$, $V_\gamma = 0.6V$, $r_f = 20\Omega$. Graficar $V_O - V_I$ de $V_I=-10V$ hasta $V_I=10V$. Después asuma que $V_I=10\sin{(wt)}V$. Grafique $V_O - t$. Calcule $V_{O(avg)}$, $I_{D(max)}$ y el PIV.   
 
 ![Circuito](/static/images/electronicaproblemas/2.1.png)
+
 $$
 \begin{gathered}
 	V\_I < 0.6V \implies V\_O = 0\\
@@ -28,7 +31,9 @@ $$
 	V\_O(10)=\frac{10-0.6}{1000+20}(1000) = 9.2157V
 \end{gathered}
 $$
+
 ![Circuito](/static/images/electronicaproblemas/2.11.png)
+
 $$
 \begin{gathered}
 	V\_O = (I\_D)(R) = (\frac{V\_I-V\_\gamma}{R + r\_f})(R)\\
@@ -41,24 +46,31 @@ $$
 	V_{O(avg)} = 2.888V\\
 \end{gathered}
 $$
+
 ![Circuito](/static/images/electronicaproblemas/2.12.png)
 ![Circuito](/static/images/electronicaproblemas/2.122.png)
+
 $$
 \begin{gathered}
 	\frac{\pi}{2} rad = 90°\\
 	V\_{O(max)} = (\frac{(10\sin{(90°)})-0.6}{1000 + 20})(1000) = 9.2157V
 \end{gathered}
 $$
+
 ![Circuito](/static/images/electronicaproblemas/2.13.png)
+
 $$
 \begin{gathered}
 	PIV \approx 10V
 \end{gathered}
 $$
+
 ![Circuito](/static/images/electronicaproblemas/2.14.png)
+
 -----
 
 **2.2** Demostrar que si el voltaje de entrada es mayor o igual a 0 para el circuito anterior entonces el voltaje de salida es aproximadamente $V_O=V_I-V_Tln(\frac{V_O}{I_SR})$.
+
 $$
 \begin{gathered}
 	\text{LKV}\\
@@ -68,17 +80,21 @@ $$
 	\therefore V_O \approx V\_I-V\_T ln(\frac{V\_O}{I\_SR})
 \end{gathered}
 $$
+
 En este problema recordamos la ecuación para el voltaje del diodo ideal ignorando el menos uno a que solo estamos considerando el voltaje positivo.
 
 -----
 
 **2.3** Considere un rectificador de media onda como en la imagen, asuma que $R=2k\Omega$, $N = 10:1$, $V_\gamma=0.7$ y $V_I= 120V(rms) \land 60Hz$. Calcular voltaje de salida máximo, corriente máxima del diodo, porcentaje del ciclo en donde el voltaje de salida es mayor a 0, el voltaje de salida promedio y la corriente promedio del diodo.
+
 $$
 \begin{gathered}
 	V\_I = 120V(rms) = 120(\sqrt(2)) \approx 169.7056V(p)
 \end{gathered}
 $$
+
 ![Circuito](/static/images/electronicaproblemas/2.3.png)
+
 $$
 \begin{gathered}
 	V\_{S(max)} = 169.7056(\frac{1}{10}) = 16.9705V\\
@@ -95,6 +111,7 @@ $$
 	I\_{D(avg)} = \frac{V\_{O(avg)}}{R} = \frac{5.056}{2000} = 0.00253 A
 \end{gathered}
 $$
+
 ![Circuito](/static/images/electronicaproblemas/2.31.png)
 ![Circuito](/static/images/electronicaproblemas/2.33.png)
 ![Circuito](/static/images/electronicaproblemas/2.32.png)
