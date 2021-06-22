@@ -1,18 +1,16 @@
 ---
-title: Jekyll Adventures
-date: '2021-03-18'
-tags: ['programming', 'jekyll']
+title: Jekyll
+date: '2021-01-02'
+tags: ['programming', 'jekyll', 'staticgenerator']
 ---
 
-Gracias a un curso que habia tomado en [CodeAcademy](https://www.codecademy.com/) aprendi a crear sitios en [Github Pages](https://pages.github.com/), sin embargo no fue hasta el dia de hoy que me he decidido por incorporar [Jekyll](https://jekyllrb.com/) (Generador de Sitios Estaticos) en mi sistema.
+> Before building my blog with Next.js, React and Vercel I used Jekyll.rb
 
-Con [Jekyll](https://jekyllrb.com/) podemos transformar documentos de texto en [Markdown](https://daringfireball.net/projects/markdown/) y transformarlos en HTML, es decir en un [sitio web estatico](https://techterms.com/definition/staticwebsite). Generando a su vez el layout del sitio con un renderizador [Liquid](https://shopify.github.io/liquid/).
+Thanks to a course that I had taken in CodeAcademy[^1] I learned to create static sites in GitHub Pages[^2], later on I incorporated the static site generator Jekyll[^3] into my workflow. Jekyll transforms markdown into HTML building the layout with the Liquid[^4] renderer. I used the [Vanilla Bean Creme Theme](http://richbray.me/frap/).
 
-De las multiples plantillas y estilos que existen me decidi por uno minimalista enfocado en texto. La decision final recayo en [Vanilla Bean Creme Theme](http://richbray.me/frap/), la cual es una buena plantilla, aunque en retrospectiva deberia de haber creado mi propia plantilla desde cero.
+This workflow in Windows requires the installation of Chocolatey, Ruby, RubyGems and RubyDevKit, in general you can follow this commands in PowerShell:
 
-En Windows para desarrollar en Jekyll se tiene que instalar Chocolatey, Ruby, RubyGems y [RubyDevKit](http://rubyinstaller.org/downloads/), generalmente desde PowerShell:
-
-~~~ powershell
+```powershell
 PowerShell.exe -ExecutionPolicy Undefined
 iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
 choco install ruby -y
@@ -29,7 +27,15 @@ cinst -Source "https://go.microsoft.com/fwlink/?LinkID=230477" libxml2
 cinst -Source "https://go.microsoft.com/fwlink/?LinkID=230477" libxslt
 cinst -Source "https://go.microsoft.com/fwlink/?LinkID=230477" libiconv
 gem install nokogiri
+
 jekyll new blogname
-*Enter (cd) the blogname directory*
+
+cd blogname
+
 bundle exec jekyll serve
-~~~
+```
+
+[^1]: https://www.codecademy.com/
+[^2]: https://pages.github.com/
+[^3]: https://jekyllrb.com/
+[^4]: https://shopify.github.io/liquid/
