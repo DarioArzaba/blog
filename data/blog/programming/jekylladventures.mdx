@@ -6,7 +6,7 @@ tags: ['programming', 'jekyll', 'staticgenerator']
 
 > Before building my blog with Next.js, React and Vercel I used Jekyll.rb
 
-Thanks to a course that I had taken in CodeAcademy[^1] I learned to create static sites in GitHub Pages[^2], later on I incorporated the static site generator Jekyll[^3] into my workflow. Jekyll transforms markdown into HTML building the layout with the Liquid[^4] renderer. I used the [Vanilla Bean Creme Theme](http://richbray.me/frap/).
+Thanks to a course that I had taken in CodeAcademy[^1] I learned to create static sites in GitHub Pages[^2], later on I incorporated the static site generator Jekyll[^3] into my workflow. Jekyll transforms markdown into HTML building the layout with the Liquid[^4] renderer. I used the [Vanilla Bean Creme Theme](http://richbray.me/frap/) and later on a [Theme Variant](http://ricardolopes.net/) by Ricardo Lopez.
 
 This workflow in Windows requires the installation of Chocolatey, Ruby, RubyGems and RubyDevKit, in general you can follow this commands in PowerShell:
 
@@ -27,13 +27,35 @@ cinst -Source "https://go.microsoft.com/fwlink/?LinkID=230477" libxml2
 cinst -Source "https://go.microsoft.com/fwlink/?LinkID=230477" libxslt
 cinst -Source "https://go.microsoft.com/fwlink/?LinkID=230477" libiconv
 gem install nokogiri
-
 jekyll new blogname
-
 cd blogname
-
 bundle exec jekyll serve
 ```
+
+After January 2018 I had to install Jekyll again and the process was easier using WSL:
+
+``` powershell
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+reboot
+Install Ubuntu https://www.microsoft.com/es-mx/store/p/ubuntu/9nblggh4msv6?rtc=1
+bash
+sudo apt-get update -y && sudo apt-get upgrade -y
+sudo apt-add-repository ppa:brightbox/ruby-ng
+sudo apt-get update
+sudo apt-get install ruby2.3 ruby2.3-dev build-essential dh-autoreconf
+sudo gem update
+sudo gem install jekyll bundler
+jekyll -v
+bundle install
+jekyll new blogname
+cd blogname
+bundle exec jekyll serve
+```
+
+Este proceso es mucho más sencillo y funciono a la perfección. A continuar escribiendo!
+
+
+
 
 [^1]: https://www.codecademy.com/
 [^2]: https://pages.github.com/
