@@ -1,0 +1,163 @@
+---
+title: Actuators 1
+date: '2020-01-02'
+tags: ['school', 'actuators']
+---
+
+This is an overview of the knowledge needed for the selection and operation of actuators. Theoretical foundations of actuators for different applications and automatic control systems. Requires knowledge of instrumentation and electrical circuits. 
+
+***
+
+1. [Introduction](#Introduction)
+	1. Importance of Actuators
+	2. General Classification
+	3. Uses in Control Systems
+2. Magnetic Circuits
+	1. Relation i-H and Relation i-B
+	2. Magnetic Equivalent Circuit and Curve
+	3. Magnetic Circuit (with Air-Gap)
+	4. Inductance in Actuators
+	5. Hysteresis
+3. Electromechanical Energy Conversion
+	1. Energy Conversion Process
+	2. Field Energy (Energy and Co-Energy)
+	3. Mechanical Force in the System
+	4. Rotating and Cylindrical Machines
+4. DC Machines
+	1. Electromagnetic Energy Conversion
+	2. Construction of DC Machines
+	3. Armature Windings and Voltage
+	4. Developed Torque
+	5. Classification
+	6. Generators
+	7. Separately Excited Generator
+	8. Shunt (self-excited) Generator
+	9. Compound Machines and Series Generator
+	10. Motors, Shunt Motor, Series Motor
+5. Introduction Machines
+	1. Rotating Magnetic Field
+	2. Induced Voltages
+	3. Polyphase Induction Machine
+	4. Three Modes of Operation
+	5. Equivalent Circuit Models
+6. Hydraulic Actuators
+	1. Fluid Basics
+	2. Flow in Orifices
+	3. Valves to Hydraulic Control
+	4. General Analysis of Valves
+	5. Pumps and Motors
+
+***
+
+# Introduction #
+
+* Mechatronic System: Measures signals, process them and generates an action through actuators or motion. 
+	* Structure: Body of the system, how we integrate the components.
+	* Sensors: Devices that detect physical magnitudes and transform them to electrical signals.
+	* Actuators: Devices that perform actions in response to the signals.
+	* Controllers: Regulate actuators response time and logic.
+	* Interface: Devices that allow two or more systems to interact.
+
+**Control System**
+
+Interconnection of components in a configuration that gives the desire response or *output signal* with respect to the reference *input signal* we have selected. In the most abstract sense control systems allow us to detect a variable and execute the actions needed to modify its value to the values we want. We can find control systems in most systems, for example in animals, machines or businesses. 
+
+![Control System Example](/static/images/notes/ControlSystemExample.png)
+
+**Open Loop Control System**
+
+Here the output genereted depends directly on the input, meaning that we don't compare the controlled output with the reference signal. 
+
+There is an expected signal input, an element of control, an element of correction, a process and a controlled variable output.
+
+![Open Loop System](/static/images/notes/OpenLoopControlSystem.png)
+
+For example a manual valve. Here the expected water flow is the input, the valve position is the element of control, the water level in a tank can be the element of correction, the process is the water filling the tank and finally the controlled variable output is mantaining the tank full of water. 
+
+![Open Loop System Example](/static/images/notes/OpenLoopControlSystemExample.png)
+
+Notice that in this example the actuator is the person turning the valve.
+
+**Closed Loop of Feedback Control System**
+
+Here the output generated depends on the input and the corrections performed by the feedback signal, meaning that we compare the controlled output with the reference signal.
+
+There is a reference input signal that is compared with the feedback signal or output measurement of a sensor, from this comparison comes an error signal that the controller uses to act on the system via actuators, the actuators change the output signal closer to the reference signal. The cycle repeats when the sensor takes another measurement of the output.
+
+![Open Loop System](/static/images/notes/ClosedLoopControlSystem.png)
+
+For example a heating system. Here the expected temperature is set as a reference or set point in the thermostat, a sensor compares this reference with the measured temperature of the house, the difference or error signal is used by controller to modify the valves of a gas furnace via actuators, this generates a feedback signal in the form of new heat that in turn changes the overall temperature or output signal. The cycle repeats as the sensor takes another measurement of the new output.
+
+![Open Loop System Example](/static/images/notes/ClosedLoopControlSystemExample.png)
+
+Notice that in this example the actuator are motors that turn the valves.
+
+**Actuator**
+
+Device that transforms energy to a desired motion or action. The *Driving System* of an actuator are the elements in the control system that translate the controller output to a usable signal by the actuator.
+
+**Mechanic System Components**
+
+1. Actuators: Solenoids, DC Motors, Stepped Motors, Servomotors, Hydraulic, Pneumatic.
+2. Sensors: Interrupters, Potentiometers, Photoelectric, Digital Position Encoder, Calibration Device, Thermocouple, Accelerometer, MEM
+3. Input Signal Conditioning: Discrete Circuits, Amplifiers, Filters, Converters and Transformers
+4. Control Architectures: Logic Circuits, Microcontrollers, PLC, Control Algorithms
+5. Output Signal Conditioning: Amplifiers, Transistors, Op-Amps
+6. Interfaces: LED, Digital Screens, LCD, CRT
+
+Examples of mechanic systems that use actuators are robotic arms, car wippers, automatic transmissions or car valve bodies.
+
+**Classification**
+
+1. Hydraulic: Transform the energy of compressed air to mechanic work such as linear or circular motion.
+2. Pneumatic: Transform the energy of fluid pressure (generally mineral fluid) to mechanic work. Their advantage is that a lot of power can be obtained from little applied force.
+3. Electric: Transform electrical energy to mechanic work such as linear or circular motion.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***
+
+# Electric Machines #
+
+
+
+***
+
+# Electric Machinery Fitzgerald #
+
+## Magnetic Circuits and Materials ##
+
+* Devices used in the conversion of electrical and mechanical energy.
+* In general the conversion is done with electromagnetic rotating machines.
+* The transformer isn't a conversion device but is also an important component.
+* Ferro Magnetic materials are the most common way of shaping and directing the magnetic fields.
+* Permanent Magnet materials are also used.
+
+**Magnetic Circuits**
+
+* To analyse magnetic fields we simplify the system solving Maxwell's equations.
+* We assume that the frequency and size of the system are such that the *displacement-current* term in Maxwell's equations can be neglected.
+* The *displacement-current* term is used in magnetic fields produced by time-varying electric fields usually from electromagnetic radiation.
+* This simplification results in the *magneto-quasistatic* form of the Maxwell's equations, this form relates the current in the system to the magnetic field it produces.
