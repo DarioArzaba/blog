@@ -8,10 +8,10 @@ This is an overview of the knowledge needed for the selection and operation of m
 
 ***
 
-1. Basic concepts
-	1. Classification
-	2. Static and dynamic characteristics
-	3. Sensor selection 
+1. [Basic Concepts](#basic-concepts)
+	1. [Classification](#classification)
+	2. [Static and Dynamic Characteristics](#static-and-dynamic)
+	3. [Sensor Selection](#sensor-selection) 
 	4. Instrumentation and structured wiring
 2. Electrical measurements
 	1. Resistance
@@ -56,6 +56,10 @@ Device that responds to any change in physical, chemical or even biological phen
 For example, thermocouples are sensors that measure temperature at their junction (union of two different metals) producing a voltage that can then be measured by a voltmeter. The voltage originates from the Seebeck effect of metals when subjected to a temperature gradient. The thermocouple uses two different metals to measure their Seebeck voltage differential relative to a cold reference point, usually room temperature or 25°.
 
 Note that the range of temperatures that the thermocouple will be able to measure depends on the range on which voltage and temperature proportionality for both metals remain linear. A transducer is the part of the sensor that is the first in contact with the phenomena and usually its the one responsible for transforming the phenomena's energy into electricity. 
+
+***
+
+## Classification ##
 
 **Sensor Classification by Phenomena**
 
@@ -105,6 +109,10 @@ $$
 * Null: In some phenomena it is convenient to measure the opposite effect needed to maintain a pointer stationary and then infer the value of the original quantity. For example a triple beam balance.
 
 Deflection instruments depend on their calibration or reference value while null instruments need to have their opposing effect calibrated to a high accuracy therefore deflection instruments tend to have lower accuracy and sensitivity than null instruments but fare better in dynamic conditions where their intrinsic response time is quicker.
+
+***
+
+## Static and Dynamic ##
 
 **Static Characteristics**
 
@@ -189,13 +197,6 @@ $$
 * High linearity, sensitivity and resolution.
 * Low noise, disturbance and power consumption.
 
-
-
-
-
-
-
-
 ***
 
 **Diagnostic Quiz**
@@ -216,32 +217,66 @@ $$
 
 ***
 
+## Sensor Selection ##
 
+Some concepts to consider when comparing sensors for an application are:
 
+1. Description and functionality
+2. Magnetic Field Interactions
+3. Measurement limitations
+4. Common usages.
+5. Accuracy, Precision, Sensitivity
+6. Integration (Connections Needed)
+7. Scalar of Vector detection.
+8. Classification
+9. Resistance
 
+**Wheatstone and Schering Bridges**
 
+![Wheatstone and Schering](/static/images/notes/BridgesUsedwithSensorsinLabInstru.png)
 
+* Galvanometer: Device used to detect the *magnitude and direction* of a current. Works in the presence of a magnetic field. It can *only* measure DC and its used when designing bridges or potentiometers to detect the zero current by connecting it in series. High sensitivity but low accuracy compared to the ammeter.
+* Ammeter: Device used to measure the *magnitude* of the current flowing through it. Works with or without a magnetic field. It can measure AC or DC and its used when designing electric circuits by connecting it in series. High accuracy but low sensitivity compared to the galvanometer. It can be a mechanical or electronic instrument that ideally has zero resistance.
 
+**Resistive Sensors**
 
+Resistive sensors can include resistive transducers or variable resistance transducers. Used to measure temperature, pressure, displacement, force, vibrations, etc. They are usually secondary transducers since they receive the output from a primary mechanical transducer to which they are calibrated.
 
+Variable resistance transducer are based on the principle that resistance is proportional to the length of the conductor times its specific resistance (resistivity of the material) and inversely proportional to its area. $R = \frac{\rho L}{A}$ 
 
+* Sliding Contact Devices: The most common type is the *potentiometer* and its variable resistance transducer. Used to measure linear and rotary or angular displacement.
+* Wire resistance strain gauge: Used to measure force, stress and strain. The increase in length and decrease in cross section area from tension causes the resistance of its internal conductor to change. This resistance change is finally used to measure the input quantity.
+* Thermistor: Resistivity of the material changes when subjected to a change in temperature. Made from oxides of manganese, nickel and cobalt.
+* Thermocouple: Based on the Seebeck, Peltier and Thomson effects.
+	* Seebeck: Two dissimilar elements joined at their ends experience an electromotive force in their junction.
+	* Peltier: Voltage generated depends on the temperature of the junction.
+	* Thomson: Voltage generated depends on the temperature gradient along the conductors in the circuit.
 
+![Dynamic Characteristics](/static/images/notes/TypesOfPotentiometersInstruLab.png)
 
+**Thermistor**
 
+![Thermistor Types](/static/images/notes/ThermistorTypesInstruLab.png)
 
+| Characteristic | Thermistor | RTD | TC | IC | 
+| :---: | :---: | :---: | :---: | :---: |
+| Span | -80°C to 300°C  | -260°C to 850°C | -600°C to 2000°C | -50°C to 150°C |
+| Linearity | Exponential | High | Medium | Highest |
+| Sensitivity | High | Low | Lowest | Highest |
+| Response | Fast | Slow | Slow-Fast | Slow |
+| Power | Needed | Needed | No | No |
+| Stability | Low | Highest | Lowest | Medium |
+| Self Heating | Yes | Yes | No | Yes |
+| Cost | Low | Low-High | Medium-High | Low-Medium |
+| Notes | High Resistance | High Accuracy | Rugged | Semiconductor Based |
 
+The Thermally Sensitive Resistor or Thermistor is a temperature sensing element composed of sintered semiconductor material with a large change in resistance from a small change in temperature. High accuracy from ±0.05% to ±0.02%. High sensitivity over a small temperature range. They can function with a small current reducing heat loss in its wiring. High electrical noise immunity and easy to interface to other electronic components.
 
+**Temperature vs Resistance Curve**
 
+![Temperature Sensors](/static/images/notes/TemperatureSensorComparisoninstrulab.png)
 
+Thermistors, unlike RTD's and thermocouples, don't have standards associated with their temperature-resistance curves, in other words each thermistor will have its own unique curve. Thermistors can have either a positive (PTC) or negative (NTC) temperature coefficients. A negative temperature coefficient means that as the temperature increases the resistance decreases.
 
-
-
-
-
-
-
-
-
-
-
+ NTCs are the most common for temperature sensing and compensation however note that their curve is non linear outside of a small range of 0° to 70°. Their small mass make them susceptible to self heating errors and later prone to irreversible de-calibration (extreme drifting).
 
