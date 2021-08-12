@@ -33,3 +33,246 @@ This is an overview of the knowledge needed for the selection and operation of m
 
 ***
 
+# Basic Concepts #
+
+* Sensors and instruments
+* Sensor types
+* Signal conditioning circuits
+* Industrial instrumentation and related standards
+* Virtual instrumentation with LabView
+
+**Measuring Instrument or System**
+
+![Measuring Instrument](/static/images/notes/MeasureSystemInstruLab.png)
+
+The device detects an input with sensors or transducers. Then it process the input signal in its signal processing unit or DAQ (Data Acquisition System). In this process it is usually converted from analog to digital values. Then it finally sends the data to a display, recorder or HMI (Human Machine Interface). HMI's in the industry are robust devices capable of withstanding drops, dust, water, oils, radiation, salt and even explosive damage or blasts.
+
+**Sensors**
+
+Device that responds to any change in physical, chemical or even biological phenomena. The phenomena will change the physical, chemical or electromagnetic properties of the sensors themselves. The sensor's change will be processed into a more usable form like a voltage or current signal that the DAQ can condition (amplify, filter, convert etc). The relationship between the phenomena's input and the sensor's output needs to be linear, if not we need to calibrate the sensor to a reference value or standard to linearize its output. 
+
+![Thermocouple Sensor](/static/images/notes/ThermocoupleExampleInstruLab.png)
+
+For example, thermocouples are sensors that measure temperature at their junction (union of two different metals) producing a voltage that can then be measured by a voltmeter. The voltage originates from the Seebeck effect of metals when subjected to a temperature gradient. The thermocouple uses two different metals to measure their Seebeck voltage differential relative to a cold reference point, usually room temperature or 25°.
+
+Note that the range of temperatures that the thermocouple will be able to measure depends on the range on which voltage and temperature proportionality for both metals remain linear. A transducer is the part of the sensor that is the first in contact with the phenomena and usually its the one responsible for transforming the phenomena's energy into electricity. 
+
+**Sensor Classification by Phenomena**
+
+![Sensor Classification Phenomena](/static/images/notes/ThermocoupleInstruLab.png)
+
+**Sensor Classification by Power**
+
+* Active: Sensors that don't require an external power source since they generate power themselves (self generating) from the quantity they measure. Note that this sensors are calibrated to take into account the energy they consume in their measurements (Power Consumption Rating).
+* Passive: Sensor that do require an external power source to function. Most resistive, inductive and capacitive sensors are passive. Note that inductive sensors will measure mostly metals while capacitive sensors measure a broader variety of materials.
+
+**Sensor Classification by Output**
+
+* Analog: Sensors that convert the phenomena to a *time-continuous* electrical form. For example thermocouples, RTD's or strain gauges.
+* Digital: Sensors that convert the phenomena to a *time-discrete* electrical form meaning a series of electrical pulses. For example encoders.
+
+**Inverse Sensors**
+
+Inverse sensors are *Piezoelectric* devices made of crystals that generate an output voltage when subjected to a vertical external force. We call them inverse since they can also act as actuators meaning that we can generate a horizontal force or vibration by applying an input voltage.
+
+**General Classification**
+
+1. Instrument
+	1. Mechanical
+	2. Electronic
+	3. Electrical
+		1. Absolute Indirect
+		2. Secondary Direct
+			1. Digital 
+			2. Analog
+				1. Null Deflection
+				2. Deflecting
+					1. Indicating
+					2. Integrating
+					3. Recording
+
+* Electrical instruments: They measure electrical quantities like power, voltage or current using a mechanical system that due to its inertia is prone to have a limited time response. They are made up of passive elements like resistors, inductors and capacitors, in contrast to electronic instruments that are made up of non linear semiconductor devices like diodes or transistors.
+* Absolute: Output is in terms of physical constraints. For example a tangent galvanometer, absolute electrometer or Rayleigh's current balance.
+
+$$
+\begin{gathered}
+	\text{Tangent Galvanometer Relation}\\
+	i = \frac{2r\beta_{x}}{\mu_{0} n}\tan(\theta)\\
+	n = \text{ Number Turns}\\
+	r = \text{ Turn radius}\\
+	\beta_{x} = \text{ Horizontal Magnetic Flux Density}\\
+	\mu_{o} = \text{ Permeability Of Free Space}\\
+	\mu_{o} = (4\pi) \times 10^{-7} T\\
+	\theta = \text{ Deflection produced}
+\end{gathered}
+$$
+
+* Secondary: Output is in terms of calibration when compared to absolute instruments. For example commercial measuring instruments like micrometer, caliper, level or gauge block.
+* Digital: Output in numeric form. They are more accurate by reducing human error when observing the measurement. For example a digital multimeter.
+* Analog: Output varies as it measures. Needle pointer indicates the magnitude. Prone to human error since it depends on the estimated observed position of the pointer. For example an analogue multimeter.
+* Deflection: A pointer deflects to the measure of the quantity, meaning that the quantity is measured by the net deflection. For example a permanent magnet moving coil ammeter or a simple weight pressure gauge scale.
+* Indicating: Indicates the current magnitude with a dial that moves on the graduated dial. Voltmeter, ammeter, power factor meter.
+* Integrating: Measures total energy supplied over a time interval via summation, meaning that the total displayed is a product of the time and the electrical quantity sampled. For example energy meters and watt-hour meters.
+* Recording: Records the current magnitude over a period of time. In a seismometer the moving system carries a pen that lightly touches the paper sheet, the curve drawn on the paper will then be translated to its corresponding electrical magnitude.
+* Null: In some phenomena it is convenient to measure the opposite effect needed to maintain a pointer stationary and then infer the value of the original quantity. For example a deadweight pressure gauge scale.
+
+Deflection instruments depend on their calibration or reference value while null instruments need to have their opposing effect calibrated to a high accuracy therefore deflection instruments tend to have lower accuracy and sensitivity than null instruments but fare better in dynamic conditions where their intrinsic response time is quicker.
+
+**Static Characteristics**
+
+Characteristics of measured quantities that are constant or change slowly relative to time. For example the temperature in a furnace.
+
+* Accuracy: Closeness of the readings in relation to the true value.
+* Absolute Accuracy: Percentage error of scale of range.
+
+$$
+\begin{gathered}
+	E_a = |X_m - X_t|\\
+	X_m = \text{ Measured Value}\\
+	X_t = \text{ True Value}
+\end{gathered}
+$$
+
+* Relative Accuracy: Percentage error of true value.
+
+$$
+\begin{gathered}
+	E_r = \frac{|X_m - X_t|}{X_t}
+\end{gathered}
+$$
+
+* Precision: Closeness of the readings in relation to each other. Usually related to the static characteristic of repeatability.
+
+![Accuracy and Precision](/static/images/notes/AccuracyPressicionLabInstru.gif)
+
+* Threshold: Smallest input after zero that the instrument can detect and output with certainty.
+* Dead Space: Starting from zero its the continuous range of input values where no output is generated, meaning that the threshold is the highest value of the dead space.
+* Resolution: Smallest *increment* between inputs after the threshold that the instrument can detect with certainty.
+* Repeatability: Precision (closeness) of the instrument measuring a constant quantity in the same conditions while at the same time being turned on and off. High repeatability corresponds to a low drift. Generally we test the repeatability of instruments as a whole not of individual sensors.
+* Drift: Offset in the instrument caused by an external phenomena like thermal EMF's, electromagnetic fields, vibration, temperature, wear, tear etc. Generally we test the drift of instruments as a whole not of individual sensors.
+	* Zero Drift: Constant offset in the output for every input.
+	* Span Drift: Also called sensitivity drift is a change in the slope of the output for every input. Note that there is possible to have a combination of zero drift and the span drift.
+	* Zonal Drift: Sudden zero or span drift but localized to a specific range of inputs. Note that zonal drift is very difficult to compensate compared to zero drift or span drift.
+* Range: The scale range is the highest possible reading of an instrument.
+* Span: Difference between the highest (range) and lowest (threshold) possible reading.
+* Sensitivity: Ratio between the magnitude of the output and the magnitude of the input (slope). Note that the unit of sensitivity is a combination of the output over the input.
+* Hysteresis: Instrument phenomena where the instrument takes a long time to unload the energy that was being loaded into it. It happens in electrical and mechanical instruments when the energy we were measuring remains in a stressed part of the system for a while even after removing the original load. 
+
+An example of hysteresis takes place in transformers where the magnetic field in the coil used to increase or decrease the voltage dissipates a little bit of the input energy (load) energy into heat (heat losses) creating an offset between the output when loading compared to when its unloading.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Dynamic Characteristics**
+
+
+
+Dynamic: Measured quantities that change rapidly relative to time. For example when measuring force values because opposite force reactions introduce a lot of noise.
+
+Dynamic relation between input and output.
+
+They can be divided into *Frequency* or *Time* characteristics.
+
+* Time Characteristics: Related to the instrument's response (output) when applying a step function as input.
+	* First Order Response
+		* Rising Time: Time it takes the output to increase from 10% to 90%.
+		* Time Constant (Tau): Time it takes to reach 63.2% of its maximum output.
+		* Dead Time: Time until the first output is registered. Associated to the deadband. 
+	* Second Order Response
+		* Damping Factor (Gamma): Shape of the response.
+			* If zero the system will oscillate.
+			* If less than one the system will overshoot (underdamped system).
+			* If equal to one the system will have a fast response (critically damped system).
+			* If more than one the system will have a slow response (overdamped system).
+		* Overshoot: Only when the damping factor is less than one we can measure the difference between the initial peak and the settling (smaller than 2%) output value.
+		* Settling Time: Time until the output stabilize within a 2% or 5% difference compared to its final value.
+		* Frequency Response: This and the Cut-Off frequency describe the response when the input changes by a known frequency, for example a sinusoidal output is expected to have a sinusoidal input for a lineal instrument.
+* Frequency Characteristics: Related to the instrument's response (output) when applying a variable excitation over time (sinusoidal function input).
+	* Frequency Response: At a certain point in frequency the stable output will start to decrease even if it continues oscillating.
+	* Cut-Off frequency: Frequency at which the output falls to 70.7% of the stable output value. This is equivalent to -3dB from the stable output, and represents the point at which the output power is halved. Note that this can be related to the rising time.
+	* Bandwidth: Range of frequencies between 0 and the Cut-Off frequency higher than 3dB. This characteristic indicates the instrument's response speed.
+
+$$
+\begin{gathered}
+	\text{Overshoot } = \frac{\text{Max Peak} - \text{V Settling}}{\text{V Settling}} \times 100%\\
+	\text{Rising Time } = \frac{0.35}{\text{Cut-Off frequency}} 
+\end{gathered}
+$$
+
+
+
+
+
+**Selecting a Good Sensor**
+
+* High linearity, sensitivity and resolution.
+* Low noise, disturbance and power consumption.
+
+
+
+
+
+
+
+
+***
+
+**Diagnostic Quiz**
+
+1. What do you understand by a sensor? Do you know the difference between a sensor and an actuator? A sensor is device that measures a physical magnitude and transforms the measurement into electrical signals. Actuators are devices that use the electrical energy emitted by sensors or controllers transforming it into mechanical energy or motion. Some actuators convert the mechanical energy into electrical energy.
+2. What characteristics (static and dynamic) of sensors do you know? Static: Sensitivity, resolution, drift, range, repeatability, reproducibility. Dynamic: Rise, delay, peaks, time error and steady state error.
+3. What do you understand by signal conditioning methods? What do you understand by signal conditioning methods? Signal conditioning is the processing of signals to make them suitable as input to other devices like actuators. Examples of methods used in signal conditioning are filtering, amplification, attenuation and linearization.
+4. Do you know the operational amplifiers and have used them? What have you done with them? They are electronic components used for amplifying voltage, this amplification is determined by external feedback components. I have used them to design filters, but they can be used as the basis for comparators, rectifiers, converters and most signal conditioning methods.
+5. Do you know the types of triangular signals, pulse train, saw tooth? Yes, they represent different signal behaviors or changes over time. Triangular waves mean that the signal increases and decreases linearly. Pulse waves mean that the signal oscillates between on and off, the proportion of time they remain on depends on their duty cycle, square waves are a kind of pulse wave with a duty cycle of 50%. Saw waves are similar to triangular waves in that they increase linearly but can only decrease in a sharp vertical drop, they can be considered an extremely asymmetric triangle wave.
+6. What is PWM? Method of decreasing the average power of a signal by dividing its output into a discrete pulse wave, the intervals when the signal is turned off in the pulse wave are what causes the overall power reduction.
+7. What do you know about industrial instrumentation and its standards? Not very much. I think it might relate to the correct way of using sensors and actuators in an industrial process.
+8. Have you physically used a multimeter or (voltmeter or ammeter), a signal generator (or functions) and an oscilloscope? Yes, I have used a multimeter a function generator and an oscilloscope for basic circuit testing.
+9. Have you used Proteus and LabVIEW, what have you done with them (describe as much as you can)? Yes I Have Used Proteus to Create Circuit Schematics and LabView to Create State Machines.
+10. What do you expect to learn from the course, what are your expectations? I hope to learn in more detail about the functionality of sensors, actuators and other automation components.
+11. Why do you study the engineering you are studying, that you motivate you? In what area would you like to work in industry, academy, scientific research, consulting? Because I love to know how things work and then be able to modify or create my own devices. I want to work in the industry surrounding neural networks researching how they can be incorporated into automation or robotics.
+12. Do you work or are doing professional practices? In a positive case, where, and what are your responsibilities? what is your work schedule? Currently I'm not doing any intership but I plan on looking out for one next semester.
+13. Do you want remote classes? Yes
+
+***
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
