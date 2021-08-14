@@ -1,0 +1,308 @@
+---
+title: Instrumentation Lab W
+date: '2020-01-02'
+tags: ['school', 'instrumentation']
+---
+
+This is an overview of the knowledge needed for the selection and operation of measuring instruments for different variables. Understand the measurement principles of sensors and instrumentation used in industrial processes. Requires knowledge in circuits, electricity and magnetism.
+
+***
+
+1. [Diagnostic](#diagnostic)
+2. [Worksheet 1 (Capacitance and Inductance) ](#worksheet-1)
+3. [Worksheet 2 (Power Measurement) ](#worksheet-2)
+4. [Worksheet 3 (Measuring Bridges) ](#worksheet-2)
+
+***
+
+# Diagnostic #
+
+1. What do you understand by a sensor? Do you know the difference between a sensor and an actuator? A sensor is device that measures a physical magnitude and transforms the measurement into electrical signals. Actuators are devices that use the electrical energy emitted by sensors or controllers transforming it into mechanical energy or motion. Some actuators convert the mechanical energy into electrical energy.
+2. What characteristics (static and dynamic) of sensors do you know? Static: Sensitivity, resolution, drift, range, repeatability, reproducibility. Dynamic: Rise, delay, peaks, time error and steady state error.
+3. What do you understand by signal conditioning methods? What do you understand by signal conditioning methods? Signal conditioning is the processing of signals to make them suitable as input to other devices like actuators. Examples of methods used in signal conditioning are filtering, amplification, attenuation and linearization.
+4. Do you know the operational amplifiers and have used them? What have you done with them? They are electronic components used for amplifying voltage, this amplification is determined by external feedback components. I have used them to design filters, but they can be used as the basis for comparators, rectifiers, converters and most signal conditioning methods.
+5. Do you know the types of triangular signals, pulse train, saw tooth? Yes, they represent different signal behaviors or changes over time. Triangular waves mean that the signal increases and decreases linearly. Pulse waves mean that the signal oscillates between on and off, the proportion of time they remain on depends on their duty cycle, square waves are a kind of pulse wave with a duty cycle of 50%. Saw waves are similar to triangular waves in that they increase linearly but can only decrease in a sharp vertical drop, they can be considered an extremely asymmetric triangle wave.
+6. What is PWM? Method of decreasing the average power of a signal by dividing its output into a discrete pulse wave, the intervals when the signal is turned off in the pulse wave are what causes the overall power reduction.
+7. What do you know about industrial instrumentation and its standards? Not very much. I think it might relate to the correct way of using sensors and actuators in an industrial process.
+8. Have you physically used a multimeter or (voltmeter or ammeter), a signal generator (or functions) and an oscilloscope? Yes, I have used a multimeter a function generator and an oscilloscope for basic circuit testing.
+9. Have you used Proteus and LabVIEW, what have you done with them (describe as much as you can)? Yes I Have Used Proteus to Create Circuit Schematics and LabView to Create State Machines.
+10. What do you expect to learn from the course, what are your expectations? I hope to learn in more detail about the functionality of sensors, actuators and other automation components.
+11. Why do you study the engineering you are studying, that you motivate you? In what area would you like to work in industry, academy, scientific research, consulting? Because I love to know how things work and then be able to modify or create my own devices. I want to work in the industry surrounding neural networks researching how they can be incorporated into automation or robotics.
+12. Do you work or are doing professional practices? In a positive case, where, and what are your responsibilities? what is your work schedule? Currently I'm not doing any intership but I plan on looking out for one next semester.
+13. Do you want remote classes? Yes
+
+***
+
+# Worksheet 1 #
+
+**Theory**
+
+Inductance is the property of an inductor of reacting to a change in its current by changing the energy of its magnetic field generating an opposite voltage (counter electromotive force). The voltage of an inductor must relate to a change in current $V_L = L(\frac{di}{dt})$ where L is the inductance constant of proportionality measured in Henrys.
+
+The capacitance constant of the geometric configuration is the amount of charge that two bodies with a constant shape and spacing can store per volt difference between them. This relation is $C=\frac{q}{V}$
+
+**Capacitance Printed Value**
+
+The capacitance is normally printed in most plastic film types usually as micro or nano farads.Tolerances use upper case letters (M=±20%, K=±10%, J=±5%, H=±2.5% and F=±1pF). Working voltage is also usually printed with a (V).
+
+* 0.003M 400V = 0.003uF 400V ±20%
+* 0.22uFK 250V = 0.22uF 250V ±10%
+* 150n 250 = 150nF 250V ±10%
+* 68n 100 = 68nF 100V
+* u47 100 = 0.47uF 100V
+* 4n7 400 = 4.7nF 400V 
+
+It can also use a three digit number system where the third digit is a picofarad multimeter.
+
+* 474K 63 = 47x1^4pF = 0.47uF 63VDC ±10%
+* 102K 50 = 10x1^2pF = 0.001uF 50VDC ±10%
+* 223K 63 = 22x1^2pF = 0.47uF 63VDC ±10%
+* 154M 100 = 15x1^4pF = 0.47uF 100VDC ±20%
+
+Ceramic disk capacitors generally contain thermal tolerances. Whole numbers are usually pF and decimal numbers in uF. Odd looking numbers may use the three digit number system. 
+
+* 22M 1KV = 22pF ±20% 1000WV
+* Z5U 0.0033 ±20% = 0.033uF ±20% and +22% to -56% from 10° to 85°
+* X7R 10K 1KV = 10pF ±10% 1000WV and ±15% from -55° to 125° 
+* K5U 474M = 0.47uF ±20% and +20% to -70% from 25° to 85°
+* COH 7D = 7pF ±0.5pF and +60ppm/°C from 25° to 85°
+* 20 ±20% 50VAC 400VDC = 20pF ±20% 50WV AC or 400WV DC
+* Z5P 2200K = 2200pF ±10% (Temperature Change Unknown)
+* 200nZ 12V = 200nF 12WV DC and +80° to -20° 
+* N2200 47pF ±20% = 47pF ±20% NTC of 2200ppm/°C
+
+**List of Components**
+
+* Multimeter, Oscilloscope, Function Generator
+* 2 Ceramic Capacitors of Different Values
+* 2 Polyester Capacitors of Different Values
+* 2 Electrolytic Capacitors of Different Values
+* 1kOhm Resistor
+* 2 Inductors
+* 1 Rectifying Diode
+* 1 Switching Diode
+* 1 LED
+* 1 4.7kOhm Resistor
+* 1 0.22uF Capacitor
+
+![Components](/static/images/notes/ComponentListWorksheetOne.png)
+
+**1 Capacitance with Multimeter (SKIP)**
+
+* The nominal capacitance is printed on the body.
+* The maximum voltage depends on the insulator. If exceeded the dielectric breaks.
+* Electrolytic capacitors have polarity that needs to be identified.
+* Measure nominal capacitance and verify its value with multimeter.
+
+**2 Capacitance with AC Voltmeter**
+
+* Limited to unpolarized capacitors starting from 1nF.
+* Needs a sine wave of known frequency (100Hz).
+* Needs a voltage lower than the capacitor's capacity.
+* Unknown capacitor is connected in series with 1kOhm.
+* The voltage in the resistance is measured with the voltmeter.
+* Current can be obtained from $I = \frac{V_R}{R}$
+* With the current we measure the voltage in the capacitor.
+* Capacitance can be found from the equation:
+
+$$
+C = \frac{I}{2\pi f V_C}
+$$
+
+![Experiment Two](/static/images/notes/ExperimentTwoFromWorksheetOne.png)
+
+**3 Inductance with AC Voltmeter**
+
+* Unknown inductance is connected in series with 1kOhm.
+* Measure the internal resistance ( $r$ ) of the inductor. 
+* Measure the voltage in the resistor and in the inductor.
+* Inductance can be found from the equation:
+
+$$
+L = \frac{\sqrt{(\frac{V_L (R)}{V_R})^2 - r^2}}{2\pi f}
+$$
+
+![Experiment Three](/static/images/notes/ExperimentThreeFromWorksheetOne.png)
+
+**Questions**
+
+1. In your own words what are the objectives and procedure of the practice? The main objective was to learn how to measure capacitance or inductance using instruments like the AC Voltmeter instead of using the  Multimeter. The procedure was to place the capacitor or the inductor in series with a resistance and using by using both voltages being able to solve for their values, in the case of the inductor we took into account the internal resistance of the component as an additional resistor in series.
+2. You have all the necessary material to carry out the practice (not including multimeters, power supplies, oscilloscopes, or power generators signals / functions)? Yes
+3. What is the difference between a ceramic capacitor, a variable capacitor and a electrolytic capacitor? Ceramic capacitors are non polarized and made with a ceramic dielectric, they have a high frequency response but low voltage ratings. Variable capacitors are capacitors used when a continuous variation of the capacitance is needed (transmitters, receivers), they work by changing the distance or plate area overlap to control their capacitance. Electrolytic capacitors are polarized capacitors made up of a metallic anode covered with an oxidized layer used as dielectric and a solid or wet electrolyte as its cathode. Electrolytic capacitors generally can't be used in AC circuits because of their polarity but have a high capacitance.
+4. What is capacitance and inductance? Theory
+
+***
+
+# Worksheet 2 #
+
+**Theory**
+
+Power is the work done per unit of time,expressed in Joules per second. Electrical power is the work or energy dissipated in a certain load per unit of time, expressed in Watts. The power in DC in a load is $P = V_L I_L$ therefore it can be measured simply by using an Ammeter and a Voltmeter.
+
+The direct measurement of the load voltage and current may be different because of the internal resistances of the Ammeter and Voltmeter. The difference can be of the order of $\frac{|R_L - R_I|}{R_L}$ where $R_L$ is the load's resistance and $R_I$ is the instrument's resistance.
+
+In AC circuits we use the *3 Voltmeter* method. In this configuration the average or real power dissipated by the load is $P = \frac{V_m I_m}{2}$ to do the previous calculation we need to use $R$ since we don't know the current ending with $P_L = \frac{V_{AC}^2 - V_{AB}^2 - V_{BC}^2}{2R}$
+
+**List of Components**
+
+* 1 Power source
+* 1 Autotransformer (Variac)
+* 3 Multimeters
+* 1 Power resistor of 10Ohm
+* 1 Power resistor of 2Ohm
+* 1 Ceramic Capacitor of 0.22uF
+* 1 Resistor of 18Ohm
+
+**1 Power Measurement in DC circuits**
+
+* Place the voltmeter and the ammeter in series with the source and 10Ohm.
+* Calculate the power and compare from the two configurations.
+
+![Experiment One](/static/images/notes/ExperimentOneWorsheetTwo.png)
+
+**2 Power measurement in AC circuits**
+
+* Place 3 voltmeters forming a series circuit with an AC source (20Vpp).
+* Use a power resistance of 2Ohms (R) and power resistance of 10Ohms (Load)
+* Calculate the power in the load using the indicated method.
+* Repeat the experiment placing a 10Ohm resistor (Load) and a 0.22uF capacitor.
+
+![Experiment Two](/static/images/notes/ExperimentTwoWorsheetTwo.png)
+
+**3 Power increase effects**
+
+* Use a 18Ohm resistor.
+* Apply various voltage values and fill the table.
+
+| Vab (Volts) | i(t) (Ampere) | Power (Watts) |
+| :---: | :---: | :---: |
+| 0 | 0 | 0 |
+| 2 | 0.111 | 0.222 |
+| 4 | 0.222 | 0.888 |
+| 8 | 0.444 | 3.552 |
+| 12 | 0.666 | 7.992 |
+| 16 | 0.888 | 14.208 |
+| 20 | 1.11 | 22.2 |
+| 24 | 1.33 | 31.92 |
+| 28 | 1.55 | 43.4 |
+| 32 | 1.78 | 56.96 |
+
+![Experiment Three](/static/images/notes/ExperimentThreeWorsheetTwo.png)
+
+**Questions**
+
+1. In your own words what are the objectives and procedure of the practice? The main objective was to learn how to measure the power being used by a general load represented in this case by a power resistor using instruments like the Voltmeter and Ammeter instead of using a Multimeter. The procedure was to place the load in series with a DC source first, here we can directly measure the voltage and current needed to calculate the power of the load, only taking into account the small error that could arise from the internal resistance of the instruments. Later on we used the 3 voltmeter method when applying an AC signal to the load, this method requires the help of an additional resistance.
+2. You have all the necessary material to carry out the practice (not including multimeters, power supplies, oscilloscopes, or power generators signals / functions)? Yes
+3. In what type of energy is the potential and kinetic energy of the free electrons that flow inside a conductor transformed? Is this process reversible? Into usable electrical energy and some thermal. The process is not completely reversible as some of the energy will be lost.
+
+***
+
+# Worksheet 3 #
+
+**Theory**
+
+Bridges are devices used in measuring instruments that measure unknown resistances, capacitances or inductances. Bridges use DC sources when measuring resistances and AC sources when measuring inductances or capacitances. We are able to make the comparison when there is no current flowing through the galvanometer, meaning that the voltage on its terminals is the same (bridge in equilibrium). 
+
+![Wheatstone Bridge](/static/images/notes/WheatstoneBridgeImageIntruLab.png)
+
+The Wheatstone Bridge is used when measuring resistances and uses a DC source.
+
+$$
+\begin{gathered}
+	\frac{R_1}{R_4} = \frac{R_2}{R_x} \implies R_x = \frac{R_2 R_4}{R_1}\\\\
+	V_A = (V_S)\left(\frac{R_4}{R_4 + R_1}\right)\\
+	V_B = (V_S)\left(\frac{R_x}{R_x + R_2}\right)\\
+	V_{AB} = V_A - V_B \land V_{AB} = 0 \implies V_A = V_B\\
+	(V_S)\left(\frac{R_4}{R_4 + R_1}\right) = (V_S)\left(\frac{R_x}{R_x + R_2}\right)\\
+	\left(\frac{R_4}{R_4 + R_1}\right) = \left(\frac{R_x}{R_x + R_2}\right)\\
+	(R_4)(R_x + R_2) = (R_x)(R_4 + R_1)\\
+	R_4 R_x + R_4 R_2 = R_x R_4 + R_x R_1\\
+	R_4 R_2 = R_x R_1 \therefore R_x = \frac{R_2 R_4}{R_1}
+\end{gathered}
+$$
+
+The resistance itself of $R_x$ can vary by a small amount $\Delta R$ from phenomena like thermal changes, its new resistance will be $R_x = R_x + \Delta R$ . This small variation in the unknown resistance needs to be taken into account to measure the *true* voltage differential $V_{AB}$ that we will use for example when measuring the temperature with a thermistor.
+
+$$
+\begin{gathered}
+	V_A = (V_S)\left(\frac{R_4}{R_4 + R_1}\right)\\
+	V_B = (V_S)\left(\frac{R_x}{R_x + R_2 \pm \Delta R}\right)\\
+	\pm\Delta V_{AB} = V_A - V_B\\
+	V_A - V_B = (V_S)\left(\frac{R_4}{R_4 + R_1}\right) - (V_S)\left(\frac{R_x}{R_x + R_2 \pm \Delta R}\right)\\
+	V_A - V_B = (V_S)\left(\frac{R}{R + R}\right) - (V_S)\left(\frac{R}{R + R \pm \Delta R}\right)\\
+	V_{AB} = (V_S)\left(\frac{1}{2} - \frac{R}{2R \pm \Delta R} \right)\\
+	V_{AB} = (V_S)\left(\frac{2R \pm \Delta R - 2R}{4R \pm \Delta R}\right)\\
+	V_{AB} = \left(\frac{V_S}{4R}\right)\\
+	\pm\Delta V_{AB} = \pm \Delta R\left(\frac{V_S}{4R}\right)
+\end{gathered}
+$$
+
+From the equation we see that the maximum voltage differential from a small variation in $R_x$ happens when $R_1 = R_4 \text{ and } R_2 = R_x$ . 
+
+![Capacitance Bridge](/static/images/notes/CapacitanceComparisonBridgeIntruLab.png)
+
+The Capacitance Comparison Bridge is used when measuring inductances or capacitances and uses an AC source. When balanced we know that:
+
+$$
+R_x = \frac{R_2 R_4}{R_1} \text{ and } C_x = \frac{R_1 C_4}{R_2} 
+$$
+
+![Resonance Bridge](/static/images/notes/ResonanceBridgeInstruLab.png)
+
+Resonance Bridges are used when measuring frequencies from a balance condition. When balanced we know that:
+
+$$
+f = \frac{1}{(2 \pi \sqrt{LC})} 
+$$
+
+**List of Components**
+
+* 1 Power Source, Oscilloscope, Function Generator, Multimeter
+* 1 capacitor 0.22uF and 1 capacitor 0.33uF
+* 1 Thermistor 4.7kOhm
+* 1 Preset of 100Ohm
+* 1 Potentiometer of 10kOhm and 1 potentiometer of 5kOhm
+* Resistors: 4 2.2Ohm, 3 56kOhm, 2 10kOhm, 2 4.7kOhm
+* Resistors: 1 47kOhm, 1 1kOhm, 1 2.2kOhm, 1 3.9kOhm, 1 1Ohm
+
+**1 Thermistor with Wheatstone**
+
+* Build a Wheatstone bridge. Use R1 = R4 = 10kOhms.
+* Use R2 = 10kOhm potentiometer and RX = thermistor.
+* Power the bridge with 10VDC.
+* Take 3 measurements, thermistor normal, with fingers and under a flame.
+* Indicate voltages, potentiometer value and calculated resistance.
+
+| Voltage | Potentiometer | Thermistor |
+| :---: | :---: | :---: |
+| | | |
+| | | |
+| | | |
+
+**2 Resistor Temp Variation Wheatstone**
+
+* Build a Wheatstone bridge. Measure resistor variation.
+* Use R1 = R2 = R4 = 56kOhm and form RX = 47kOhm + 10kOhm Pot.
+* Balance the bridge by varying the RX with the potentiometer.
+* Heat the 47kOhm resistor and observe the voltage variation.
+* Calculate the resistor change from the voltage differential.
+
+**3 Capacitance comparison bridge**
+
+* Build a resonance bridge. Use Z2 = Z4 = 47Ohm.
+* Use Z1 = 100Ohm pot, C4 = 0.22uF and Cx = 0.33uF.
+* Power the bridge with 2Sen(2000)pi(t) volts.
+* Move the potentiometer until the bridge is balanced.
+* Unplug and measure the value in the potentiometer.
+* Calculate Cx from this value.
+
+
+**Questions**
+
+1. In your own words, what are the objectives and the procedure of the practice? The main objective was to learn how use bridges as part of measuring instruments for unknown impedances, for example to detect the small changes in the resistance of a transducer like the thermistor. The procedure was to place the component with the unknown value on one side of the bridge and a variable component equivalent on the other, between them stands a null detector to indicate that the bridge is valanced when adjusting the variable component. Once valanced we can calculate the impedance from the principle of voltage dividers.
+2. Do you have all the necessary material to do the practice (not including: multimeters, power sources, oscilloscopes or signal generators / functions)? Yes
+3. What is the difference between the Wheatstone bridge, the capacitance comparison bridge and the resonance point?
+4. In general, how are measuring bridges balanced? By changing the variable resistance of one of the resistors, using a potentiometer for example, while measuring the current flowing in the middle through the galvanometer, we say that the bridge is balanced when the current reaches zero.
+
+
+
