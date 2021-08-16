@@ -4,7 +4,7 @@ date: '2020-01-02'
 tags: ['school', 'networks']
 ---
 
-This is an overview of the knowledge needed for designing networks used in the industry. You will know the characteristics, topologies, protocols and configurations of different networks. Implement networks used for programmable logic controllers, cabling and plant integration. Requires knowledge of automation and industrial computing.
+Designing networks used in the industry, Characteristics, topologies, protocols and configurations of different networks. Implement networks used for programmable logic controllers, cabling and plant integration. Requires knowledge of automation and industrial computing.
 
 ***
 
@@ -45,10 +45,22 @@ This is an overview of the knowledge needed for designing networks used in the i
 
 # Networks #
 
-* Communication is almost as important as any other vital resource.
-* It creates a boundless world, global communities and information networks.
-* Online services like mail, files and games are managed by specialized servers.
-* Servers (HOST) will provide the information that a client (END DEVICE) asks for.
-* Intermediary devices like routers connect the clients to the servers.
+Communication is almost as important as any other vital resource. It creates a boundless world, global communities and information networks. Online services like mail, files and games are managed by specialized servers. Servers (HOSTS) will provide the information that a client (END DEVICE) asks for. Intermediary devices like routers connect the clients to the servers.
 
+***
 
+# PLC #
+
+A PLC is a programmable logic controller used in any control system. Also known as programmable automata it is a computer used in industrial automation as the controller to execute a set of instructions in electromechanical processes such as assembly lines. Brand examples are Siemens, Allen Bradley, Omron, Mitsubishi, Schneider, Zander Aachen and Crouzet.
+
+![PLC Arquitecture](/static/images/notes/PLCArquitectureNetworks.png)
+
+Their architecture is made up of a programming unit that translates code for the CPU. The CPU itself needs a storage unit (memory) and a power unit to execute its operations. The CPU's output is send through a system of Inputs and Outputs into its physical interface that can be divided into Input and Output Modules. The CPU is an element capable of reading and interpreting input signals and logic instructions stored in memory to decide what needs to be outputted at any moment. Most PLC CPU's are based on 8, 16 or 32 bit microprocessors that process logic, temporalization, sequencing, and operations as needed. One important characteristic that defines a PLC functionality is how long it takes to make a complete SCAN cycle.
+
+![PLC SCAN](/static/images/notes/PLCscancycleNetworks.png)
+
+The memory unit is where the main program and all its relevant data is stored, they vary according to type and capacity for example ROM, RAM, PROM, EEPROM, etc. Normally memory is specified in K units where 1K represents 1024 words in the memory register. Most PLC's are manufactured for AC power sources but there are some models that accept DC power sources for example in offshore rig operations where DC generators are commonly used. Voltage and current requirements of the PLC and its modules must be correctly supplied to ensure it will provide correct input and output signals. The most common requirements are 120VAC, 220VAC or 24VDC. PLC are preferred in industrial environments to other controllers for their simplicity, sturdiness and their reliable Input and Output interface specifically designed to communicate with modules and other instrumentation like sensors and actuators.
+
+PLC programming languages are used to create a program with the necessary control instructions, note that communication between PLC's happens through communication protocols like Profibus, Fieldbus, Modbus, Devicenet, Interbus, etc. Since PLC's are used by many professionals that don't have a programming background it is common to see high level graphic languages and low level textual languages. Graphic languages use symbols to declare the instructions but are limited to the available symbol combinations, for example Ladder Logic (relay based) or Logical Symbol Blocks. Textual languages use character string to declare the instructions and are more flexible, for example Instruction List (Assembly based) or Structured Text Language (C and PASCAL based).
+
+***

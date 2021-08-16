@@ -44,6 +44,299 @@ This is an overview of the knowledge needed for evaluating, configuring and inst
 
 ***
 
+# GRAFCET #
+
+GRAFCET (Graphe Fonctionnel de Commande Etape Transition) is a programming language designed for industrial control systems based around stages and stage transitions. Created in 1977 by AFCET to bring non digital tools like organization charts, organiphase, Girard diagrams, Petri net and other into PC's. Standardized in 1979 by ADESA, by Europe as EN61131 and internationally in 1992 as CEI1131. For the most part it has been superseded by Ladder Language but it is still a powerful educational and modeling tool.
+
+
+
+
+
+
+
+Combinacional y secuencial
+
+
+Componentes Combinacionales y Secuenciales
+Es importante que se tengan claras las diferencias entre los elementos secuenciales y combinacionales presentes en todo sistema lógico, básico para abordar los procedimientos de diseño e implementación de procesos de automatización industrial.
+
+Sistema o Módulo Combinacional
+
+Es aquel cuyas salidas dependen únicamente del estado de sus entradas, con total independencia de cuál es el estado inicial.
+La función o funciones de transferencia del sistema son simplemente funciones lógicas que relacionan entradas con salidas mediante la combinación de las funciones AND, OR y NOT.
+
+
+
+Sistema Secuencial
+
+Es aquel cuyas salidas dependen de las variables de entrada y del propio estado inicial del sistema.
+Dichos estados se almacenan en memoria mediante variables internas denominadas Variables de Estado.
+La denominación de sistema secuencial se debe precisamente a que el valor de las salidas depende de los estados de las entradas y de la secuencia anterior de estados en dichas entradas.
+
+
+Historia
+
+Ante la necesidad de unificar y racionalizar el lenguaje para describir los sistemas lógicos y en particular el componente secuencial de los mismos, la Association Francaise pour la Cybernétique Economique el Technique AFCET creó una comisión formada por varios organismos universitarios, fabricantes y usuarios con el objeto de armonizar los criterios de cada uno de estos colectivos y obtener un método de representación de funcionamiento de sistemas lógicos independiente de la materialización tecnológica de los mismos. El resultado de los estudios de dicha comisión fue un útil de tipo gráfico, apoyado por métodos de álgebra lógica, que una vez depurado ha dado lugar al denominado GRAfico Funcional de Control de Etapas y Transiciones (GRAFCET).
+
+Diseño
+
+Debe caracterizarse el funcionamiento del PLC con total independencia de los componentes con los que vaya a ser construido. La FUNCION que debe realizar el PLC.
+El conjunto de un sistema automático se divide en dos partes: la parte de control (PC) y la parte operativa (PO). La parte de control comprende todo aquello que contribuye a la automatización del proceso y la parte operativa incluye el resto del mismo.
+El elemento fundamental de un proceso es la OPERACIÓN, la cual se denomina ETAPA en el lenguaje de GRAFCET, entendiendo como tal una acción realizada por el PLC. Obsérvese que en una primera aproximación podemos dividir el proceso en unas pocas operaciones relativamente complejas (por ejemplo: taladrar, roscar, cambiar herramienta, etc.) …
+
+… llamadas también macroetapas, las cuales podrán ser subdivididas a su vez en operaciones más elementales a medida que avanzamos en el nivel de detalle.
+Por ejemplo, una operación de taladrar puede subdividirse en otras más elementales como: impulsar pieza, bloquear pieza, giro de broca, aproximación de broca, etc.
+Debe dividirse el proceso en macroetapas y éstas a su vez en etapas más elementales hasta conseguir que las acciones a realizar en cada una de ellas dependan sólo de relaciones combinacionales entre entradas salidas. Cada una de estas etapas elementales tendrá asociada una variable de estado.
+Establecer un gráfico de evolución que indique la secuencia de operaciones (secuencia de etapas) y las condiciones lógicas para pasar de una a otra, las cuales son denominadas condiciones de transición en el GRAFCET. Como resultado de esta fase se obtienen las ecuaciones lógicas de las variables de estado y, por tanto, queda resuelta la parte secuencial del PLC.
+Establecer para cada operación elemental (etapa) las relaciones lógicas entre entradas y salidas, utilizando eventualmente otras variables internas combinacionales.
+Finalmente, implementar el sistema utilizando tantas instrucciones de SET-RESET como variables de estado se tengan en el procesoy cableando o programando las relaciones lógicas obtenidas en las fases e y f.
+
+
+Elementos de Base del Grafcet
+
+El GRAFCET es, como se ha dicho, un modelo de representación gráfica del funcionamiento de un sistema automático.
+Los símbolos básicos de los elementos de representación del GRAFCET son:
+
+ETAPA INICIAL
+ETAPAA
+ARCOS
+CONDICION DE TRANSICION
+
+Las Etapas
+Las etapas representan cada uno de los estados del sistema. Cada etapa debe corresponder a una situación tal que las salidas dependan únicamente de las entradas o, dicho de otro modo, la relación de entradas y salidas dentro de una etapa es puramente combinacional.
+Se denominan etapas iniciales aquellas en que se posiciona el sistema al iniciarse el proceso por primera vez, las etapas iniciales se representan por un cuadrado con doble línea tal como lo muestra la figura.
+
+Las Líneas de Evolución
+
+Las líneas de evolución unen entre sí las etapas que representan actividades consecutivas., y se entenderán siempre orientadas de arriba hacia abajo, a menos que se represente una flecha en sentido contrario.
+
+Las Transiciones
+
+Las transiciones representan las condiciones lógicas necesarias para que finalice la actividad de una etapa y se inicie la de la etapa o etapas inmediatamente consecutivas.
+Estas condiciones lógicas se obtendrán por combinación de variables denominadas receptividades. Gráficamente se representan las transiciones por una línea cruzada sobre las líneas de evolución tal como lo muestra la Figura
+
+Los Reenvíos
+
+Los reenvíos son símbolos en forma de flecha que indican la procedencia o destino de las líneas de evolución. Las flechas de reenvío permiten fraccionar un gráfico o evitan dibujar líneas de evolución con excesivos cruces.
+Dos líneas de evolución que se crucen debe interpretarse, en principio, que no están unidas.
+Cuando se recorre el gráfico de evolución, por cualquier camino posible, deben alternarse siempre una etapa y una transición, esta situación se muestra en la siguiente figura.
+
+La regla básica de sintaxis del GRAFCET es que entre dos etapas debe existir una y solo una condición de transición, ésta puede venir expresada por una función lógica combinacional todo lo compleja que sea necesario, siempre que dé como resultado un bit dando la posibilidad de tener dos estados: 1= Condición Verdadera. 0 = Condición Falsa.
+Cabe señalar, finalmente, que los números de las etapas nada indican respecto a su orden de ejecución, sino que simplemente tienen carácter de identificación. Como consecuencia, pueden numerarse las etapas de la forma que se desee sin que ello tenga ningún significado desde el punto de vista funcional.
+
+Los Mensajes de Interpretación
+
+Estos mensajes pueden ser textos, símbolos o ecuaciones lógicas asociados a las etapas o transiciones para indicar la actividad desarrollada o las relaciones entre variables del sistema que deben cumplirse.
+Pueden distinguirse dos tipos de mensajes, que se muestran en la figura
+MENSAJES DE ACCIÓN: Mensajes asociados a cada etapa. Indican cuál es la actividad a desarrollar en dicha etapa cuando esté activa según las reglas de evolución, bien sea en forma de texto o en forma de ecuaciones lógicas que indiquen la relación salidas-entradas.
+MENSAJES DE RECEPTIVIDAD: Mensajes asociados a cada transición. Estos mensajes indican las condiciones lógicas necesarias y suficientes para que el proceso pase de una etapa a otra(s) consecutiva(s).
+
+Reglas de Evolución Del Grafcet
+
+Estas reglas permiten definir e interpretar de forma unívoca el comportamiento dinámico del sistema.
+A. Cada etapa tiene asociada una variable de estado Xi de tipo bit.
+B. Se distinguen dos posibles estados de una etapa: activa o inactiva. Diremos que una etapa está activa cuando su variable de estado vale 1 e inactiva cuando vale 0.
+C. Se denomina arranque en frío a la inicialización de un proceso automático sin guardar memoria de ninguna situación anterior. La orden de arranque en frío puede proceder de un operador humano o de un sistema automático jerárquicamente superior. Después de un arranque en frío se activan todas las etapas iniciales y quedan inactivas todas las demás.
+D. Se denomina arranque en caliente a la reinicialización de un PLC cuando éste guarde memoria de alguna situación anterior. Esta situación suele corresponder a un rearranque sin pérdida del contexto anterior, es decir, manteniendo memorizadas las variables de estado del proceso
+
+E. Durante la evolución normal del proceso, una etapa no inicial se activará cuando esté activada la etapa anterior y se cumplan las condiciones de transición entre ambas.
+F. Cualquier etapa se desactiva cuando se cumplan las condiciones de transición a la siguiente o siguientes y dicha transición se haya e efectuado. En el gráfico de la figura anterior, por ejemplo, si se cumple la condición de transición T1, se activaría la etapa E2 y se desactivaría la etapa E1.
+G. Una transición puede encontrarse en una de las cuatro situaciones siguientes, las cuales se representan en la Figura de la diapositiva 19.
+
+
+NO VALIDADA: La etapa o etapas inmediatamente anteriores o siguientes no están activas.
+VALIDADA: La etapa o etapas inmediatamente anteriores están activas, pero no se cumple la condición lógica de transición.
+FRANQUEABLE: La etapa o etapas inmediatamente anteriores están activas y se cumple la condición lógica de transición. Esta es únicamente una situación transitoria, pues dicha transición será automáticamente franqueada, según C9.
+FRANQUEADA: Se ha activado la etapa o etapas inmediatamente siguientes y se han desactivado la etapa o etapas inmediatamente anteriores.
+
+
+H. Sólo se podrá franquear una transición si ésta está previamente validada.
+I. Toda transición franqueable será inmediatamente franqueada.
+J. Si hay varias transiciones franqueables simultáneamente, serán franqueadas simultáneamente.
+K. El franqueo de una transición implica automáticamente la desactivación de todas las etapas inmediatamente anteriores.
+L. Si en el curso de funcionamiento de un PLC una etapa debe ser simultáneamente activada y desactivada, dicha etapa permanecerá activada. Esta regla es un convencionalismo para resolver casos de indeterminación, pero es muy difícil de llevar a la práctica ya que en los PLC’s la respuesta de un SET y un RESET simultáneos suele depender del orden de programación o puede depender de una «carrera crítica» en la que juegan los tiempos de respuesta de los componentes. Es preferible, pues, evitar que una etapa pueda ser activada y desactivada al mismo tiempo. Como consecuencia de esto se verá más adelante que hay que imponer ciertas reglas
+M. El gráfico de evolución expresado en GRAFCET debe ser siempre cerrado, sin dejar ningún camino abierto. En efecto, tal circunstancia mostraría una incoherencia o una situación en la que el proceso es incapaz de continuar. Naturalmente pueden existir situaciones en que la salida sea inicializar el proceso mediante alguna señal externa.
+
+Ejemplo de Diseño
+
+Se pretende automatizar un proceso que permita controlar el desplazamiento de una pieza por medio de un brazo manipulador, el cual tendrá que recoger la pieza de una bandeja y colocarla sobre una banda transportadora para su distribución.
+
+Para resolver el requerimiento se dividirá la situación en tres fases a saber:
+ 1ª FASE: GRAFCET FUNCIONAL.
+ 2ª FASE: GRAFCET CON SENSORES Y ACTUADORES.
+ 3ª FASE: DISEÑO DEL SISTEMA DE CONTROL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GRAFCET Funcional
+
+El diagrama GRAFCET del proceso en cuestión, representándose la sucesión de etapas presente en él indicando al lado de cada una de ellas las acciones a desarrollar y entre ellas las condiciones de transición
+
+GRAFCET Con sensores y accionadores.
+
+Se puede decidir cuáles son los accionamientos destinados a ejecutar las distintas operaciones (cilindros, motores, válvulas, etc.) y los sensores (pulsadores, finales de carrera, captadores, etc.) destinados a suministrar las receptividades, que permitan formular las condiciones de transición.
+El diagrama con sensores y accionadores es idéntico con el diagrama de Grafcet Funcional, pero en el primero se entra en detalle en la tecnología empleada para implementar la solución de automatización
+
+Diseño del sistema de control.
+
+Una vez obtenido el gráfico de control que relaciona todos los sensores y actuadores presentes en el proceso, éste puede ser utilizado para el diseño del sistema de control al pasar el GRAFCET obtenido al lenguaje de programación en LADDER.
+Este proceso de diseño consta de dos partes:
+	El LADDER Secuencial.
+	El LADDER Combinacional.
+
+LADDER Secuencial
+
+El LADDER Secuencial comprende la estructura de etapas y condiciones de transición que las relacionan. El método consiste en asignar a cada etapa un bit interno del PLC que representa el estado de la variable interna de esta etapa, representando si la etapa está activa o no a través de las instrucciones de Set (Latch) y Reset (UnLatch), determinadas a partir de las condiciones de transición indicadas en el GRAFCET.
+La activación de un bit interno (LATCH) de una etapa N tiene lugar cuando la etapa o etapas previas se encuentran activadas y se cumple la condición de transición entre dichas etapas y la etapa N, tal como se ha presentado en las reglas de evolución del GRAFCET.
+Por otro lado, la desactivación del bit interno de una etapa (UNLATCH) se presenta cuando la etapa o etapas posteriores quedan activadas. Recordando que la desactivación de una etapa debe producirse tan pronto como se active la etapa o etapas siguientes.
+
+Aplicando este procedimiento a cada una de las etapas, se obtiene el LADDER de la parte secuencial del proceso
+
+LADDER combinacional
+
+El LADDER combinacional comprende todas las acciones a ejecutar dentro de cada etapa, en esta fase se diseñan las acciones a desarrollar por cada etapa del proceso y se obtiene el esquema lógico, utilizando los estados de las variables de estado y eventualmente otras condiciones adicionales.
+En el ejemplo que se esta desarrollando, las acciones de cada etapa resultan muy simples debido a que relacionan directamente un actuador, en algunos casos pueden resultar todo lo complejas que sea necesario mientras se trate de acciones puramente combinacionales.
+
+Estructuras Básicas del Grafcet
+
+En el ejemplo anterior se ha tratado el caso de un proceso relativamente simple, con una estructura de tipo lineal, cíclica y sin bifurcaciones. Pero existen otros procesos que requieren estructuras más complejas, en las que se presentan bucles, tomas de decisiones o tareas simultáneas que deben sincronizarse. Para estos casos el GRAFCET dispone de otras estructuras básicas a partir de las cuales pueden generarse los diagramas de dichos procesos.
+
+Las tres estructuras básicas en GRAFCET, de las cuales pueden derivarse todas las demás son:
+	Secuencia lineal.
+	Convergencia y divergencia en «O» (subprocesos alternativos).
+	Convergencia y divergencia en «Y» (subprocesos simultáneos o paralelos).
+
+Al hablar de lógica combinacional se conoce que cualquier función lógica puede expresarse mediante combinación de las operaciones AND, OR Y NOT. Pues bien, haciendo un paralelismo podemos decir que los sistemas secuenciales, cualquiera que sea su complejidad, pueden expresarse siempre en GRAFCET mediante gráficos que sólo incluyan como estructuras básicas las tres citadas anteriormente.
+En la práctica, como se ha visto en el apartado anterior, se empieza por describir los procesos mediante gráficos funcionales muy genéricos, con poco nivel de detalle, que casi siempre serán de tipo lineal, pero al ir avanzando en el nivel de detalle aparecen las bifurcaciones, denominadas convergencias y divergencias en O y en Y.
+
+Secuencia Lineal
+
+La secuencia lineal es la estructura más simple posible y consiste en una sucesión de etapas unidas consecutivamente por las líneas de evolución y condiciones de transición, tal como se pudo observar en el ejemplo anterior.
+	Las propiedades que cumple dicha estructura son las siguientes:
+Dentro de un tramo de secuencia lineal, solamente una etapa debe estar activa en un instante determinado. En realidad las reglas del GRAFCET no impiden formalmente la posibilidad de que en una secuencia lineal pueda existir más de una etapa activa, pero si esto sucede suele denotar una incoherencia de diseño. En efecto, la implicación práctica de que se activen dos etapas simultáneamente es que deben ejecutarse dos grupos de acciones simultáneamente y esto tiene una forma más apropiada de representación mediante bifurcaciones en «Y», como podrá verse a continuación. Por otra parte, si en una estructura lineal progresan varias etapas activas a la vez pueden «darse cazao y esto podría provocar condiciones contradictorias de que una etapa deba activarse y desactivarse a la vez.
+
+Se activa una etapa cuando se encuentre activada la anterior y se cumplan las condiciones de transición entre ambas.
+La activación de una etapa implica automáticamente la desactivación de la etapa anterior.
+Una secuencia lineal puede formar parte de una estructura más compleja.
+
+La estructura lineal aparece casi siempre a nivel de descripción general con macroetapas y también como parte de las estructuras más complejas.
+
+DIVERGENCIA Y CONVERGENCIA EN O.
+
+La divergencia y convergencia en O, a las que llamaremos conjuntamente  bifurcación en O, forman una estructura en la que existen los siguientes elementos.
+
+1. Una divergencia en O, en la que se inician varios caminos o subprocesos alternativos posibles.
+2. Una serie de caminos alternativos con una macroestructura lineal, aunque pueden contener otras estructuras más complejas.
+3. Una o más confluencias en O de dichos caminos alternativos, de tal forma que la macroestructura debe ser globalmente cerrada.
+
+La estructura de la divergencia y convergencia en O, se muestra en la Figura
+
+Esta estructura se prevé para representar procesos alternativos que deban ejecutarse dependiendo de ciertas condiciones lógicas. Por ejemplo, en una barrera de peaje si el importe introducido es exacto entregar ticket y abrir barrera, si no es exacto devolver cambio.
+Haciendo un símil con estructuras de tipo informático, la bifurcación en O corresponde a una estructura del tipo IF... THEN... ELSE.
+
+El camino o subproceso que se seguirá en cada caso dependerá de cuáles sean las condiciones de transición que se cumplan a partir de la etapa previa a la bifurcación. No es imprescindible que los subprocesos que parten de una misma divergencia deban confluir en una misma convergencia. Lo que sí ocurrirá en todo proceso es que toda divergencia implica la existencia de una convergencia en algún lugar del ciclo, ya que, como se ha dicho, el gráfico de fluencia visto globalmente ha de ser cerrado.
+
+Las propiedades básicas que cumple la estructura de bifurcación en O son las siguientes:
+
+A. A partir del punto de divergencia el proceso podrá evolucionar por distintos caminos alternativos, cada uno de los cuales debe tener su propia condición de transición.
+B. Las condiciones de transición de los diversos caminos de divergencia han de ser EXCLUYENTES ENTRE SÍ, de forma que el proceso sólo podrá progresar en cada caso por uno de ellos.
+
+En realidad, las reglas del GRAFCET no imponen esta restricción, pero si no se cumple se produce una incoherencia. En efecto, si las condiciones no son exclusivas entre sí, indicaría la posibilidad de procesos que pueden iniciarse simultáneamente en caso de cumplirse dos o más condiciones de transición simultáneamente. Si esta situación es deseada debe resolverse utilizando la estructura de bifurcación en Y, que se estudia más adelante. Pero si la situación es accidental, esto pondría de manifiesto una falta de especificación ante tal caso, que deberá ser resuelta o bien imponiendo condiciones adicionales para evitar la simultaneidad o especificando claramente cuando el proceso ha de ser exclusivo y cuándo simultáneo.
+
+DIVERGENCIA Y CONVERGENCIA EN Y.
+
+La divergencia y convergencia en «Y», a las que llamaremos conjuntamente bifurcación en Y, forman una estructura en la que existen los siguientes elementos:
+1. Una divergencia en Y en la que se inician varios caminos o subprocesos que deben iniciarse SIMULTÁNEAMENTE cuando se cumpla una determinada condición de transición común.
+2. Una serie de caminos simultáneos con una macroestructura lineal, aunque pueden contener otras estructuras más complejas.
+3. Una o más confluencias en Y de dichos caminos, de manera que macroestructura debe ser globalmente cerrada.
+
+La estructura de la divergencia y convergencia en Y, se muestra en la Figura
+
+Esta estructura se prevé para representar procesos que se inician simultáneamente, se de forma independiente con distintos tiempos y condicionan la continuación del proceso en tanto no hayan terminado todos ellos. Como ejemplo se puede mencionar el funcionamiento de tenemos el caso de una estación de mecanizado, con una estación para la entrada y salida de piezas, otra para taladrado y la tercera para roscado. Las tres operaciones se inician y trabajan de forma simultánea, y no puede proseguir el proceso en tanto no hayan terminado las tres operaciones o tareas. Al igual que se comentó para las bifurcaciones en O, no es imprescindible que los subprocesos simultáneos que parten de una misma divergencia deban confluir en una misma convergencia. Lo que sí es imprescindible es que el gráfico, visto globalmente, sea cerrado.
+
+Las propiedades que cumplen las convergencias y divergencias en Y son las siguientes:
+A. A partir del punto de divergencia el proceso evolucionará por varios caminos a la vez, ejecutando varias tareas simultáneamente.
+B. La condición de transición para iniciar las tareas simultáneas es única y común para todas ellas.
+C. A nivel de gráfico global, los distintos caminos iniciados como divergencia en Y deben confluir en uno o más puntos de convergencia en Y. Dicho de otra forma, la estructura debe ser globalmente cerrada y no pueden existir caminos abiertos, ya que esto denotaría situaciones sin posible salida.
+
+Se excluye también que los caminos de una divergencia en Y puedan concurrir en una convergencia en O. En realidad las reglas del GRAFCET no prohíben explícitamente esta situación, pero en caso de cerrar una divergencia en Y con una convergencia en O se podrían activar varias etapas consecutivas de una estructura lineal que estuviera a continuación y esto está en desacuerdo con la reglas de evolución del GRAFCET.
+D. La convergencia en Y impone de por sí una condición de transición: todas las tareas que confluyan en ella deben haber terminado para que el proceso pueda continuar. Por tanto, puede considerarse a todos los efectos que una convergencia Y equivale a una transición. Esto no impide que puedan existir condiciones adicionales, aparte de la propia de convergencia, tal como se ha supuesto en la Figura anterior con las condiciones de Transición T6 y T7.
+En caso de que no existieran dichas condiciones adicionales puede escribirse también T6=1 o T7=1 para indicar esta circunstancia. Es frecuente utilizar este criterio, haciendo que las últimas etapas previas a la convergencia Y sean simplemente etapas de espera, donde no se desarrolla ninguna tarea específica más que esperar que terminen las otras tareas que confluyen en ella.
+
+El LADDER Secuencial correspondiente al GRAFCET presentado en la Figura anterior, se desarrolla en la siguiente Figura, en la que se puede observar:
+
+La etapa previa a una divergencia Y no debe desactivarse hasta que se hayan activado todas las etapas siguientes.
+La activación de cualquier etapa inmediatamente después de una divergencia depende de que esté activa la etapa inmediatamente anterior y de la condición de transición común.
+La activación de la etapa siguiente a una convergencia Y depende de que estén activas todas las etapas previas y eventualmente de alguna condición adicional (T6 o T7 en nuestro ejemplo).
+
+DIAGRAMAS DE FLUJO Y DIAGRAMAS GRAFCET
+
+Es interesante establecer una comparación entre el GRAFCET y los clásicos gráficos de flujo empleados en informática, haciendo resaltar algunas diferencias esenciales que existen entre ambos, entre las que se encuentran:
+
+A. Un gráfico de flujo representa una sucesión de tareas que se ejecutan secuencialmente a la velocidad del procesador, mientras que un GRAFCET es una sucesión de tareas, eventualmente controladas por un procesador, pero que se ejecutan a la velocidad impuesta por el proceso. En general, pues, durante el tiempo de actividad de una etapa GRAFCET el procesador ejecuta muchos barridos del gráfico funcional completo.
+
+. Un gráfico de flujo representa, en general, procesos monotarea, mientras que en GRAFCET es perfectamente lícito representar tareas simultáneas, como se ha presentado en la estructura de divergencia y convergencia en Y. Dicho de otra forma, no existe una estructura en diagramas de flujo para representar procesos paralelos. Para clarificar mejor este concepto, cabe decir incluso que un mismo procesador puede ejecutar a la vez varios gráficos funcionales, que pueden estar relacionados entre sí o ser completamente disjuntos. Como consecuencia de lo anterior, un bucle en un diagrama de flujo implica que sólo se está ejecutando la parte de programa interior al bucle, hasta que se cumpla la condición que permita salir de él, mientras que en GRAFCET se explora la totalidad del programa, con independencia de que se cumplan o no las condiciones de transición.
+
+C. Un GRAFCET debe separar las acciones combinacionales de las secuenciales, mientras que en un gráfico de flujo no existe tal distinción.
+D. Un diagrama de flujo no contiene información suficiente para deducir de él el programa de forma unívoca, mientras que el GRAFCET permite una compilación directa al programa en LADDER.
+
+WHILE DO O SALTO HACIA DELANTE .
+REPEAT UNTIL O SALTO HACIA ATRAS.
+
+ESTRUCTURA FOR NEXT.
+
+
+
+
+
+
+
+
+
 
 
 

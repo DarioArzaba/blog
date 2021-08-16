@@ -4,16 +4,13 @@ date: '2020-01-02'
 tags: ['school', 'actuators']
 ---
 
-This is an overview of the knowledge needed for the selection and operation of actuators. Theoretical foundations of actuators for different applications and automatic control systems. Requires knowledge of instrumentation and electrical circuits. 
+Selection and operation of actuators, theoretical foundations of actuators for different applications and automatic control systems. Requires knowledge of instrumentation and electrical circuits. 
 
 ***
 
 1. [Introduction](#introduction)
-	1. Importance of Actuators
-	2. General Classification
-	3. Uses in Control Systems
-2. Magnetic Circuits
-	1. Relation i-H and Relation i-B
+2. [Magnetic Circuits](#electromagnetic-actuators)
+	1. [Relation i-H and Relation i-B](#electromagnetic-relations)
 	2. Magnetic Equivalent Circuit and Curve
 	3. Magnetic Circuit (with Air-Gap)
 	4. Inductance in Actuators
@@ -52,49 +49,43 @@ This is an overview of the knowledge needed for the selection and operation of a
 # Introduction #
 
 * Mechatronic System: Measures signals, process them and generates an action through actuators or motion. 
-	* Structure: Body of the system, how we integrate the components.
+	* Structure: Body of the system, how we integrate components.
 	* Sensors: Devices that detect physical magnitudes and transform them to electrical signals.
-	* Actuators: Devices that perform actions in response to the signals.
-	* Controllers: Regulate actuators response time and logic.
+	* Actuators: Devices that perform actions in response to signals.
+	* Controllers: Regulate actuator response time and logic.
 	* Interface: Devices that allow two or more systems to interact.
 
 **Control System**
 
-Interconnection of components in a configuration that gives the desire response or *output signal* with respect to the reference *input signal* we have selected. In the most abstract sense control systems allow us to detect a variable and execute the actions needed to modify its value to the values we want. We can find control systems in most systems, for example in animals, machines or businesses. 
-
 ![Control System Example](/static/images/notes/ControlSystemExample.png)
+
+Interconnection of components in a configuration that gives the desire response or *output signal* with respect to the reference *input signal* we have selected. In the most abstract sense control systems allow us to detect a variable and execute the actions needed to modify its value to the values we want. We can find control systems in most systems, for example in animals, machines or businesses. 
 
 **Open Loop Control System**
 
-Here the output generated depends directly on the input, meaning that we don't compare the controlled output with the reference signal. 
-
-There is an expected signal input, an element of control, an element of correction, a process and a controlled variable output.
+Here the output generated depends directly on the input, meaning that we don't compare the controlled output with the reference signal. There is an expected signal input, an element of control, an element of correction, a process and a controlled variable output.
 
 ![Open Loop System](/static/images/notes/OpenLoopControlSystem.png)
 
-For example a manual valve. Here the expected water flow is the input, the valve position is the element of control, the water level in a tank can be the element of correction, the process is the water filling the tank and finally the controlled variable output is maintaining the tank full of water. 
+For example a manual valve. Here the water flow is the input, the valve position is the element of control, the water level in a tank can be the element of correction, the water filling the tank is the process and maintaining the tank full of water is the controlled variable output.
 
 ![Open Loop System Example](/static/images/notes/OpenLoopControlSystemExample.png)
-
-Notice that in this example the actuator is the person turning the valve.
 
 **Closed Loop of Feedback Control System**
 
 Here the output generated depends on the input and the corrections performed by the feedback signal, meaning that we compare the controlled output with the reference signal.
 
-There is a reference input signal that is compared with the feedback signal or output measurement of a sensor, from this comparison comes an error signal that the controller uses to act on the system via actuators, the actuators change the output signal closer to the reference signal. The cycle repeats when the sensor takes another measurement of the output.
+There is a reference input that is compared with the feedback signal from a sensor, from this comparison comes an error signal that the controller uses to act on the system via actuators, the actuators change the output signal closer to the reference. The cycle repeats when the sensor takes another measurement of the output.
 
 ![Open Loop System](/static/images/notes/ClosedLoopControlSystem.png)
 
-For example a heating system. Here the expected temperature is set as a reference or set point in the thermostat, a sensor compares this reference with the measured temperature of the house, the difference or error signal is used by controller to modify the valves of a gas furnace via actuators, this generates a feedback signal in the form of new heat that in turn changes the overall temperature or output signal. The cycle repeats as the sensor takes another measurement of the new output.
+For example in a heating system the expected temperature is set in a thermostat as a reference or set point, a sensor compares this reference with the measured temperature of the room, the difference or error signal is used by the controller to modify the valves of a gas furnace via actuators, this generates a feedback signal in the form of new heat that in turn changes the overall temperature or output signal. The cycle repeats as the sensor takes another measurement of the new output.
 
 ![Open Loop System Example](/static/images/notes/ClosedLoopControlSystemExample.png)
 
-Notice that in this example the actuator are motors that turn the valves.
-
 **Actuator**
 
-Device that transforms energy to a desired motion or action. The *Driving System* of an actuator are the elements in the control system that translate the controller output to a usable signal by the actuator.
+Device that transforms energy to a desired motion or action. Its *Driving System* are the elements in the control system that translate the controller's output to a usable signal by the device.
 
 **Mechanic System Components**
 
@@ -105,13 +96,114 @@ Device that transforms energy to a desired motion or action. The *Driving System
 5. Output Signal Conditioning: Amplifiers, Transistors, Op-Amps
 6. Interfaces: LED, Digital Screens, LCD, CRT
 
-Examples of mechanic systems that use actuators are robotic arms, car wipers, automatic transmissions or car valve bodies.
-
 **Classification**
 
-1. Hydraulic: Transform the energy of compressed air to mechanic work such as linear or circular motion.
-2. Pneumatic: Transform the energy of fluid pressure (generally mineral fluid) to mechanic work. Their advantage is that a lot of power can be obtained from little applied force.
-3. Electric: Transform electrical energy to mechanic work such as linear or circular motion.
+1. Hydraulic: Transform the energy of compressed air to mechanic work such as linear or circular motion. A lot of power from little applied force. 
+2. Pneumatic: Transform the energy of fluid pressure (generally mineral fluid) to mechanic work. A lot of power from little applied force. 
+3. Electric: Transform electrical energy to mechanic work such as linear or circular motion. Lower torque but faster and more precise movements.
+
+***
+
+# Electromagnetic Actuators #
+
+![Linear and Rotational Example](/static/images/notes/LinearandRotationalActuators.png)
+
+Can be classified into *Linear*, for example a solenoid valve, or *Rotational*, for example an electric motor. They are made from magnetic circuits with ferromagnetic or magnetic materials that shape and direct the magnetic fields (electromagnetic energy) created. The magnetic fields are used as a medium to convert electrical energy into mechanical energy.
+
+Permanent magnets help create the high flux density needed for a large torque. A layer of air or air gap is also commonly used in rotating machines. In most electrical machines (except permanent magnet machines) the magnetic field is produced by a current passing through coils wound on a ferromagnetic material.
+
+***
+
+## Electromagnetic Relations ###
+
+**i-H Relation**
+
+![Relationship Magnetic Actuators](/static/images/notes/iHRelationActuators.png)
+
+There is a relation between the current in a conductor and the magnetic field intensity it creates around it. First the direction of the flux lines can be determined by the *right hand rule*. The relation can be derived from *Ampere's Circuit Law* finally stating that the line integral of the magnetic field intensity (H) around any closed path when taking incremental steps (dl) is equal to the total current linked by the contour. 
+
+$$
+\begin{gathered}
+	\text{Ampere's Law}\\
+	\oint \vec{B} \, \vec{dl} = (\mu_0)(i)\\\\
+	\oint H \, dl \, \cos(\theta) = \sum i\\
+	\text{Circle with one current}\\
+	\oint H \, dl = i \implies H \oint dl = i\\
+	(H)(2 \pi r) = i \implies H = \frac{i}{2 \pi r}
+\end{gathered}
+$$
+
+Applying the i-H relation to a simple linear conductor carrying a current and using a circle as our contour (dl is the same as H) we can see that:
+
+1. From symmetry H will be the same at every point along the contour
+2. H is inversely proportional to the radius r to the conductor.
+3. H is proportional to the current passing through the conductor.
+
+**B-H Relation**
+
+$$
+\begin{gathered}
+	B = (\mu)(H) \, \text{T}\\
+	\mu = (\mu_0)(\mu_r) \, \text{H/m}\\
+	\mu_0 = 1.256637062 \times 10^{-6}
+\end{gathered}
+$$
+
+The magnetic field intensity (H) produces a magnetic flux density (B) that saturates the medium where the flux line pass through. Permeability is similar to conductivity since it relates to how easily the magnetic field can pass through a medium. In ferromagnetic materials such as iron, cobalt and nickel the relative permeability varies from 100's to 1000's but for electric machines the value typically ranges from 2000 to 6000. We can see that:
+
+1. A high H will produce a high B through the medium.
+2. A high permeability implies a large B from a small current.
+
+**Solenoid Field**
+
+![Solenoid Field](/static/images/notes/SolenoidFieldActuators.png)
+
+Arranging conductors in turns and forming a coil is how we generate a uniform magnetic field, we call this arrangement a solenoid. As we form turns with the conductor and the solenoid increases in length we can see from its electromagnetic symmetry that the flux lines cancel each other out until we only have the lines parallel to the solenoid's length remaining. Every single horizontal line inside the solenoid gets amplified by the sum of each individual conductor resulting in greater flux. 
+
+![Ideal Solenoid Field](/static/images/notes/IdealSolenoidActuators.png)
+
+If the solenoid is ideal (infinitely large) the outside horizontal lines go in opposite directions canceling each other out, furthermore even if the solenoid isn't infinite the density of the outside flux lines is still negligible since their magnetic loop covers a greater volume. Using an ideal solenoid and applying Ampere's Law to any contour (for example a rectangle) where the current passes through gets us the solenoid field equation:
+
+$$
+\begin{gathered}
+	\oint B \, dl = \int_a^b B \, dl + \int_b^c B \, dl + \int_c^d B \, dl + \int_d^a B \, dl\\
+	\int_a^b B (0) = 0 \land  \int_c^d B \, (0) = 0\\
+	\int_d^a B \, dl = 0 \text{ from an ideal solenoid}\\
+	\therefore \oint B \, dl = \int_b^c B \, dl\\
+	\text{Closed current in the rectangle}\\
+	\sum i = i = (i_0)(n)(l)\\
+	i_0 = \text{ Applied current}\\
+	\text{Applying Ampere's Law}
+	\oint \vec{B} \, \vec{dl} = (\mu_0)(i)\\
+	(B)(l) = (\mu_0)((i_0)(n)(l))\\
+	\therefore B = (\mu_0)(i_0)(n)\\
+	n = \text{ Turns per unit of length}
+\end{gathered}
+$$
+
+This equation states that the field inside an ideal solenoid doesn't depend on the radius of the turns or the length of the conductor but instead on the current applied and the total number of turns per unit of length. We can see that:
+
+1. We can increase B in a solenoid by increasing the applied current or the number of turns in the same length.
+
+**Exercise**
+
+A solenoid of length 0.6m has three layers of turns each with 500 turns. Calculate the magnetic field density inside the solenoid if we apply a 2A current.
+
+$$
+\begin{gathered}
+	B = \mu_0 \frac{n i_0}{l} \\
+	B = (1.256637062 \times 10^{-6})\frac{(1500)(2)}{0.6} = 0.006283 T
+\end{gathered}
+$$
+
+***
+
+
+
+
+
+
+
 
 
 
@@ -161,86 +253,6 @@ The *direction* of the flux lines can be determined by the thumb rule, meaning t
 
 This relation can be obtained using *Amphere's circuit law*. This law states that the line integral of $H$ arround a closed path is equal to the total current in the contour. 
 
-
-
 Here $H$ is the magnetic field intensity at a countour point, $dl$ is the incremental length at that point. Notice that there *could* be an angle between the vectors $H$ and $dl$ called $\theta$.
 
 Assuming the current travels through an ideal conductor we can simplify the countour to a circle meaning that we can obtain $H$ at a distance $r$ from the conductor. Here there is no $\theta$ since $H$ and $dl$ follow the same direction.
-
-
-
-
-
-
-
-
-
-
-
-
-**B-H Relation**
-**Magnetic Equivalent Circuit**
-**Magnetization Curve**
-**Magnetic Circuit with Air Gap**
-**Inductance**
-**Hysteresis**
-**Hysteresis Loss**
-**Eddy Current Loss**
-**Core Loss**
-**Sinusoidal Excitation**
-**Exciting Current**
-**Permanent Magnet**
-**Magnetization of Permanent Magnets**
-**Approximate Design of Permanent Magnets**
-**Materials of Permanent Magnets**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-***
-
-# Electric Machinery Fitzgerald #
-
-## Magnetic Circuits and Materials ##
-
-* Devices used in the conversion of electrical and mechanical energy.
-* In general the conversion is done with electromagnetic rotating machines.
-* The transformer isn't a conversion device but is also an important component.
-* Ferro Magnetic materials are the most common way of shaping and directing the magnetic fields.
-* Permanent Magnet materials are also used.
-
-**Magnetic Circuits**
-
-* To analyse magnetic fields we simplify the system solving Maxwell's equations.
-* We assume that the frequency and size of the system are such that the *displacement-current* term in Maxwell's equations can be neglected.
-* The *displacement-current* term is used in magnetic fields produced by time-varying electric fields usually from electromagnetic radiation.
-* This simplification results in the *magneto-quasistatic* form of the Maxwell's equations, this form relates the current in the system to the magnetic field it produces.
