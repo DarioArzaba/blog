@@ -9,7 +9,7 @@ This is an overview of the knowledge needed for simulating mechanisms, machines,
 
 ***
 
-1. Kinematics of Mechanisms
+1. [Kinematics of Mechanisms](#kinematics-of-mechanisms)
 	1. Mechanisms Introduction
 	2. Definition of mechanism and machine
 	3. Mechanism movements
@@ -43,3 +43,46 @@ This is an overview of the knowledge needed for simulating mechanisms, machines,
 
 ***
 
+# Kinematics of Mechanisms #
+
+Kinematics is a subfield of physics describing the motion of points, bodies, and systems without considering the forces that cause that movement. Dynamics or kinetics is study of the forces that cause kinematic movement. More specifically kinematics describes position, velocity and acceleration (Speed of a bike) while dynamics describes their forces and interactions (Torque of a motor).
+
+A mechanism is a system of *rigid members* that can move relative to each other by mobile joints creating a kinematic chain and ending in a fixed link. Mechanisms can transform between many types of movement (rotational to linear).
+
+A machine is a system of mechanisms that transmit and transform the available mechanical energy into the desired motion.
+
+A structure is one or more mechanism that have no relative motion between them as they are designed to carry loads. 
+
+Links and unions.
+
+A link is a rigid member of a machine or mechanism, this means that there can't be a change in distance between two arbitrary points of the member. Two or more links can be related with the use of unions form a mechanism. Unions, for example a bolts, must have their degrees of freedom restricted in order to achieve the desired motion.
+
+Kinematic pairs
+
+A degree of freedom is the number of independent coordinates required to ascertain the position of a system or its components, in the real world we have 6 degrees of freedom, 3 translational and 3 rotational. 
+
+![Fundamental Kinematic Pairs](/static/images/notes/FundamentalKinematicPairs.jpg)
+
+Mobility
+
+Chebychev–Grübler–Kutzbach criterion
+
+m = 3(n-1)-2j1 - j2
+
+m = mobility of the mechanism or degrees of freedom
+n = number of links
+j1 = number of complete joints
+j2 = number of incomplete joints
+
+It calculates many degrees of freedom can a mechanism have as long as the links leave a maximum of 2 degrees of freedom free. The patella (rotula) and planar pairs would not work in this case.
+
+Maximum degrees of freedom that I can restrict to a link but still considering it a mechanism are 5 degrees.
+
+Full joint are those joints that restrict 5 degrees of freedom (1 free). All the others are incomplete, but remember that joints that restrict less than 4 degrees of freedom cannot be used.
+
+Note that when using a degree of freedom in a mechanism with 2 or more degrees I will not know the final position of the rest of the links, to know in a mechanism with 2 degrees of freedom I need to use both.
+In short I need to use all available degrees of freedom or mobility if I want to determine a final position.
+
+When a union connects two or links (3 connected links) it is considered as 2 independent joints.
+
+ver ejercicios siguiente clase
