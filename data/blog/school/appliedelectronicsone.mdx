@@ -1,6 +1,6 @@
 ---
 title: Applied Electronics 1
-date: '2020-01-02'
+date: '2021-08-15'
 tags: ['school', 'circuits']
 ---
 
@@ -8,7 +8,7 @@ This is an overview of the knowledge needed for designing electronic solutions u
 
 ***
 
-1. Op-Amp as Integrated Circuit
+1. [Op-Amp as Integrated Circuit](#operational-amplifier)
 	1. Differential Amplifiers
 	2. Current sources and active loads
 	3. Live drift
@@ -46,56 +46,46 @@ This is an overview of the knowledge needed for designing electronic solutions u
 
 ***
 
-APUNTES DE LA PRIMER CLASE
+# Operational Amplifier #
+
+![Simple Op-Amp](/static/images/notes/LM741AppliedElectro.png)
+
+Op-Amps are high gain, direct current, coupled electronic amplifier devices with two inputs and one output, in other words they are a voltage dependent voltage source. The first monolithic op-amp was created in 1964 at the Fairchild Semiconductor Company by Robert John Widlar model μA702. Despite living in a digital world Op-Amps are still widely used in engineering when working with analog signals.
+
+Op-Amps are bipolar in nature since they can be supplied with a negative (VEE Emitter or VDD Drain) or positive (VCC Collector or VSS Source) voltage sources. This working voltages produce a negative (Ic-) and positive (Ic+) currents respectively. Note that VEE and VCC apply to BJT transistor based Op-Amps while VCC and VSS apply to FET transistor based Op-Amps.
+
+Aside from its voltage sources the Op-Amp uses a Non Inverting (Vp) and Inverting (Vn) input voltages as signals used to determine its output voltage (Vo) value. The range of voltages an Op-Amp can supply is given by its voltage sources. Kirchhoff's Current Law shows that every current that enters and exits the Op-Amp must equal cero: $i_n + i_p + i_{c+} + i_{c-} + i_o = 0$
 
 
+![Detailed Op-Amp](/static/images/notes/DetailedOpAmpAppliedElectro.png)
 
+$$
+\begin{gathered}
+	V_i = V_p - V_n = \text{ Differential Voltage}\\
+	R_i = \text{ Input Resistance}\\
+	R_o = \text{ Output Resistance}\\
+	A = \text{ Open Loop Gain} = 200000 \frac{V_o}{V_i}\text{ (LM741)}
+\end{gathered}
+$$
 
+As mentioned before the differential voltage (Vi) is used to determined the output voltage (Vo) of the internal dependent voltage source that is composed of transistors. The factor by which the differential voltage relates to the output voltage is called open loop gain (A).
 
-Analyze each of the basic elements of an operational amplifier and understand how it works
-Understand the relationship between transistors and linear amplification elements
-Understand the equations that represent the electrical behavior of the op amp
-Define the ideal behavior, its equation and its electrical model of the op amp
- 
+The *Op-Amp Curve* represents the differential-output voltage relation and the range in which this relation remains linear, outside of this region (limited by the voltage sources) the differential voltage will have little effect over the output voltage (saturation).
 
+The ideal Op-Amp is a model where we assume the following:
 
+| Value | Ideal Model | Real Op-Amp |
+| :---: | :---: | :---: |
+| Input Impedance $R_i$ | Infinite (No current from signals) | $10^6 \land 10^12$ Ohms |
+| Output Impedance $R_o$ | 0 (No voltage loss at output) | $>100$ Ohms | 
+| Open Loop Gain $A$ | Infinite (Perfectly Linear) | $\approx 200000$ (Depends on signal bandwidth) |
+| Offset | 0 | Millivolts to Nanovolts (Offset at output when signals are grounded) |
+| Bias Currents $i_p$ and $i_n$ | 0 | Microamperes to Nanoamperes (Current from signals) |
+| Bias Voltage (Supply) | Any Value | Generally $\pm 18 V$ |
 
- Contextualization
-What is an Operational Amplifier (Op Amp)?
-An operational amplifier, often known as an op-amp (operational amplifier), is a high-gain, direct-current-coupled electronic amplifier device that has two inputs and one output. In this configuration, the output of the device is generally hundreds of thousands of times greater than the potential difference between its inputs, hence the word "Amplifier". While "Operational" is because its use is very varied for the electronic manipulation of analog signals, both direct current and alternating current. One such device is based on transistors and packaged in a high-scale integration circuit.
+NOTE: A hook ammeter is used to measure current without opening the circuit. Another way is by using a shunt resistor.
 
-Its schematic symbol is a horizontal triangle in which the input terminals go at the base of the triangle and the output at the vertex opposite said base, as shown in the following figures.
-
-singel opamp.png basic opam.png
-Basic schematic symbol Symbol with power terminals
- 
-
-Sometimes in schematic diagrams the power terminals of the devices are indicated. In the case of an OpAmp, such as one of the previous figures, it normally has a positive voltage supply terminal (+ Vcc) and a negative voltage supply terminal (-Vcc).
-
-The first operational amplifiers (op-amps) were used primarily to perform mathematical operations such as addition, subtraction, integration, and differentiation, hence the term operational. These early devices were built with vacuum tubes and operated at high voltages. Today's operational amplifiers are linear integrated circuits (ICs) that use relatively low dc supply voltages, are reliable, inexpensive, and most importantly - allow you to manipulate analog signals.
-
-Brief history of Op Amps
-The concept of the operational amplifier emerged around 1947, as a device built with vacuum tubes, as part of the first analog computers within which mathematical operations (addition, subtraction, multiplication, division, integration, derivation, etc.) were carried out, from which the name by which it is known originated.
-
-The first monolithic operational amplifier built as an integrated circuit, it was developed in 1964 at the Fairchild Semiconductor Company by American electrical engineer Robert John Widlar and carried the model number μA702.
-
-This was followed by the μA709 (1965), also from Widlar, which was a great commercial success. Later it would be replaced by the popular μA741 (1968), developed by David Fullagar, and manufactured by numerous companies, based on bipolar technology, which became a standard in the electronics industry, which despite time, remains a very popular device. still used today.
-
-
-
-Despite their time in the electronics industry and the current domain of digital electronics, OpAmps are still widely used, as they are the main electronic device that allows electronic systems to handle analog electrical signals, this is very important because, To happen that we live in a "digital world", the phenomena that we need to measure and control are analog, that's where OpAmp comes in.
-
-
-
-
-
-
-
-
-
-
-
-
+***
 
 
 
@@ -134,3 +124,28 @@ There will be 4 PDF deliverables of a maximum of 4 pages (single spacing and 11 
 * Deliverable 2: Summary of the project. Basic purpose of the project. Geographic area and population that will benefit. Similar products, competition, maybe designed for a different population. Expected results. How it will change the live of individuals, communities or the world.
 * Deliverable 3: Requirements and restrictions. Restrictions placed on the system. Risk factors that threaten the project.
 * Deliverable 4: Design team. Name of the team, who are its members and what roles they will play. 
+
+Presentation:
+
+* Cover: Names and numbers.
+* Motivation, Objective and Purpose as applied to why this work exists
+* Key points and essential information: Do not copy and paste
+* Sequentially, order of ideas.
+* Format: Take care of size, font, color, background,
+* Audiovisual elements as support
+* Conclusions
+* Reference sources appropriately cited in APA format
+
+Deliverable:
+
+* Cover: Names and license plates
+* Motivation, Objective and Purpose as applied to why this work exists
+* List of materials or BOM, equipment used (calibration date) design or simulation software
+* Design: include calculations, diagrams and schematics
+* Simulation: Specify assumptions, initial conditions, state variables, simulation time, simulation model, results and interpretation
+* Implementation: Include clear pictures and their measurements.
+* Conclusions on the results
+* Reference sources appropriately cited in APA format
+* Title of figures and tables with numbering
+* Note: Be the most specific than you can.
+
