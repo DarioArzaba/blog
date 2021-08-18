@@ -258,59 +258,54 @@ The magnetization curve represents how much $B$ will increase inside the materia
 
 In rotating machines we leave an air gap between the core (rotor) and the solenoid (stator). This air gap is necessary to maintain a *frictionless* rotation of the motor shaft, in small motors is as small as it can get to reduce electromagnetic energy losses but on larger motors we increase its size to protect the rotor form being pulled into contact with the stator.
 
-A disadvantage of the air gap is that it introduces a higher $F$ requirement to maintain the same flux density on the core's material and in the air, however it also allows for the core to be completely saturated in a safely manner since the air will remain unsaturated. To account for the air gap we introduce an additional reluctance to the magnetic circuit equivalent.
+A disadvantage of the air gap is that it introduces a higher $F$ requirement to maintain the same flux density in the inside of the solenoid, however it also allows for the core to be completely saturated in a safely manner since the air will remain unsaturated. To account for the air gap we introduce an additional reluctance to the equivalent magnetic circuit .
 
+$$
+\begin{gathered}
+	\Re_c = \frac{l_c}{(\mu_c)(A_c)}\\
+	\Re_g = \frac{l_g}{(\mu_0)(A_g)}\\
+	\Phi = \frac{(N)(i)}{\Re} = \frac{(N)(i)}{\Re_c + \Re_c}\\
+	(N)(i) = (H_c)(l_c) + (H_g)(l_g)\\ 
+	l_c = \text{ Core length} \land l_g = \text{ Air Gap length}\\
+	\Phi = (B)(A) \implies B_c = \frac{\Phi_c}{A_c} \land B_g = \frac{\Phi_g}{A_g}
+\end{gathered}
+$$
 
+Note: Since the air gap isn't contained inside a solenoid flux lines start to bulge outwards when magnetizing the core, this is known as the fringing effect. To account for the fringing effect we increase the cross sectional area of the air gap *capturing* every flux line. Most of the time, if the air gap is relatively small, the fringing effect can be neglected and the cross sectional areas remain equal.
 
+$$
+\begin{gathered}
+	\text{By neglecting the fringing effect}\\
+	A_c = A_g = A \land B_c = B_g = \frac{\Phi}{A}
+\end{gathered}
+$$
 
+**Exercise One**
 
-40:00 AQUI ME QUEDE
+![Exercise Air Gap](/static/images/notes/ExerciseofMagnetiEquivalentCircuitAirGapActuators.png)
 
+This is the magnetic circuit of a primitive relay. The coil has 500 turns and the core path length is 360mm. The air gap lengths are 1.5mm each. A flux density of 0.8T is required to actuate the relay. The core is made of cast steel. Calculate the current in the coil, the permeability and relative permeability of the core and the coil current needed to have 0.8T if the air gap was 0.
 
+$$
+\begin{gathered}
+	(N)(i) = (H_c)(l_c) + (H_g)(l_g) \implies (N)(i) = (H_c)(l_c) + (H_g)(l_g)(2)\\
+	\text{From the graph: } 0.8 \, \text{T} =  510 \, \text{At/m}\\
+	F_c = (H_c)(l_c) = (510)(0.36) = 184 \, \text{At}\\
+	B = (\mu)(H) \implies H_g = \frac{B_g}{\mu_0}\\
+	(H_g)(l_g)(2) = \frac{0.8}{1.25663 \times 10^{-6}} (0.0015)(2) = 1909.8 \approx 1910 \, \text{At}\\
+	(N)(i) = 184 + 1910 \implies i = \frac{2094}{500} = 4.18\,\text{A}\\
+	\therefore i = 4.18\,\text{A}\\\\
+	B_c = (\mu_c)(H_c) \implies \mu_c = \frac{B_c}{H_c} = \frac{0.8}{500} = 0.00157\\
+	\mu = (\mu_0)(\mu_r) \implies \mu_r = \frac{\mu_c}{\mu_0} = \frac{0.00157}{1.25663 \times 10^{-6}} = 1250\\
+	\therefore \mu_c = 0.00157 \land \mu_r = 1250\\\\
+	(N)(i) = (H_c)(l_c) \implies i = \frac{(H_c)(l_c)}{N} = \frac{(510)(0.36)}{500} = 0.36\,\text{A}\\  
+	\therefore i_2 = 0.36\,\text{A}
+\end{gathered}
+$$
 
+**Exercise Two**
 
+![Exercise Air Gap](/static/images/notes/ExerciseTwoMagnetiEquivalentCircuitAirGapActuators.png)
 
+In this magnetic circuit the relative permeability of the core is 1200. Neglect magnetic leakage and fringing. All length measurements are in centimeters. The material has a square cross sectional area. Calculate the air gap flux, the ait gap flux density and the magnetic field strength inside the air gap.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-***
-
-# Electric Machines #
-
-## Magnetic Circuits ##
-
-* Study of the devices used to transform between electrical and mechanical energy.
-* The most common machines used are rotating machines like DC, induction or synchronous.
-* Transformers aren't electromechanical converters but play an important role.
-* Actuators, solenoids and releays are examples of linear motion machines.
-* These devices use magnetic materials to direct the magnetic fields that act as an energy medium.
-* These materials also generate a high magnetic field density (flux) translating into a large motion output.
-
-**Magnetic Circuits**
-
-Formed by ferromagnetic materials only (transformers) or ferromagnetic materials with an air gap (rotating machines). The magnetic field (flux) is produced by an electrical current passing through coils wound on the ferromagnetic material, except on permanent magnet machines.
-
-**i-H Relation**
-
-There is a relation between the current in a coil and the magnetic field intensity (flux or H) it produces.
-
-The *direction* of the flux lines can be determined by the thumb rule, meaning that if the current (i) travels in the direction of the thumb then the flux lines follow the direction of the rest of the fingers.
-
-This relation can be obtained using *Amphere's circuit law*. This law states that the line integral of $H$ arround a closed path is equal to the total current in the contour. 
-
-Here $H$ is the magnetic field intensity at a countour point, $dl$ is the incremental length at that point. Notice that there *could* be an angle between the vectors $H$ and $dl$ called $\theta$.
-
-Assuming the current travels through an ideal conductor we can simplify the countour to a circle meaning that we can obtain $H$ at a distance $r$ from the conductor. Here there is no $\theta$ since $H$ and $dl$ follow the same direction.
