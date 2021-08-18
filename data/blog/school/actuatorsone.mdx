@@ -11,8 +11,8 @@ Selection and operation of actuators, theoretical foundations of actuators for d
 1. [Introduction](#introduction)
 2. [Magnetic Circuits](#electromagnetic-actuators)
 	1. [Relation i-H and Relation i-B](#electromagnetic-relations)
-	2. Magnetic Equivalent Circuit and Curve
-	3. Magnetic Circuit (with Air-Gap)
+	2. [Magnetic Equivalent Circuit and Curve](#magnetic-equivalent-circuit)
+	3. [Magnetic Circuit (with Air-Gap)](#magnetic-circuit-with-air-gap)
 	4. Inductance in Actuators
 	5. Hysteresis
 3. Electromechanical Energy Conversion
@@ -48,69 +48,80 @@ Selection and operation of actuators, theoretical foundations of actuators for d
 
 # Introduction #
 
-* Mechatronic System: Measures signals, process them and generates an action through actuators or motion. 
-	* Structure: Body of the system, how we integrate components.
-	* Sensors: Devices that detect physical magnitudes and transform them to electrical signals.
-	* Actuators: Devices that perform actions in response to signals.
-	* Controllers: Regulate actuator response time and logic.
-	* Interface: Devices that allow two or more systems to interact.
+Mechatronic System: Measures signals, processes them and generates an action through actuators. 
+
+1. Structure: Body of the system, how we integrate components.
+2. Sensors: Devices that detect physical magnitudes and transform them to electrical signals.
+3. Actuators: Devices that perform actions in response to the signals.
+4. Controllers: Regulate actuators response time and logic.
+5. Interface: Devices that allow two or more systems to interact.
+
+**Mechatronic System Components**
+
+1. Actuators: Solenoid, DC Motor, Stepper Motor, Servomotor, Hydraulic, Pneumatic.
+2. Sensors: Interrupter, Potentiometer, Photoelectric, Position Encoder, Calibration Device, Thermocouple, Accelerometer, MEM.
+3. Input Signal Conditioning: Discrete Circuits, Amplifiers, Filters, Converters, Transformers.
+4. Control Architectures: Logic Circuits, Microcontrollers, PLC, Control Algorithms.
+5. Output Signal Conditioning: Amplifiers, Transistors, Op-Amps.
+6. Interfaces: LED, Digital Screens, LCD, CRT.
 
 **Control System**
 
 ![Control System Example](/static/images/notes/ControlSystemExample.png)
 
-Interconnection of components in a configuration that gives the desire response or *output signal* with respect to the reference *input signal* we have selected. In the most abstract sense control systems allow us to detect a variable and execute the actions needed to modify its value to the values we want. We can find control systems in most systems, for example in animals, machines or businesses. 
+Interconnection of components in a configuration that gives you the desired response or *output signal* with respect to the reference *input signal* we have selected. Control systems allow us to detect a variable and then execute the actions needed to modify its value into the values we want. We can find control systems on most systems, for example in animals, machines or businesses. 
 
 **Open Loop Control System**
 
-Here the output generated depends directly on the input, meaning that we don't compare the controlled output with the reference signal. There is an expected signal input, an element of control, an element of correction, a process and a controlled variable output.
-
 ![Open Loop System](/static/images/notes/OpenLoopControlSystem.png)
 
-For example a manual valve. Here the water flow is the input, the valve position is the element of control, the water level in a tank can be the element of correction, the water filling the tank is the process and maintaining the tank full of water is the controlled variable output.
+Here the output generated depends directly on the input, meaning that we don't compare the controlled output with the reference signal.
 
 ![Open Loop System Example](/static/images/notes/OpenLoopControlSystemExample.png)
 
+For example a simple valve. Here the water flow is the input, the valve's position is the element of control, water level in the tank can be the element of correction, filling the tank is the process and maintaining the tank at a certain level is the controlled variable output.
+
 **Closed Loop of Feedback Control System**
-
-Here the output generated depends on the input and the corrections performed by the feedback signal, meaning that we compare the controlled output with the reference signal.
-
-There is a reference input that is compared with the feedback signal from a sensor, from this comparison comes an error signal that the controller uses to act on the system via actuators, the actuators change the output signal closer to the reference. The cycle repeats when the sensor takes another measurement of the output.
 
 ![Open Loop System](/static/images/notes/ClosedLoopControlSystem.png)
 
-For example in a heating system the expected temperature is set in a thermostat as a reference or set point, a sensor compares this reference with the measured temperature of the room, the difference or error signal is used by the controller to modify the valves of a gas furnace via actuators, this generates a feedback signal in the form of new heat that in turn changes the overall temperature or output signal. The cycle repeats as the sensor takes another measurement of the new output.
+Here the output generated depends on the input and the corrections performed by the feedback signal, meaning that we compare the controlled output with the reference signal. 
+
+The reference input is compared with the feedback signal from a sensor creating an error signal that the controller uses to act on the system via actuators, then the actuators change the output signal closer to the reference. The cycle repeats when the sensor takes another measurement.
 
 ![Open Loop System Example](/static/images/notes/ClosedLoopControlSystemExample.png)
 
+For example, in a heating system the expected temperature is set in a thermostat as a reference or set point, a sensor measures the temperature in the room and compares it with the reference, their difference or error is then used by the controller to modify the valves of a gas furnace via actuators, this generates a feedback signal in the form of new heat that in turn changes the overall temperature (output signal). The cycle repeats as the sensor takes another measurement of the new output.
+
 **Actuator**
 
-Device that transforms energy to a desired motion or action. Its *Driving System* are the elements in the control system that translate the controller's output to a usable signal by the device.
+A device that transforms energy to a desired motion or action, the control system *drives* the actuator by translating the controller's output into a usable signal.
 
-**Mechanic System Components**
+**Actuator Classification**
 
-1. Actuators: Solenoids, DC Motors, Stepped Motors, Servomotors, Hydraulic, Pneumatic.
-2. Sensors: Interrupters, Potentiometers, Photoelectric, Digital Position Encoder, Calibration Device, Thermocouple, Accelerometer, MEM
-3. Input Signal Conditioning: Discrete Circuits, Amplifiers, Filters, Converters and Transformers
-4. Control Architectures: Logic Circuits, Microcontrollers, PLC, Control Algorithms
-5. Output Signal Conditioning: Amplifiers, Transistors, Op-Amps
-6. Interfaces: LED, Digital Screens, LCD, CRT
+1. Pneumatic: Transforms the energy of compressed air into to work like linear or circular motion. High power output from low applied force. 
+2. Hydraulic: Transforms the energy of incompressible fluids, generally mineral oil, into work. Highest power output from low applied force. 
+3. Electric: Transforms electrical energy into mechanical work. Lower torque but faster and more precise movements.
 
-**Classification**
+**Magnetic Field Concepts**
 
-1. Hydraulic: Transform the energy of compressed air to mechanic work such as linear or circular motion. A lot of power from little applied force. 
-2. Pneumatic: Transform the energy of fluid pressure (generally mineral fluid) to mechanic work. A lot of power from little applied force. 
-3. Electric: Transform electrical energy to mechanic work such as linear or circular motion. Lower torque but faster and more precise movements.
+* Magnetic field $B$: Field that influences moving charges, electric currents and magnetic materials by inducing magnetic forces.
+* Magnetic field intensity or strength $H$: Amount of magnetizing force in space. Measured in ampere per meter.
+* Magnetic flux density $B$: Amount of magnetic force induced on a body due to a magnetizing force. Measured in tesla.
+* Magnetic flux $\Phi$: Surface integral of the flux lines over a surface. Measured in weber.
+* Magnetization $M$: Capability of a particular magnetic field strength to increase the magnetic flux density of a material.
+* Magnetomotive Force $mmf$: Magnetic force that drives the motion of the magnetic flux through a body.
 
 ***
 
 # Electromagnetic Actuators #
 
+
 ![Linear and Rotational Example](/static/images/notes/LinearandRotationalActuators.png)
 
-Can be classified into *Linear*, for example a solenoid valve, or *Rotational*, for example an electric motor. They are made from magnetic circuits with ferromagnetic or magnetic materials that shape and direct the magnetic fields (electromagnetic energy) created. The magnetic fields are used as a medium to convert electrical energy into mechanical energy.
+Electromagnetic actuators an be classified into *Linear*, for example a solenoid valve, or *Rotational*, for example an electric motor. They are made from magnetic circuits with ferromagnetic or magnetic materials that shape and direct magnetic fields. The magnetic fields are used as a medium (electromagnetic energy) to convert from electrical energy into mechanical energy.
 
-Permanent magnets help create the high flux density needed for a large torque. A layer of air or air gap is also commonly used in rotating machines. In most electrical machines (except permanent magnet machines) the magnetic field is produced by a current passing through coils wound on a ferromagnetic material.
+Permanent magnets and a layer of air in rotating machines help maintain the high flux needed to create a large torque. In most electrical machines (except permanent magnet machines) the magnetic flux is produced simply by driving a current through coils wound around a ferromagnetic core.
 
 ***
 
@@ -120,26 +131,28 @@ Permanent magnets help create the high flux density needed for a large torque. A
 
 ![Relationship Magnetic Actuators](/static/images/notes/iHRelationActuators.png)
 
-There is a relation between the current in a conductor and the magnetic field intensity it creates around it. First the direction of the flux lines can be determined by the *right hand rule*. The relation can be derived from *Ampere's Circuit Law* finally stating that the line integral of the magnetic field intensity (H) around any closed path when taking incremental steps (dl) is equal to the total current linked by the contour. 
+There is a direct relation between the current in a conductor and the magnetic field strength around it. First the direction of the flux lines can be determined by the *right hand rule*. The relation can be derived from *Ampere's Circuit Law*, stating that the line integral of the magnetic field $B$ around any closed path, when taking incremental steps $dl$, is equal to the total current $i$ linked by the contour times the medium's permeability $\mu_0$.
 
 $$
 \begin{gathered}
 	\text{Ampere's Law}\\
 	\oint \vec{B} \, \vec{dl} = (\mu_0)(i)\\\\
-	\oint H \, dl \, \cos(\theta) = \sum i\\
+	\oint \vec{H} \, \vec{dl} \, \cos(\theta) = \sum i\\\\
 	\text{Circle with one current}\\
 	\oint H \, dl = i \implies H \oint dl = i\\
 	(H)(2 \pi r) = i \implies H = \frac{i}{2 \pi r}
 \end{gathered}
 $$
 
-Applying the i-H relation to a simple linear conductor carrying a current and using a circle as our contour (dl is the same as H) we can see that:
+By relating the magnetic field strength that surrounds a conductor to its current we can see that:
 
-1. From symmetry H will be the same at every point along the contour
-2. H is inversely proportional to the radius r to the conductor.
-3. H is proportional to the current passing through the conductor.
+1. H will be the same at every point along the contour (magnetic field symmetry).
+2. H is proportional to the current passing through the conductor.
+2. H is inversely proportional to the radius of the contour.
 
 **B-H Relation**
+
+As H increases so does the magnetic flux density $B$. Permeability $\mu$ represents how easily the flux lines can pass through the medium before reaching its saturation point. In ferromagnetic materials such as iron, cobalt and nickel their relative permeability $mu_r$ varies from 100's to 1000's, for electric machines the value typically ranges from 2000 to 6000. We can see that:
 
 $$
 \begin{gathered}
@@ -149,31 +162,30 @@ $$
 \end{gathered}
 $$
 
-The magnetic field intensity (H) produces a magnetic flux density (B) that saturates the medium where the flux line pass through. Permeability is similar to conductivity since it relates to how easily the magnetic field can pass through a medium. In ferromagnetic materials such as iron, cobalt and nickel the relative permeability varies from 100's to 1000's but for electric machines the value typically ranges from 2000 to 6000. We can see that:
 
-1. A high H will produce a high B through the medium.
-2. A high permeability implies a large B from a small current.
+1. A high $H$ will produce a high $B$ through the medium.
+2. A high $\mu$ implies that a large $B$ will be obtained from a small current.
 
 **Solenoid Field**
 
 ![Solenoid Field](/static/images/notes/SolenoidFieldActuators.png)
 
-Arranging conductors in turns and forming a coil is how we generate a uniform magnetic field, we call this arrangement a solenoid. As we form turns with the conductor and the solenoid increases in length we can see from its electromagnetic symmetry that the flux lines cancel each other out until we only have the lines parallel to the solenoid's length remaining. Every single horizontal line inside the solenoid gets amplified by the sum of each individual conductor resulting in greater flux density. 
+When we arrange a conductor into a coil we generate a uniform magnetic field, we call this arrangement a solenoid. As the solenoid increases in length we can see from its electromagnetic symmetry that the flux lines cancel each other out until the only lines remaining are the ones parallel to the solenoid's length. Every single horizontal line inside the solenoid gets amplified by the sum of the individual conductor loops flux lines therefore greatly increasing the overall flux density. 
 
 ![Ideal Solenoid Field](/static/images/notes/IdealSolenoidActuators.png)
 
-If the solenoid is ideal (infinitely large) the outside horizontal lines go in opposite directions canceling each other out, furthermore even if the solenoid isn't infinite the density of the outside flux lines is still negligible since their magnetic loop covers a greater volume. Using an ideal solenoid and applying Ampere's Law to any contour (for example a rectangle) where the current passes through gets us the solenoid field equation:
+If we consider an ideal solenoid (infinitely large) then the outside horizontal lines go in opposite directions canceling each other out, furthermore even if the solenoid isn't infinite the density of the outside flux lines is still negligible since their magnetic loop around the solenoid covers a far greater volume. Using an ideal solenoid and applying Ampere's Law to any contour, for example a rectangle where the current passes through gets us the solenoid field equations:
 
 $$
 \begin{gathered}
 	\oint B \, dl = \int_a^b B \, dl + \int_b^c B \, dl + \int_c^d B \, dl + \int_d^a B \, dl\\
 	\int_a^b B (0) = 0 \land  \int_c^d B \, (0) = 0\\
-	\int_d^a B \, dl = 0 \text{ from an ideal solenoid}\\
-	\therefore \oint B \, dl = \int_b^c B \, dl\\
+	\int_d^a B \, dl = 0 \text{ (ideal solenoid)}\\
+	\oint B \, dl = \int_b^c B \, dl\\
 	\text{Closed current in the rectangle}\\
 	\sum i = i = (i_0)(n)(l)\\
 	i_0 = \text{ Applied current}\\
-	\text{Applying Ampere's Law}
+	\text{Ampere's Circuit Law}\\
 	\oint \vec{B} \, \vec{dl} = (\mu_0)(i)\\
 	(B)(l) = (\mu_0)((i_0)(n)(l))\\
 	\therefore B = (\mu_0)(i_0)(n)\\
@@ -181,9 +193,9 @@ $$
 \end{gathered}
 $$
 
-This equation states that the field inside an ideal solenoid doesn't depend on the radius of the turns or the length of the conductor but instead on the current applied and the total number of turns per unit of length. We can see that:
+This equation states that the flux density inside an ideal solenoid doesn't depend on the radius to the conductor or its overall length just on the current applied and the total number of turns per unit of length. We can see that:
 
-1. We can increase B in a solenoid by increasing the applied current or the number of turns in the same length.
+1. To increase the $B$ in a solenoid we can increase the applied current or the number of turns by unit of length.
 
 **Exercise**
 
@@ -192,7 +204,7 @@ A solenoid of length 0.6m has three layers of turns each with 500 turns. Calcula
 $$
 \begin{gathered}
 	B = \mu_0 \frac{n i_0}{l} \\
-	B = (1.256637062 \times 10^{-6})\frac{(1500)(2)}{0.6} = 0.006283 T
+	B = (1.25663 \times 10^{-6})\frac{(1500)(2)}{0.6} = 0.006283 \, \text{T}
 \end{gathered}
 $$
 
@@ -234,6 +246,9 @@ $$
 IMAGEN CIRCUITO EQUIVALENTE
 
 From this properties we can work with magnetic circuits using equivalent electrical circuits by equating the Magnetomotive Force $F$ to the Electromotive Force $E$ , the Flux flow $\Phi = \frac{F}{\Re}$ to the Current $i = \frac{E}{R}$ and the Magnetic Path Reluctance $\Re = \frac{l}{(\mu)(A)}$ to the Resistance $R = \frac{l}{(\sigma)(A)}$ .
+
+The defining difference between an electrical circuit and a magnetomotive circuit is that power dissipation is associated with resistance but not with reluctance. An electrical field causes current to follow the path of least resistance, and a magnetic field causes magnetic flux to follow the path of least reluctance.
+
 
 IMAGEN CURVAS MAGNETIZACION
 
