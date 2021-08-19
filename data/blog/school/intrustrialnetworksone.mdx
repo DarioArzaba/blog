@@ -53,67 +53,89 @@ Communication is almost as important as any other vital resource. It creates a b
 
 A PLC is a programmable logic controller used in any control system, also known as programmable automata. It is a computer used in industrial automation as the controller to execute a set of instructions in electromechanical processes such as assembly lines. Brand examples are Siemens, Allen Bradley, Omron, Mitsubishi, Schneider, Zander Aachen and Crouzet.
 
-![PLC Arquitecture](/static/images/notes/PLCArquitectureNetworks.png)
+**PLC Architecture**
 
-Their architecture is made up of a programming unit that translates code for the CPU. The CPU itself needs a storage unit (memory) and a power unit to execute its operations. The CPU's output is send through a system of Inputs and Outputs into its physical interface that can be divided into Input and Output Modules. The CPU is an element capable of reading and interpreting input signals and logic instructions stored in memory to decide what needs to be outputted at any moment. Most PLC CPU's are based on 8, 16 or 32 bit microprocessors that process logic, temporalization, sequencing, and operations as needed. One important characteristic that defines a PLC functionality is how long it takes to make a complete SCAN cycle.
+![PLC Architecture](/static/images/notes/PLCArquitectureNetworks.png)
+
+Their architecture is made up of a programming unit that translates code for the CPU. The CPU itself needs a storage unit (memory) and a power unit to execute its operations. The CPU's output is send through a system of Inputs and Outputs into its physical interface that can be divided into Input and Output Modules. 
+
+The CPU is an element capable of reading and interpreting input signals and logic instructions stored in memory to decide what needs to be outputted at any moment. Most PLC CPU's are based on 8, 16 or 32 bit microprocessors that process logic, temporalization, sequencing, and operations as needed. One important characteristic that defines a PLC functionality is how long it takes to make a complete SCAN cycle.
 
 ![PLC SCAN](/static/images/notes/PLCscancycleNetworks.png)
 
-The memory unit is where the main program and all its relevant data is stored, they vary according to type and capacity for example ROM, RAM, PROM, EEPROM, etc. Normally memory is specified in K units where 1K represents 1024 words in the memory register. Most PLC's are manufactured for AC power sources but there are some models that accept DC power sources for example in offshore rig operations where DC generators are commonly used. Voltage and current requirements of the PLC and its modules must be correctly supplied to ensure it will provide correct input and output signals. The most common requirements are 120VAC, 220VAC or 24VDC. PLC are preferred in industrial environments to other controllers for their simplicity, sturdiness and their reliable Input and Output interface specifically designed to communicate with modules and other instrumentation like sensors and actuators.
+The memory unit is where the main program and all its relevant data is stored, they vary according to type and capacity for example ROM, RAM, PROM, EEPROM, etc. Normally memory is specified in K units where 1K represents 1024 words in the memory register. Most PLC's are manufactured for AC power sources but there are some models that accept DC power sources for example in offshore rig operations where DC generators are commonly used. 
 
-PLC programming languages are used to create a program with the necessary control instructions, note that communication between PLC's happens through communication protocols like Profibus, Fieldbus, Modbus, Devicenet, Interbus, etc. Since PLC's are used by many professionals that don't have a programming background it is common to see high level graphic languages and low level textual languages. Graphic languages use symbols to declare the instructions but are limited to the available symbol combinations, for example Ladder Logic (relay based) or Logical Symbol Blocks. Textual languages use character string to declare the instructions and are more flexible, for example Instruction List (Assembly based) or Structured Text Language (C and PASCAL based).
+**PLC Requirements**
+
+Voltage and current requirements of the PLC and its modules must be correctly supplied to ensure it will provide correct input and output signals. The most common requirements are 120VAC, 220VAC or 24VDC. PLC are preferred in industrial environments to other controllers for their simplicity, sturdiness and their reliable Input and Output interface specifically designed to communicate with modules and other instrumentation like sensors and actuators.
+
+**PLC Programming Language**
+
+PLC programming languages are used to create a program with the necessary control instructions, note that communication between PLC's happens through communication protocols like Profibus, Fieldbus, Modbus, Devicenet, Interbus, etc. Since PLC's are used by many professionals that don't have a programming background it is common to see high level graphic languages and low level textual languages. 
+
+Graphic languages use symbols to declare the instructions but are limited to the available symbol combinations, for example Ladder Logic (relay based) or Logical Symbol Blocks. Textual languages use character string to declare the instructions and are more flexible, for example Instruction List (Assembly based) or Structured Text Language (C and PASCAL based).
 
 ***
 
-2:00 Continuamos con la primer presentacion
+# Networks Two #
 
-Punto a Punto Dispositivos pueden ser cliente y servidor a la vez.
-Ventajas: Facil de configurar, menos complejo, reduce costos, transferencia archivos, compartir impresoras.
-Desventajas: La administracion no esta centralizada, no seguras, no escalables, bajo rendimiento.
-Por ejemplo Torrent
+**Point to Point**
 
-8:40 Dispositivos Finales
+Point to point networks like torrent, are networks where devices can act as clients and servers at the same time. This type of networks are easy to configure, less complex, reduce costs and are mainly used to transfer files or share other devices. Some disadvantages are that they aren't centralized, they are unsecure, not scalable and their performance depends on the available servers at any time.
 
-Terminal es un punto en donde se origina o recibe un mensaje,
-Los mensajes pueden tomar diferentes rutas cada uno.
-Existen elementos intermedios que reenvian los mensajes.
+**End Device and Intermediary Device**
 
-10:20 Dispositivo intermedio
+An end device is a point in the network where a message can originate or be received. Examples of end devices are desktops, laptops, printers, IP Phones, tablets or smartphones. Messages can take different routes independent of the end device and through intermediary elements that forward the information, in that way intermediary elements interconnect end devices. Examples of intermediary elements are LAN switches, wireless routers, firewalls, routers and multilayer routers.
 
-Interconecta a los dispositivos finales.
-Switches, Puntos de Acceso Inalambrico, Firewalls, Routers.
-Gestion de datos a medida que fluyen por la red:
-	Generar y transmitir los datos.
-	Mantener informacion sobre la misma red.
-	Notificar errores y fallas de comunicacion.
-Wireless Router
-LAN Switch
-Router
-Multilayer Switch
-Firewall Appliance
+Intermediary elements don't store the information they forward but they do keep track of the flow of data to execute data management coordination throughout the network. This information is ultimetly used to make the network more efficient or to report errors and communication failures.
 
-Hoy tenemos routeres wireless de doble banda
+End devices and intermediaries communicate through a physical medium that allows the information to travel. Examples of network medium technologies are metal wires like copper (electrical impulses), glass fibers like optical fiber (light pulses) or wireless like air (frequency modulation of electromagnetic waves).
 
-20:05 Medios de Red
+**Topologies**
 
-La comunicacion se efectua mediante un medio que permite que el mensaje viaje del origen al destino
-Alambres de metal (Cobre) = Utiliza impulsos electricos
-Fibras de vidrio (Fibra optica) = Utiliza pulsos de luz
-Inalambrica (Aire) = Modulacion de frecuencias especificas de ondas electromagneticas.
+![Network Topologies](/static/images/notes/NetworkTopologySymbolsNetworks.png)
+![Network Topologies](/static/images/notes/TypesOfTopologiesNetworks.png)
 
-23:00 Topologias
+Network topologies or diagrams represent the devices connected to a network using symbols. Devices need a NIC (Network Interface Controller) to interface into a physical network using their ports (device interfaces). Physical network topologies illustrate the placement of the devices and their wiring. Logical network topologies illustrate devices, ports and addressing schemes like IP.
 
-Las topologias o diagramas de red utilizan simbolos para representar a los dispositivos en una red.
-Los terminos puerto e interfaz suelen usarse indiscriminadamente.
+**LAN and WAN**
 
+Networks vary widely depending on their purpose and reach. Local area networks or LAN's are used to interconnect a small number of computers (fewer than a hundred) that are geographically close to each other (houses or small offices). Wide area networks or WAN's are used to interconnect a medium to large number of computers (hundreds to thousands) that are geographically distant from each other (large companies or the internet). 
 
+LAN and WAN abstractions will depend on the geographical area they encompass, the number of expected users, the quantity and services available and on how reliable the network's infrastructure is. LAN's will usually be managed by one person or organization providing high speed bandwidth to its devices while WAN's are generally managed by Internet Service Providers or ISP's providing a link between different LAN's.
 
+**Intranet, Extranet and Internet**
 
+The internet is a global collection of LAN's and WAN's using copper cables, optical fiber cables and wireless transmissions. The internet is not controlled by any person or group however there are several organizations dedicated to helping maintain its physical and logical structure like the ISOC, IAB, IESG, IRSG, IRTF and IETF. 
 
+The intranet is a private collection of LAN's and WAN's accessible only to authorized members of an organization. The extranet is layer built on top of the intranet allowing controlled access to the intranet's data to people related to the organization like clients and collaborators. The internet is the public collection of LAN's and WAN's that everybody is authorized to access.
 
+**ISP Services**
 
+ISP's generally provide to homes and small offices the following services: Wired broadband (Cable), Digital subscriber line (DSL), Cellular network, Satellite or Dialing telephone. Entrepreneurial services include: Leased line, WAN Ethernet (Metro), SDSL or Satellite. Businesses used to be wired using separate telephone, video and data lines, each with its own protocol. Today most services use convergent networks that transport data through a single line. 
 
+**Reliable Architecture**
 
+Every network architecture must meet the following expectations in order to be considered a *Reliable Network*:
 
+* Tolerance to failures: Systems that decrease the impact of failures by limiting the number of affected devices, like redundancy.
+* Scalability: The network can easily expand to admit new devices and applications without diminishing the overall performance.
+* Quality of Service (QoS): Systems that prioritize workloads by considering the specific needs of the network users.
+* Security: Divided into the safety of the infrastructure (physical devices) and the safety of the data stored and transmitted. Its main objectives are:
+	* Confidentiality: Only the desired recipients can access the data.
+	* Integrity: A guarantee that the data has not been compromised during transmission.
+	* Availability: A guarantee that there is a reliable and timely access to the data.
 
+**Network Trends**
 
+There are many trends in todays networks including the bring your own device model (BYOD) where users want to be able to access their data on any device, anywhere. Online collaboration and videoconferences are used in many companies and schools. Video communication is part of everyday life. Cloud computing allows affordable access greater computing power and storage by leasing distant cloud servers.
+
+Today we can find public clouds that are available to the public for free or through a payment model, private clouds used in a specific organization, hybrid clouds configured as a private cloud with a public interface and personalized clouds tailored to the specific needs of an industry such as medical care or high end communication services.
+
+There are some technology trends too like intelligent homes interconnecting appliances, electric line network adapters that allow the use of the electric infrastructure as ethernet or wireless broadband that allow you to connect your devices to a general wireless internet tower (WISP) similar to the cellular network smartphones use.
+
+**Network Security**
+
+Network protection includes protocols, technologies, devices, tools and techniques like dedicated firewalls, access control lists (ACL), intrusion prevention systems (IPS), and VPN's to mitigate external and internal threats. External threats can be viruses, trojan, worms, spyware, adware, zero day attacks, denial of service, data interception and identity theft. Internal threats can be lost or stolen devices, accidental misuse or malicious employees.
+
+***

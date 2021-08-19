@@ -13,7 +13,7 @@ Selection and operation of actuators, theoretical foundations of actuators for d
 	1. [Relation i-H and Relation i-B](#electromagnetic-relations)
 	2. [Magnetic Equivalent Circuit and Curve](#magnetic-equivalent-circuit)
 	3. [Magnetic Circuit (with Air-Gap)](#magnetic-circuit-with-air-gap)
-	4. Inductance in Actuators
+	4. [Inductance in Actuators](#magnetic-circuit-inductance)
 	5. Hysteresis
 3. Electromechanical Energy Conversion
 	1. Energy Conversion Process
@@ -264,14 +264,14 @@ $$
 \begin{gathered}
 	\Re_c = \frac{l_c}{(\mu_c)(A_c)}\\
 	\Re_g = \frac{l_g}{(\mu_0)(A_g)}\\
-	\Phi = \frac{(N)(i)}{\Re} = \frac{(N)(i)}{\Re_c + \Re_c}\\
+	\Phi = \frac{(N)(i)}{\Re} = \frac{(N)(i)}{\Re_c + \Re_g}\\
 	(N)(i) = (H_c)(l_c) + (H_g)(l_g)\\ 
 	l_c = \text{ Core length} \land l_g = \text{ Air Gap length}\\
 	\Phi = (B)(A) \implies B_c = \frac{\Phi_c}{A_c} \land B_g = \frac{\Phi_g}{A_g}
 \end{gathered}
 $$
 
-Note: Since the air gap isn't contained inside a solenoid flux lines start to bulge outwards when magnetizing the core, this is known as the fringing effect. To account for the fringing effect we increase the cross sectional area of the air gap *capturing* every flux line. Most of the time, if the air gap is relatively small, the fringing effect can be neglected and the cross sectional areas remain equal.
+Note: Since the air gap isn't contained inside a solenoid, flux lines start to bulge outwards when magnetizing the core, this is known as the fringing effect. To account for it we increase the cross sectional area of the air gap *capturing* the additional flux lines. Most of the time, if the air gap is small, the fringing effect can be neglected and the cross sectional areas remain equal.
 
 $$
 \begin{gathered}
@@ -288,14 +288,14 @@ This is the magnetic circuit of a primitive relay. The coil has 500 turns and th
 
 $$
 \begin{gathered}
-	(N)(i) = (H_c)(l_c) + (H_g)(l_g) \implies (N)(i) = (H_c)(l_c) + (H_g)(l_g)(2)\\
+	F = (N)(i) = (H_c)(l_c) + (H_g)(l_g)(2)\\
 	\text{From the graph: } 0.8 \, \text{T} =  510 \, \text{At/m}\\
 	F_c = (H_c)(l_c) = (510)(0.36) = 184 \, \text{At}\\
 	B = (\mu)(H) \implies H_g = \frac{B_g}{\mu_0}\\
-	(H_g)(l_g)(2) = \frac{0.8}{1.25663 \times 10^{-6}} (0.0015)(2) = 1909.8 \approx 1910 \, \text{At}\\
+	F_g = (H_g)(l_g)(2) = \frac{(0.8)(0.0015)(2)}{1.25663 \times 10^{-6}}  = 1909.8 \approx 1910 \, \text{At}\\
 	(N)(i) = 184 + 1910 \implies i = \frac{2094}{500} = 4.18\,\text{A}\\
 	\therefore i = 4.18\,\text{A}\\\\
-	B_c = (\mu_c)(H_c) \implies \mu_c = \frac{B_c}{H_c} = \frac{0.8}{500} = 0.00157\\
+	B_c = (\mu_c)(H_c) \implies \mu_c = \frac{B_c}{H_c} = \frac{0.8}{510} = 0.00157\\
 	\mu = (\mu_0)(\mu_r) \implies \mu_r = \frac{\mu_c}{\mu_0} = \frac{0.00157}{1.25663 \times 10^{-6}} = 1250\\
 	\therefore \mu_c = 0.00157 \land \mu_r = 1250\\\\
 	(N)(i) = (H_c)(l_c) \implies i = \frac{(H_c)(l_c)}{N} = \frac{(510)(0.36)}{500} = 0.36\,\text{A}\\  
@@ -309,3 +309,72 @@ $$
 
 In this magnetic circuit the relative permeability of the core is 1200. Neglect magnetic leakage and fringing. All length measurements are in centimeters. The material has a square cross sectional area. Calculate the air gap flux, the ait gap flux density and the magnetic field strength inside the air gap.
 
+$$
+\begin{gathered}
+	N_1 = N_2 = 500 \land i_1 = 10 \land l_g = 0.005\\
+	A_c = A_g = 0.0004 \land \mu_r = 1200 \\
+	F_1 = F_2 = (N)(i) = (500)(10) = 5000 \, \text{At}\\
+	\mu_c = (\mu_r)(\mu_0) = (1200)(1.25663 \times 10^{-6}) = 0.00150796\\
+	\Re_{bafe} = \frac{l_{bafe}}{(\mu_c)(A_c)} = \frac{0.52(3)}{(0.00150796)(0.0004)} = 2.58 \times 10^{6} \, \text{At/wb}\\
+	\Re_{bafe} = \Re_{bcde} \, \text{By symmetry}\\
+	\Re_{be} = \frac{l_{be}}{(\mu_c)(A_c)} = \frac{(0.52)-(0.005)}{(0.00150796)(0.0004)} = 0.82 \times 10^{6} \, \text{At/wb}\\
+	\Re_{g} = \frac{l_{g}}{(\mu_0)(A_g)} = \frac{(0.005)}{(1.25663 \times 10^{-6})(0.0004)} = 9.94 \times 10^{6} \, \text{At/wb}\\
+	F_1 - (\Re_{bafe})(\Phi_1) - (\Re_{be} + \Re_{g})(\Phi_1 + \Phi_2) = 0\\
+	-F_2 + (\Re_{bafe})(\Phi_2) + (\Re_{be} + \Re_{g})(\Phi_1 + \Phi_2) = 0\\
+	(\Re_{bafe})(\Phi_2) - (\Re_{bafe})(\Phi_1) = 0 \implies \Phi_2 = \Phi_1\\
+	5000 = (2.58 \times 10^{6})(\Phi_1) + (0.82 \times 10^{6} + 9.94 \times 10^{6})(\Phi_1 + \Phi_1) \\
+	\Phi_1 = 2.07 \times 10^{-4} \, \text{wb}\\
+	\therefore \Phi_g = \Phi_1 + \Phi_2 = (2.07 \times 10^{-4})(2) = 4.14 \times 10^{-4} \, \text{wb}\\
+	\therefore B_g = \frac{\Phi_g}{A_g} = \frac{4.14 \times 10^{-4}}{0.0004} = 2.035 \, \text{T}\\
+	\therefore H_g = \frac{B_g}{\mu_0} = \frac{2.035}{(1.25663 \times 10^{-6})} = 0.82 \, \text{At/m}
+\end{gathered}
+$$
+
+***
+
+## Magnetic Circuit Inductance ##
+
+The coil used in a magnetic circuit may be thought as an inductance, here inductance is defined as the *Magnetic Flux Linkage* $\lambda$ per Ampere of current:
+
+$$
+\begin{gathered}
+	\lambda = (N)(\Phi) \, \text{Wb t}\\
+	L = \frac{\lambda}{i} = \frac{(N)(\Phi)}{i} = \frac{(N)(B)(A)}{i} = \frac{(N)(\mu)(H)(A)}{i}\\
+	L = \frac{(N)(\mu)(H)(A)}{\frac{H(l)}{N}} = \frac{(\mu)(A)(N)^2}{l} = \frac{N^2}{\Re}
+\end{gathered}
+$$
+
+***
+
+**Activity One**
+
+Using the following data calculate the magnetic flux, magnetic flux density and inductance of a simple air gap magnetic circuit.
+
+$$
+\begin{gathered}
+	N = 400 \land i = 1 \land l_c = 0.5 \land l_g = 0.001\\
+	A_c = A_g = 0.0015 \land \mu_r = 3000\\\\
+	\mu_c = (\mu_r)(\mu_0) = (3000)((1.25663 \times 10^{-6}) = 0.0037699111\\
+	\Re_c = \frac{l_c}{(\mu_c)(A_c)} = \frac{0.5}{(0.0037699111)(0.0015)} = 88419 \, \text{At}{wb}\\
+	\Re_g = \frac{l_g}{(\mu_0)(A_g)} = \frac{0.001}{(1.25663 \times 10^{-6})(0.0015)} = 530516 \, \text{At}{wb}\\
+	\therefore \Phi = \frac{(N)(i)}{\Re_c + \Re_g} = \frac{(400)(1)}{88419+530516} = 0.00064627 \, \text{Wb}\\
+	\therefore B_g = \frac{\Phi}{A} = \frac{0.00064627}{0.0015} = 0.43085 \, \text{T}\\
+	\therefore L = \frac{(N)^2}{\Re} = \frac{(400)^2}{88419+530516} = 0.25852 \, \text{H}
+\end{gathered}
+$$
+
+**Activity Two**
+
+We apply 2.5A to a coil around a toroid with no air gap and 250 turns. The toroid is made of silicon sheet steel. For the toroid with respect to its center its inner radii is of 20cm and its outer radii is of 25cm. Calculate the magnetic flux density at the mean radius of the toroid and the coil inductance. 
+
+$$
+\begin{gathered}
+	r_m = \frac{25+20}{2} = 22.5 \, \text{cm} = 0.225 \, \text{m}\\
+	H_c = \frac{(N)(i)}{l} = \frac{(250)(2.5)}{2 \pi 0.225} = 442.3 \, \text{At/m}\\
+	\therefore B_c = 1.225 \, \text{T}\\\\
+	A = \pi(r_A)^2 = \pi(\frac{25-20}{2})^2 = 1.963495408 \times 10^{-3}\\
+	\Phi = (B)(A) = (1.225)(1.963495408 \times 10^{-3}) = 0.002405 \, \text{wb}\\
+	\lambda = (N)(\Phi) =  (250)(0.002405) = 0.60132 \, \text{Wb t}\\
+	\therefore L = \frac{0.60132}{2.5} = 240.4 \, \text{mH}
+\end{gathered}
+$$
