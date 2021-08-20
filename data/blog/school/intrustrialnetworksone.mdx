@@ -139,3 +139,160 @@ There are some technology trends too like intelligent homes interconnecting appl
 Network protection includes protocols, technologies, devices, tools and techniques like dedicated firewalls, access control lists (ACL), intrusion prevention systems (IPS), and VPN's to mitigate external and internal threats. External threats can be viruses, trojan, worms, spyware, adware, zero day attacks, denial of service, data interception and identity theft. Internal threats can be lost or stolen devices, accidental misuse or malicious employees.
 
 ***
+
+3:00 Sistema operativo
+
+LS = see directories
+PING 
+TRACERT
+TRACERROUTE
+IPCONFIG
+SHOW IP PROTOCOLS
+SWITCHPORT PORT-SECURITY AGING etc...
+
+**Operative System**
+
+Operating systems are built on top of abstraction layers. The hardware is the physical layer that includes the electronic devices of the OS. The kernel is the software-hardware interface in charge of distributing resources. The shell is the software interface and it's the first layer meant for a human intervention. Shells can have a text based (CLI) or graphic based (GUI) interface. 
+
+The CLI is the preferred operating system for network technicians to configure, monitor and control networks. To access the network operating system of a device we can use a *Console* (physical serial port), telnet (unencrypted remote network access) or a secure shell (SSH) that stablishes a secure remote CLI connection using a virtual interface. Telnet and SSH generally use a terminal emulator such as PuTTY, Tera Term or SecureCRT.
+
+**Operative System Commands**
+
+You can execute commands (EXEC Mode) as a user `User>` or as a privileged or root user `User#`, accessed by the command `enable`. The global configuration `Switch(config)#`, accessed by `configure` is where we configure the device. The line configuration `Switch(config-line)#`, accessed by `line` is where we configure a specific terminal. The interface configuration `Switch(config-if)#`, accessed by `interface` is used to configure the ports of the network device. When entering any configuration mode we can exit by simply executing `exit` or pressing `End`.
+
+**Basic Configuration**
+
+**Ports and IP's**
+
+
+
+
+2.4 Basic device configuration
+Basic Device Configuration Device Names
+The first configuration command on any device should be to give it a unique hostname.
+By default, all devices are assigned a factory default name. For example, a Cisco IOS switch is "Switch".
+
+Guide to naming devices:
+Start with a letter.
+Contain no spaces.
+End with a letter or digit.
+Use only letters, digits and hyphens.
+Be less than 64 characters long.
+
+Note: To return the change to the default prompt, use the global configuration no hostname command.
+
+Using weak or easy-to-guess passwords is a security concern.
+All network devices must limit administrative access by ensuring privileged EXEC, user EXEC, and remote Telnet access with passwords. Also, all passwords must be encrypted and legal notifications must be provided.
+
+Password guides
+Use passwords that are more than eight characters long.
+Use a combination of uppercase and lowercase letters, numbers, special characters, or number sequences.
+Avoid using the same password for all devices.
+Do not use common words because they are easily discovered.
+
+Note: In most labs, we will use simple passwords like cisco or class. These passwords are considered simple and easy to guess, and should be avoided in a production environment.
+
+Basic device configuration Set passwords
+
+Protect user EXEC mode
+First enter the line console configuration mode using the command line console 0 in global configuration mode.
+Next, set the user EXEC mode password with the password command.
+Finally, enable user EXEC access with the login command.
+
+Secure access to privileged EXEC mode
+ First enter global configuration mode.
+ Then use the enable secret password command.
+
+Basic Device Configuration Set Passwords (Cont.)
+Ensure access to the VTY line:
+First enter the VTY line configuration mode using the command line vty 0 15 in the global configuration mode.
+Then specify the VTY password with the password command.
+Finally, enable VTY access with the login command.
+Note: VTY lines allow remote access via Telnet or SSH to the device. Many Cisco switches support up to 16 VTY lines that are numbered 0 through 15.
+Basic device configuration Encrypt passwords
+The startup-config and running-config files show most passwords in plain text.
+To encrypt the passwords, use the service password-encryption global configuration command.
+Use the show running-config command to verify that the passwords have been encrypted.
+Basic Device Settings Banner Messages
+A banner message is important to warn unauthorized personnel from trying to access the device.
+To create a banner message of the day on a network device, use the banner motd #the message of the day # global configuration command.
+Note: The "#" symbol in the command syntax is called a delimiter character. It is entered before and after the message.
+The banner will be displayed on attempts to access the device.
+
+
+2.5 Save settings
+
+Save settings Configuration files
+There are two system files that store device settings.
+startup-config - This is the saved configuration file that is stored in NVRAM. It contains all the commands that the device will use when starting or restarting. Flash does not lose its content when the device is off.
+running-config - This is stored in random access memory (RAM). Reflects current configuration. Modifying a running configuration affects the operation of a Cisco device immediately. RAM is volatile. It loses all content when the device is turned off or restarted.
+To save the changes made to the running configuration in the startup configuration file, use the copy running-config startup-config command in privileged EXEC mode.
+Saving configurations Modifying the running configuration
+If the changes made to the running configuration do not have the desired effect and the running configuration has not yet been saved, you can restore the device to its previous configuration. To do this you can:
+Delete the individually modified commands.
+Reboot the device with the reload command in privileged EXEC mode. Note: This will cause the device to disconnect briefly, causing network downtime.
+If the unwanted changes were saved in the startup configuration, it may be necessary to erase all the configurations using the erase startup-config command in privileged EXEC mode.
+After clearing startup-config, reload the device to clear the running-config file from RAM.
+Save configurations Capture the configuration to a text file
+Configuration files can be saved and archived in a text document.
+Step 1 Open a terminal emulation software such as PuTTY or Tera Term connected to a switch.
+Step 2. Enable login in the terminal software and assign a file name and location to save the log file. The figure shows that all session results will be captured to the specified file (that is, MySwitchLogs).
+
+Save settings Capture settings to text file (Cont.)
+Step 3. Execute the show running-config or show startup-config command at the prompt from the privileged EXEC. The text that appears in the terminal window will be placed in the chosen file.
+Step 4. The figure shows disable logging by selecting the None session logging option.
+Note: The created text file can be used as a record of how the device is currently deployed. The file may require editing before it can be used to restore a saved configuration to a device.
+
+2.6 Ports and addresses
+Ports and addresses IP addresses
+The use of IP addresses is the main means of allowing devices to locate each other and to establish complete communication on the Internet.
+The structure of an IPv4 address is called “dotted decimal notation” and is represented by four decimal numbers between 0 and 255.
+An IPv4 subnet mask is a 32-bit value that separates the network portion of the address from the host portion. Combined with the IPv4 address, the subnet mask determines the particular subnet to which the device belongs.
+The default gateway address is the IP address of the router that the host will use to access remote networks, including the Internet.
+Ports and addresses IP addresses (Cont.)
+IPv6 addresses are 128 bits long and are written as a string of hexadecimal values. Four bits are represented by a single hexadecimal digit, with a total of 32 hexadecimal values. Groups of four hexadecimal digits are separated by a colon ":".
+IPv6 addresses are not case sensitive, and can be entered in lowercase or uppercase.
+Note: In this course, IP refers to the IPv4 and IPv6 protocols. IPv6 is the latest version of IP and the replacement for the more common IPv4 protocol.
+
+Ports and addresses Interfaces and ports
+
+Network communications depend on end-user device interfaces, network device interfaces, and the cables that connect them.
+Types of network media include twisted pair copper cables, fiber optic cables, coaxial cables, and wireless technology.
+Different types of network media have different features and benefits. Some of the differences between the various types of media include the following:
+The distance over which the media can successfully transport a signal.
+The environment in which the medium will be installed.
+The amount of data and the speed at which it should be transmitted.
+The cost of the media and installation.
+
+2.7 IP address configuration
+
+Configure IP Addressing Manual Configuration of IP Addresses for End Devices
+End devices on the network need an IP address to communicate with other devices on the network.
+IPv4 address information can be entered into end devices manually or automatically using Dynamic Host Configuration Protocol (DHCP).
+To configure an IPv4 address manually on a Windows host, open Control Panel> Network and Sharing Center> Change adapter settings and select the adapter. Then right-click and select Properties to display the Local Area Connection Properties.
+Then click Properties to open the Internet Protocol Version 4 (TCP / IPv4) Properties window. Then configure the IPv4 address and subnet mask information, and the default gateway.
+Note: IPv6 addressing and configuration options are similar to IPv4.
+
+
+
+Configure IP Addressing Automatic IP Address Configuration for End Devices
+DHCP allows automatic configuration of IPv4 addresses for each end device that has DHCP enabled.
+End devices use DHCP by default for automatic IPv4 address configuration.
+To configure DHCP on a Windows PC, open Control Panel> Network Sharing Center> Change adapter settings and choose the adapter. Then right-click and select Properties to display the Local Area Connection Properties.
+Next, click properties to open the Internet Protocol Version 4 (TCP / IPv4) properties window, then select Obtain an IP address automatically and Obtain DNS server address automatically
+Note: IPv6 uses DHCPv6 and SLAAC (Stateless Automatic Address Configuration) for dynamic address assignment.
+
+
+Configure IP Addressing Automatic IP Address Configuration for End Devices
+DHCP allows automatic configuration of IPv4 addresses for each end device that has DHCP enabled.
+End devices use DHCP by default for automatic IPv4 address configuration.
+To configure DHCP on a Windows PC, open Control Panel> Network Sharing Center> Change adapter settings and choose the adapter. Then right-click and select Properties to display the Local Area Connection Properties.
+Next, click properties to open the Internet Protocol Version 4 (TCP / IPv4) properties window, then select Obtain an IP address automatically and Obtain DNS server address automatically.
+Note: IPv6 uses DHCPv6 and SLAAC (Stateless Automatic Address Configuration) for dynamic address assignment.
+
+Configure IP addressing Change virtual interface configuration
+To access the switch remotely, an IP address and subnet mask must be configured in the SVI.
+To configure an SVI on a switch:
+Enter the command interface vlan 1 in global configuration mode.
+Next, assign an IPv4 address using the command ip address ip-address subnet-mask
+Finally, enable the virtual interface using the no shutdown command

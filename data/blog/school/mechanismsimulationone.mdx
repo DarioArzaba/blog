@@ -10,12 +10,12 @@ This is an overview of the knowledge needed for simulating mechanisms, machines,
 ***
 
 1. [Kinematics of Mechanisms](#kinematics-of-mechanisms)
-	1. Mechanisms Introduction
-	2. Definition of mechanism and machine
-	3. Mechanism movements
-	4. Kinematic unions
-	5. Degrees of Freedom (Gruebler, Grashoff)
-	6. Mechanism types and kinematic inversion
+	1. [Definition of mechanism and machine](#definition-of-mechanism)
+	2. [Mechanism movements](#mechanism-movements)
+	3. [Degrees of Freedom (Gruebler, Grashoff)](#degrees-of-freedom)
+	4. [Mechanisms and Inversion](#mechanisms-and-inversion)
+
+
 2. Kinematic analysis
 	1. Vector analysis of position, velocity and acceleration
 	2. Generation and computer simulation of analysis
@@ -45,61 +45,69 @@ This is an overview of the knowledge needed for simulating mechanisms, machines,
 
 # Kinematics of Mechanisms #
 
-Kinematics is a subfield of physics describing the motion of points, bodies, and systems without considering the forces that cause that movement. Dynamics or kinetics is study of the forces that cause kinematic movement. More specifically kinematics describes position, velocity and acceleration (Speed of a bike) while dynamics describes their forces and interactions (Torque of a motor).
+## Definition of Mechanism ##
 
-A mechanism is a system of *rigid members* that can move relative to each other by mobile joints creating a kinematic chain and ending in a fixed link. Mechanisms can transform between many types of movement (rotational to linear).
+Kinematics is a subfield of physics describing the motion of points, bodies, and systems *without* considering the forces that cause that movement. Dynamics or kinetics is study of the forces that cause kinematic movement. More specifically kinematics describes position, velocity and acceleration (Speed of a bike) while dynamics describes their forces and interactions (Torque of a motor).
 
-A machine is a system of mechanisms that transmit and transform the available mechanical energy into the desired motion.
+A mechanism is a system of *rigid members* that can move relative to each other by mobile joints creating a kinematic chain and ending in a fixed link. Mechanisms can change between using rotational or linear movement. A machine is a system of mechanisms that transmit and transform the available mechanical energy into the desired motion. A structure is one or more mechanism that have no relative motion between their links as they are designed to carry loads.
 
-A structure is one or more mechanism that have no relative motion between them as they are designed to carry loads. 
+## Mechanism Movements ##
 
-Links and unions.
+**Links and Joints**
 
-A link is a rigid member of a machine or mechanism, this means that there can't be a change in distance between two arbitrary points of the member. Two or more links can be related with the use of unions form a mechanism. Unions, for example a bolts, must have their degrees of freedom restricted in order to achieve the desired motion.
+A link is a rigid member of a machine or mechanism (including the ground itself), this means that there can't be a change in distance between two arbitrary points of the member. Two or more links can be related with the use of joints form a mechanism. Joints, for example bolts, impose restrictions on the degrees of freedom that one link has relative to another one. 
 
-Kinematic pairs
-
-A degree of freedom is the number of independent coordinates required to ascertain the position of a system or its components, in the real world we have 6 degrees of freedom, 3 translational and 3 rotational. 
+Minimum number of DoF in a joint that I can have and still consider the system a mechanism is 1, in other words the maximum DoF I can restrict in any joint before being a structure 5.
 
 ![Fundamental Kinematic Pairs](/static/images/notes/FundamentalKinematicPairs.jpg)
 
-Mobility
+A kinematic pair is simply a group fundamental joint types and the available DoF they set between two links.
 
-Chebychev–Grübler–Kutzbach criterion
+## Degrees of Freedom ##
 
-m = 3(n-1)-2j1 - j2
+A degree of freedom is the number of independent coordinates required to ascertain the position of a system or its components, in the real world we have 6 degrees of freedom, 3 translational and 3 rotational. 
 
-m = mobility of the mechanism or degrees of freedom
-n = number of links
-j1 = number of complete joints
-j2 = number of incomplete joints
+**Kutzbach's Criterion**
 
-It calculates many degrees of freedom can a mechanism have as long as the links leave a maximum of 2 degrees of freedom free. The patella (rotula) and planar pairs would not work in this case.
+We use the Chebychev–Grübler–Kutzbach criterion to find the degrees of freedom or mobility of a whole system as long as the system is made on a 2D analysis and there is no joint that allows its links to have more than 2 DoF available, in other words every joint must restrict at least 4 DoF.
 
-Maximum degrees of freedom that I can restrict to a link but still considering it a mechanism are 5 degrees.
+$$
+\begin{gathered}
+	\text{Kutzbach Criterion}
+	m = 3(n-1) - 2(j_1) - (j_1)\\
+	m = \text{ DoF or Mobility}\\
+	j_1 = \text{ Complete joints}\\
+	j_2 = \text{ Incomplete joints}
+\end{gathered}
+$$
 
-Full joint are those joints that restrict 5 degrees of freedom (1 free). All the others are incomplete, but remember that joints that restrict less than 4 degrees of freedom cannot be used.
+A complete joint is one that has 1 DoF available, meaning that the other 5 are restricted. An incomplete joint is one that has 2 or more DoF available. As previously said, the Kutzbach criterion only works for incomplete joints with exactly 2 DoF's available, meaning that the other 4 are restricted. The criterion can't be used if the system has planar or spherical kinematic pairs (3 DoF available)
 
-Note that when using a degree of freedom in a mechanism with 2 or more degrees I will not know the final position of the rest of the links, to know in a mechanism with 2 degrees of freedom I need to use both.
-In short I need to use all available degrees of freedom or mobility if I want to determine a final position.
+Knowing the value of $m$ we can infer some things about the system, for example if it has $m=2$ I need to know the movement of at least 2 links before I can determine the final state of the rest of them. In summary to determine the final state of a system I must reduce the mobility of the system to 0 by fixing as many links as necessary. Hiperstatic system have a mobility lower than 0, this means that the system is a structure that has redundant DoF restrictions.
 
-When a union connects two or links (3 connected links) it is considered as 2 independent joints.
+![Kutzbach Examples](/static/images/notes/ExampleKutzbackCriterionMechanismSimulation.png)
 
-ver ejercicios siguiente clase
+From the examples we can see that a joint of three or more links must be considered separately as 2 independent joints, this means that the number of complete joints in a multi-link system is the number of links minus one $j_1 = \text{links} - 1 $. One of the main exceptions of the Kutzbach criterion happens when we have three or more parallel links of the same size and everyone has a rotational DoF available.
 
-3(5-1) +2(6) - 0
-12-12 = 0
+**Grashof's Law**
+
+![Grashof Examples](/static/images/notes/FourBarLinkKineticMechanismSimulation.png)
+
+This relation applies to 2D 4 link systems where one link is known to be fixed. It states that if the relation is true then at least one link must be able to complete a full turn around its joint, generally the smallest joint. Depending on the link that is fixed we will arrive at different types of motion.
+
+$$
+\begin{gathered}
+	\text{Grashof Law}
+	s + l \le p + q\\
+	s = \text{ Smallest Link Length}\\
+	l = \text{ Largest Link Length}\\
+\end{gathered}
+$$
 
 
 
 
-***
-
-3:00 Inicia la clase anuncios de canvas
-
-29:00 Explicacion del Kahoot
-
-34:00 Explicacion ejercicios de la clase pasada
+## Mechanisms and Inversion ##
 
 
 
