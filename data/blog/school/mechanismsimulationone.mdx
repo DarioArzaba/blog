@@ -87,7 +87,7 @@ Knowing the value of $m$ we can infer some things about the system, for example 
 
 ![Kutzbach Examples](/static/images/notes/ExampleKutzbackCriterionMechanismSimulation.png)
 
-From the examples we can see that a joint of three or more links must be considered separately as 2 independent joints, this means that the number of complete joints in a multi-link system is the number of links minus one $j_1 = \text{links} - 1 $. One of the main exceptions of the Kutzbach criterion happens when we have three or more parallel links of the same size and everyone has a rotational DoF available.
+From the examples we can see that a joint of three or more links must be considered separately as 2 independent joints, this means that the number of complete joints in a multi-link system is the number of links minus one $j_1=\text{ links}-1$ . One of the main exceptions of the Kutzbach criterion happens when we have three or more parallel links of the same size and everyone has a rotational DoF available.
 
 **Grashof's Law**
 
@@ -97,17 +97,40 @@ This relation applies to 2D 4 link systems where one link is known to be fixed. 
 
 $$
 \begin{gathered}
-	\text{Grashof Law}
+	\text{Grashof Law}\\
 	s + l \le p + q\\
 	s = \text{ Smallest Link Length}\\
 	l = \text{ Largest Link Length}\\
 \end{gathered}
 $$
 
-
-
+***
 
 ## Mechanisms and Inversion ##
+
+The position of any point P in a given space is the relation it has with respect to the origin or to another point. This relation or path can be represented by a vector, for example the vector that goes from the origin O to the point P $\vec{R_{PO}}$. Also consider that the speed and rotation of a point will always be equal to its linear change in position.
+
+$$
+\begin{gathered}
+	P = R_{PO} = R^x_{PO}\vec{i} + R^y_{PO}\vec{j} + R^z_{PO}\vec{k}
+\end{gathered}
+$$
+
+Rotational velocity or acceleration is not defined for a point, in this case a joint, however it is defined for an entire link. For any arbitrary point inside a link rotational velocity or acceleration.
+
+
+
+At one point we cannot know how it rotates, the rotations are simply translated into another translation.
+When we have a link with many points, the link can rotate with respect to itself, a movement that cannot simply be translated into a translation.
+When a link rotates we say that it has an angular velocity.
+Taking the principle of the points that make up a link with angular velocity, its motion can be determined as a linear velocity and a linear position change.
+
+Points do not have angular velocity or acceleration, although they are affected by the angular velocity of their link.
+
+** Saw equation **
+
+Vector components of a point with vectors.
+Positive values ​​until we use magnitudes, the magnitudes can be negative in reference systems.
 
 
 

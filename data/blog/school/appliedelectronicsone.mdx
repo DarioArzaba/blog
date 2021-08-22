@@ -87,25 +87,40 @@ NOTE: A hook ammeter is used to measure current without opening the circuit. Ano
 
 ***
 
+![Negative Feedback](/static/images/notes/ExampleIdealInvertingOpAmpAppliedElectro.png)
+
+An Op Amp can be a simple control system by when part of the output voltage is used as feedback and then substracted of the inverter input signal. This is an example of a simple Proportional Integral Derivative (PID) control system. The feedback signal adds another gain to the system, called the closed loop gain G.
+
+$$
+\begin{gathered}
+	\text{Closed Loop Gain}\\
+	G = \frac{V_o}{V_i} \implies (V_i)(G) = V_o\\
+	G = \frac{A}{1+\beta A}\\
+	\text{Ideal Closed Loop Gain}\\
+	A = \infty \implies G = \frac{1}{\beta}
+\end{gathered}
+$$
+
+![Inverting Circuit](/static/images/notes/SolvingBySuperpositionInvertingOpAppliedElectro.png)
 
 
 
+The following is the negative feedback configuration for an inverter, we assume the same conditions of an ideal open loop Op-Amp with the crucial difference that in this case we assume that there is a finite value for the open loop gain A.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$$
+\begin{gathered}
+	\text{Without Source}\\
+	V_{no} = \frac{(V_o)(R_1)}{(R_1) + (R_2)}\\
+	\text{With Source}\\
+	V_{nin} = \frac{(V_{in})(R_2)}{(R_1) + (R_2)}\\
+	\text{Inverting Closed Loop Gain}\\
+	V_n = V_{no} + V_{nin} = \frac{(V_o)(R_1)}{(R_1) + (R_2)} + \frac{(V_{in})(R_2)}{(R_1) + (R_2)}\\
+	V_o = A(V_p - V_n) \land V_p = 0 \implies V_n = \frac{-V_o}{A}\\
+	\frac{-V_o}{A} = \frac{(V_o)(R_1)}{(R_1) + (R_2)} + \frac{(V_{in})(R_2)}{(R_1) + (R_2)}\\
+	G = \frac{V_o}{V_{in}} = \frac{-A}{1+\frac{R_1}{R_2}(1+A)}= \frac{-R_2}{R_1}\\
+	\therefore G = \frac{-R_2}{R_1}
+\end{gathered}
+$$
 
 ***
 

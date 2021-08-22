@@ -4,20 +4,12 @@ date: '2021-08-15'
 tags: ['school', 'materials']
 ---
 
-This is an overview of the knowledge needed for understanding the different types of materials used in current technology. Understand the relation between properties and atomic structure of the materials. No previous knowledge required.
+Understand the different types of materials used in current technology. Understand the relation between properties and atomic structure of the materials. No previous knowledge required.
 
 ***
 
-1. Atomic bonds
-	1. Ionic, covalent, metallic, van der Waals, hydrogen. Link strength, stability, interatomic distance.
-	2. Short and long range atomic order. Compact plane, direction, lattice, crystals.
-	3. FCC, HCP, BCC, and BCT crystal systems, interstitial sites. Miller indices and interplanar distances.
-	4. Edge dislocation, burgers vector and dislocation density. Dislocation sliding, Peierls-Navarro Effort equation.
-	5. Schmid's Law and critical shear stress.
-2. Atomic imperfections and diffusion
-	1. Crystalline structures in metals. Interstitial and substitutional solid hardening.
-	2. Grain, sub grain, size, measurement and hardening. Application of the Hall Petch equation.
-	3. Phenomenon of Atomic Diffusion and Activation energy. Flick's first law and second law.
+1. [Materials Introduction](#materials-introduction)
+2. [Atomic Bonds](#atomic-bonds)
 3. Mechanical properties
 	1. Stress tests using the universal machine. Nominal stress, strain and real stress and strain.
 	2. Important points in the stress graph. Material behavior during tension and compression.
@@ -60,7 +52,9 @@ This is an overview of the knowledge needed for understanding the different type
 
 # Materials Introduction #
 
-Materials technology is an interdisciplinary field of science and engineering that studies the composition and structure of materials to take advantage of its properties in its processing. The science is the research that defines the internal structure, properties and process of the materials. The engineering is the application of the gathered knowledge when creating or modifying products. The objective of materials technology is to evaluate and characterize materials, determine their possible applications, get a better performance, decrease costs and discover new materials. It also focuses on dematerialization (DEMAT) and Green Engineering meaning that it tries to design processes that minimize pollution, promote sustainability and protect human health without sacrificing economic viability or efficiency.
+Materials technology is an interdisciplinary field of science and engineering that studies the composition and structure of materials to take advantage of its properties in its processing. The science is the research that defines the internal structure, properties and process of the materials. The engineering is the application of the gathered knowledge when creating or modifying products. 
+
+The objective of materials technology is to evaluate and characterize materials, determine their possible applications, get a better performance, decrease costs and discover new materials. It also focuses on dematerialization (DEMAT) and Green Engineering meaning that it tries to design processes that minimize pollution, promote sustainability and protect human health without sacrificing viability or efficiency.
 
 ![Material Considerations](/static/images/notes/MaterialConsiderationsMaterialTech.png)
 
@@ -96,25 +90,18 @@ Materials technology is an interdisciplinary field of science and engineering th
 
 ***
 
+# Atomic Bonds #
+
 ![Atomic Structure](/static/images/notes/MaterialsAtomicStructureOneImage.png)
 
 ***
 
 ![Lattices](/static/images/notes/BravaisLatticesImageMaterialsTech.png)
 
-***
-
-* Coordination Number: Number of atoms that touch a particular atom. 
-* Packaging Factor: ((Number of Atoms/Cell)(Atom Volume))/(Unit Cell Volume)
-* Density: (Number of Atoms/Cell)(Atomic Mass)(Unit Cell Volume)(Avogadro Constant)
-* Compact Structure: Structure with the highest possible packaging factor for a particular atom.
-
-
 $$
 \begin{gathered}
-	\text{Esfera cobre}\\
-	r = 12.51 \times 10^{-8} \,\text{cm} = 1.25 \, \text{nm}\\
-	a = 0.3615\\
+	\text{Copper Sphere}\\
+	r = 12.51 \times 10^{-8} \,\text{cm} = 1.25 \, \text{nm} \land a = 0.3615 \land \, \text{FCC}\\
 	v = \frac{4 \pi (1.25 \, \text{nm})^3}{3} = 8.18 \, \text{nm}^3\\
 	v_{cu} = a^3 = (0.3615)^3 = 0.047 \, \text{nm}^3\\
 	n_{cu} = \frac{v}{v_{cu}} = \frac{8.18 \, \text{nm}^3}{0.047 \, \text{nm}^3} = 174.04 \, \text{cu}\\
@@ -125,41 +112,14 @@ $$
 
 $$
 \begin{gathered}
-	\text{Esfera niquel}\\
-	r = 2.9 \times 10^{-6} \,\text{cm} = 29 \, \text{nm}\\
-	a = 0.356\\
-	v = \frac{4 \pi (29 \, \text{nm})^3}{3} = 102160.4 \, \text{nm}^3\\
-	v_{cu} = a^3 = (0.356)^3 = 0.04511 \, \text{nm}^3\\
-	n_{cu} = \frac{v}{v_{cu}} = \frac{102160.4 \, \text{nm}^3}{0.04511 \, \text{nm}^3} = 2264695.19 \, \text{cu}\\
-	n = (\frac{4}{\text{cu}})(2264695.19 \, \text{cu}) = 9058780.76 \, \text{atomos}
+	\text{Nickel sphere}\\
+	d = 2.9 \times 10^{-6} \,\text{cm} = 29 \, \text{nm} \land a = 0.356\\
+	v = \frac{4 \pi (14.5 \, \text{nm})^3}{3} = 12770.05 \, \text{nm}^3\\
+	v_{cu} = a^3 = (0.356)^3 = 0.045118016 \, \text{nm}^3\\
+	n_{cu} = \frac{v}{v_{cu}} = \frac{12770.05 \, \text{nm}^3}{0.04511 \, \text{nm}^3} = 283036.6153 \, \text{cu}\\
+	n = (\frac{4}{\text{cu}})(283036.6153 \, \text{cu}) = 1132146.461 \, \text{atoms}
 \end{gathered}
 $$
-
-
-$$
-\begin{gathered}
-	\text{Esfera niquel}\\
-	r = 1.107 \, \text{nm} \land \rho = 0.92 \, \text{Mg/m3}\\
-	h_{}
-	a = 0.356\\
-	v = \frac{4 \pi (29 \, \text{nm})^3}{3} = 102160.4 \, \text{nm}^3\\
-	v_{cu} = a^3 = (0.356)^3 = 0.04511 \, \text{nm}^3\\
-	n_{cu} = \frac{v}{v_{cu}} = \frac{8.18 \, \text{nm}^3}{0.047 \, \text{nm}^3} = 2264695.19 \, \text{cu}\\
-	n = (\frac{4}{\text{cu}})(174.04 \, \text{cu}) = 9058780.76 \, \text{atomos}
-\end{gathered}
-$$
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
