@@ -113,32 +113,32 @@ The CLI is the preferred operating system for network technicians to configure, 
 
 | Command | Description | Switches |
 | :---: | :---: | :---:|
-| `systeminfo` | Get basic information about the device | None |
-| `hostname` | Displays local device hostname | None |
-| `ping <host>` | Sends data packages to a host and waits for the echo response. | Use hostname or IP |
-| `ipconfig` | Network information of the local device | All, release, renew, flushdns |
-| `tracert` | Trace the route of a data packet | Test-NetConnection PS equivalent |
+| systeminfo | Get basic information about the device | None |
+| hostname | Displays local device hostname | None |
+| ping | Sends data packages to a host and waits for the echo response. | Use hostname or IP |
+| ipconfig | Network information of the local device | All, release, renew, flushdns |
+| tracert | Trace the route of a data packet | Test-NetConnection PS equivalent |
 
 **Cisco IOS**
 
 | Command | Description | Switches |
 | :---: | :---: | :---:|
-| `enable` | Enables privileged EXEC mode | None |
-| `disable` | Exit privileged EXEC mode | None |
-| `configure <device>` | Enter global configuration mode | Device can be a terminal |
-| `line <device>` | Enter line configuration mode | Device can be a console followed by an ID |
-| `interface <device>` | Enter interface or port configuration mode | Device can be a vlan port followed by an ID |
-| `exit` | Exit configuration mode. Also to logout. | None |
-| `hostname <string>` | Configure the device hostname | None |
-| `password <string>` | Define a user password | None |
-| `enable secret <string>` | Define a privileged user password | 
-| `login` | Login to the device profile using its password | 
-| `line vty <firstline> <lastline>` | Define VTY line password | Usually 16 lines numbered 0 to 15 |
-| `service password-encryption` | Encrypt defined passwords | None |
-| `show running config` | Verify password encryption | None |
-| `banner motd #<string>#` | Add a terminal login banner | None |
-| `ip adress <ip> <subnetmask>` | Define the device IP and subnet mask | None |
-| `no shutdown` | It enables the status of the configured interface | None | 
+| enable | Enables privileged EXEC mode | - |
+| disable | Exit privileged EXEC mode | - |
+| configure | Enter global configuration mode | terminal |
+| line | Enter line configuration mode | console 0 |
+| interface | Enter interface or port configuration mode | vlan 0 |
+| line vty 0 15 | Define VTY line password | 0 to 15 |
+| exit | Exit configuration mode. Also to logout. | - |
+| hostname | Configure the device hostname | - |
+| password | Define a user password | - |
+| enable secret | Define a privileged user password | - |
+| login | Login to the device profile using its password | - |
+| service password-encryption | Encrypt defined passwords | - |
+| show running config | Verify password encryption | - |
+| banner motd #string# | Add a terminal login banner | - |
+| ip adress ip | Define the device IP and subnet mask | ip subnetmask |
+| no shutdown | It enables the status of the configured interface | - | 
 
 * Startup-config: Configuration file stored in NVRAM containing the persistent device configuration.
 * Running-config: Configuration file stored in RAM containing the volatile device configuration.
