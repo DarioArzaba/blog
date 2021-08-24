@@ -4,7 +4,27 @@ date: '2021-08-15'
 tags: ['school', 'networks']
 ---
 
-Designing networks used in the industry, characteristics, topologies, protocols and configurations of different networks. Implement networks used for programmable logic controllers, cabling and plant integration. Requires knowledge of automation and industrial computing.
+Designing industrial networks, characteristics, topologies, protocols and configuration of different network types. Implement networks used for programmable logic controllers, wiring and plant integration. Requires knowledge of automation and industrial computing.
+
+***
+
+# PLC #
+
+A programmable logic controller, also known as a programmable automata, is a computer used in industrial automation as the controller inside control systems. It executes a set of instructions in an electromechanical process, for example an assembly line. Examples of PLC manufacturers are Siemens, Allen Bradley, Omron, Mitsubishi, Schneider, Zander Aachen and Crouzet.
+
+![PLC Architecture](/static/images/notes/PLCArquitectureNetworks.png)
+
+PLC's have a programming unit that translates code, a memory unit that stores the code, a CPU and a power unit. The CPU is an 8, 16 or 32 bit microprocessor capable of data logic, temporalization and sequencing, communicating using a modular I/O physical interface. By interpreting inputs and logic instructions it decides what to output at any given time. One important characteristic is how quickly its able to complete a SCAN cycle.
+
+![PLC SCAN](/static/images/notes/PLCscancycleNetworks.png)
+
+The memory unit is where the main program and all its relevant data is stored, they vary according to type and capacity for example ROM, RAM, PROM, EEPROM, etc. Normally memory is specified in K units where 1K represents 1024 words in the memory register. Most PLC's are manufactured for AC power sources but there are some models that accept DC power sources for example in offshore rig operations where DC generators are common. 
+
+Voltage and current requirements, usually 120VAC, 220VAC or 24VDC, must be supplied to ensure the PLC will provide the correct input and output signals. PLC are preferred in industrial environments to other controllers for their simplicity, sturdiness and reliable Input and Output interface that is specifically designed to communicate with modules and instrumentation (sensors and actuators).
+
+PLC's programming languages are used to create a program with the necessary control instructions, note that communication between PLC's happens through communication protocols like Profibus, Fieldbus, Modbus, Devicenet, Interbus, etc. Since PLC's are used by many professionals that don't have a programming background it is common to see high level graphic languages. 
+
+Graphic languages use symbols to declare the instructions but are limited to the available symbol combinations, for example Ladder Logic (relay based) or Logical Symbol Blocks. Textual languages use character strings to declare the instructions therefore they are more flexible, for example Instruction List (Assembly based) or Structured Text Language (C and PASCAL based).
 
 ***
 
@@ -12,60 +32,29 @@ Designing networks used in the industry, characteristics, topologies, protocols 
 
 Communication is almost as important as any other vital resource. It creates a boundless world, global communities and information networks. Online services like mail, files and games are managed by specialized servers. Servers (HOSTS) will provide the information that a client (END DEVICE) asks for. Intermediary devices like routers connect the clients to the servers.
 
-***
-
-# PLC #
-
-A PLC is a programmable logic controller used in many control systems, also known as a programmable automata. It is a computer used in industrial automation as the controller to execute a set of instructions in electromechanical processes such as assembly lines. Brand examples are Siemens, Allen Bradley, Omron, Mitsubishi, Schneider, Zander Aachen and Crouzet.
-
-**PLC Architecture**
-
-![PLC Architecture](/static/images/notes/PLCArquitectureNetworks.png)
-
-Their architecture is made up of a programming unit that translates code for the CPU. The CPU itself needs a storage unit (memory) and a power unit to execute its operations. The CPU's output is send through a physical interface system of Inputs and Outputs that can be divided into Modules. 
-
-The CPU is an element capable of reading and interpreting input signals and logic instructions stored in memory to decide what needs to be outputted at any moment. Most PLC CPU's are based on 8, 16 or 32 bit microprocessors that process the logic, temporalization, sequencing, and operations needed. One important characteristic that defines a PLC functionality is how long it takes to make a complete SCAN cycle.
-
-![PLC SCAN](/static/images/notes/PLCscancycleNetworks.png)
-
-The memory unit is where the main program and all its relevant data is stored, they vary according to type and capacity for example ROM, RAM, PROM, EEPROM, etc. Normally memory is specified in K units where 1K represents 1024 words in the memory register. Most PLC's are manufactured for AC power sources but there are some models that accept DC power sources for example in offshore rig operations where DC generators are common. 
-
-**PLC Requirements**
-
-Voltage and current requirements of the PLC and its modules must be correctly supplied to ensure it will provide correct input and output signals. The most common requirements are 120VAC, 220VAC or 24VDC. PLC are preferred in industrial environments to other controllers for their simplicity, sturdiness and reliable Input and Output interface, specifically designed to communicate with modules and other instrumentation like sensors and actuators.
-
-**PLC Programming Language**
-
-PLC programming languages are used to create a program with the necessary control instructions, note that communication between PLC's happens through communication protocols like Profibus, Fieldbus, Modbus, Devicenet, Interbus, etc. Since PLC's are used by many professionals that don't have a programming background it is common to see high level graphic languages. 
-
-Graphic languages use symbols to declare the instructions but are limited to the available symbol combinations, for example Ladder Logic (relay based) or Logical Symbol Blocks. Textual languages use character strings to declare the instructions and are more flexible, for example Instruction List (Assembly based) or Structured Text Language (C and PASCAL based).
-
-***
-
-# Networks Two #
-
 **Point to Point**
 
 Point to point networks, like torrent, are networks where devices can act as clients and servers at the same time. This type of networks are easy to configure, less complex, reduce costs and are mainly used to transfer files or share other devices, however they aren't centralized, they are unsecure, not scalable and their performance depends on the available servers at any time.
 
 **End Device and Intermediary Device**
 
-An end device is a point in the network where a message can originate or be received, for example desktops, laptops, printers, IP Phones, tablets or smartphones. Messages can take different routes independent of the end device through intermediary elements that forward the information. Examples of intermediary elements are LAN switches, wireless routers, firewalls, routers and multilayer routers.
+![Network Topologies](/static/images/notes/NetworkTopologySymbolsNetworks.png)
+
+An end device is a point in the network where a message can originate or be received, for example desktops, laptops, printers, IP Phones, tablets or smartphones. Messages can take different routes, independent of the end device, through intermediary elements that forward the information. Examples of intermediary elements are LAN switches, wireless routers, firewalls, routers and multilayer routers.
 
 Intermediary elements don't store the information they forward but they do keep track of the flow of data to report errors, report communication failures, execute data management coordination and make the network more efficient overall. Information travels through mediums like copper (electrical impulses), glass fibers like optical fiber (light pulses) or wireless like air (frequency modulation of electromagnetic waves).
 
 **Topologies**
 
-![Network Topologies](/static/images/notes/NetworkTopologySymbolsNetworks.png)
 ![Network Topologies](/static/images/notes/TypesOfTopologiesNetworks.png)
 
 Network topologies or diagrams represent the devices connected to a network using symbols. Devices need a NIC (Network Interface Controller) to interface into a physical network using their ports (device interfaces). Physical network topologies illustrate the placement of the devices and their wiring. Logical network topologies illustrate devices, ports and addressing schemes like IP.
 
 **LAN and WAN**
 
-Networks vary widely depending on their purpose and reach. Local area networks (LAN) are used to interconnect a small number of computers (fewer than a hundred) that are geographically close to each other (houses or small offices). Wide area networks (WAN) are used to interconnect a medium to large number of computers (hundreds to thousands) that are geographically distant from each other (large companies or the internet). 
+Networks vary widely depending on their purpose and reach. Local area networks (LAN) are used to interconnect a small number of computers (fewer than a hundred) that are geographically close to each other (houses or small offices). Wide area networks (WAN) are used to interconnect a large number of computers (hundreds to thousands) that are geographically distant from each other (large companies or the internet). 
 
-LAN and WAN abstractions will depend on the geographical area they encompass, the number of expected users, the quantity and services available and on how reliable the network's infrastructure is. LAN's will usually be managed by one person or organization providing high speed bandwidth to its devices while WAN's are generally managed by Internet Service Providers or ISP's providing a basic link between different LAN's.
+LAN and WAN abstractions will depend on the geographical area they encompass, the number of expected users, the quantity and services available and on how reliable is the network's infrastructure. LAN's will usually be managed by one person or organization providing high speed bandwidth to its devices while WAN's are generally managed by Internet Service Providers linking different LAN's.
 
 **Intranet, Extranet and Internet**
 
@@ -91,25 +80,21 @@ Every network architecture must meet the following expectations in order to be c
 
 **Network Trends**
 
-There are many trends in todays networks including the bring your own device model (BYOD) where users want to be able to access their data on any device, anywhere. Online collaboration and videoconferences used in many companies and schools. Video communication as part of everyday life. Cloud computing allowing affordable access to computing power and storage by leasing distant cloud servers.
-
-Today we can find public clouds that are available for free or through a payment model, private clouds used in a specific organizations, hybrid clouds configured as a private cloud with a public interface and personalized clouds tailored to the specific needs of an industry such as medical care or high end communication services.
+There are many trends in today's networks including the bring your own device model (BYOD) where users want to be able to access their data on any device, anywhere. Online collaboration and videoconferences used in many companies and schools. Video communication as part of everyday life. Cloud computing allowing affordable access to computing power and storage by leasing distant cloud servers.
 
 There are some technology trends too like intelligent homes interconnecting appliances, electric line network adapters that allow the use of the electric infrastructure as ethernet or wireless broadband that allow you to connect your devices to a general wireless internet tower (WISP) similar to the cellular network that smartphones use.
 
 **Network Security**
 
-Network protection includes protocols, technologies, devices, tools and techniques like dedicated firewalls, access control lists (ACL), intrusion prevention systems (IPS), and VPN's to mitigate external and internal threats. External threats can be viruses, trojan, worms, spyware, adware, zero day attacks, denial of service, data interception and identity theft. Internal threats can be lost or stolen devices, accidental misuse or malicious employees.
+Network protection includes protocols, technologies, devices, tools and techniques like firewalls, access control lists (ACL), intrusion prevention systems (IPS), and VPN's that mitigate external and internal threats. External threats can be viruses, trojan, worms, spyware, adware, zero day attacks, denial of service, data interception and identity theft. Internal threats can be lost or stolen devices, accidental misuse or malicious employees.
 
 ***
 
-# Networks Three #
-
 **Operative System**
 
-Operating systems are built on top of abstraction layers. The hardware is the physical layer that includes the electronic devices of the OS. The kernel is the software-hardware interface in charge of distributing resources. The shell is the software interface and it's the first layer meant for a human intervention. Shells can have a text based (CLI) or graphic based (GUI) interface. 
+Operating systems are built on top of abstraction layers. The hardware is the physical layer that includes the electronic devices of the OS. The kernel is the software-hardware interface in charge of distributing resources. The shell is the software interface and it's the first layer meant for human intervention. Shells can have a text based (CLI) or graphic based (GUI) interface. 
 
-The CLI is the preferred operating system for network technicians to configure, monitor and control networks. To access the network operating system of a device we can use a *Console* (physical serial port), telnet (unencrypted remote network access) or a secure shell (SSH) that stablishes a secure remote CLI connection using a virtual interface. Telnet and SSH generally use a terminal emulator such as PuTTY, Tera Term or SecureCRT.
+The CLI is the preferred operating system for network technicians to configure, monitor and control devices. To access the network OS of a device we can use a Console (serial port), Telnet (unencrypted remote network access) or a secure shell (SSH). SSH stablishes an encrypted remote CLI virtual connection. Both Telnet and SSH generally use a terminal emulator such as PuTTY, Tera Term or SecureCRT.
 
 | Command | Description | Switches |
 | :---: | :---: | :---:|
@@ -137,7 +122,7 @@ The CLI is the preferred operating system for network technicians to configure, 
 | service password-encryption | Encrypt defined passwords | - |
 | show running config | Verify password encryption | - |
 | banner motd #string# | Add a terminal login banner | - |
-| ip adress ip | Define the device IP and subnet mask | ip subnetmask |
+| ip address ip | Define the device IP and subnet mask | ip subnetmask |
 | no shutdown | It enables the status of the configured interface | - | 
 
 * Startup-config: Configuration file stored in NVRAM containing the persistent device configuration.
@@ -152,96 +137,135 @@ Use `copy running-config startup-config` to save the changes made into the runni
 
 **Ports and IP's**
 
-We use IP addresses as way of locating devices inside a network, they can be configured manually or by using an automatic service like DHCP. Currently there are two active IP standards: Version 4 and version 6. 
-
 ![IP Headers](/static/images/notes/IPvfourandIPvsixHeadersNetworks.png)
 
-1. Version 4 uses a dotted decimal notation with 4 numbers between 0 and 255 making a 32 bit adress. The default gateway adress is the IP of the router used to access remote networks.
+We use IP addresses as way of locating devices inside a network, they can be configured manually or by using a dynamic service like DHCP. Currently there are two active IP standards: Version 4 and version 6. 
+
+1. Version 4 uses a dotted decimal notation with 4 numbers between 0 and 255 making a 32 bit address. The default gateway address is the IP of the router used to access remote networks.
 2. Version 6 uses 128 bit long addresses written in hexadecimal. Groups of 4 hexadecimal digits are separated by a colon. It is case insensitive. 
 
 **Communication Protocol Rules**
 
-Every communication protocol must have a source or sender, a destination or receiver and a channel or media. Protocols must define the message encoding, format, encapsulation, size, synchronization and delivery.
+Every communication protocol must have a source or sender, a destination or receiver and a channel or media. Protocols must define the message encoding, format, encapsulation, size, synchronization and delivery. Format is the structure applied prior to the encoding, it depends on the type of message and channel used. Delivery can be unicast (one to one), multicast (one to many) and broadcast (one for all), Broadcast is not available in IPv6, in this case we use Anycast as an alternative.
 
 ![Network Protocols](/static/images/notes/SendingAMessageProcessNetworks.png)
 
-Encoding is the process by which information is converted to an acceptable transmission form. Decoding is the reverse process of encoding so that we can interpret the data. Format is the structure applied to the information prior to the encoding, it depends on the type of message and channel used. Message timing depends on:
+Message timing depends on:
 
-* Flow control: Data transmission speed, how much data can be sent and how fast.
-* Response timeout: How long a device waits for a response or confirmation.
+* Flow control: Data transmission speed, how much data can be sent at the same time and how fast.
+* Response timeout: How long a device waits for a response or confirmation (echo).
 * Access Method: Set of rules that try to prevent collisions or establish recovery methods.
-
-Delivery can be unicast (one to one), multicast (one to many) and broadcast (one for all). Note that Broadcast is not available in IPv6, in this case we use Anycast as an alternative.
 
 ***
 
-# Networks Four #
-
 **Protocols Used**
 
-We use protocols so that the sender and receiver are properly identified, there is a guaranteed delivery, an efficient data flow, a continuous data sequence and data corruption detection. Protocols can work together through protocol suits like the internet, this protocol suits can be divided into their top layers (content) and their lower layers (data flow).
+We use protocols so that the sender and receiver are properly identified, there is a guaranteed delivery, an efficient data flow, a continuous data sequence and data corruption detection. Protocols can work together through protocol suits like the internet (TCP/IP), most suits can be divided into their top layers (content) and lower layers (data flow).
 
 ![Internet Protocol Suit](/static/images/notes/TCPLayerdModelNetworks.png)
-
-Internet protocol suit (TCP/IP) includes:
-
-* Hypertext Transfer Protocol HTTP (Application): Defines how a web server and a client interact by formatting the content. 
-* Transmission Control Protocol TCP (Transport): Defines how data packages through intermediary devices are transmitted. 
-* Internet Protocol IP (Internet): Defines how to uniquely identify any device on the public global network.
-* Ethernet or WLAN (Network Access): Delivers a message from one physical NIC to another NIC on the same LAN. Ethernet is wired while WLAN is wireless.
 
 The IETF maintains the internet protocol suit, the ISO and ITU maintain the open systems interconnection protocol suit, Apple maintains its AppleTalk protocol suit and Novell maintains its Novell NetWare suit.
 
 **Organizations**
 
 * Internet Society (ISOC): Promotes open development and evolution of the internet.
-* Internet Architecture Board (IAB): Administration and general development of the internet standards.
-* Internet Engineering Task Force (IETF): Develop, update and maintain the internet protocol suit.
-* Internet Research Task Force (IRTF): Long term research about the internet protocol and its usage.
-* Internet Corporation for Assigned Names and Numbers (ICANN): Coordinates IP address assignments and domain names.
-* Internet Assigned Numbers Authority (IANA): Coordinates IP address assignments, domain names and protocol identifiers.
-* Institute of Electrical and Electronic Engineers (IEEE): New technological innovation standards and specifications.
-* Electronic Industries Association (EIA): Standards related to wiring, connectors and network racks.
-* Telecommunications Industries Association (TIA): Standards for radio equipment, cellphone towers, voice over IP and satellite communications.
-* Telecommunications Standardization Sector of the International Telecommunications Union (ITU-T): Standards for video compression, television over IP and broadband communications.
+* Internet Architecture Board (IAB): General development of the internet standards.
+* Internet Engineering Task Force (IETF): Develop and update the internet protocol suit.
+* Internet Research Task Force (IRTF): Long term research about the internet protocol suit.
+* Electronic Industries Association (EIA): Standards of wiring, connectors and network racks.
+* Institute of Electrical and Electronic Engineers (IEEE): New tech innovation standards.
+* Telecommunications Industries Association (TIA): Standards for radio, towers, and satellite.
+* Internet Corporation for Assigned Names and Numbers (ICANN): IP address assignments and domains.
+* Internet Assigned Numbers Authority (IANA): IP assignments, domains and protocol identifiers.
+* Telecom. Stand. Sector of the International Telecom. Union (ITUT): Video and TV over IP.
 
 **Layer Suit Model**
 
-Network suits are usually complex therefore we use layer models like TCP/IP or OSI to compartmentalize their protocols. 
-
 ![Network Protocols](/static/images/notes/StackLayeredModelsNetworks.png)
+
+Network suits are usually complex therefore we use layer models like TCP/IP or OSI to compartmentalize their protocols. 
 
 TCP/IP Layers:
 
-1. Network access: Hardware devices and media connected to the network via their NIC's.
-2. Internet: Determines the best path through the network.
-3. Transport: Supports communication between different devices over various networks.
-4. Application: User data including their encoding and decoding platform
+1. Network access: Hardware connected to the network via their NIC's (wired or wireless).
+2. Internet: Determines the best path through the network via Internet Protocol addressing.
+3. Transport: Communication between devices over various networks via Transmission Control Protocol.
+4. Application: User data and content including their encoding and decoding platform.
 
 OSI Layers:
 
-1. Physical: Activate, maintain and deactivate physical connections.
-2. Data links: Methods for exchanging data frames on a common medium.
-3. Network: Services for exchanging data portions over the network.
-4. Transport: Segment, transfer and reassemble data.
+1. Physical: Activate and maintain physical connections. Timing and bit synchronization.
+2. Data links: Exchanging data frames on a common medium using MAC addressing.
+3. Network: Services for exchanging data portions over the network via IP addressing.
+4. Transport: Segment, transfer and reassemble data into their predefined ports.
 5. Session: Manage data exchange and provide services to the next layer.
-6. Presentation: Common representation of the data transferred.
-7. Application: Contains protocols used for internal process communication.
+6. Presentation: Common representation of the data transferred to the user.
+7. Application: Contains protocols used for process intercommunication.
 
 **Data Encapsulation**
 
-Segmentation is dividing the data into smaller units, multiplexing is taking multiple streams of segmented data and weaving them together. We segment data to increase its transmission speed and efficiency since large amounts of data can be sent thought multiple routes and in the case of failures only a small amount of data has to be retransmitted. Message sequencing, like the one done by TCP, is the process of numbering data segments so that they can be reassembled at their destination.
+Segmentation is dividing the data into smaller units, multiplexing is taking multiple streams of segmented data and weaving them together. Message sequencing, like the one done by TCP, is the process of numbering data segments so that they can be reassembled. We segment data to increase its transmission speed and efficiency since large amounts of data can be sent thought multiple routes and in the case of failures only a small amount of data has to be retransmitted. 
 
-Encapsulation is how protocols add metainformation to data packages. Each stage of the process implicates the creation of a new protocol data unit. Therefore we can divide encapsulation by the PDU they create (data, segment, package, plot or bits) as the data moves from top to bottom. In decapsulation data moves from the bottom to the top, removing their PDU header at each step in the process.
+Encapsulation is how protocols add metainformation to data packages. Each stage of the process implicates the creation of a new protocol data unit, therefore we can subdivide the process by the PDU it creates at each stage (data, segment, package, plot or bits). In decapsulation data moves from the bottom to the top, removing their PDU headers.
 
 **Data access**
 
-Source and destination IP addresses in the Network Layer (L3) are responsible for sending the IP packet from source to destination. Data links in the Data Link Layer (L2) are responsible for sending data link frames from one NIC to another NIC.
-
 ![Local and Remote Access](/static/images/notes/LocalAndRemoteAddressingRoutingNetworks.png)
 
-First PC1 sends a data frame from its NIC to its default gateway DGW interface (R1), then the router sends the frame to an additional router (R2) and finally the last router sends the frame to the NIC of its original destination a Web Server (). For remote data access we can see that the local addressing via MAC addresses (L2 Header) changes every hop but the remote addressing via IP addresses (L3 Header) remains intact.
+Source and destination IP addresses in the Network Layer (L3) are responsible for sending the IP packet from source to destination. Data links in the Data Link Layer (L2) are responsible for sending data link frames from one NIC to another NIC.
+
+First PC1 sends a data frame from its NIC to its default gateway DGW interface (R1), then the router sends the frame to an additional router (R2) and finally the last router sends the frame to the NIC of its original destination a Web Server. For remote data access we can see that the local addressing via MAC addresses (L2 Header) changes every hop but the remote addressing via IP addresses (L3 Header) remains intact.
 
 ***
 
-# Networks Five #
+**Physical Layer**
+
+Before any network communication can occur a physical connection to the local network must be established. The wired or wireless Network Interface Card is used to make this connection. It accepts an entire data frame and encodes it before sending it to the next device. Standards relating to this layer are implemented in hardware and therefore are managed by many organizations (ISO, ANSI, IEEE) while the rest of the TCP/IP stack is implemented in software and managed by the IETF.
+
+![Encoding Media](/static/images/notes/EncodingOfDifferentMediaNetworks.png)
+
+The physical layer standard defines the physical components, coding and signaling needed for communication between devices. Physical components include NICs, interfaces, connectors and cables. There is a necessary encoding stage where a bit stream is translated into a recognizable signal by the following NIC, for example the Manchester encoding 4B/5B or 8B/10B. The signaling defines what will be considered 1 or 0 and it depends on the medium (wireless, optic fiber, cable).
+
+Latency is the amount of time, including delays, for data to travel from one device to another. Performance is a measure of how many bits are transferred over a period of time. Useful transfer capacity is a measure of how many useful bits are transferred over a period of time. Performance will be heavily dependent on the technology used and the medium's bandwidth, its fundamental unit is 1 bit per second (1 bps).
+
+**Copper Wiring**
+
+Copper wiring is the most common type used as it is inexpensive, easy to install and has a low resistance. Its main drawbacks are its attenuation over long distances and its susceptibility to Electromagnetic Interference (EMI), Radio Frequency Interference (RFI) and Crosstalk. Its drawbacks can be mitigate using wire length limits, metallic shielding, grounding and twisting opposing pair cables together for Crosstalk.
+
+![Copper Wiring](/static/images/notes/UTPConnectorWiringNetworks.png)
+
+Unshielded Twisted Pair Cable (UTP) is the most common, it ends in RJ-45 connectors. Usually used as a medium between an end device to an intermediary device. Twisted pairs mitigate interference, color coding identifies the opposing pairs. Note that twisted pairs are twisted at different rates to avoid interference between them. Follows TIA/EIA 568 and IEEE copper wiring standards.
+
+![Copper Wiring Two](/static/images/notes/CopperConnectorWiringNetworks.png)
+
+Shielded Twisted Pair Cable (STP) has better noise protection than UTP but its expensive and more difficult to install, it ends in RJ-45 connectors. Usually used as a medium between an end device to an intermediary device. Braided shield and individual pair aluminum shield provides EMI and RFI protection. Twisted pairs mitigate interference, color coding identifies the opposing pairs.
+
+Coaxial cable has a woven copper braid that act both as a shield and a second wire in the circuit. It protects the inner copper conductor in a flexible plastic insulator. It ends in BNC, N type or F type connectors. Usually used in wireless installations and wired internet services.
+
+**Fiber Optic**
+
+More expensive than UTP but ideal for some networking scenarios. Lowest attenuation and completely immune to EMI and RFI. Made from flexible and extremely thin glass strands. uses lasers to encode bits as light pulses. Used in enterprise networks, fiber to the home (FTTH), long distance networks and submarine cable networks.
+
+![Fiber Optic](/static/images/notes/FiberOpticWiringForNetworks.png)
+
+Single mode fiber (SMF) has a small core (9 microns) and a glass cladding of 125 microns in diameter, uses expensive lasers and has long distance applications. Multiple mode fiber (MMF) has a larger core (50 to 62.5 microns) and uses low cost lasers or LEDs however because of light scattering MMF has a maximum range of 550 m for a 10 Gbps bandwidth.
+
+**Wireless**
+
+It uses the air to propagate electromagnetic signals that represent binary digits. This technology provides the best mobility option but it has a limited coverage, is susceptible to interference, it is less secure and its bandwidth is reduced significantly with multiple users. Standards made by the IEEE and the telecom industry cover both the physical and data link layers. 
+
+* Wi-Fi (IEEE 802.11): Wireless LAN (WLAN) requiring an access point (AP) and a NIC adapter.
+* Bluetooth (IEEE 802.15): Wireless Personal Area Network (WPAN) standard.
+* WiMAX (IEEE 802.16): Point to multipoint topology to provide broadband wireless access.
+* Zigbee (IEEE 802.15.4): Low data and power consumption, used in IoT aplications.
+
+***
+
+**Numbering System**
+
+![Numbering Systems](/static/images/notes/NumberingSystemsBinaryHexNetworks.png)
+
+A binary numbering system is used for IPv4 addresses. Hosts, servers and network devices that use IPv4 identify between themselves by a unique 32 bit string divided into 4 octets (bytes). Generally this binary dotted notation is represented in its decimal format. A hexadecimal numbering system is used for IPv6 and MAC addresses, it represents a 128 bit string divided into hextets.
+
+
+

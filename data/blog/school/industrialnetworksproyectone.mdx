@@ -10,8 +10,6 @@ Evaluating, configuring and installing networks in the industry. Configure devic
 
 # GRAFCET #
 
-**History**
-
 GRAFCET (Graphe Fonctionnel de Commande Etape Transition) is a programming language designed for industrial control systems based around stages and stage transitions. Created in 1977 by AFCET to bring non digital tools like organization charts, organiphase, Girard diagrams, Petri net and others into PC's. Standardized in 1979 by ADESA and internationally in 1992 as CEI1131 and EN61131. For the most part it has been superseded by Ladder Language but it is still a powerful educational and modeling tool.
 
 **Sequential or Combinational**
@@ -20,28 +18,26 @@ A process can be sequential or combinational. Combinational systems have outputs
 
 **Stages and Transitions**
 
-GRAFCET as an automation system abstraction doesn't know the specific system components, it simply knows that stages represent actions (operation) and transitions represent comparisons (control). GRAFCET stages must be elementary stages meaning that in order to  execute a complex operation (macrostage) you must subdivide its actions into its most elementary operations. Note that you may need to use as many SET-RESET instructions as there are state variables in your process.
+GRAFCET, as an automation system abstraction, doesn't know the specific system components, it simply knows that stages represent actions (operations) and transitions represent comparisons (control). GRAFCET stages must be elementary, meaning that in order to  execute a complex operation (macrostage) you must subdivide its actions into their fundamental components. Note that you may need to use as many SET-RESET instructions as there are state variables.
 
 ![Symbols Used in Grafcet](/static/images/notes/SymbolsGrafcetNetworksLab.png)
 
-Stages by themselves can be considered purely combinational but by interacting through transitions with other stages we can create sequential systems. Transition's logical conditions (boolean algebra) can be as complex as we need in order to continue to the following stage. We can see that each stage has an associated action and each transition has an associated receptive message related to what they will do or compare.
+Stages by themselves can be considered purely combinational but by interacting through transitions with other stages we can create sequential systems. Transition's logical conditions (boolean algebra) can be as complex as we need them to be in order to continue to the following stage. We can see that each stage has an associated action and each transition has an associated receptive message related to what they will do or compare.
 
 ![Example of Graphs](/static/images/notes/ExampleofGraphsNetworksLab.png)
 
-Rules:
-
 1. Each stage has a boolean stage variable Xi (1 or 0).
 2. Stages can be active or inactive represented by their stage variable (1 is active).
-3. Cold start is the initialization without taking information from memory. All initial stages are activated and other remain inactive.
-4. Hot start is the reinitialization taking information from memory meaning that we recover the last known state variables.
-5. Non-initial stages will be activated when previous stage is active and transition conditions are met.
+3. Cold start is an initialization without taking information from memory, meaning that all initial stages are set to active while the rest remain inactive.
+4. Hot start is the reinitialization taking information from memory, meaning that we recover the last known state variables of every stage.
+5. Non-initial stages activate when the previous one was active and its transition condition is met.
 6. A transition can be in one of the following states:
 	1. Not valid: Immediately preceding or following stage are inactive.
 	2. Valid: Immediately preceding or following stage are active but condition is not met.
 	3. Passable: Condition has been met and is transferring control to new stage.
 	4. Passed: By transferring control the following stage has been activated and the preceding has been deactivated.
 7. If there are multiple passable transitions they will transition simultaneously.
-8. If a stage is activated (SET) and deactivated (RESET) simultaneously it will prefer to remain active as a safety precaution.
+8. If a stage is activated and deactivated simultaneously it will prefer to remain active.
 
 ![Example Program](/static/images/notes/CADESIMUSimulationOne.png)
 
@@ -49,13 +45,11 @@ Rules:
 
 ***
 
-# GRAFCET Two #
-
-**GRAFCET Stages**
+**GRAFCET Design**
 
 ![Stages of GRAFCET](/static/images/notes/GrafcetStagesDesignNetworksLab.png)
 
-The functional GRAFCET stage is the first stage of the automation system design, it is where we create the general succession of stages or actions and their transition conditions. The sensors and actuators GRAFCET stage is the second stage where we specify the sensors and actuators that the automata will use in each stage and transition. The last stage is the control system design stage that consists on translating the graph into ladder language.
+First we create a functional GRAFCET defining the general succession of actions and conditions, then we create a sensors and actuators GRAFCET where we specify the components that the automata will use. Finally we translate the GRAFCET into a control system using ladder language.
 
 **Control System Design**
 
@@ -63,7 +57,7 @@ The functional GRAFCET stage is the first stage of the automation system design,
 
 The translation can be further divided into the sequential ladder translation and the combinational ladder translation. The sequential ladder consists of assigning each stage an internal bit of the PLC representing its internal variable state of active (SET, LATCH) or inactive (RESET, UNLATCH).  
 
-The activation or latch of the internal bit of a stage N takes place when the previous stages are activated as every transition condition has been fulfilled. On the other hand the deactivation or unlatch of the internal bit of a stage occurs when the subsequent stage is activated. The combinational ladder consists of executing every action needed within each stage, a logical scheme is obtained detailing the states of every state variable and condition. 
+The activation or latch of the internal bit of a stage N takes place when previous stages are activate, meaning that every transition condition has been fulfilled. Deactivation or unlatch occurs when a subsequent stage is activated. The combinational ladder consists of executing every action needed within each stage, a logical scheme is obtained detailing the states of every state variable and condition. 
 
 **Basic Structures**
 
@@ -73,19 +67,19 @@ To achieve complex structures like loops, decision making and simultaneous tasks
 
 [Download the Example](/static/images/files/GRAFCETSimulation2.cad)
 
-The simplest structure consisting of a succession of stages connected by transition conditions. Within a linear sequence only one stage should be active at a given time (simultaneous actions must be done as Y branches). A stage is activated when the previous one is active and the transition condition has been met. Activation of a stage implies the deactivation of the previous one.
-
-![Example Program](/static/images/notes/CADESIMUSimulationThree.png)
-
-[Download the Example](/static/images/files/GRAFCETSimulation3.cad)
+A linear sequence is simplest structure, consisting of a succession of stages interconnected by transitions. Within a linear sequence only one stage should be active at a given time (simultaneous actions must be done as Y branches). A stage is activated when the previous one is active and the transition condition has been met. Activation of a stage implies the deactivation of the previous one.
 
 ![OR Bifurcation](/static/images/notes/ORBifurcationNetworksLab.png)
 
 The OR bifurcation is a structure representing a divergence in OR followed by several possible paths or threads that in the end must converge back to the original macrostructure. This structure is intended as alternative processes that can be executed depending on a logical condition. They are analogous to the if, then, else structure, and therefore must be exclusive of each other when nested.
 
+![Example Program](/static/images/notes/CADESIMUSimulationThree.png)
+
+[Download the Example](/static/images/files/GRAFCETSimulation3.cad)
+
 ![AND Bifurcation](/static/images/notes/ANDBifurcationNetworksLab.png)
 
-The AND bifurcation is a structure representing a divergence in AND followed by several threads that will start simultaneously when their common transition condition is met. Every thread must converge back into a single one as they continue their execution but this must be synchronized so that no thread is left behind. It must be avoided to converge AND in the same OR convergence. Usually the last stages prior to an AND convergence are waiting stages for other stages to finish their job.
+The AND bifurcation is a structure representing a divergence in AND followed by several threads that will start simultaneously when their common transition condition is met. Every thread must converge back into a single one as they continue their execution but this must be synchronized so that no thread is left behind. It must be avoided to converge AND in an OR convergence. Usually the last stages prior to an AND convergence are waiting for other stages to finish their job.
 
 ![Bifurcation Relation](/static/images/notes/AdditionalStructuresANDORNetworksLab.png)
 

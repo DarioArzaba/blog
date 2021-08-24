@@ -13,11 +13,8 @@ This is an overview of the knowledge needed for simulating mechanisms, machines,
 	1. [Definition of mechanism and machine](#definition-of-mechanism)
 	2. [Mechanism movements](#mechanism-movements)
 	3. [Degrees of Freedom (Gruebler, Grashoff)](#degrees-of-freedom)
-	4. [Mechanisms and Inversion](#mechanisms-and-inversion)
-
-
-2. Kinematic analysis
-	1. Vector analysis of position, velocity and acceleration
+2. [Kinematic analysis](#kinematic-analysis)
+	1. [Vector analysis position velocity acceleration](#vector-analysis)
 	2. Generation and computer simulation of analysis
 	3. Vector analysis with the Coriolis effect.
 3. Flat mechanisms
@@ -106,33 +103,59 @@ $$
 
 ***
 
-## Mechanisms and Inversion ##
+# Kinematic Analysis #
 
-The position of any point P in a given space is the relation it has with respect to the origin or to another point. This relation or path can be represented by a vector, for example the vector that goes from the origin O to the point P $\vec{R_{PO}}$. Also consider that the speed and rotation of a point will always be equal to its linear change in position.
+## Vector Analysis ##
+
+The position of any point P in a given space is the relation it has with respect to the origin or to another point. This relation or path can be represented by a vector, for example the vector that goes from the origin O to the point P: $\vec{R_{PO}}$. Note that the speed and rotation of a *point* will always be equal to a linear change in position.
 
 $$
 \begin{gathered}
-	P = R_{PO} = R^x_{PO}\vec{i} + R^y_{PO}\vec{j} + R^z_{PO}\vec{k}
+	P = \vec{R_{PO}} = R^x_{PO}\vec{i} + R^y_{PO}\vec{j} + R^z_{PO}\vec{k}
 \end{gathered}
 $$
 
-Rotational velocity or acceleration is not defined for a point, in this case a joint, however it is defined for an entire link. For any arbitrary point inside a link rotational velocity or acceleration.
 
+Rotational velocity or acceleration is not defined for a point but in the case a joint it is defined as the change in angle from a predefined axis, therefore for any arbitrary point inside a link we could measure angular velocity or acceleration.
 
+**Loop Closure Equation**
 
-At one point we cannot know how it rotates, the rotations are simply translated into another translation.
-When we have a link with many points, the link can rotate with respect to itself, a movement that cannot simply be translated into a translation.
-When a link rotates we say that it has an angular velocity.
-Taking the principle of the points that make up a link with angular velocity, its motion can be determined as a linear velocity and a linear position change.
+For every vector between two points there is an infinite number of equivalent loop closure equations that relate them. Every vector is inherently positive but when broken into its components then each component can be positive or negative. 
 
-Points do not have angular velocity or acceleration, although they are affected by the angular velocity of their link.
+$$
+\begin{gathered}
+	P = \vec{R_{PO}} = R^x_{PO}\vec{i} + R^y_{PO}\vec{j} + R^z_{PO}\vec{k}\\
+	P = (R_{PO})(\theta_{PO}) = \vec{R_1} + \vec{R_2} = \vec{R_3} + \vec{R_4} + \vec{R_5} ...
+\end{gathered}
+$$
 
-** Saw equation **
+We should try to use vector loops that correlate to known length measurements so that we can reduce the number of unknown variables in the mechanism. In a 2D plane we represent the angle of a vector using a trigonometric function, generally the cosine with respect to the positive X axis. Note that by using a trigonometric function we are adding the correct sign to the vector's magnitude.
 
-Vector components of a point with vectors.
-Positive values ​​until we use magnitudes, the magnitudes can be negative in reference systems.
+**Euler's Formula Example**
 
-
+$$
+\begin{gathered}
+	e^{j\theta} = \cos(\theta) + \sin(\theta) \, j\\
+	\text{Mobility}\\
+	m = 3(n-1)-2j_1-j_2 = 3(4-1)-2(4)-0 = 1\\
+	R_{BA} = R_2 \land R_{CB} = R_3 \land R_{CA} = R_1\\
+	\vec{R_1} = \vec{R_2} + \vec{R_3} \land \vec{R_1} = \vec{x} + \vec{y}\\
+	(R_1)(e^{j\theta_1}) = R_1(\cos(\theta)) + \sin(\theta) \, j\\
+	(R_1)(e^{j\theta_1}) = (R_2)(e^{j\theta_2}) + (R_3)(e^{j\theta_3})\\
+	\vec{x} + \vec{y} = (R_x)(e^{j\theta_x}) + (R_y)(e^{j\theta_y})\\
+	(R_x)(e^{j\theta_x}) + (R_y)(e^{j\theta_y}) = (R_2)(e^{j\theta_2}) + (R_3)(e^{j\theta_3})\\
+	e^{j\theta_x} = \cos(\theta_x) + \sin(\theta_x) \, j\\
+	\text{Real}\\
+	(R_x)(\cos(\theta_x)) + (R_y)(\cos(\theta_y)) = (R_2)(\cos(\theta_2)) + (R_3)(\cos(\theta_3))\\ 
+	\text{Imaginary}\\
+	(R_x)(\sin(\theta_x)) + (R_y)(\sin(\theta_y)) = (R_2)(\sin(\theta_2)) + (R_3)(\sin(\theta_3))\\
+	\theta_x = 0 \land \theta_y = 90\\
+	\text{First Equation}\\
+	(R_x)(\cos(\theta_x)) = (R_2)(\cos(\theta_2)) + (R_3)(\cos(\theta_3))\\ 
+	\text{Second Equation}\\
+	(R_y)(\sin(\theta_y)) = (R_2)(\sin(\theta_2)) + (R_3)(\sin(\theta_3))\\
+\end{gathered}
+$$
 
 
 
