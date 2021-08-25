@@ -162,13 +162,33 @@ $$
 
 **Euler's Formula Second Example**
 
-![Euler Formula Second Example](/static/images/notes/)
+![Euler Formula Second Example](/static/images/notes/VectorLoopsEulerSecondMechanismSimulation.png)
 
 Find an expression that determines the position of C and the angle of the second link given the angle of B.
 
 $$
 \begin{gathered}
-	m
+	\vec{R_2} = \vec{R_1} + \vec{R_4} \land \vec{R_2} = \vec{x} + \vec{y}\\
+	\text{Applying Euler's Formula}\\
+	e^{j\theta} = \cos(\theta) + \sin(\theta) \, j\\
+	(R_2)(e^{j\theta_2}) = (R_2)((\cos(\theta_2)) + \sin(\theta_2) \, j)\\
+	\therefore (R_2)(e^{j\theta_2}) = (R_1)(e^{j\theta_1}) + (R_4)(e^{j\theta_4})\\
+	\text{Real and Imaginary}\\
+	(R_2)(\cos(\theta_2)) = (R_1)(\cos(\theta_1)) + (R_4)(\cos(\theta_4))\\ 
+	(R_2)(\sin(\theta_2)) = (R_1)(\sin(\theta_1)) + (R_4)(\sin(\theta_4))\\
+	\text{Considering their Angles} \implies \theta_1 = 0\\
+	(R_2)(\cos(\theta_2)) = (R_1) + (R_4)(\cos(\theta_4))\\
+	(R_2)(\sin(\theta_2)) = (R_4)(\sin(\theta_4))\\
+	\text{Trigonometric Identity}\\
+	\cos^2(x) + \sin^2(x) = 1\\
+	\cos(\theta \pm \alpha) = \cos(\theta)\cos(\alpha) \pm \sin(\theta)\sin(\alpha)\\
+	(R_2)^2(\cos^2(\theta_2)) = (R_1)^2 + (2)(R_1)(R_4)(\cos(\theta_4)) + (R_4)^2(\cos^2(\theta_4))\\
+	(R_2)^2(\sin^2(\theta_2)) = (R_4)^2(\sin^2(\theta_4))\\
+	\text{Adding Them Together}\\
+	(R_2)^2 = (R_4)^2 + (2)(R_1)(R_4)(\cos(\theta_4)) + (R_1)^2\\
+	\therefore R_4 = \pm \sqrt{R_2^2 + (R_1)^2(\cos^2(\theta_4)) - (R_1)^2} - (R_1)(\cos(\theta_4))\\
+	\therefore \theta_2 = -(\sin^{-1})(\frac{(R_4)(\sin(\theta_4))}{(R_2)})
 \end{gathered}
 $$
 
+***
