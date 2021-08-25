@@ -5,7 +5,7 @@ tags: ['school', 'simulation']
 ---
 
 
-This is an overview of the knowledge needed for simulating mechanisms, machines, instruments and actuators. Understand the mechanisms used in machines (wheel, rack, joints, gears, cams, bars etc).  Requires knowledge in statics and dynamics. 
+Simulation of mechanisms, machines, instruments and actuators. Understand the mechanisms used in machines (wheel, rack, joints, gears, cams, bars etc).  Requires knowledge in statics and dynamics. 
 
 ***
 
@@ -107,7 +107,7 @@ $$
 
 ## Vector Analysis ##
 
-The position of any point P in a given space is the relation it has with respect to the origin or to another point. This relation or path can be represented by a vector, for example the vector that goes from the origin O to the point P: $\vec{R_{PO}}$. Note that the speed and rotation of a *point* will always be equal to a linear change in position.
+The position of any point P in a given space is the relation it has with respect to the origin or to another reference point. This relation or path can be represented by a vector, for example the vector that goes from the origin O to the point P: $\vec{R_{PO}}$. Note that the speed and rotation of P will always be equal to a linear change in position.
 
 $$
 \begin{gathered}
@@ -116,46 +116,59 @@ $$
 $$
 
 
-Rotational velocity or acceleration is not defined for a point but in the case a joint it is defined as the change in angle from a predefined axis, therefore for any arbitrary point inside a link we could measure angular velocity or acceleration.
+Rotational velocity or acceleration is not defined for a single point but in the case a joint it is defined as the change in angle from a predefined axis, therefore for any arbitrary point inside a link we could measure its angular velocity or acceleration.
 
 **Loop Closure Equation**
 
-For every vector between two points there is an infinite number of equivalent loop closure equations that relate them. Every vector is inherently positive but when broken into its components then each component can be positive or negative. 
+For every vector between two points there is an infinite number of equivalent loop closure equations that relate them. Every vector is inherently positive but when broken into its component parts each can either be positive or negative in magnitude. 
 
 $$
 \begin{gathered}
 	P = \vec{R_{PO}} = R^x_{PO}\vec{i} + R^y_{PO}\vec{j} + R^z_{PO}\vec{k}\\
-	P = (R_{PO})(\theta_{PO}) = \vec{R_1} + \vec{R_2} = \vec{R_3} + \vec{R_4} + \vec{R_5} ...
+	P = (R_{PO})(\theta_{PO}) = \vec{R_1} + \vec{R_2} = \vec{R_3} + \vec{R_4} + \vec{R_5} ... = \infty
 \end{gathered}
 $$
 
-We should try to use vector loops that correlate to known length measurements so that we can reduce the number of unknown variables in the mechanism. In a 2D plane we represent the angle of a vector using a trigonometric function, generally the cosine with respect to the positive X axis. Note that by using a trigonometric function we are adding the correct sign to the vector's magnitude.
+We should define vector loops that correlate to known length measurements so that we can reduce the number of unknown variables in the mechanism. In a 2D plane we represent the angle of a vector using a trigonometric function, generally the cosine with respect to the positive X axis. Note that by using a trigonometric function we are automatically adding the correct sign to the vector's magnitude.
 
-**Euler's Formula Example**
+**Euler's Formula First Example**
+
+![Euler Formula Example](/static/images/notes/VectorLoopsEulerMechanismSimulation.png)
+
+Find an expression that determines the position of C given the angle of A.
 
 $$
 \begin{gathered}
-	e^{j\theta} = \cos(\theta) + \sin(\theta) \, j\\
-	\text{Mobility}\\
 	m = 3(n-1)-2j_1-j_2 = 3(4-1)-2(4)-0 = 1\\
-	R_{BA} = R_2 \land R_{CB} = R_3 \land R_{CA} = R_1\\
 	\vec{R_1} = \vec{R_2} + \vec{R_3} \land \vec{R_1} = \vec{x} + \vec{y}\\
-	(R_1)(e^{j\theta_1}) = R_1(\cos(\theta)) + \sin(\theta) \, j\\
+	\text{Applying Euler's Formula}\\
+	e^{j\theta} = \cos(\theta) + \sin(\theta) \, j\\
+	(R_1)(e^{j\theta_1}) = (R_1)((\cos(\theta)) + \sin(\theta) \, j)\\
 	(R_1)(e^{j\theta_1}) = (R_2)(e^{j\theta_2}) + (R_3)(e^{j\theta_3})\\
 	\vec{x} + \vec{y} = (R_x)(e^{j\theta_x}) + (R_y)(e^{j\theta_y})\\
-	(R_x)(e^{j\theta_x}) + (R_y)(e^{j\theta_y}) = (R_2)(e^{j\theta_2}) + (R_3)(e^{j\theta_3})\\
-	e^{j\theta_x} = \cos(\theta_x) + \sin(\theta_x) \, j\\
+	\therefore (R_x)(e^{j\theta_x}) + (R_y)(e^{j\theta_y}) = (R_2)(e^{j\theta_2}) + (R_3)(e^{j\theta_3})\\\\
 	\text{Real}\\
 	(R_x)(\cos(\theta_x)) + (R_y)(\cos(\theta_y)) = (R_2)(\cos(\theta_2)) + (R_3)(\cos(\theta_3))\\ 
 	\text{Imaginary}\\
 	(R_x)(\sin(\theta_x)) + (R_y)(\sin(\theta_y)) = (R_2)(\sin(\theta_2)) + (R_3)(\sin(\theta_3))\\
-	\theta_x = 0 \land \theta_y = 90\\
-	\text{First Equation}\\
-	(R_x)(\cos(\theta_x)) = (R_2)(\cos(\theta_2)) + (R_3)(\cos(\theta_3))\\ 
-	\text{Second Equation}\\
-	(R_y)(\sin(\theta_y)) = (R_2)(\sin(\theta_2)) + (R_3)(\sin(\theta_3))\\
+	\text{Considering their Angles} \implies \theta_x = 0 \land \theta_y = 90\\
+	(R_x)(1) = (R_2)(\cos(\theta_2)) + (R_3)(\cos(\theta_3))\\ 
+	(R_y)(1) = (R_2)(\sin(\theta_2)) + (R_3)(\sin(\theta_3))\\
+	\text{Unknown Variables} \implies R_x \land \theta_3\\
+	\therefore \theta_3 = (\sin^{-1})(\frac{R_y - (R_2)(\sin(\theta_2))}{R_3})\\
+	\therefore R_x = (R_2)(\cos(\theta_2)) + (R_3)(\cos(\theta_3))
 \end{gathered}
 $$
 
+**Euler's Formula Second Example**
 
+![Euler Formula Second Example](/static/images/notes/)
+
+Find an expression that determines the position of C and the angle of the second link given the angle of B.
+
+$$
+\begin{gathered}
+	m
+\end{gathered}
+$$
 
