@@ -11,7 +11,8 @@ This is an overview of the knowledge needed for the selection and operation of m
 1. [Diagnostic](#diagnostic)
 2. [Worksheet 1 (Capacitance and Inductance) ](#worksheet-1)
 3. [Worksheet 2 (Power Measurement) ](#worksheet-2)
-4. [Worksheet 3 (Measuring Bridges) ](#worksheet-2)
+4. [Worksheet 3 (Measuring Bridges) ](#worksheet-3)
+5. [Worksheet 4 (Signaling) ](#worksheet-4)
 
 ***
 
@@ -77,7 +78,11 @@ Limited to unpolarized capacitors starting from 1nF. Needs a sine wave of known 
 3. Measure the voltage in the resistor.
 4. Calculate the current in the loop as $I = \frac{V_R}{R}$
 5. Use the current in the loop to measure the voltage in the capacitor.
-6. Calculate the capacitance as $C = \frac{I}{2\pi f V_C}$
+6. Calculate the capacitance as:
+
+$$
+C = \frac{I}{2\pi f V_C}
+$$
 
 ![Experiment Two](/static/images/notes/ExperimentTwoFromWorksheetOne.png)
 
@@ -88,14 +93,18 @@ Limited to unpolarized capacitors starting from 1nF. Needs a sine wave of known 
 1. Connect the *unknown* inductance in series with a 1k Ohm resistor.
 2. Measure the internal resistance of the inductor.
 3. Measure the voltage in the resistor and in the inductor.
-4. Calculate the inductance as $L = \frac{\sqrt{(\frac{V_L (R)}{V_R})^2 - r^2}}{2\pi f}$
+4. Calculate the inductance as:
+
+$$
+L = \frac{\sqrt{(\frac{V_L (R)}{V_R})^2 - r^2}}{2\pi f}
+$$
 
 ![Experiment Three](/static/images/notes/ExperimentThreeFromWorksheetOne.png)
 
 ## Questions ##
 
 1. In your own words what are the objectives and procedure of the practice? The main objective was to learn how to measure capacitance or inductance using instruments like the AC Voltmeter instead of using the  Multimeter. The procedure was to place the capacitor or the inductor in series with a resistance and using by using both voltages being able to solve for their values, in the case of the inductor we took into account the internal resistance of the component as an additional resistor in series.
-2. You have all the necessary material to carry out the practice (not including multimeters, power supplies, oscilloscopes, or power generators signals / functions)? Yes
+2. You have all the necessary material to carry out the practice (not including multimeters, power supplies, oscilloscopes, or power generators signals / functions)? Yes, using the Proteus Simulator we can find all the necessary material to complete the practice.
 3. What is the difference between a ceramic capacitor, a variable capacitor and a electrolytic capacitor? Ceramic capacitors are non polarized and made with a ceramic dielectric, they have a high frequency response but low voltage ratings. Variable capacitors are capacitors used when a continuous variation of the capacitance is needed (transmitters, receivers), they work by changing the distance or plate area overlap to control their capacitance. Electrolytic capacitors are polarized capacitors made up of a metallic anode covered with an oxidized layer used as dielectric and a solid or wet electrolyte as its cathode. Electrolytic capacitors generally can't be used in AC circuits because of their polarity but have a high capacitance.
 4. What is capacitance and inductance? Theory
 
@@ -109,7 +118,11 @@ Power is the work done per unit of time, expressed in Joules per second. Electri
 
 The direct measurement of the load voltage and current may be different because of the internal resistances of the Ammeter and Voltmeter. The difference can be of the order of $\frac{|R_L - R_I|}{R_L}$ where $R_L$ is the load's resistance and $R_I$ is the instrument's resistance.
 
-In AC circuits we use the *3 Voltmeter* method. In this configuration the average or real power dissipated by the load is $P = \frac{V_m I_m}{2}$ to do the previous calculation we need to use $R$ since we don't know the current ending with $P_L = \frac{V_{AC}^2 - V_{AB}^2 - V_{BC}^2}{2R}$
+In AC circuits we use the *3 Voltmeter* method. In this configuration the real power dissipated by the load is $P = \frac{V_m I_m}{2}$ to do the previous calculation we need to use $R$ since we don't know the current, therefore ending with the relation: 
+
+$$
+P_L = \frac{V_{AC}^2 - V_{AB}^2 - V_{BC}^2}{2R}
+$$
 
 **List of Components**
 
@@ -121,8 +134,9 @@ In AC circuits we use the *3 Voltmeter* method. In this configuration the averag
 
 **Power Measurement in DC circuits**
 
-* Place the voltmeter and the ammeter in series with the source and 10Ohm.
-* Calculate the power and compare from the two configurations.
+1. Place the voltmeter and the ammeter in series with the source and 10Ohm.
+2. Calculate and compare the power from both configurations.
+3. Notice the effect of the internal resistances of the Ammeter or Voltmeter.
 
 ![Experiment One](/static/images/notes/ExperimentOneWorsheetTwo.png)
 
@@ -130,10 +144,10 @@ In AC circuits we use the *3 Voltmeter* method. In this configuration the averag
 
 **Power measurement in AC circuits**
 
-* Place 3 voltmeters forming a series circuit with an AC source (20Vpp).
-* Use a power resistance of 2Ohms (R) and power resistance of 10Ohms (Load)
-* Calculate the power in the load using the indicated method.
-* Repeat the experiment placing a 10Ohm resistor (Load) and a 0.22uF capacitor.
+1. Place 3 voltmeters forming a series circuit with an AC source (20Vpp).
+2. Use a power resistance of 2Ohms (R) and a power resistance of 10Ohms (Load)
+3. Calculate the power in the load using the indicated method.
+4. Repeat by placing a 10Ohm resistor (Load) and a 0.22uF capacitor.
 
 ![Experiment Two](/static/images/notes/ExperimentTwoWorsheetTwo.png)
 
@@ -141,8 +155,8 @@ In AC circuits we use the *3 Voltmeter* method. In this configuration the averag
 
 **Power increase effects**
 
-* Use a 18Ohm resistor.
-* Apply various voltage values and fill the table.
+1. Use a 18Ohm resistor in the configuration shown.
+2. Apply various voltage values and fill in the table.
 
 | Vab (Volts) | i(t) (Ampere) | Power (Watts) |
 | :---: | :---: | :---: |
@@ -162,7 +176,7 @@ In AC circuits we use the *3 Voltmeter* method. In this configuration the averag
 **Questions**
 
 1. In your own words what are the objectives and procedure of the practice? The main objective was to learn how to measure the power being used by a general load represented in this case by a power resistor using instruments like the Voltmeter and Ammeter instead of using a Multimeter. The procedure was to place the load in series with a DC source first, here we can directly measure the voltage and current needed to calculate the power of the load, only taking into account the small error that could arise from the internal resistance of the instruments. Later on we used the 3 voltmeter method when applying an AC signal to the load, this method requires the help of an additional resistance.
-2. You have all the necessary material to carry out the practice (not including multimeters, power supplies, oscilloscopes, or power generators signals / functions)? Yes
+2. You have all the necessary material to carry out the practice (not including multimeters, power supplies, oscilloscopes, or power generators signals / functions)? Yes, using the Proteus Simulator we can find all the necessary material to complete the practice.
 3. In what type of energy is the potential and kinetic energy of the free electrons that flow inside a conductor transformed? Is this process reversible? Into usable electrical energy and some thermal. The process is not completely reversible as some of the energy will be lost.
 
 ***
@@ -171,7 +185,7 @@ In AC circuits we use the *3 Voltmeter* method. In this configuration the averag
 
 **Theory**
 
-Bridges are devices used in measuring instruments that measure unknown resistances, capacitances or inductances. Bridges use DC sources when measuring resistances and AC sources when measuring inductances or capacitances. We are able to make the comparison when there is no current flowing through the galvanometer, meaning that the voltage on its terminals is the same (bridge in equilibrium). 
+Circuit bridges are devices used in measuring instruments that measure unknown resistances, capacitances or inductances. Bridges use DC sources when measuring resistances and AC sources when measuring inductances or capacitances. We are able to make the comparison when there is no current flowing through the galvanometer, meaning that the voltage on its terminals is the same (bridge in equilibrium). 
 
 ![Wheatstone Bridge](/static/images/notes/WheatstoneBridgeImageIntruLab.png)
 
@@ -204,8 +218,11 @@ $$
 	V_{AB} = (V_S)\left(\frac{2R \pm \Delta R - 2R}{4R \pm \Delta R}\right)\\
 	V_{AB} = \left(\frac{V_S}{4R}\right)\\
 	\pm\Delta V_{AB} = \pm \Delta R\left(\frac{V_S}{4R}\right)
+	\therefore \Delta R = \left(\frac{V_{AB} 4 R}{V_S}\right)
 \end{gathered}
 $$
+
+DeltaResistor = (Vab*4*R2)/-Vsource 
 
 From the equation we see that the maximum voltage differential from a small variation in $R_x$ happens when $R_1 = R_4 \text{ and } R_2 = R_x$ . 
 
@@ -228,50 +245,92 @@ $$
 **List of Components**
 
 * 1 Power Source, Oscilloscope, Function Generator, Multimeter
-* 1 capacitor 0.22uF and 1 capacitor 0.33uF
-* 1 Thermistor 4.7kOhm
-* 1 Preset of 100Ohm
-* 1 Potentiometer of 10kOhm and 1 potentiometer of 5kOhm
+* 1 capacitor 0.22uF and 1 capacitor 0.33uF, 1 Thermistor 4.7kOhm
+* 1 Preset of 100Ohm, 1 Potentiometer of 10kOhm and 1 potentiometer of 5kOhm
 * Resistors: 4 2.2Ohm, 3 56kOhm, 2 10kOhm, 2 4.7kOhm
 * Resistors: 1 47kOhm, 1 1kOhm, 1 2.2kOhm, 1 3.9kOhm, 1 1Ohm
 
-**1 Thermistor with Wheatstone**
+## Experiment 1 ##
 
-* Build a Wheatstone bridge. Use R1 = R4 = 10kOhms.
-* Use R2 = 10kOhm potentiometer and RX = thermistor 4.7kOhm.
-* Power the bridge with 10VDC.
-* Take 3 measurements, thermistor normal, with fingers and under a flame.
-* Indicate voltages, potentiometer value and calculated resistance.
+**Thermistor with Wheatstone**
 
-| Temp | Voltage | Potentiometer | Thermistor | 
+1. Build a Wheatstone Bridge using R1 = R4 = 10kΩ
+2. R2 = 10kΩ potentiometer. Rx = PTC Thermistor
+4. Power Source is 10VDC
+5. Take 3 measurements: 25°C, 40°C, 120°C.
+6. Indicate voltages, potentiometer and thermistor resistance.
+
+$$
+R_x = \frac{R_2 R_4}{R_1}
+$$
+
+| Temp | Voltages | Potentiometer | Thermistor | 
 | :---: | :---: | :---: | :---: |
-| 25 | 5-5 | 4.1 |  | 
-| 35 |  | |
-| 1000 | | |
+| 25 | 5-5 | 1000 | $\frac{(1k)(10k)}{10k} = 1k$ |
+| 40 | 5.08-4.92 | 1100 | $\frac{(1.1k)(10k)}{10k} = 1.1k$ |
+| 120 | 5.09-4.91 | 1500 | $\frac{(1.5k)(10k)}{10k} = 1.5k$ |
 
-**2 Resistor Temp Variation Wheatstone**
+In this experiment we learned to measure the unknown resistance of a PTC thermistor using a Wheatstone Bridge. The derivation of the equation we used to calculate the resistance refers to equating the voltages of the two voltage dividers.
 
-* Build a Wheatstone bridge. Measure resistor variation.
-* Use R1 = R2 = R4 = 56kOhm and form RX = 47kOhm + 10kOhm Pot.
-* Balance the bridge by varying the RX with the potentiometer.
-* Heat the 47kOhm resistor and observe the voltage variation.
-* Calculate the resistor change from the voltage differential.
+Since there is still some current traveling in the middle value of the second and third test it’s safe to assume that the true value of the unknown resistance would be approximately 1050Ω and 1450Ω respectively.
 
-**3 Capacitance comparison bridge**
+## Experiment 2 ##
 
-* Build a resonance bridge. Use Z2 = Z4 = 47Ohm.
-* Use Z1 = 100Ohm pot, C4 = 0.22uF and Cx = 0.33uF.
-* Power the bridge with 2Sen(2000 pi t) volts.
-* Move the potentiometer until the bridge is balanced.
-* Unplug and measure the value in the potentiometer.
-* Calculate Cx from this value.
+**Resistor Temp Variation Wheatstone**
 
-**Questions**
+1. Build a Wheatstone Bridge using R1 = R4 = R2 = 56kΩ
+2. R3 = 10kΩ potentiometer + 47k Ω
+3. Power Source is 10VDC, balance the bridge with R3
+4. Heat the 47k Ω resistor to a small increase (47.1k Ω)
+5. Observe the voltage variation and calculate the resistor change.
 
-1. In your own words, what are the objectives and the procedure of the practice? The main objective was to learn how use bridges as part of measuring instruments for unknown impedances, for example to detect the small changes in the resistance of a transducer like the thermistor. The procedure was to place the component with the unknown value on one side of the bridge and a variable component equivalent on the other, between them stands a null detector to indicate that the bridge is valanced when adjusting the variable component. Once valanced we can calculate the impedance from the principle of voltage dividers.
+$$
+\begin{gathered}
+	V_{AB} = \Delta R\left(-\frac{V_S}{4R_2}\right) \implies \Delta R = \left(\frac{V_{AB} 4 R_2}{-V_S}\right)\\
+	V_{1} = -0.12mV \land V_{2} = -2.35mV\\
+	V_{AB} = -2.23mV\\
+	\Delta R = \left(\frac{(-0.00223)(4)(56000)}{-(10)}\right) = 49.952 \Omega \approx 50 \Omega\\
+	\therefore \Delta R = 50
+\end{gathered}
+$$
+
+In this experiment we learned how most resistors, when subjected to a change in temperature will respond with a change in their resistance (in the same way as a thermistor does), in this case by simulating a change of 50 Ω in the 47k Ω resistor we are also unbalancing the bridge with a net deflection in its voltage reading. 
+
+By knowing the magnitude of the voltage difference, we are able to calculate the unknown change in the resistor caused by a change in temperature. The relation between the resistance difference and the voltage difference also refers to equating the voltages of the two voltage dividers.
+
+## Experiment 3 ##
+
+**Capacitance comparison bridge**
+
+1. Build a Capacitance Comparison Bridge using Z2 = Z4 = 47Ω
+2. Z1 = 100 Ω potentiometer + C4 = 0.22uF and Cx = 0.33uF.
+3. Power Source is AC 2Sin(2000pi t) V
+4. Measure the value of the potentiometer
+5. Calculate unknown Cx and Rx from the potentiometer value.
+
+$$
+\begin{gathered}
+	C_x = \frac{(69\Omega)(0.22\,\mu \text{F})}{(47\Omega)} = 0.3229787234 \,\mu \text{F} \approx 0.323 \,\mu \text{F}\\
+	E_a = |X_m - X_t| = |0.323 - 0.33| = 0.007 \,\mu \text{F}\\
+	E_r = \frac{|X_m - X_t|}{X_t} = \frac{0.007 \,\mu \text{F}}{0.33 \,\mu \text{F}} \times 100\% = 2.128 \%\\
+	R_x = \frac{(47\Omega)(47\Omega)}{(69\Omega)} = 32.01449275 \Omega \approx 32.0145\Omega\\
+	E_a = |X_m - X_t| = |32.0145 - 100| = 67.985 \Omega\\
+	E_r = \frac{|X_m - X_t|}{X_t} = \frac{67.985 \Omega}{100 \Omega} \times 100\% = 67.985 \%
+\end{gathered}
+$$
+
+In this experiment we learned to measure the unknown resistance and capacitance of two components using a Capacitor Comparison Bridge, which in some regards can be considered a variation of the Wheatstone Bridge designed to use an AC source by including additional impedances in equilibrium. Like in previous bridges we can calculate the value of the resistance and the capacitance simply by balancing the bridge using both potentiometers.
+
+## Questions ##
+
+1. In your own words, what are the objectives and the procedure of the practice? The main objective was to learn how use bridges as part of measuring instruments for unknown impedances, for example to detect the small changes in the resistance of a transducer like the thermistor. The procedure was to place the component with the unknown value on one side of the bridge and a variable component equivalent on the other, between them stands a null detector to indicate that the bridge is balanced when adjusting the variable component. Once balanced we can calculate the impedance from the principle of voltage dividers.
 2. Do you have all the necessary material to do the practice (not including: multimeters, power sources, oscilloscopes or signal generators / functions)? Yes
-3. What is the difference between the Wheatstone bridge, the capacitance comparison bridge and the resonance point?
+3. What is the difference between the Wheatstone bridge, the capacitance comparison bridge and the resonance point? The Wheatstone Bridge is used when measuring resistances and uses a DC source. The Capacitance Comparison Bridge is used when measuring inductances or capacitances and uses an AC source. Resonance Bridges are used when measuring frequencies in an AC inductive or capacitive circuit.
 4. In general, how are measuring bridges balanced? By changing the variable resistance of one of the resistors, using a potentiometer for example, while measuring the current flowing in the middle through the galvanometer, we say that the bridge is balanced when the current reaches zero.
 
+***
 
+# Worksheet 4 #
+
+**Theory**
 
