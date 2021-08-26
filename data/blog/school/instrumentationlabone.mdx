@@ -9,39 +9,23 @@ This is an overview of the knowledge needed for the selection and operation of m
 ***
 
 1. [Basic Concepts](#basic-concepts)
-	1. [Classification](#classification)
-	2. [Static and Dynamic Characteristics](#static-and-dynamic)
-	3. [Sensor Selection](#sensor-selection) 
-	4. Instrumentation and structured wiring
-2. Electrical measurements
-	1. Resistance
-	2. Capacitance
-	3. Inductance
-	4. Application in sensor design
-3. Position and motion measurements
-	1. Proximity sensors
-	2. Position and displacement instruments
-	3. Velocity and acceleration sensors
-	4. Force and vibration sensors
-	5. Diagrams and measurement standards
-4. Measurement of process variables
-	1. Temperature
-	2. Pressure
-	3. Flow
-	4. Level
-	5. Application in process design	
+2. [Sensor Classification](#sensor-classification)
+3. [Static and Dynamic Characteristics](#static-and-dynamic)
+4. [Circuit Bridges](#circuit-bridges) 
+5. [Instrumentation and signals](#instrumentation-and-signals)
+6. [Optocouplers](#optocouplers)
+7. [Operational Amplifiers](#operational-amplifiers)
+8. [Filters](#filters)
+9. [Oscillators and Converters](#oscillators-and-converters)
+10. [Piping and Diagrams (NEMA and IP)](#piping-and-diagrams)
+11. [LabView Filters](#labview-filters)
+12. [LabView DAQ](#labview-daq)
 
 ***
 
 # Basic Concepts #
 
-* Sensors and instruments
-* Sensor types
-* Signal conditioning circuits
-* Industrial instrumentation and related standards
-* Virtual instrumentation with LabView
-
-**Measuring Instrument or System**
+**Instrument**
 
 ![Measuring Instrument](/static/images/notes/MeasureSystemInstruLab.png)
 
@@ -49,28 +33,28 @@ The device detects an input with sensors or transducers. Then it process the inp
 
 **Sensors**
 
-Device that responds to any change in physical, chemical or even biological phenomena. The phenomena will change the physical, chemical or electromagnetic properties of the sensors themselves. The sensor's change will be processed into a more usable form like a voltage or current signal that the DAQ can condition (amplify, filter, convert etc). The relationship between the phenomena's input and the sensor's output needs to be linear, if not we need to calibrate the sensor to a reference value or standard to linearize its output. 
+Device that responds to any change in physical, chemical or even biological phenomena. The phenomena will change the physical, chemical or electromagnetic properties of the sensors themselves. The change will be processed into a more usable form like a voltage or current signal that the DAQ can condition (amplify, filter, convert etc). The relationship between the phenomena's input and the sensor's output needs to be linear, if not we must calibrate the sensor to a reference value or standard to linearize its output. 
 
 ![Thermocouple Sensor](/static/images/notes/ThermocoupleExampleInstruLab.png)
 
 For example, thermocouples are sensors that measure temperature at their junction (union of two different metals) producing a voltage that can then be measured by a voltmeter. The voltage originates from the Seebeck effect of metals when subjected to a temperature gradient. The thermocouple uses two different metals to measure their Seebeck voltage differential relative to a cold reference point, usually room temperature or 25°.
 
-Note that the range of temperatures that the thermocouple will be able to measure depends on the range on which voltage and temperature proportionality for both metals remain linear. A transducer is the part of the sensor that is the first in contact with the phenomena and usually its the one responsible for transforming the phenomena's energy into electricity. 
+Note that the range of temperatures that the thermocouple will be able to measure depends on the range on which the voltage and temperature proportionality for both metals remains linear. A transducer is the part of the sensor that is the first in contact with the phenomena and usually the one responsible for transforming the phenomena's energy into an electric signal. 
 
 ***
 
-## Classification ##
+# Sensor Classification #
 
-**Sensor Classification by Phenomena**
+**Sensors by Phenomena**
 
 ![Sensor Classification Phenomena](/static/images/notes/ThermocoupleInstruLab.png)
 
-**Sensor Classification by Power**
+**Sensors by Power**
 
+* Passive: Sensor that do require an external power source to function. Most resistive, inductive and capacitive sensors are passive. Note that inductive sensors will measure mostly metals while capacitive sensors can measure a broader variety of materials.
 * Active: Sensors that don't require an external power source since they generate power themselves (self generating) from the quantity they measure. Note that this sensors are calibrated to take into account the energy they consume in their measurements (Power Consumption Rating).
-* Passive: Sensor that do require an external power source to function. Most resistive, inductive and capacitive sensors are passive. Note that inductive sensors will measure mostly metals while capacitive sensors measure a broader variety of materials.
 
-**Sensor Classification by Output**
+**Sensors by Output**
 
 * Analog: Sensors that convert the phenomena to a *time-continuous* electrical form. For example thermocouples, RTD's or strain gauges.
 * Digital: Sensors that convert the phenomena to a *time-discrete* electrical form meaning a series of electrical pulses. For example encoders.
@@ -79,11 +63,11 @@ Note that the range of temperatures that the thermocouple will be able to measur
 
 Inverse sensors are *Piezoelectric* devices made of crystals that generate an output voltage when subjected to a vertical external force. We call them inverse since they can also act as actuators meaning that we can generate a horizontal force or vibration by applying an input voltage.
 
-**General Classification**
+**Instrument Classification**
 
 ![General Classification](/static/images/notes/GeneralInstrumentClassificationInstruLab.png)
 
-* Electrical instruments: They measure electrical quantities like power, voltage or current using a mechanical system that due to its inertia is prone to have a limited time response. They are made up of passive elements like resistors, inductors and capacitors, in contrast to electronic instruments that are made up of non linear semiconductor devices like diodes or transistors.
+* Electrical instruments: They measure electrical quantities like power, voltage or current using a mechanical system that due to its inertia is prone to have a limited time response. They are made up of passive elements like resistors, inductors and capacitors, in contrast to electronic instruments that are made up of non linear semiconductor components.
 * Absolute: Output is in terms of physical constraints. For example a tangent galvanometer, absolute electrometer or Rayleigh's current balance.
 
 $$
@@ -99,27 +83,31 @@ $$
 \end{gathered}
 $$
 
-* Secondary: Output is in terms of calibration when compared to absolute instruments. For example commercial measuring instruments like micrometer, caliper, level or gauge block.
-* Digital: Output in numeric form. They are more accurate by reducing human error when observing the measurement. For example a digital multimeter.
-* Analog: Output varies as it measures. Needle pointer indicates the magnitude. Prone to human error since it depends on the estimated observed position of the pointer. For example an analogue multimeter.
-* Deflection: A pointer deflects to the measure of the quantity, meaning that the quantity is measured by the net deflection. For example a permanent magnet moving coil ammeter or a simple weight pressure gauge scale.
+* Secondary: Output is in terms of calibration when compared to absolute instruments. Commercial measuring instruments like micrometer, caliper, level or gauge block.
+* Digital: Output in numeric form from a display, they are more accurate by reducing human error when observing the measurement. Digital multimeter.
+* Analog: Output varies as it measures, needle pointer indicates magnitude, prone to human error from the observed position of the pointer. Analogue multimeter.
+* Deflection: A pointer's net deflection is proportional to the quantity measured.  Permanent magnet moving coil ammeter or a simple weight pressure gauge scale.
 * Indicating: Indicates the current magnitude with a dial that moves on the graduated dial. Voltmeter, ammeter, power factor meter.
-* Integrating: Measures total energy supplied over a time interval via summation, meaning that the total displayed is a product of the time and the electrical quantity sampled. For example energy meters and watt-hour meters.
-* Recording: Records the current magnitude over a period of time. In a seismometer the moving system carries a pen that lightly touches the paper sheet, the curve drawn on the paper will then be translated to its corresponding electrical magnitude.
-* Null: In some phenomena it is convenient to measure the opposite effect needed to maintain a pointer stationary and then infer the value of the original quantity. For example a triple beam balance.
+* Integrating: Measures total energy supplied over a time interval via summation of the quantity sampled. Energy meters and watt-hour meters.
+* Recording: Records the current magnitude over a period of time. In a seismometer a moving system carries a pen over a paper sheet.
+* Null: It measures the opposite effect needed to maintain a pointer stationary and then infers the value of the original quantity. Triple beam balance.
 
-Deflection instruments depend on their calibration or reference value while null instruments need to have their opposing effect calibrated to a high accuracy therefore deflection instruments tend to have lower accuracy and sensitivity than null instruments but fare better in dynamic conditions where their intrinsic response time is quicker.
+Deflection instruments depend on their calibration while null instruments depend on the calibration of their opposing effect, therefore deflection instruments tend to have lower accuracy and sensitivity than null instruments but fare better in dynamic conditions where their intrinsic response time is faster.
 
 ***
 
-## Static and Dynamic ##
+# Static and Dynamic #
 
-**Static Characteristics**
+**Static**
 
 Characteristics of measured quantities that are constant or change slowly relative to time. For example the temperature in a furnace.
 
+* Precision: Closeness of the readings in relation to each other. Related to the static characteristic of repeatability.
 * Accuracy: Closeness of the readings in relation to the true value.
-* Absolute Accuracy: Percentage error of scale of range.
+
+![Accuracy and Precision](/static/images/notes/AccuracyPressicionLabInstru.gif)
+
+* Absolute Accuracy: Closeness of the reading to the true value in their common unit scale.
 
 $$
 \begin{gathered}
@@ -129,42 +117,38 @@ $$
 \end{gathered}
 $$
 
-* Relative Accuracy: Percentage error of true value.
+* Relative Accuracy: Closeness of the reading to the true value independent of their units.
 
 $$
 \begin{gathered}
-	E_r = \frac{|X_m - X_t|}{X_t}
+	E_r = \frac{|X_m - X_t|}{X_t} \times 100 \%
 \end{gathered}
 $$
 
-* Precision: Closeness of the readings in relation to each other. Usually related to the static characteristic of repeatability.
-
-![Accuracy and Precision](/static/images/notes/AccuracyPressicionLabInstru.gif)
-
 * Threshold: Smallest input after zero that the instrument can detect and output with certainty.
-* Dead Space: Starting from zero its the continuous range of input values where no output is generated, meaning that the threshold is the highest value of the dead space.
-* Resolution: Smallest *increment* between inputs after the threshold that the instrument can detect with certainty.
-* Range: The scale range is the highest possible reading of an instrument.
-* Span: Difference between the highest (range) and lowest (threshold) possible reading.
-* Repeatability: Precision (closeness) of the instrument measuring a constant quantity in the same conditions while at the same time being turned on and off. High repeatability corresponds to a low drift. Generally we test the repeatability of instruments as a whole not of individual sensors.
-* Drift: Offset in the instrument caused by an external phenomena like thermal EMF's, electromagnetic fields, vibration, temperature, wear, tear etc. Generally we test the drift of instruments as a whole not of individual sensors.
+* Dead Space: Starting from zero its the continuous range of input values where no output is generated. The threshold is the highest value of the dead space.
+* Resolution: Smallest *increment* between inputs after the threshold that it can detect with certainty.
+* Range: Highest possible measurement that it can output with certainty.
+* Span: Difference between the highest (range) and lowest (threshold) possible measurements.
+* Repeatability: Precision of the instrument's measurements while being turned on and off. High repeatability corresponds to a low drift.
+* Drift: Offset in the instrument caused by an external phenomena like EMF's, vibration, temperature, wear, tear etc.
 	* Zero Drift: Constant offset in the output for every input.
 	* Span Drift: Also called sensitivity drift is a change in the slope of the output for every input. Note that there is possible to have a combination of zero drift and the span drift.
-	* Zonal Drift: Sudden zero or span drift but localized to a specific range of inputs. Note that zonal drift is very difficult to compensate compared to zero drift or span drift.
+	* Zonal Drift: Sudden zero or span drift but localized to a specific range of inputs. Note that zonal drift is very difficult to compensate.
 * Sensitivity: Ratio between the magnitude of the output and the magnitude of the input (slope). Note that the unit of sensitivity is a combination of the output over the input.
-* Hysteresis: Instrument phenomena where the instrument takes a long time to unload the energy that was being loaded into it. It happens in electrical and mechanical instruments when the energy we were measuring remains in a stressed part of the system for a while even after removing the original load. 
+* Hysteresis: Instrument phenomena where it takes a long time to unload the energy that has being loaded into it. It happens in electrical and mechanical instruments when the energy we were measuring remains as residual energy in a stressed part of the system even after removing the original load. 
 
 ![Static Characteristics](/static/images/notes/StaticCharacteristicsInstruLab.png)
 
-An example of hysteresis takes place in transformers where the magnetic field in the coil used to increase or decrease the voltage dissipates a little bit of the input energy (load) energy into heat (heat losses) creating an offset between the output when loading compared to when its unloading.
+An example of hysteresis takes place in a transformer where the magnetic field in the coil used to increase or decrease the voltage is persistent so we need extra energy to counteract the residual magnetic field generated due to hysteresis. This extra energy is lost as heat in the ferromagnetic core.
 
-**Dynamic Characteristics**
+* [Video about Hysteresis](https://www.youtube.com/watch?v=FYZBmNxV9N4)
 
-Characteristics of measured quantities that change rapidly relative to time. For example when measuring force values as opposite force reactions introduce noise.
+**Dynamic**
 
-They can be divided into *Frequency* or *Time* characteristics.
+Characteristics of measured quantities that change rapidly relative to time. For example when measuring force values as opposite force reactions introduce noise. They can be divided into *Frequency* or *Time* characteristics:
 
-* Time Characteristics: Related to the instrument's response (output) when applying a step function as input.
+* Time: Related to the instrument's response (output) when applying a step function (input).
 	* First Order Response
 		* Rising Time: Time it takes the output to increase from 10% to 90%.
 		* Time Constant (Tau): Time it takes to reach 63.2% of its maximum output.
@@ -175,13 +159,13 @@ They can be divided into *Frequency* or *Time* characteristics.
 			* If less than one the system will overshoot (underdamped system).
 			* If equal to one the system will have a fast response (critically damped system).
 			* If more than one the system will have a slow response (overdamped system).
-		* Overshoot: Only when the damping factor is less than one we can measure the difference between the initial peak and the settling (smaller than 2%) output value.
-		* Settling Time: Time until the output stabilize within a 2% or 5% difference compared to its final value.
-		* Frequency Response: This and the Cut-Off frequency describe the response when the input changes by a known frequency, for example a sinusoidal output is expected to have a sinusoidal input for a lineal instrument.
+		* Overshoot: Difference between the initial peak and the settling (smaller than 2%) output value.
+		* Settling Time: Time until output stabilizes within a 2% or 5% difference to its final value.
+		* Frequency Response: Response (output) when the input changes by a known frequency, for example if the input is sinusoidal.
 * Frequency Characteristics: Related to the instrument's response (output) when applying a variable excitation over time (sinusoidal function input).
-	* Frequency Response: At a certain point in frequency the stable output will start to decrease even if it continues oscillating.
-	* Cut-Off frequency: Frequency at which the output falls to 70.7% of the stable output value. This is equivalent to -3dB from the stable output, and represents the point at which the output power is halved. Note that this can be related to the rising time.
-	* Bandwidth: Range of frequencies between 0 and the Cut-Off frequency higher than 3dB. This characteristic indicates the instrument's response speed.
+	* Frequency Response: At a certain frequency the output will start to converge even if it continues oscillating.
+	* Cut-Off frequency: Frequency at which the output falls to 70.7% of the stable output value. This is equivalent to a difference of -3dB and represents the point at which the output power is halved. Note that this can be related to the rising time.
+	* Bandwidth: Range of frequencies between 0 and the Cut-Off frequency. This characteristic indicates the instrument's response speed.
 
 $$
 \begin{gathered}
@@ -194,26 +178,71 @@ $$
 
 **Selecting a Good Sensor**
 
-* High linearity, sensitivity and resolution.
-* Low noise, disturbance and power consumption.
+1. Description and functionality.
+2. Magnetic field interactions.
+3. Measurement limitations.
+4. Noise, disturbances, power consumption.
+5. Linearity, sensitivity, resolution.
+6. Integration, classification, resistance.
+
+**Power Consumption**
+
+Power is an expression of how much energy is being used per unit of time. In an electric circuit, sensor or instrument we generally measure its apparent power as $P_S = VI$ in Volts per Ampere. When the circuit uses DC or AC but only has a resistive load (phase angle equals 0) then the apparent power will be equal to the active (real, true) power used since $P_S = VI = P_P = VI\cos(0)$ in Watts. 
+
+When the circuit uses an AC source but has an inductive or a capacitive load then there will be a phase angle between the voltage and current supplied to the load. This phase angle or difference is caused by the residual energy stored in the inductors as magnetic fields or the capacitors as electric field, by measuring this phase angle we can calculate the power factor of the circuit:
+
+$$
+\begin{gathered}
+	\text{Power Factor}\\
+	\cos(\theta) = \frac{P}{VI} = \frac{P}{S} = \frac{P}{Q} = \frac{R_n}{Z_n}
+\end{gathered}
+$$
+
+When there is phase angle present the reactive power will be the unusable energy lost in the inductors or capacitors of the circuit $P_Q = VI\sin(\theta)$. Reactive power can be present when working with inductive motors, to mitigate the parasitic current that remains after it rotates we introduce additional capacitors reducing the overall power factor of the system. 
+
+Note that we can define apparent power in terms of the active and reactive powers $P_S = \sqrt{P_P^2 + P_Q^2}$. The phase angle of an ideal capacitive circuit (negative reactive power) makes the current to lead the supplied voltage by 90° and in an ideal inductive circuit (positive reactive power) it makes the current to lag the supplied voltage by 90°.
+
+**Capacitive and Inductive Sensors**
+
+Commonly used as contactless proximity sensors. Some advantages over its mechanical switch counterpart is that they don't need to calculate and set the angle of approach, the don't wear out since they have no moving parts, they need less maintenance time and they don't suffer from corrosion.
+
+Inductive proximity sensors work by generating a magnetic field through a coil and then using an oscillator (LC circuit) to generate a sinusoidal signal proportional to the magnetic field. As the metallic target passes in front of the sensor the amplitude of the sinewave changes as a response to the change in magnetic permeability. A trigger senses the change in amplitude and generates an output that is proportional to the target's distance.
+
+$$
+\begin{gathered}
+	L = \frac{N^2}{R} = \frac{N^2 \mu A}{l}\\
+	G = \frac{A}{l} \implies L = N^2 \mu G
+\end{gathered}
+$$
+
+The formulas mean that the self inductance of the coil can vary only by changing the number of turns, the geometric form factor (G) of the coil or the permeability of the medium. Inductive proximity sensors have a high switching rate (targets in fast succession), high durability and high integration, however they can only sense metals and have a maximum detection range of 100mm. 
+
+Capacitive proximity sensors work by generating an electric field through a plate and then use an oscillator (RC circuit) to generate a sinusoidal signal. As the target passes in front of the sensor it acts as the second plate needed to create a capacitor therefore increasing the capacitance of the electric field. 
+
+They have high array of material detection, work even when completely insulated (robust), have adjustable sensitivity and no moving parts, however they have a higher cost and a maximum detection range of 25mm. Their detection range will depend on the active surface of the plate, the target's dielectric constant and the surface area of the target. Temperature and target's speed also have a minimal effect.
+
+Capacitive proximity sensors are widely used as the underlying technology in touchscreens. For longer detection ranges we can use laser proximity sensors, some ultrasonic proximity sensors can be used in an industrial environment they are heavily dependent on an enclosure that reduces echo.
+
+**Autotransformers**
+
+They are transformers manufactured to have multiple output terminals, each with a different number of coils. They are used inside variable voltage sources like the brand Variac. When working with high voltage circuits we are more likely to need power resistors that can dissipated the extra energy, generally high power resistors are expected to be mounted on a sheet of metal for additional heat dissipation.
+
+**Voltage Value Representations**
+
+* Peak to Peak Voltage = $V_{pp}$
+* Peak Voltage (Amplitude) = $V_p$
+* Average Voltage (Sine) = $Vp \frac{2}{\pi}$
+* RMS Voltage = $\frac{V_p}{\sqrt{2}}$
+
+The RMS Voltage (Effective Voltage) represents the DC voltage equivalent of an AC voltage source that would generate the same power dissipation or heating effect with the current circuit load. This equivalence depends on the wave's behavior.
+
+![Different RMS Waves](/static/images/notes/DifferentRMSWavesLabInstru.png)
 
 ***
 
-## Sensor Selection ##
+# Circuit Bridges #
 
-Some concepts to consider when comparing sensors for an application are:
-
-1. Description and functionality
-2. Magnetic Field Interactions
-3. Measurement limitations
-4. Common usages.
-5. Accuracy, Precision, Sensitivity
-6. Integration (Connections Needed)
-7. Scalar of Vector detection.
-8. Classification
-9. Resistance
-
-**Wheatstone and Schering Bridges**
+**Wheatstone and Schering**
 
 ![Wheatstone and Schering](/static/images/notes/BridgesUsedwithSensorsinLabInstru.png)
 
@@ -222,15 +251,13 @@ Some concepts to consider when comparing sensors for an application are:
 
 **Resistive Sensors**
 
-Resistive sensors can include resistive transducers or variable resistance transducers. Used to measure temperature, pressure, displacement, force, vibrations, etc. They are usually secondary transducers since they receive the output from a primary mechanical transducer to which they are calibrated.
+Sensors that use variable or non-variable resistive transducers. They can measure temperature, pressure, displacement, force, vibrations, etc. Resistive transducers are usually considered secondary since they receive the output of a primary mechanical transducers to which they are calibrated to. Variable resistive transducers use the following principle: $R = \frac{\rho L}{A}$.
 
-Variable resistance transducer are based on the principle that resistance is proportional to the length of the conductor times its specific resistance (resistivity of the material) and inversely proportional to its area. $R = \frac{\rho L}{A}$ 
-
-* Sliding Contact Devices: The most common type is the *potentiometer* and its variable resistance transducer. Used to measure linear and rotary or angular displacement.
-* Wire resistance strain gauge: Used to measure force, stress and strain. The increase in length and decrease in cross section area from tension causes the resistance of its internal conductor to change. This resistance change is finally used to measure the input quantity.
-* Thermistor: Resistivity of the material changes when subjected to a change in temperature. Made from oxides of manganese, nickel and cobalt.
+* Sliding Contact Devices: The most common type is the *potentiometer*, can be used to measure linear and angular displacement.
+* Wire resistance strain gauge: Used to measure force, stress and strain. The increase in length and decrease in cross sectional area causes its resistance to change.
+* Thermistor: Resistance changes when subjected to a change in temperature. Made from oxides of manganese, nickel or cobalt.
 * Thermocouple: Based on the Seebeck, Peltier and Thomson effects.
-	* Seebeck: Two dissimilar elements joined at their ends experience an electromotive force in their junction.
+	* Seebeck: Two dissimilar elements experience a voltage in their junction.
 	* Peltier: Voltage generated depends on the temperature of the junction.
 	* Thomson: Voltage generated depends on the temperature gradient along the conductors in the circuit.
 
@@ -240,13 +267,11 @@ Variable resistance transducer are based on the principle that resistance is pro
 
 ![Thermistor Types](/static/images/notes/ThermistorTypesInstruLab.png)
 
-The Thermally Sensitive Resistor or Thermistor is a temperature sensing element composed of sintered semiconductor material with a large change in resistance from a small change in temperature. High accuracy from ±0.05% to ±0.02%. High sensitivity over a small temperature range. They can function with a small current reducing heat loss in its wiring. High electrical noise immunity and easy to interface to other electronic components.
+The Thermally Sensitive Resistor or Thermistor is a temperature sensing element composed of sintered semiconductor material with a large change in resistance from a small change in temperature. High accuracy from ±0.05% to ±0.02%, high electrical noise immunity, easy to interface and high sensitivity over its small temperature range. They work with a very small current reducing heat losses in its wiring.
 
-Thermistors, unlike RTD's and thermocouples, don't have standards associated with their temperature-resistance curves, in other words each thermistor will have its own unique curve. Thermistors can have either a positive (PTC) or negative (NTC) temperature coefficients. A negative temperature coefficient means that as the temperature increases the resistance decreases.
+Thermistors, unlike RTD's and thermocouples, don't have standards associated with their temperature-resistance curves, in other words each thermistor will have its own unique curve. They can have either positive (PTC) or negative (NTC) temperature coefficients. NTC thermistors decrease their resistance as the temperature raises. Their small size makes them suceptible to self heating errors and later prone to irreversible de-calibration (extreme drift).
 
- NTCs are the most common for temperature sensing and compensation however note that their curve is non linear outside of a small range of 0° to 70°. Their small mass make them susceptible to self heating errors and later prone to irreversible de-calibration (extreme drifting).
-
-**Temperature vs Resistance Curve**
+**Temperature vs Resistance Curves**
 
 ![Temperature Sensors](/static/images/notes/TemperatureSensorComparisoninstrulab.png)
 
@@ -264,4 +289,32 @@ Thermistors, unlike RTD's and thermocouples, don't have standards associated wit
 
 ***
 
+# Instrumentation and Signals #
 
+***
+
+# Optocouplers #
+
+***
+
+# Operational Amplifiers #
+
+***
+
+# Filters #
+
+***
+
+# Oscillators and Converters #
+
+***
+
+# Piping and Diagrams #
+
+***
+
+# LabView Filters #
+
+***
+
+# LabView DAQ #

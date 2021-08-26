@@ -37,55 +37,28 @@ This is an overview of the knowledge needed for the selection and operation of m
 
 **Theory**
 
-Inductance is the property of an inductor of reacting to a change in its current by changing the energy of its magnetic field generating an opposite voltage (counter electromotive force). The voltage of an inductor must relate to a change in current $V_L = L(\frac{di}{dt})$ where L is the inductance constant of proportionality measured in Henrys.
+Inductance is the property of an inductor of reacting to a change in its current by changing the energy of its magnetic field and generating an opposite voltage (counter electromotive force). The voltage of an inductor therefore must relate to a change in current $V_L = L(\frac{di}{dt})$ where L is the inductance constant of proportionality measured in Henrys.
 
-The capacitance constant of the geometric configuration is the amount of charge that two bodies with a constant shape and spacing can store per volt difference between them. This relation is $C=\frac{q}{V}$
+The capacitance constant of the geometric configuration is the amount of charge that two bodies with a constant shape and spacing can store per volt-difference between them. This relation can be expressed as $C=\frac{q}{V}$
 
 **Capacitance Printed Value**
 
-The capacitance is normally printed in most plastic film types usually as micro or nano farads.Tolerances use upper case letters (M=±20%, K=±10%, J=±5%, H=±2.5% and F=±1pF). Working voltage is also usually printed with a (V).
+The capacitance is normally printed in most plastic film types usually as micro or nano farads. Tolerances use upper case letters (M=±20%, K=±10%, J=±5%, H=±2.5% and F=±1pF), with K being the most common. Working voltage is also usually printed with a (V): 150n = 150nF; u47 = 0.47uF; 4n7 = 4.7nF.
 
-* 0.003M 400V = 0.003uF 400V ±20%
-* 0.22uFK 250V = 0.22uF 250V ±10%
-* 150n 250 = 150nF 250V ±10%
-* 68n 100 = 68nF 100V
-* u47 100 = 0.47uF 100V
-* 4n7 400 = 4.7nF 400V 
+Some capacitors use a three digit number system where the third digit is a picofarad multimeter: 474K 63 = 47x1^4pF = 0.47uF 63VDC ±10%; 102K 50 = 10x1^2pF = 0.001uF 50VDC ±10%.
 
-It can also use a three digit number system where the third digit is a picofarad multimeter.
-
-* 474K 63 = 47x1^4pF = 0.47uF 63VDC ±10%
-* 102K 50 = 10x1^2pF = 0.001uF 50VDC ±10%
-* 223K 63 = 22x1^2pF = 0.47uF 63VDC ±10%
-* 154M 100 = 15x1^4pF = 0.47uF 100VDC ±20%
-
-Ceramic disk capacitors generally contain thermal tolerances. Whole numbers are usually pF and decimal numbers in uF. Odd looking numbers may use the three digit number system. 
-
-* 22M 1KV = 22pF ±20% 1000WV
-* Z5U 0.0033 ±20% = 0.033uF ±20% and +22% to -56% from 10° to 85°
-* X7R 10K 1KV = 10pF ±10% 1000WV and ±15% from -55° to 125° 
-* K5U 474M = 0.47uF ±20% and +20% to -70% from 25° to 85°
-* COH 7D = 7pF ±0.5pF and +60ppm/°C from 25° to 85°
-* 20 ±20% 50VAC 400VDC = 20pF ±20% 50WV AC or 400WV DC
-* Z5P 2200K = 2200pF ±10% (Temperature Change Unknown)
-* 200nZ 12V = 200nF 12WV DC and +80° to -20° 
-* N2200 47pF ±20% = 47pF ±20% NTC of 2200ppm/°C
+Ceramic disk capacitors generally contain thermal tolerances (Z5U, K5U, X7R, COH, N2200). Whole numbers are usually pF and decimal numbers in uF. Odd looking numbers may use the three digit number system. 
 
 **List of Components**
 
 * Multimeter, Oscilloscope, Function Generator
-* 2 Ceramic Capacitors of Different Values
-* 2 Polyester Capacitors of Different Values
-* 2 Electrolytic Capacitors of Different Values
-* 1kOhm Resistor
-* 2 Inductors
-* 1 Rectifying Diode
-* 1 Switching Diode
-* 1 LED
-* 1 4.7kOhm Resistor
-* 1 0.22uF Capacitor
+* 2 Ceramic, 2 Polyester and 2 Electrolytic capacitors
+* 1k, 4.7k Ohm Resistors, 2 Inductors, 1 0.22uF Capacitor
+* 1 Rectifying Diode, 1 Switching Diode, 1 LED.
 
 ![Components](/static/images/notes/ComponentListWorksheetOne.png)
+
+## Experiment 1 ##
 
 **1 Capacitance with Multimeter (SKIP)**
 
@@ -93,6 +66,8 @@ Ceramic disk capacitors generally contain thermal tolerances. Whole numbers are 
 * The maximum voltage depends on the insulator. If exceeded the dielectric breaks.
 * Electrolytic capacitors have polarity that needs to be identified.
 * Measure nominal capacitance and verify its value with multimeter.
+
+## Experiment 2 ##
 
 **2 Capacitance with AC Voltmeter**
 
@@ -111,6 +86,8 @@ $$
 
 ![Experiment Two](/static/images/notes/ExperimentTwoFromWorksheetOne.png)
 
+## Experiment 3 ##
+
 **3 Inductance with AC Voltmeter**
 
 * Unknown inductance is connected in series with 1kOhm.
@@ -124,7 +101,7 @@ $$
 
 ![Experiment Three](/static/images/notes/ExperimentThreeFromWorksheetOne.png)
 
-**Questions**
+## Questions ##
 
 1. In your own words what are the objectives and procedure of the practice? The main objective was to learn how to measure capacitance or inductance using instruments like the AC Voltmeter instead of using the  Multimeter. The procedure was to place the capacitor or the inductor in series with a resistance and using by using both voltages being able to solve for their values, in the case of the inductor we took into account the internal resistance of the component as an additional resistor in series.
 2. You have all the necessary material to carry out the practice (not including multimeters, power supplies, oscilloscopes, or power generators signals / functions)? Yes
