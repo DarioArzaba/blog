@@ -60,44 +60,35 @@ Ceramic disk capacitors generally contain thermal tolerances (Z5U, K5U, X7R, COH
 
 ## Experiment 1 ##
 
-**1 Capacitance with Multimeter (SKIP)**
+**Capacitance with Multimeter (SKIP)**
 
-* The nominal capacitance is printed on the body.
-* The maximum voltage depends on the insulator. If exceeded the dielectric breaks.
-* Electrolytic capacitors have polarity that needs to be identified.
-* Measure nominal capacitance and verify its value with multimeter.
+The nominal capacitance is printed on the body. The maximum voltage depends on the insulator. If exceeded the dielectric breaks. Electrolytic capacitors have a polarity that needs to be identified.
+
+1. Read the nominal capacitance of various capacitors and verify the value with a multimeter.
 
 ## Experiment 2 ##
 
-**2 Capacitance with AC Voltmeter**
+**Capacitance with AC Voltmeter**
 
-* Limited to unpolarized capacitors starting from 1nF.
-* Needs a sine wave of known frequency (100Hz).
-* Needs a voltage lower than the capacitor's capacity.
-* Unknown capacitor is connected in series with 1kOhm.
-* The voltage in the resistance is measured with the voltmeter.
-* Current can be obtained from $I = \frac{V_R}{R}$
-* With the current we measure the voltage in the capacitor.
-* Capacitance can be found from the equation:
+Limited to unpolarized capacitors starting from 1nF. Needs a sine wave of known frequency. Needs a voltage lower than the capacitor's capacity.
 
-$$
-C = \frac{I}{2\pi f V_C}
-$$
+1. Use an AC sine wave of 100Hz.
+2. Connect the *unknown* capacitor in series with a 1k Ohm resistor.
+3. Measure the voltage in the resistor.
+4. Calculate the current in the loop as $I = \frac{V_R}{R}$
+5. Use the current in the loop to measure the voltage in the capacitor.
+6. Calculate the capacitance as $C = \frac{I}{2\pi f V_C}$
 
 ![Experiment Two](/static/images/notes/ExperimentTwoFromWorksheetOne.png)
 
 ## Experiment 3 ##
 
-**3 Inductance with AC Voltmeter**
+**Inductance with AC Voltmeter**
 
-* Unknown inductance is connected in series with 1kOhm.
-* Measure the internal resistance ( $r$ ) of the inductor. 
-* Measure the voltage in the resistor and in the inductor.
-* Inductance can be found from the equation:
-
-$$
-L = \frac{\sqrt{(\frac{V_L (R)}{V_R})^2 - r^2}}{2\pi f}
-$$
+1. Connect the *unknown* inductance in series with a 1k Ohm resistor.
+2. Measure the internal resistance of the inductor.
+3. Measure the voltage in the resistor and in the inductor.
+4. Calculate the inductance as $L = \frac{\sqrt{(\frac{V_L (R)}{V_R})^2 - r^2}}{2\pi f}$
 
 ![Experiment Three](/static/images/notes/ExperimentThreeFromWorksheetOne.png)
 
@@ -114,7 +105,7 @@ $$
 
 **Theory**
 
-Power is the work done per unit of time,expressed in Joules per second. Electrical power is the work or energy dissipated in a certain load per unit of time, expressed in Watts. The power in DC in a load is $P = V_L I_L$ therefore it can be measured simply by using an Ammeter and a Voltmeter.
+Power is the work done per unit of time, expressed in Joules per second. Electrical power is the work or energy dissipated in a certain load per unit of time, expressed in Watts. The power in DC in a load is $P = V_L I_L$ therefore it can be measured simply by using an Ammeter and a Voltmeter.
 
 The direct measurement of the load voltage and current may be different because of the internal resistances of the Ammeter and Voltmeter. The difference can be of the order of $\frac{|R_L - R_I|}{R_L}$ where $R_L$ is the load's resistance and $R_I$ is the instrument's resistance.
 
@@ -122,22 +113,22 @@ In AC circuits we use the *3 Voltmeter* method. In this configuration the averag
 
 **List of Components**
 
-* 1 Power source
-* 1 Autotransformer (Variac)
-* 3 Multimeters
-* 1 Power resistor of 10Ohm
-* 1 Power resistor of 2Ohm
-* 1 Ceramic Capacitor of 0.22uF
-* 1 Resistor of 18Ohm
+* 1 Power source, 1 Autotransformer, 3 Multimeters
+* 1 Power resistor of 10Ohm and 1 of 20 Ohm
+* 1 Ceramic Capacitor of 0.22uF, 1 Resistor of 18Ohm
 
-**1 Power Measurement in DC circuits**
+## Experiment 1 ##
+
+**Power Measurement in DC circuits**
 
 * Place the voltmeter and the ammeter in series with the source and 10Ohm.
 * Calculate the power and compare from the two configurations.
 
 ![Experiment One](/static/images/notes/ExperimentOneWorsheetTwo.png)
 
-**2 Power measurement in AC circuits**
+## Experiment 2 ##
+
+**Power measurement in AC circuits**
 
 * Place 3 voltmeters forming a series circuit with an AC source (20Vpp).
 * Use a power resistance of 2Ohms (R) and power resistance of 10Ohms (Load)
@@ -146,7 +137,9 @@ In AC circuits we use the *3 Voltmeter* method. In this configuration the averag
 
 ![Experiment Two](/static/images/notes/ExperimentTwoWorsheetTwo.png)
 
-**3 Power increase effects**
+## Experiment 3 ##
+
+**Power increase effects**
 
 * Use a 18Ohm resistor.
 * Apply various voltage values and fill the table.

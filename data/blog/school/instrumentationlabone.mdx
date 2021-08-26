@@ -127,7 +127,7 @@ $$
 
 * Threshold: Smallest input after zero that the instrument can detect and output with certainty.
 * Dead Space: Starting from zero its the continuous range of input values where no output is generated. The threshold is the highest value of the dead space.
-* Resolution: Smallest *increment* between inputs after the threshold that it can detect with certainty.
+* Resolution: Smallest and certain increment between inputs after the threshold.
 * Range: Highest possible measurement that it can output with certainty.
 * Span: Difference between the highest (range) and lowest (threshold) possible measurements.
 * Repeatability: Precision of the instrument's measurements while being turned on and off. High repeatability corresponds to a low drift.
@@ -159,7 +159,7 @@ Characteristics of measured quantities that change rapidly relative to time. For
 			* If less than one the system will overshoot (underdamped system).
 			* If equal to one the system will have a fast response (critically damped system).
 			* If more than one the system will have a slow response (overdamped system).
-		* Overshoot: Difference between the initial peak and the settling (smaller than 2%) output value.
+		* Overshoot: Difference between initial peak and settling (<2% final value).
 		* Settling Time: Time until output stabilizes within a 2% or 5% difference to its final value.
 		* Frequency Response: Response (output) when the input changes by a known frequency, for example if the input is sinusoidal.
 * Frequency Characteristics: Related to the instrument's response (output) when applying a variable excitation over time (sinusoidal function input).
@@ -187,9 +187,11 @@ $$
 
 **Power Consumption**
 
-Power is an expression of how much energy is being used per unit of time. In an electric circuit, sensor or instrument we generally measure its apparent power as $P_S = VI$ in Volts per Ampere. When the circuit uses DC or AC but only has a resistive load (phase angle equals 0) then the apparent power will be equal to the active (real, true) power used since $P_S = VI = P_P = VI\cos(0)$ in Watts. 
+Power is the work done per unit of time or how much energy is being used by the system, therefore electrical power is the energy dissipated by the impedances of a circuit. When we have a DC source or an AC source but with a resistive load (zero phase angle) then the apparent power, measured in Volt per Ampere, will be equal to the active (real, true) power $P_S = VI = P_P = VI\cos(0) = \sqrt{P_P^2 + P_Q^2}$ measured in Watts.
 
-When the circuit uses an AC source but has an inductive or a capacitive load then there will be a phase angle between the voltage and current supplied to the load. This phase angle or difference is caused by the residual energy stored in the inductors as magnetic fields or the capacitors as electric field, by measuring this phase angle we can calculate the power factor of the circuit:
+When the circuit uses an AC source but with an inductive or capacitive load then there will be a non-zero phase angle between the voltage and current supplied to the load. This phase angle is caused by the residual (unusable, lost) energy stored in the inductors as magnetic fields or the capacitors as electric fields, this is called the reactive power $P_Q = VI\sin(\theta)$. 
+
+Reactive power is present in inductive motors, to mitigate the parasitic current left after its rotation we add capacitors that reduce the overall power factor of the system. The power factor is the relation between the resistive loads and the impedances. By measuring the phase angle we can calculate the power factor of the circuit:
 
 $$
 \begin{gathered}
@@ -198,15 +200,13 @@ $$
 \end{gathered}
 $$
 
-When there is phase angle present the reactive power will be the unusable energy lost in the inductors or capacitors of the circuit $P_Q = VI\sin(\theta)$. Reactive power can be present when working with inductive motors, to mitigate the parasitic current that remains after it rotates we introduce additional capacitors reducing the overall power factor of the system. 
-
-Note that we can define apparent power in terms of the active and reactive powers $P_S = \sqrt{P_P^2 + P_Q^2}$. The phase angle of an ideal capacitive circuit (negative reactive power) makes the current to lead the supplied voltage by 90° and in an ideal inductive circuit (positive reactive power) it makes the current to lag the supplied voltage by 90°.
+The phase angle of an ideal capacitive circuit (negative reactive power) makes the current lead the supplied voltage by 90° and in an ideal inductive circuit (positive reactive power) it makes the current to lag by 90°. In real circuits the phase angle is a usually lower than 90 degrees.
 
 **Capacitive and Inductive Sensors**
 
 Commonly used as contactless proximity sensors. Some advantages over its mechanical switch counterpart is that they don't need to calculate and set the angle of approach, the don't wear out since they have no moving parts, they need less maintenance time and they don't suffer from corrosion.
 
-Inductive proximity sensors work by generating a magnetic field through a coil and then using an oscillator (LC circuit) to generate a sinusoidal signal proportional to the magnetic field. As the metallic target passes in front of the sensor the amplitude of the sinewave changes as a response to the change in magnetic permeability. A trigger senses the change in amplitude and generates an output that is proportional to the target's distance.
+Inductive proximity sensors work by generating a magnetic field through a coil and then using an oscillator (LC circuit) to generate a sinusoidal signal proportional to the magnetic field. As the metallic target passes in front of the sensor the amplitude of the sinewave changes as a response to the change in permeability. A trigger senses the change in amplitude and generates a response proportional to the target's distance. They have a high switching rate (targets in fast succession), high durability and high integration, however they can only sense metals and have a maximum detection range of 100mm. 
 
 $$
 \begin{gathered}
@@ -215,28 +215,24 @@ $$
 \end{gathered}
 $$
 
-The formulas mean that the self inductance of the coil can vary only by changing the number of turns, the geometric form factor (G) of the coil or the permeability of the medium. Inductive proximity sensors have a high switching rate (targets in fast succession), high durability and high integration, however they can only sense metals and have a maximum detection range of 100mm. 
-
-Capacitive proximity sensors work by generating an electric field through a plate and then use an oscillator (RC circuit) to generate a sinusoidal signal. As the target passes in front of the sensor it acts as the second plate needed to create a capacitor therefore increasing the capacitance of the electric field. 
-
-They have high array of material detection, work even when completely insulated (robust), have adjustable sensitivity and no moving parts, however they have a higher cost and a maximum detection range of 25mm. Their detection range will depend on the active surface of the plate, the target's dielectric constant and the surface area of the target. Temperature and target's speed also have a minimal effect.
+Capacitive proximity sensors work by generating an electric field through a plate and then using an oscillator (RC circuit) to generate a sinusoidal signal. As the target passes in front of the sensor it acts as the second plate needed to create a capacitor, therefore increasing its capacitance. They have high array of material detection, work even when completely insulated (robust) and adjustable sensitivity, however they are more expensive and a maximum detection range of 25mm. Their detection range will depend on the active surface of the plate, the target's dielectric constant and the surface area of the target. Temperature and target's speed also have a minimal effect.
 
 Capacitive proximity sensors are widely used as the underlying technology in touchscreens. For longer detection ranges we can use laser proximity sensors, some ultrasonic proximity sensors can be used in an industrial environment they are heavily dependent on an enclosure that reduces echo.
 
 **Autotransformers**
 
-They are transformers manufactured to have multiple output terminals, each with a different number of coils. They are used inside variable voltage sources like the brand Variac. When working with high voltage circuits we are more likely to need power resistors that can dissipated the extra energy, generally high power resistors are expected to be mounted on a sheet of metal for additional heat dissipation.
+Transformers manufactured to have multiple output terminals, each with a different number of coils. They are used inside variable voltage sources like the brand Variac. When working with high voltage circuits we are more likely to need power resistors that can dissipate the extra energy, generally high power resistors are expected to be mounted on a sheet of metal for additional heat dissipation.
 
 **Voltage Value Representations**
+
+![Different RMS Waves](/static/images/notes/DifferentRMSWavesLabInstru.png)
+
+The RMS Voltage (Effective Voltage) represents the DC voltage equivalent of an AC voltage source that would generate the same power dissipation or heating effect with the current circuit load. This equivalence depends on the wave's behavior.
 
 * Peak to Peak Voltage = $V_{pp}$
 * Peak Voltage (Amplitude) = $V_p$
 * Average Voltage (Sine) = $Vp \frac{2}{\pi}$
 * RMS Voltage = $\frac{V_p}{\sqrt{2}}$
-
-The RMS Voltage (Effective Voltage) represents the DC voltage equivalent of an AC voltage source that would generate the same power dissipation or heating effect with the current circuit load. This equivalence depends on the wave's behavior.
-
-![Different RMS Waves](/static/images/notes/DifferentRMSWavesLabInstru.png)
 
 ***
 
@@ -255,6 +251,7 @@ Sensors that use variable or non-variable resistive transducers. They can measur
 
 * Sliding Contact Devices: The most common type is the *potentiometer*, can be used to measure linear and angular displacement.
 * Wire resistance strain gauge: Used to measure force, stress and strain. The increase in length and decrease in cross sectional area causes its resistance to change.
+* Force Torque Sensors: Made from multiple strain gauges can measure forces and torques in three dimensional space.
 * Thermistor: Resistance changes when subjected to a change in temperature. Made from oxides of manganese, nickel or cobalt.
 * Thermocouple: Based on the Seebeck, Peltier and Thomson effects.
 	* Seebeck: Two dissimilar elements experience a voltage in their junction.
