@@ -24,3 +24,91 @@ Named / Optional Parameters This is a language feature that is featured heavily 
 tkinter tkinter is the "official" GUI that Python supports. It runs on Windows, Linux, and Mac. It was chosen as the first target GUI framework due to its ubiquity. Nearly all Python installations, with the exception of Ubuntu Linux, come pre-loaded with tkinter. It is the "simplest" of the GUI frameworks to get up an running (among Qt, WxPython, Kivy, etc).
 
 From the start of the PSG project, tkinter was not meant to be the only underlying GUI framework for PySimpleGUI. It is merely a starting point. All journeys begin with one step forward and choosing tkinter was the first of many steps for PySimpleGUI. Now there are 4 ports up and running - tkinter, WxPython, Qt and Remi (web support)
+
+
+
+# Extending the Module #
+
+By design the module was build for quick GUI prototyping and therefore doesn't include every tkinter setting, however you can extend its functionality for your particular edge case. Most of this edge cases are at the *element* level, meaning that if you need an element to do something outside of the API we recommend that you modify the `Element.Widget` class variable. Note that you must `Read` or `Finalize` the window before accessing the widget directly. You can do this by adding the `finalize` parameter to the `Window` call.
+
+```python
+window = sg.Window('Window Title', layout, finalize=True)
+```
+
+In one example case a user wanted to disable the focus property that happened on their custom-made button when changing tabs. There is a way to disable focus in PySimpleGUI but it is global, fortunately we can use the `Widget` class variable to specify the properties of that particular element.
+
+```python
+window[button_key].Widget.config(takefocus=0)
+```
+
+This is how you can access most of tkinter element options without the need of importing tkinter itself, the only thing you will need is the widget's type. To get the type of a widget you have implemented you can use its key and call:
+
+```python
+print(type(window[your_element_key].Widget))
+```
+
+At this moment there is no direct access to the window as a class variable, but you can access a similar root object called `sg.Window.TKroot`. Also you can skip PySimpleGUI and receive tkinter events directly via `Window.read()`. To do so you will use the `bind` method included in Elements and Windows. This method needs a string with the events to bind and a key modifier. 
+
+If your element's key is a string then it will be appended, if not then it will be returned separately as a tuple. We provide the member variable `user_bind_event` containing information that tkinter generated from user bindings.
+
+```python
+# Direct bind of an event to an element
+window['-KEY-'].bind('<TKINTER EVENT>', 'STRING TO APPEND')
+# Direct bind of an event to the window
+window.bind('<TKINTER EVENT>', 'STRING TO APPEND')
+# To unbind simply use the unbind method.
+window['-KEY-'].unbind('TKINTER EVENT')
+```
+
+* [Tkinter Bind Events](https://www.tcl.tk/man/tcl8.6.11/TkCmd/bind.html)
+
+For example:
+
+```python
+import PySimpleGUI as sg
+sg.theme('Dark Green 2')
+layout = [  [sg.Text('Custom Binding Example')], [sg.Input(key='-IN1-')], [sg.Input(key='-IN2-')], [sg.Button('Go'), sg.Button('Unbind'),sg.Button('Exit')] ]
+window = sg.Window('Window Title', layout, finalize=True)
+
+window.bind("<Button-1>", 'Window Click')
+window['Go'].bind("<Button-3>", ' +RIGHT CLICK+')
+window['-IN2-'].bind("<FocusIn>", ' +FOCUS+')
+
+while True:
+	event, values = window.read()
+	print(event, values)
+	if event in (sg.WIN_CLOSED, 'Exit'):
+		break
+	if event == 'Unbind':
+		window['Go'].unbind('<Button-3>')
+
+window.close()
+```
+
+# Demo Programs #
+
+Use the [hundreds of sample programs](https://github.com/PySimpleGUI/PySimpleGUI/tree/master/DemoPrograms) to jumpstart your app and understand specific integration solutions with other python modules. You can also find a lot of them in [Trinket](http://Trinket.PySimpleGUI.org).
+
+# Creating an EXE #
+
+You can create a single executable without the need of a python distribution.
+
+```bash
+pip install PySimpleGUI
+pip install PyInstaller
+pyinstaller -wF my_program.py
+```
+
+If you get the error `script '\src\tkinter' not found` try adding `--hidden-import tkinter` to your command. When debugging your program you can use the high level API function `sg.Print()`, by doing `print = sg.Print` at the start of your script you will route your `stdout` and `stderror` to a scrollable window instead of the terminal.
+
+# Look And Feel #
+
+By calling `sg.ChangeLookAndFeel(LookAndFeelValue)` were you can generate the latest Look and Feel values by calling `ListOfLookAndFeelValues()`. What this function actually does is set a lot of the theme values using `Set Options`: 
+
+```python
+SetOptions(background_color=colors['BACKGROUND'], text_element_background_color=colors['BACKGROUND'], element_background_color=colors['BACKGROUND'], text_color=colors['TEXT'], input_elements_background_color=colors['INPUT'], button_color=colors['BUTTON'], progress_meter_color=colors['PROGRESS'], border_width=colors['BORDER'], slider_border_width=colors['SLIDER_DEPTH'], progress_meter_border_depth=colors['PROGRESS_DEPTH'], scrollbar_color=(colors['SCROLL']), element_text_color=colors['TEXT'], input_text_color=colors['TEXT_INPUT'])
+```
+
+As one last tip, since the module uses deeply nested objects we can print a nicely formatted representation by calling `sg.ObjToSting(Object)`.
+
+***
