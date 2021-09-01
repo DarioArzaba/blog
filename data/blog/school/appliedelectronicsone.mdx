@@ -9,14 +9,7 @@ This is an overview of the knowledge needed for designing electronic solutions u
 ***
 
 1. [Op-Amp as Integrated Circuit](#operational-amplifier)
-	1. Differential Amplifiers
-	2. Current sources and active loads
-	3. Live drift
-	4. Output stages
-	5. Equivalent model of the Op-Amp
-	6. Ideal Op-Amp behavior
-	7. Transfer function
-2. Circuits with Op-Amps
+2. [Circuits with Op-Amps](#circuits-with-op-amps)
 	1. Investor and not investor
 	2. Adder
 	3. Differential amplifier circuit	
@@ -50,11 +43,11 @@ This is an overview of the knowledge needed for designing electronic solutions u
 
 ![Simple Op-Amp](/static/images/notes/LM741AppliedElectro.png)
 
-Op-Amps are high gain, direct current, coupled electronic amplifier devices with two inputs and one output, in other words they are a voltage dependent voltage source. The first monolithic op-amp was created in 1964 at the Fairchild Semiconductor Company by Robert John Widlar model μA702. Despite living in a digital world Op-Amps are still widely used in engineering when working with analog signals.
+Op-Amps are high gain, direct current, coupled electronic amplifiers with two inputs and one output, in other words they are voltage dependent voltage sources. The first monolithic op-amp was created in 1964 at the Fairchild Semiconductor Company by Robert John Widlar (μA702). Despite living in a digital world they are still widely used in engineering when working with analog signals.
 
-Op-Amps are bipolar in nature since they can be supplied with a negative (VEE Emitter or VDD Drain) or positive (VCC Collector or VSS Source) voltage sources. This working voltages produce a negative (Ic-) and positive (Ic+) currents respectively. Note that VEE and VCC apply to BJT transistor based Op-Amps while VCC and VSS apply to FET transistor based Op-Amps.
+Op-Amps are bipolar in nature since they can be supplied with a negative (VEE Emitter or VDD Drain) or positive (VCC Collector or VSS Source) voltage source. The working voltage sources produce negative (Ic-) and positive (Ic+) currents. Note that VEE and VCC apply to BJT transistor based Op-Amps while VCC and VSS apply to FET transistor based Op-Amps.
 
-Aside from its voltage sources the Op-Amp uses a Non Inverting (Vp) and Inverting (Vn) input voltages as signals used to determine its output voltage (Vo) value. The range of voltages an Op-Amp can supply is given by its voltage sources. Kirchhoff's Current Law shows that every current that enters and exits the Op-Amp must equal cero: $i_n + i_p + i_{c+} + i_{c-} + i_o = 0$
+Aside from its voltage sources the Op-Amp uses a Non Inverting (Vp) and Inverting (Vn) inputs as signals used to determine its output voltage (Vo). The range of voltages that an Op-Amp can output is determined by its sources. Kirchhoff's Current Law shows that every current that enters and exits the Op-Amp must equal cero: $i_n + i_p + i_{c+} + i_{c-} + i_o = 0$
 
 
 ![Detailed Op-Amp](/static/images/notes/DetailedOpAmpAppliedElectro.png)
@@ -68,11 +61,9 @@ $$
 \end{gathered}
 $$
 
-As mentioned before the differential voltage (Vi) is used to determined the output voltage (Vo) of the internal dependent voltage source that is composed of transistors. The factor by which the differential voltage relates to the output voltage is called open loop gain (A).
+As mentioned before the voltage differential (Vi) is used to determine the output voltage (Vo) of the internal source composed of transistors. The factor by which the differential voltage relates to the output voltage is called open loop gain (A).
 
-The *Op-Amp Curve* represents the differential-output voltage relation and the range in which this relation remains linear, outside of this region (limited by the voltage sources) the differential voltage will have little effect over the output voltage (saturation).
-
-The ideal Op-Amp is a model where we assume the following:
+The *Op-Amp Curve* represents the range in which the relation between the input voltage differential relates to the voltage output (limited by the voltage sources). Outside of the linear range the input will have little effect over the output, meaning that the output will remain constant (saturation).
 
 | Value | Ideal Model | Real Op-Amp |
 | :---: | :---: | :---: |
@@ -83,9 +74,11 @@ The ideal Op-Amp is a model where we assume the following:
 | Bias Currents $i_p$ and $i_n$ | 0 | Microamperes to Nanoamperes (Current from signals) |
 | Bias Voltage (Supply) | Any Value | Generally $\pm 18 V$ |
 
-NOTE: A hook ammeter is used to measure current without opening the circuit. Another way is by using a shunt resistor.
+A hook ammeter is used to measure current without opening the circuit, another way of measuring current is by using a shunt resistor.
 
 ***
+
+# Circuits with Op Amps #
 
 ![Negative Feedback](/static/images/notes/ExampleIdealInvertingOpAmpAppliedElectro.png)
 
@@ -120,6 +113,24 @@ $$
 	\therefore G = \frac{-R_2}{R_1}
 \end{gathered}
 $$
+
+Virtual ground is a technique used to simplify the Op Amp analysis, we assume that the invertor input is connected to ground $V_n = V_p$ meaning that it has no potential differential, this is generally true even if we don't have a galvanic connection to ground. Note that this is only valid if the open loop gain is much more than the closed loop gain from the resistors.
+
+Generally the open loop gain will be greater than the closed loop gain since it isn't common to use resistors with such a big difference between their values. Another thing to consider is that you should use resistors with high resistances to help the input current be as close to zero as possible.
+
+$$
+\begin{gathered}
+	V = (R)(I) \implies I = \frac{V}{R}\\
+	I_{R1} =  I_{R2} = I_{o}\\
+	I_{R1} = \frac{V_{in}  - V_n}{R_1}\\
+	I_{R2} = \frac{V_n  - V_o}{R_2}\\
+	\frac{V_{in}  - V_n}{R_1} = \frac{V_n  - V_o}{R_2}\\
+	\text{Virtual Ground}
+	\frac{V_{in}}{R_1} = \frac{-V_o}{R_2}\\
+	V_o = -\frac{(V_{in})(R_2)}{R_1}
+\end{gathered}
+$$
+
 
 ***
 

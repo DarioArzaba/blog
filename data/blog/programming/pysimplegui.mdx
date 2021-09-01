@@ -6,26 +6,213 @@ tags: ['programming', 'python', 'gui']
 
 
 
-Design
-A moment about the design-spirit of PySimpleGUI. From the beginning, this package was meant to take advantage of Python's capabilities with the goal of programming ease.
-
-Single File While not the best programming practice, the implementation resulted in a single file solution. Only one file is needed, PySimpleGUI.py. You can post this file, email it, and easily import it using one statement.
-
-Functions as objects In Python, functions behave just like object. When you're placing a Text Element into your form, you may be sometimes calling a function and other times declaring an object. If you use the word Text, then you're getting an object. If you're using Txt, then you're calling a function that returns a Text object.
-
-Lists It seemed quite natural to use Python's powerful list constructs when possible. The form is specified as a series of lists. Each "row" of the GUI is represented as a list of Elements.
-
-Dictionaries Want to view your form's results as a dictionary instead of a list... no problem, just use the key keyword on your elements. For complex forms with a lot of values that need to be changed frequently, this is by far the best way of consuming the results.
-
-You can also look up elements using their keys. This is an excellent way to update elements in reaction to another element. Call form.FindElement(key) to get the Element.
-
-Named / Optional Parameters This is a language feature that is featured heavily in all of the API calls, both functions and classes. Elements are configured, in-place, by setting one or more optional parameters. For example, a Text element's color is chosen by setting the optional text_color parameter.
-
-tkinter tkinter is the "official" GUI that Python supports. It runs on Windows, Linux, and Mac. It was chosen as the first target GUI framework due to its ubiquity. Nearly all Python installations, with the exception of Ubuntu Linux, come pre-loaded with tkinter. It is the "simplest" of the GUI frameworks to get up an running (among Qt, WxPython, Kivy, etc).
-
-From the start of the PSG project, tkinter was not meant to be the only underlying GUI framework for PySimpleGUI. It is merely a starting point. All journeys begin with one step forward and choosing tkinter was the first of many steps for PySimpleGUI. Now there are 4 ports up and running - tkinter, WxPython, Qt and Remi (web support)
+# User Settings API #
 
 
+
+
+
+User Settings API
+In release 4.30.0 there is a new set of API calls available to help with "user settings". Think of user settings as a dictionary that is automatically written to your hard drive. That's basically what it is. Underpinning the code is the JSON package provided by Python.
+
+While using JSON files to save and load a settings dictionary isn't very difficult, it is still code you'll need to write if you want to save settings as part of your GUI. Since having "settings" for a GUI based program isn't uncommon, it made sense to build this capability into PySimpleGUI. Clearly you can still use your own method for saving settings, but if you're looking for a simple and easy way to do it, these calls are likely about as easy as it gets.
+
+There have already been some demo programs written that use JSON files to store settings. You can expect that this capability will begin to show up in more demos in the future since it's now part of PySimpleGUI.
+
+User settings are stored in a Python dictionary which is saved to / loaded from disk. Individual settings are thus keys into a dictionary. You do not need to explicitly read nor write the file. Changing any entry will cause the file to be saved. Reading any entry will cause the file to be read if it hasn't already been read.
+
+Two Interfaces
+There are 2 ways to access User Settings
+
+User Settings function calls
+The UserSettings class
+They both offer the same basic operations. The class interface has an added benefit of being able to access the individual settings using the same syntax as Python dictionary.
+
+List of Calls for Function Interface
+Function	Description
+user_settings	Returns settings as a dictionary
+user_settings_delete_entry	Deletes a setting
+user_settings_delete_filename	Deletes the settings file
+user_settings_file_exists	Returns True if settings file specified exists
+user_settings_filename	Returns full path and filename of current settings file
+user_settings_get_entry	Returns value for a setting. If no setting found, then specified default value is returned
+user_settings_load	Loads dictionary from the settings file. This is not normally needed
+user_settings_save	Saves settings to current or newly specified file. Not normally needed
+user_settings_set_entry	Sets an entry to a particular value
+user_settings_write_new_dictionary	Writes a specified dictionary to settings file
+
+
+
+
+Operations
+There are 2 categories that the calls can be divided into.
+
+File operations
+Settings operations
+File operations involve working with the JSON file itself. They include: * Setting the path and/or filename * Load/save the file (these are somewhat optional as the saving loading/saving is done automatically) * Deleting the settings file * Checking if settings file exists
+
+Generally speaking, a setting is specified with a key which is generally a string. Settings operations are for working with the individual settings and include: * Get the value of a setting (returns a default value if not found) * Set the value of a setting (also saves the settings to disk)
+
+Any setting operation may cause the file to be written. This is because a "get" operation can include returning a default value if the setting isn't found. This means a new entry is made in your settings dictionary is one didn't exist before. Since a new entry is made, that means it needs to be also be written to disk.
+
+
+
+
+
+
+
+Filenames
+The settings filename defaults the filename of your Python file making the call with the extension ".json" added. If your Python program is called test.py then your default settings filename will be test.json.
+
+In addition to the filename having a default value, the path to the file also has a default value. The default depends on your operating system.
+
+Operating System	Default Path
+Windows	\user\user_name\AppData\Local\PySimpleGUI\settings
+Linux	~/.config/PySimpleGUI/settings
+Mac	~/Library/Application Support/PySimpleGUI/settings
+When calling the User Settings APIs, if a parameter is named filename, you can specify a full path or just the filename. This will save you the trouble of having to split up your path and filename in your code. If you specify only the path, the the filename will be added to that path and named as defined earlier.
+
+Like the rest of PySimpleGUI, the idea is for you to write as little code as possible. The default values for the filename and path should be fine for you to use. They will be stored in a location on your system that is meant to store user settings.
+
+Setting Filename
+If you want to see what the current filename is for your settings, then you can call user_settings_filename() with no parameters and you'll get back an absolute path and filename.
+
+To make the code for specifying the folder and filename as simple as possible, the 2 parts are separated in the call specifying the name of the settings file. However, it is possible to supply a full and complete folder + filename as well.
+
+The default filename for your settings file is the name of the file that makes the call to the User Settings API's with the .py extension changed to a .json extension. If your source file is called demo.py, then your settings filename will be demo.json.
+
+Setting only the filename
+If you want to control the name of the file and/or the path to the settings file, then you will use the user_settings_filename call. This function takes 2 parameters.
+
+user_settings_filename(filename=None, path=None)
+If you set only the path, then the filename will default to the value already described. If you set only the filename, then the path will be the default path is dependent on your operating system. See the table above for the locations for each OS.
+
+import PySimpleGUI as sg
+
+sg.user_settings_filename(filename='my_settings.json')
+print(sg.user_settings_filename())
+If you are running on Windows, then the result of running this code will be this printed on the console:
+
+C:\Users\your_use_name\AppData\Local\PySimpleGUI\settings\my_settings.json
+You are not restricted to naming your settings file to an extension of .json. That is simply the default extension that's used by PySimpleGUI. You can use any extension you would like, including no extension.
+
+Setting only the path
+Maybe you don't care about the settings filename itself, but you do care about where the settings are stored. Let's say you want the settings to be stored in the same folder as your Python source file. Specifying path='.' will achieve this.
+
+Setting a fully qualified filename
+If you want to specify the full absolute path and filename of the settings file, you can do it by using the filename parameter. Instead of passing the filename only, pass in a fully qualified path and filename. If you want to name your settings file a:\temp\my_settings, then your call will look like this:
+
+sg.user_settings_filename(filename=r'a:\temp\my_settings')
+You are not required to break your file down into 2 parameters. You could if you wanted to however. The equivalent to the above call using 2 parameters would be:
+
+sg.user_settings_filename(filename='my_settings' , path=r'a:\temp')
+Getting the current filename
+Calling user_settings_filename with no parameters will return the full path and filename of your settings file as a single string.
+
+File Loading / Saving
+Generally speaking you will not need to load or save your settings file. It is automatically saved after every change.
+
+Note that reading a setting can also cause the file to be written. If you read a setting and the setting did not exist, then your call to user_settings_get_entry will return the default value you specified. As a result, the dictionary is updated with this default value and in return the file is written with this value as well.
+
+One of the situations where you may want to explicitly read/load the settings file is if you're expecting it to be modified by another program.
+
+Like so much of PySimpleGUI, as much as possible is automatically done on your behalf. This includes the requirement of saving and loading your settings file. Even naming your settings file is optional.
+
+
+
+
+
+
+
+
+
+
+# User Settings #
+
+Using the `UserSettings` class is like working with a Python dictionary. The first step is to create a settings object;
+
+```python
+# Create settings object
+settings = sg.UserSettings()
+# Another way of creating the object
+sg.user_settings_filename()
+# Read a settings value
+item_value = settings['-item-']
+# Write a settings value
+settings['-item-'] = new_value
+# Delete a settings value
+del settings['-item-']
+# Another way of deleting a value
+settings.delete_entry('-item-')
+# If not found return '' instead of None
+value = settings.get('-item-', '')
+# Set a global default value
+settings.set_default_value(new_default)
+# Print the dictionary
+settings.load()
+print(settings)
+# Another way of printing the dict
+print(sg.user_settings())
+```
+
+Since user settings aren't critical for the GUI operation its errors, usually related to bad paths or write permissions, are considered soft errors that won't crash the application.
+
+```python
+# Bad user settings path generates an error
+def main():
+    sg.user_settings_filename(path='...')
+    sg.user_settings_set_entry('-test-',123)
+# Silcence user settings errors
+sg.user_settings_silent_on_error()
+```
+
+User settings are values that are meant to be saved so that they can be remembered and generated later on. To specify the path of your user settings file, to be the same as your app folder for example, you could use `sg.user_settings_filename(path='.')`. The convention with user settings is to use upper case for normal key strings and lower case for user settings strings. One common use is for remembering a recently used system path:
+
+```python
+# Typical file input row
+[sg.Input(key='-IN-'), sg.FileBrowse()]
+# Fill in using the last known user setting
+[sg.Input(sg.user_settings_get_entry('-filename-', ''), key='-IN-'), sg.FileBrowse()]
+# Set the user setting anywhere in the loop
+sg.user_settings_set_entry('-filename-', values['-IN-'])
+```
+
+For example:
+
+```python
+import PySimpleGUI as sg
+layout = [[sg.Text('Enter a filename:')],
+          [sg.Input(sg.user_settings_get_entry('-filename-', ''), key='-IN-'), sg.FileBrowse()],
+          [sg.B('Save'), sg.B('Exit Without Saving', key='Exit')]]
+window = sg.Window('Filename Example', layout)
+while True:
+    event, values = window.read()
+    if event in (sg.WINDOW_CLOSED, 'Exit'):
+        break
+    elif event == 'Save':
+        sg.user_settings_set_entry('-filename-', values['-IN-'])
+window.close()
+```
+
+You could write the previous example using the `UserSettings` class and the brackets syntax:
+
+```python
+import PySimpleGUI as sg
+settings = sg.UserSettings()
+layout = [[sg.Text('Enter a filename:')],
+          [sg.Input(settings.get('-filename-', ''), key='-IN-'), sg.FileBrowse()],
+          [sg.B('Save'), sg.B('Exit Without Saving', key='Exit')]]
+window = sg.Window('Filename Example', layout)
+while True:
+    event, values = window.read()
+    if event in (sg.WINDOW_CLOSED, 'Exit'):
+        break
+    elif event == 'Save':
+        settings['-filename-'] = values['-IN-']
+window.close()
+```
+
+If you have an extensive user settings file you can use `user_settings_write_new_dictionary(dict)` to use a python dictionary to set the default values of your settings file, this prevents an accidental overwrite of your values.
 
 # Extending the Module #
 
@@ -47,6 +234,8 @@ This is how you can access most of tkinter element options without the need of i
 print(type(window[your_element_key].Widget))
 ```
 
+# Tkinter Binding #
+
 At this moment there is no direct access to the window as a class variable, but you can access a similar root object called `sg.Window.TKroot`. Also you can skip PySimpleGUI and receive tkinter events directly via `Window.read()`. To do so you will use the `bind` method included in Elements and Windows. This method needs a string with the events to bind and a key modifier. 
 
 If your element's key is a string then it will be appended, if not then it will be returned separately as a tuple. We provide the member variable `user_bind_event` containing information that tkinter generated from user bindings.
@@ -67,13 +256,13 @@ For example:
 ```python
 import PySimpleGUI as sg
 sg.theme('Dark Green 2')
-layout = [  [sg.Text('Custom Binding Example')], [sg.Input(key='-IN1-')], [sg.Input(key='-IN2-')], [sg.Button('Go'), sg.Button('Unbind'),sg.Button('Exit')] ]
+layout = [  [sg.Text('Custom Binding Example')], [sg.Input(key='-IN1-')], 
+		[sg.Input(key='-IN2-')], 
+		[sg.Button('Go'), sg.Button('Unbind'), sg.Button('Exit')] ]
 window = sg.Window('Window Title', layout, finalize=True)
-
 window.bind("<Button-1>", 'Window Click')
 window['Go'].bind("<Button-3>", ' +RIGHT CLICK+')
 window['-IN2-'].bind("<FocusIn>", ' +FOCUS+')
-
 while True:
 	event, values = window.read()
 	print(event, values)
@@ -81,7 +270,6 @@ while True:
 		break
 	if event == 'Unbind':
 		window['Go'].unbind('<Button-3>')
-
 window.close()
 ```
 
@@ -99,16 +287,16 @@ pip install PyInstaller
 pyinstaller -wF my_program.py
 ```
 
-If you get the error `script '\src\tkinter' not found` try adding `--hidden-import tkinter` to your command. When debugging your program you can use the high level API function `sg.Print()`, by doing `print = sg.Print` at the start of your script you will route your `stdout` and `stderror` to a scrollable window instead of the terminal.
+If you get the error `script '\src\tkinter' not found` try adding `--hidden-import tkinter` to your command. When debugging you can use the high level API function `sg.Print()`, by doing `print = sg.Print` at the start of your script you are routing your `stdout` and `stderror` to a scrollable window instead of the terminal.
 
 # Look And Feel #
 
-By calling `sg.ChangeLookAndFeel(LookAndFeelValue)` were you can generate the latest Look and Feel values by calling `ListOfLookAndFeelValues()`. What this function actually does is set a lot of the theme values using `Set Options`: 
+Change the look and feel of your app by calling `sg.ChangeLookAndFeel(LookAndFeelValue)` were the valid Look and Feel values can be generated by calling `ListOfLookAndFeelValues()`. What this function actually does is set a bunch of color theme values using `Set Options`: 
 
 ```python
 SetOptions(background_color=colors['BACKGROUND'], text_element_background_color=colors['BACKGROUND'], element_background_color=colors['BACKGROUND'], text_color=colors['TEXT'], input_elements_background_color=colors['INPUT'], button_color=colors['BUTTON'], progress_meter_color=colors['PROGRESS'], border_width=colors['BORDER'], slider_border_width=colors['SLIDER_DEPTH'], progress_meter_border_depth=colors['PROGRESS_DEPTH'], scrollbar_color=(colors['SCROLL']), element_text_color=colors['TEXT'], input_text_color=colors['TEXT_INPUT'])
 ```
 
-As one last tip, since the module uses deeply nested objects we can print a nicely formatted representation by calling `sg.ObjToSting(Object)`.
+As one last tip is to call `sg.ObjToSting(Object)` when working with deeply nested objects to generate a nicely formatted representation.
 
 ***

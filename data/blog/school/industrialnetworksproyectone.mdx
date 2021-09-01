@@ -87,14 +87,68 @@ Using AND and OR bifurcations we can create complex relations.
 
 ***
 
+# Sorting Line #
 
+Virtual model of a sorting line. Composed from a storage tower with conveyor chain, a transport band or conveyor belt (both with unidirectional gear motors), three pistons (bidirectional motors) and four discharging tables. 
 
+1. Piece moved out of the warehouse by a conveyor chain.
+2. Chain has a magnetic activation switch (single piece).
+3. Identification unit reads code with two magnetic sensors.
+4. Code corresponds to number of magnets at the bottom.
+5. Chain pushes the piece to the conveyor belt.
+6. Piece moves to their corresponding discharging station.
+7. Inductive proximity sensor in piston detects arrival.
+8. Conveyor belt stops completely.
+9. Pushed by an electromechanic piston into their station.
+10. Pistons have two limit position sensors (end and start).
+11. Station is busy if piece detected by light reflection.
+12. Conveyor belt continues moving.
+13. Ends if all stations are busy (have a piece).
+14. Ends if warehouse is empty (light barrier sensor).
 
+| Piece | Magnets Location | Total magnets | Sensors | 
+| :---: | :---: | :---: | :---: |
+| Workpiece 1 | 1 upper left | 1 | I10.3(1) I10.4(0) or I10.3(0) I10.4(1) |
+| Workpiece 2 | 2 left side | 2 | I10.3(2) I10.4(0) or I10.3(0) I10.4(2) |
+| Workpiece 3 | 1 missing lower right | 3 | I10.3(2) I10.4(1) or I10.3(1) I10.4(2) |
+| Workpiece 4 | 0 missing | 4 | I10.3(2) I10.4(2)|
 
+This control system has 17 digital inputs and 8 digital outputs. The virtual model can be emulated using a virtual machine within the LabVIEW environment and PLCSim. 
 
+| Address | Name | Description | Type |
+| :---: | :---: | :---: | :---: |
+| I10.0 | P3inWork | Pusher 3 at work | Mechanical sensor (NO) | 
+| I10.1 | P3inHome | Pusher 3 at home | Mechanical sensor (NO) | 
+| I10.2 | P3engaged | Pusher 3 engage | Reflective light sensor (NC) | 
+| I10.3 | RStation1 | Reading Sensor 1 | Magnetic Sensor (NC) | 
+| I10.4 | RStation2 | Reading Sensor 2 | Magnetic Sensor (NC) | 
+| I10.5 | Lightbarrier | Piece in Warehouse | Light beam (NO) | 
+| I10.6 | inPlace3 | Station 3 busy | Reflective light sensor (NC) | 
+| I10.7 | inPlace4 | Station 4 busy | Reflective light sensor (NC) | 
+| I11.0 | P1inWork | Pusher 1 at work | Mechanical sensor (NO) | 
+| I11.1 | P1inHome | Pusher 1 at home | Mechanical sensor (NO) | 
+| I11.2 | P2inWork | Pusher 2 at work | Mechanical sensor (NO) | 
+| I11.3 | P2inHome | Pusher 2 at home | Mechanical sensor (NO) | 
+| I11.4 | P1engaged | Pusher 1 engage | Reflective light sensor (NC) | 
+| I11.5 | P2engaged | Pusher 2 engage | Reflective light sensor (NC) | 
+| I11.6 | inPlace1 | Station 1 busy | Reflective light sensor (NC) | 
+| I11.7 | inPlace2 | Station 2 busy | Reflective light sensor (NC) | 
+| I13.6 | chainMagnet | Conveyor chain | Magnetic Sensor (NC) | 
 
+NO sensors are inactive when pressed or obstructed. NC sensors are active when pressed or obstructed.
 
+| Address | Name | Description | Type |
+| :---: | :---: | :---: | :---: |
+| Q11.0 | Chain | Conveyor Chain | Motor |
+| Q11.1 | Belt | Conveyor Chain | Motor |
+| Q11.2 | P1toWork | Pusher 1 to Work | Motor |
+| Q11.3 | P1toHome | Pusher 1 to Home | Motor |
+| Q11.4 | P2toWork | Pusher 2 to Work | Motor |
+| Q11.5 | P2toHome | Pusher 2 to Home | Motor |
+| Q11.6 | P3toWork | Pusher 3 to Work | Motor |
+| Q11.7 | P4toHome | Pusher 3 to Home | Motor |
 
+Use `Shift` and F1, F2, F3 or F4 to make a piece appear or disappear in the corresponding discharging station. 
 
 ***
 
