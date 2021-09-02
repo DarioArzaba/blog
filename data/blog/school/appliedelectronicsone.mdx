@@ -10,32 +10,10 @@ This is an overview of the knowledge needed for designing electronic solutions u
 
 1. [Op-Amp as Integrated Circuit](#operational-amplifier)
 2. [Circuits with Op-Amps](#circuits-with-op-amps)
-	1. Investor and not investor
-	2. Adder
-	3. Differential amplifier circuit	
-	4. Design of differential amplifiers
-3. Circuits with Op-Amps (Linear)
-	1. Converters
-	2. Active filters
-	3. Filter transfer function
-	4. First and second order functions
-	5. First order physical realizations
-	6. Second order physical realizations
-	7. Impedance transformers
-	8. Oscillators
+3. Linear Circuits
 4. Real Op-Amps Datasheets
-	1. Static characteristics (Bias, offset, ranges)
-	2. Dynamic characteristics (Gain, impedance, transient response)
 5. Non Linear applications (diodes)
-	1. Limiters, multipliers
-	2. Comparators
-	3. Rectifiers
-	4. Multivibrators
 6. Converters
-	1. Sampling
-	2. Quantification
-	3. Coding
-	4. Converter Circuits
 
 ***
 
@@ -82,7 +60,7 @@ A hook ammeter is used to measure current without opening the circuit, another w
 
 ![Negative Feedback](/static/images/notes/ExampleIdealInvertingOpAmpAppliedElectro.png)
 
-An Op Amp can be a simple control system by when part of the output voltage is used as feedback and then substracted of the inverter input signal. This is an example of a simple Proportional Integral Derivative (PID) control system. The feedback signal adds another gain to the system, called the closed loop gain G.
+An Op Amp can be used as a simple control system when a fraction of the output is used as feedback by substracting it from the inverter input signal. By using an Op-Amp in this way we are creating a Proportional Integral Derivative (PID) control system. Note that the feedback generates an additional gain into the system: The closed loop gain G.
 
 $$
 \begin{gathered}
@@ -96,8 +74,7 @@ $$
 
 ![Inverting Circuit](/static/images/notes/SolvingBySuperpositionInvertingOpAppliedElectro.png)
 
-
-The following is the negative feedback configuration for an inverter, we assume the same conditions of an ideal open loop Op-Amp with the crucial difference that in this case we assume that there is a finite value for the open loop gain A.
+The following is the negative feedback configuration for an *Op-Amp inverter*, we continue assuming ideal conditions but in this case we must assign a finite value to the open loop gain (A).
 
 $$
 \begin{gathered}
@@ -114,9 +91,19 @@ $$
 \end{gathered}
 $$
 
-Virtual ground is a technique used to simplify the Op Amp analysis, we assume that the invertor input is connected to ground $V_n = V_p$ meaning that it has no potential differential, this is generally true even if we don't have a galvanic connection to ground. Note that this is only valid if the open loop gain is much more than the closed loop gain from the resistors.
+Applying the same for an ideal *Op-Amp Non inverter* we have:
 
-Generally the open loop gain will be greater than the closed loop gain since it isn't common to use resistors with such a big difference between their values. Another thing to consider is that you should use resistors with high resistances to help the input current be as close to zero as possible.
+$$
+\begin{gathered}
+	\text{Non Inverting Closed Loop Gain}\\
+	V_{p} = V_{in} = \frac{R_2}{R_2+R_1}(V_o)\\
+	\therefore G = \frac{V_{o}}{V_{in}} = 1 + \frac{R_2}{R_1}
+\end{gathered}
+$$
+
+Virtual ground is a technique used to simplify Op Amp analysis by assuming that the inverting input is connected to ground $V_n = V_p$, usually meaning that it has no voltage. This is a valid generalization even if there is no galvanic connection to ground. Valid ground is not valid when the open loop gain is smaller than the closed loop gain.
+
+Generally the open loop gain will be greater than the closed loop gain since few applications require the use of resistors with such a difference between their values. Another thing to consider is that you should use resistors with high resistances to help the input current be as close to zero as possible (ideal model).
 
 $$
 \begin{gathered}
@@ -125,12 +112,108 @@ $$
 	I_{R1} = \frac{V_{in}  - V_n}{R_1}\\
 	I_{R2} = \frac{V_n  - V_o}{R_2}\\
 	\frac{V_{in}  - V_n}{R_1} = \frac{V_n  - V_o}{R_2}\\
-	\text{Virtual Ground}
+	\text{Virtual Ground}\\
 	\frac{V_{in}}{R_1} = \frac{-V_o}{R_2}\\
-	V_o = -\frac{(V_{in})(R_2)}{R_1}
+	V_o = -\frac{(V_{in})(R_2)}{R_1} = V_{in} (G)
 \end{gathered}
 $$
 
+In a control system you can have a SISO (Single Input Single Output) or MIMO (Multiple Input Single Output) configuration. Connecting inverter Op-Amps in series is similar to a SISO configuration, in other words the transfer function of the series will be the product of their internal relations. 
+
+$$
+\begin{gathered}
+	V_{o1} = -\frac{(V_{in1})(R_2)}{R_1}\\
+	V_{o2} = -\frac{(V_{in2})(R_4)}{R_3}\\
+	V_o = \left(\frac{(-R_4)(-R_2)}{(R_3)(R_1)}\right)(V_{in})
+\end{gathered}
+$$
+
+Notice that by combining two inverter Op-Amps in series we lose the negative sign of the closed loop gain, meaning that the input signal will not inverted.
+
+**Exercise 1**
+
+![Exercise 1](/static/images/notes/ExerciseOneFeedbackOpAppliedElectro.png)
+
+Calculate an expression for $V_{o}$.
+
+$$
+\begin{gathered}
+	V
+\end{gathered}
+$$
+
+
+**Exercise 2**
+
+![Exercise 2](/static/images/notes/ExerciseTwoFeedbackOpAppliedElectro.png)
+
+Calculate $V_{o}$ with the initial data.
+
+$$
+\begin{gathered}
+	V_i = 80\mu\text{V} \land R_f = 470\,\text{k}\Omega \land R_1 = 4.3\,\text{k}\Omega\\
+	R_2 = 33\,\text{k}\Omega \land R_3 = 33\,\text{k}\Omega\\\\
+	V_{o1} = 1 + \frac{470000}{4300}(80) = (110.3)(80) = 8.824\,\text{mV}\\
+	V_{o2} = -\frac{(0.008824)(470000)}{(33000)} = −125.678\,\text{mV}\\
+	V_{o3} = -\frac{(-0.12568)(470000)}{(33000)} = 1.7899\,\text{V}\\
+	\therefore V_o \approx 1.79\,\text{V}
+\end{gathered}
+$$
+
+
+**Exercise 3**
+
+![Exercise 3](/static/images/notes/ExerciseThreeFeedbackOpAppliedElectro.png)
+
+Calculate $V_{sal}$.
+
+$$
+\begin{gathered}
+	\text{Equivalent Sources}\\
+	V_i = (0.001)(150) = 0.15\,\text{V}\\
+	V_{sal} = -\frac{(0.15)(2200)}{(150)} = -2.2\,\text{V}\\
+	\therefore V_{sal} = -2.2\,\text{V}
+\end{gathered}
+$$
+
+**Exercise 4**
+
+![Exercise 4](/static/images/notes/ExerciseFourFeedbackOpAppliedElectro.png)
+
+Find an expression relating $V_{in}$ with $V_{o}$. Calculate $V_o$ when $t=3$.
+
+$$
+\begin{gathered}
+	V_o = -\frac{(V_{in})(R_2)}{R_1}\\
+	V_{in} = 2 + 2\sin(3(t)) \, \text{mV}\\
+	V_o = -\frac{(2 + 2\sin(3(t)) \, \text{mV})(2\,\text{k}\,\Omega)}{1\,\text{k}\,\Omega}\\
+	\therefore V_o = -4-4\sin(3(t)) \, \text{mV}\\
+	\therefore V_o (t=3) = -4.0016\,\text{V}
+\end{gathered}
+$$
+
+**Exercise 5**
+
+![Exercise 5](/static/images/notes/ExerciseFiveFeedbackOpAppliedElectro.png)
+
+Calculate $V_{sal}$.
+
+$$
+\begin{gathered}
+	V_{i1} = -\frac{(1)(10)}{2} = -5\,\text{V}\\
+	V_{i2} = -\frac{(2)(10)}{2} = -10\,\text{V}\\
+	V_{i3} = -\frac{(3)(10)}{2} = -15\,\text{V}\\
+	\text{Equivalent Sources}\\
+	I_{i1} = -0.05\,\text{A} \land I_{i2} = -0.1\,\text{A} \land I_{i3} = -0.15\,\text{A}\\
+	I_i = -0.3\,\text{A}\\
+	R_1 = \frac{1}{\frac{1}{100} + \frac{1}{100} + \frac{1}{100}} = 33.33 \, \Omega\\
+	V_i = (-0.3)(33.33) = -10\,\text{V}\\	
+	V_{sal} = -\frac{(V_{in})(R_2)}{R_1} \implies V_{sal} = -\frac{(-10))(R_2)}{33.33}\\
+	\therefore V_{sal} = (0.3)(R)
+\end{gathered}
+$$
+
+***
 
 ***
 
