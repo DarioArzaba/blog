@@ -4,7 +4,7 @@ date: '2021-08-15'
 tags: ['school', 'circuits']
 ---
 
-This is an overview of the knowledge needed for designing electronic solutions using analog circuits and operational amplifiers. Understand analog circuits that handle linear and non-linear amplification systems, also learn the integration of converters in this systems. Requires knowledge in semiconductors, diodes and transistors.
+Design electronic solutions using analog circuits and operational amplifiers. Understand analog circuits that handle linear and non-linear amplification systems, learn about the integration of converters. Requires knowledge in semiconductors, diodes and transistors.
 
 ***
 
@@ -27,34 +27,25 @@ Op-Amps are high gain, direct current, coupled electronic amplifiers with two in
 
 Op-Amps are bipolar in nature since they can be supplied with a negative (VEE Emitter or VDD Drain) or positive (VCC Collector or VSS Source) voltage source. The working voltage sources produce negative (Ic-) and positive (Ic+) currents. Note that VEE and VCC apply to BJT transistor based Op-Amps while VCC and VSS apply to FET transistor based Op-Amps.
 
-Aside from its voltage sources the Op-Amp uses a Non Inverting (Vp) and Inverting (Vn) inputs as signals used to determine its output voltage (Vo). The range of voltages that an Op-Amp can output is determined by its sources. Kirchhoff's Current Law shows that every current that enters and exits the Op-Amp must equal cero: $i_n + i_p + i_{c+} + i_{c-} + i_o = 0$
+Aside from its voltage sources the Op-Amp uses a Non Inverting (Vp) and Inverting (Vn) input signals to determine its output voltage (Vo). The range of voltages that an Op-Amp can output is determined by its sources. Kirchhoff's Current Law shows that every current that enters and exits the Op-Amp must equal cero: $i_n + i_p + i_{c+} + i_{c-} + i_o = 0$
 
 **Real Open Loop Gain**
 
 ![Detailed Op-Amp](/static/images/notes/DetailedOpAmpAppliedElectro.png)
 
-$$
-\begin{gathered}
-	V_i = V_p - V_n = \text{ Differential Voltage}\\
-	R_i = \text{ Input Resistance}\\
-	R_o = \text{ Output Resistance}\\
-	A = \text{ Open Loop Gain} = 200000 \frac{V_o}{V_i}\text{ (LM741)}
-\end{gathered}
-$$
+As mentioned before the voltage differential $V_i = V_p - V_n$ is used to determine the output voltage $V_o$ of the voltage dependent voltage source. The factor by which this voltage differential relates to the output is called open loop gain $A$. The open loop gain of an LM741 Op-Amp is around $200000 \frac{V_o}{V_i}$. 
 
-As mentioned before the voltage differential (Vi) is used to determine the output voltage (Vo) of the internal source composed of transistors. The factor by which the differential voltage relates to the output voltage is called open loop gain (A).
+The *Op-Amp Curve* represents the range in which the relation between input and output voltages. Outside of the linear range the input will have little effect over the output, meaning that the output will remain constant (saturation).
 
 **Ideal Open Loop Gain**
-
-The *Op-Amp Curve* represents the range in which the relation between the input voltage differential relates to the voltage output (limited by the voltage sources). Outside of the linear range the input will have little effect over the output, meaning that the output will remain constant (saturation).
 
 | Value | Ideal Model | Real Op-Amp |
 | :---: | :---: | :---: |
 | Input Impedance $R_i$ | Infinite (No current from signals) | $10^6 \land 10^12$ Ohms |
 | Output Impedance $R_o$ | 0 (No voltage loss at output) | $>100$ Ohms | 
 | Open Loop Gain $A$ | Infinite (Perfectly Linear) | $\approx 200000$ (Depends on signal bandwidth) |
-| Offset | 0 | Millivolts to Nanovolts (Offset at output when signals are grounded) |
-| Bias Currents $i_p$ and $i_n$ | 0 | Microamperes to Nanoamperes (Current from signals) |
+| Offset | 0 | mV to nV (Output offset when inputs are grounded) |
+| Bias Currents $i_p$ and $i_n$ | 0 | uA to nA (Current from signals) |
 | Bias Voltage (Supply) | Any Value | Generally $\pm 18 V$ |
 
 A hook ammeter is used to measure current without opening the circuit, another way of measuring current is by using a shunt resistor.
@@ -67,14 +58,13 @@ A hook ammeter is used to measure current without opening the circuit, another w
 
 ![Negative Feedback](/static/images/notes/ExampleIdealInvertingOpAmpAppliedElectro.png)
 
-An Op Amp can be used as a simple control system when a fraction of the output is used as feedback by substracting it from the inverter input signal. By using an Op-Amp in this way we are creating a Proportional Integral Derivative (PID) control system. Note that the feedback generates an additional gain into the system: The closed loop gain G.
+An Op Amp can be used as a simple control system when a fraction of the output is used as feedback by substracting it from the inverter input signal. By using an Op-Amp in this way we are creating a Proportional Integral Derivative (PID) control system. Note that the feedback generates an additional gain in the system called the closed loop gain (G).
 
 $$
 \begin{gathered}
-	\text{Closed Loop Gain}\\
-	G = \frac{V_o}{V_i} \implies (V_i)(G) = V_o\\
-	G = \frac{A}{1+\beta A}\\
-	\text{Ideal Closed Loop Gain}\\
+	\text{Real Closed Loop Gain}\\
+	G = \frac{V_o}{V_i} = \frac{A}{1+\beta A} \implies V_o = (V_i)(G)\\
+	\text{Ideal Closed Loop Gain}\\\\
 	A = \infty \implies G = \frac{1}{\beta}
 \end{gathered}
 $$
@@ -83,20 +73,38 @@ $$
 
 ![Inverting Circuit](/static/images/notes/SolvingBySuperpositionInvertingOpAppliedElectro.png)
 
-The following is the negative feedback configuration for an *Op-Amp inverter*, we continue assuming ideal conditions but in this case we must assign a finite value to the open loop gain (A).
+The following is the negative feedback configuration for an *Op-Amp inverter* assuming ideal conditions but with a finite value for $A$.
 
 $$
 \begin{gathered}
-	\text{Without Source}\\
-	V_{no} = \frac{(V_o)(R_1)}{(R_1) + (R_2)}\\
-	\text{With Source}\\
-	V_{nin} = \frac{(V_{in})(R_2)}{(R_1) + (R_2)}\\
-	\text{Inverting Closed Loop Gain}\\
-	V_n = V_{no} + V_{nin} = \frac{(V_o)(R_1)}{(R_1) + (R_2)} + \frac{(V_{in})(R_2)}{(R_1) + (R_2)}\\
-	V_o = A(V_p - V_n) \land V_p = 0 \implies V_n = \frac{-V_o}{A}\\
-	\frac{-V_o}{A} = \frac{(V_o)(R_1)}{(R_1) + (R_2)} + \frac{(V_{in})(R_2)}{(R_1) + (R_2)}\\
-	G = \frac{V_o}{V_{in}} = \frac{-A}{1+\frac{R_1}{R_2}(1+A)}= \frac{-R_2}{R_1}\\
-	\therefore G = \frac{-R_2}{R_1}
+	\text{Superposition}\\
+	Vn_{o} = \frac{(V_o)(R_2)}{R_1 + R_2} \land Vn_i = \frac{(V_i)(R_2)}{R_1 + R_2}\\
+	V_n = V_o + (R_2)\left(\frac{V_i}{R_1+R_2} - \frac{V_o}{R_1+R_2} \right) = V_o + \left( \frac{(R_2)(V_i-V_o)}{R_1+R_2} \right)\\
+	V_n = \frac{V_o(R_1) + V_o(R_2) + V_i(R_2) - V_o(R_2)}{R_1+R_2} = \frac{(V_o R_1) + (V_i R_2)}{R_1+R_2}\\
+	V_o = V_i(G) = (V_p-V_n)(G) \land V_p = 0\\
+	V_o = -(V_n)(G) \implies V_n = \frac{(-(V_n)(G)(R_1)) + (V_i R_2)}{R_1+R_2}\\
+	V_n = (V_i)\frac{R_2}{R_2+R_1(G+1)} \implies V_o = -\left((V_i)\frac{R_2}{R_2+R_1(G+1)}\right)(G)\\
+	\frac{V_o}{V_i} = \frac{-(G)(R_2)}{R_2+R_1(G+1)} = \frac{-R_2}{\frac{R_2}{G} + \frac{(R_1)(G)+ R_1}{G}} = \frac{-R_2}{\frac{(R_2 + R_1)}{G} + R_1}\\
+	A = \infty \implies \frac{V_o}{V_i} = \frac{-R_2}{R_1}\\
+	\therefore V_o = (V_i)\frac{-R_2}{R_1}\\\\
+	\text{Voltage Divider}\\
+	V_n = 0 = (V_o - V_i)\frac{R_1}{R_1+R_2} + V_i\\
+	(V_o)\frac{R_1}{R_1+R_2} = (V_i)\frac{R_1}{R_1+R_2} - (V_i)\\
+	(V_o)\frac{(R_1)(R_1+R_2)}{(R_1+R_2)(R_1)} = (V_i)\frac{(R_1)(R_1+R_2)}{(R_1+R_2)(R_1)} - (V_o)\frac{R_1+R_2}{R_1}\\
+	V_o = (V_i - V_i)\frac{R_1+R_2}{R_1} = (V_i)\left(1+\frac{R_1+R_2}{R_1}\right)\\
+	V_o = (V_i)\left(\frac{R_1 - R_1 - R_2}{R_1}\right) = (V_i)\frac{-R_2}{R_1}\\
+	\therefore V_o = (V_i)\frac{-R_2}{R_1} = V_i(G)
+\end{gathered}
+$$
+
+Applying the same analysis for an ideal *Op-Amp Non Inverter* we have:
+
+$$
+\begin{gathered}
+	\text{Voltage Divider}\\
+	V_n = (V_o - V_i)\frac{R_1}{R_1+R_2} = V_i\\
+	(V_o)\left(\frac{R_1}{R_1+R_2}\right)\left(\frac{R_1+R_2}{R_1}\right) = (V_i)\frac{R_1+R_2}{R_1}\\
+	\therefore V_o = (V_i)\left(1+\frac{R_2}{R_1}\right) = V_i(G)\\
 \end{gathered}
 $$
 
@@ -104,46 +112,32 @@ $$
 
 ![Inverting and Non Inverting](/static/images/notes/InvertingandNonInvertingAppliedElectro.png)
 
-Virtual ground is a technique used to simplify Op Amp analysis by assuming that the inverting input is connected to ground $V_n = V_p$, usually meaning that it has no voltage. This is a valid generalization even if there is no galvanic connection to ground. Virtual ground is not valid when the open loop gain is smaller than the closed loop gain.
+Virtual ground is a technique used to simplify Op Amp analysis by assuming that $V_n = V_p$, usually meaning that it has no voltage. This is a valid generalization even if there is no galvanic connection to ground. Virtual ground is not valid when the open loop gain is smaller than the closed loop gain.
 
-Generally the open loop gain will be greater than the closed loop gain since few applications require the use of resistors with such a difference between their values. Another thing to consider is that you should use resistors with high resistances to help the input current be as close to zero as possible (ideal model).
+Generally the open loop gain will be greater than the closed loop gain since few applications require the use of resistors with such a difference between their values. Another thing to consider is the use of high resistances in real life Op-Amps to mitigate the input currents as much as possible.
 
 $$
 \begin{gathered}
-	V = (R)(I) \implies I = \frac{V}{R}\\
-	I_{R1} =  I_{R2} = I_{o}\\
-	I_{R1} = \frac{V_{in}  - V_n}{R_1}\\
-	I_{R2} = \frac{V_n  - V_o}{R_2}\\
-	\frac{V_{in}  - V_n}{R_1} = \frac{V_n  - V_o}{R_2}\\
 	\text{Virtual Ground}\\
-	\frac{V_{in}}{R_1} = \frac{-V_o}{R_2}\\
-	V_o = -\frac{(V_{in})(R_2)}{R_1} = V_{in} (G)
+	I_{R1} =  I_{R2} = I_{o}\\
+	I_{R1} = \frac{V_{in}  - V_n}{R_1} \land I_{R2} = \frac{V_n  - V_o}{R_2}\\
+	\frac{V_{in}  - V_n}{R_1} = \frac{V_n  - V_o}{R_2}\\
+	V_n = 0 \implies \frac{V_{in}}{R_1} = \frac{-V_o}{R_2}\\
+	\therefore V_o = -\frac{(V_{in})(R_2)}{R_1} = V_{in} (G)
 \end{gathered}
 $$
 
-Applying the same for an ideal *Op-Amp Non inverter* we have:
-
-$$
-\begin{gathered}
-	\text{Non Inverting Closed Loop Gain}\\
-	V_{p} = V_{in} = \frac{R_2}{R_2+R_1}(V_o)\\
-	\therefore G = \frac{V_{o}}{V_{in}} = 1 + \frac{R_2}{R_1}
-\end{gathered}
-$$
 
 **Op Amps in Series**
 
-In a control system you can have a SISO (Single Input Single Output) or MIMO (Multiple Input Single Output) configuration. Connecting inverter Op-Amps in series is similar to a SISO configuration, in other words the transfer function of the series will be the product of their internal relations. 
+In a control system you can have a SISO (Single Input Single Output) or MIMO (Multiple Input Single Output) configuration. By connecting two Op-Amps in series (SISO) their combined transfer function will be the product of their internal relations. Notice that in the case of two inverters the negative sign is lost meaning that they become a non-inverting unit.
 
 $$
 \begin{gathered}
-	V_{o1} = -\frac{(V_{in1})(R_2)}{R_1}\\
-	V_{o2} = -\frac{(V_{in2})(R_4)}{R_3}\\
+	V_{o1} = -\frac{(V_{in1})(R_2)}{R_1} \land V_{o2} = -\frac{(V_{in2})(R_4)}{R_3}\\
 	V_o = \left(\frac{(-R_4)(-R_2)}{(R_3)(R_1)}\right)(V_{in})
 \end{gathered}
 $$
-
-Notice that by combining two inverter Op-Amps in series we lose the negative sign of the closed loop gain, meaning that the input signal will not inverted.
 
 **Summing and Differential Op Amps**
 
@@ -151,7 +145,7 @@ Notice that by combining two inverter Op-Amps in series we lose the negative sig
 
 $$
 \begin{gathered}
-	\text{Differential}
+	\text{Differential}\\
 	I_1 = \frac{V_1-V_a}{R_1} \land I_2 = \frac{V_2-V_b}{R_2} \land I_3 = \frac{V_a-V_o}{R_3}\\
 	V_a = V_b = (V_2)\left(\frac{R_4}{R_2+R_4}\right)\\
 	V_2 = 0 \implies V_{oa} = (V_1)\left(\frac{-R_3}{R_1}\right)\\
