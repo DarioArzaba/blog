@@ -326,84 +326,63 @@ Note that this layer uses physical addresses when forwarding data links. The MAC
 
 # Ethernet Switching #
 
-The Ethernet protocol works at both the physical and data link layers. It is a family of network technologies defined in 802.2 and 802.3 that create Ethernet data frames. Like other data link protocols it uses the LCC and MAC sublayers to work.
+The Ethernet protocol works at both the physical and the data link layer. It is a family of network technologies defined in 802.2 and 802.3 that create Ethernet data frames. Like other similar data link protocols it uses the LCC and MAC sublayers to work.
 
 **Ethernet Frame**
 
-The data encapsulation done by the MAC sublayer (802.3) when using Ethernet creates Ethernet frames (internal structure), Ethernet addressing (MAC source and destination) and Ethernet error detection (Frame Check Sequence FCS Trailer). Every Ethernet frame is expected to come from an Ethernet NIC into another Ethernet NIC inside the LAN.
+![Mac Sublayer](/static/images/notes/MACSublayerEthernetFrameNetworks.png)
 
-**Ethernet Media Access**
+The data encapsulation done by the MAC sublayer (802.3) when using Ethernet creates Ethernet frames (internal structure), Ethernet addressing (MAC source and destination) and Ethernet error detection (Frame Check Sequence FCS Trailer). Every Ethernet frame is expected to come from an Ethernet NIC into another Ethernet NIC inside the same LAN.
+
+**Topologies and Media Access**
 
 The 802.3 MAC sublayer specifies Ethernet standards over various types of media and topologies. Legacy Ethernet uses Bus or Hub topologies (half duplex) with access control via CSMA/CD or contention based access. Today's Ethernet Switches in LANs operate in full duplex without access control.
+
+![MAC Ethernet](/static/images/notes/MACAddressEthernetHeaderNetworks.png)
 
 An Ethernet MAC address is a 48 bit string expressed as 12 hex digits, since its usually transferred in bytes it can be represented in hex as the range 00 to FF. Leading zeros in the hex pair are always displayed and they are normally prefixed by 0x, suffixed by H or include the subscript 16.
 
 In an Ethernet LAN every device shares the same media and they are differentiated by their MAC at the data link layer. To ensure that every device has a unique MAC every Ethernet NIC manufacturer must register with the IEEE to obtain their starting 24 bit MAC, this string is called the Organization Unique Identifier (OUI).
 
-When a device forwards data through Ethernet the Frame Header will include the source and destination MACs. When a NIC receives an Ethernet frame it examines its header to see if it matches its physical MAC address stored in RAM, after approval it sends the frame to the next OSI layers for decapsulation.
+![Frame Processing](/static/images/notes/FrameProcessingandNICsNetworks.png)
+
+When a device forwards data through Ethernet the Frame Header will include the source and destination MACs. When a NIC receives an Ethernet frame it will examine its header to see if it matches its physical MAC address stored in RAM, if it's a match it will send the frame to the next OSI layers for decapsulation.
+
+**MAC Address Types**
 
 Ethernet NICs will also accept frames if the MAC address destination corresponds to a broadcast or multicast group of which the destination is a member. Different MAC addresses are used depending on the communications method (unicast, broadcast, multicast) of the data link layer.
 
+![Communications Method](/static/images/notes/MACCommunicationsMethodTypeNetworks.png)
+
 Unicast MACs are unique addresses used when sending a frame from a single device to a single destination. The process used by the source to determine the destination MAC associated with a particular IPv4 address is known as the Address Resolution Protocol (ARP) and for IPv6 its the Neighbor Discovery (ND) protocol. Note that source MAC addresses must be always unicast MACs.
 
+Broadcast MACs like `FF-FF-FF-FF-FF-FF` will send the Ethernet frame to every device on the LAN (broadcast domain) flooding every port of the Ethernet Switch (except the incoming port). This frames won't be forwarded by any router in the LAN. Similarly if the encapsulated data is a broadcast IPv4 packet like `255.255.255.255` in the end it will be sent to every device in the local area network.
 
-
-
-
-
-Each 
-
-
-Each device on the Ethernet LAN receives and processes an Ethernet broadcast frame. The characteristics of an Ethernet transmission are as follows:
-It has a destination MAC address of FF-FF-FF-FF-FF-FF in hexadecimal (48 units in binary).
-All ports on the Ethernet switch are flooded except the incoming port. It is not forwarded by a router.
-If the encapsulated data is an IPv4 broadcast packet, this means that the packet contains a destination IPv4 address that has all (1s) on the host side. This numbering in the address means that all hosts on that local network (broadcast domain) will receive and process the packet.
-Ethernet MAC addresses Multicast MAC address
-A group of devices belonging to the same multicast group receives and processes an Ethernet multicast frame.
-There is a destination MAC address 01-00-5E when the encapsulated data is an IPv4 multicast packet and a destination MAC address of 33-33 when the encapsulated data is an IPv6 multicast packet.
-There are other multicast destination MAC addresses reserved for when the encapsulated data is not IP, such as Spanning Tree Protocol (STP).
-All ports on the Ethernet switch are flooded except the incoming port, unless the switch is configured for multicast snooping. It is not forwarded by a router, unless the router is configured to route multicast packets.
-Because multicast addresses represent a group of addresses (sometimes referred to as a “host group”), they can only be used as the destination for a packet. The source always has a unicast address.
-As with unicast and broadcast addresses, the multicast IP address requires a corresponding multicast MAC address
-
+Multicast MACs will send the Ethernet frame to a particular multicast group (host group). If the encapsulated data is IPv4 multicast then de MAC address will be `01-00-5E` and `33-33` for IPv6 multicast packets. If the data is not IP like in the Spanning Tree Protocol other Multicast MACs may be used. Like in broadcast, unless the devices are configured otherwise, the frame will flood every single port. 
 
 **MAC Address Table**
 
-Every Ethernet Switch has a MAC address table on their data link layer that it uses to forward Ethernet frames. The switch doesn't take into account the data or the data protocol (IPv4 ARP packet or IPv6 ND packet) just the Ethernet MAC addresses when forwarding data. Switches must examine their MAC table for every frame unlike Legacy Ethernet Hubs that forwarded the data on every available port except the incoming port. The table is empty when the switch is powered for the first time and it fills as new devices are connected to it. It is also called the Content Addressable Memory (CAM) table.
+Every Ethernet Switch has a MAC address table on their data link layer that it uses to forward Ethernet frames. The switch doesn't take into account the data or the data protocol (IPv4 ARP packet or IPv6 ND packet) just the Ethernet MAC addresses when forwarding data. 
 
+Switches must examine their MAC table for every frame unlike Legacy Ethernet Hubs that forwarded the data on every available port except the incoming port. The table is empty when the switch is powered for the first time and it fills as new devices are connected to it. It is also called the Content Addressable Memory (CAM) table.
 
+![Frame Filtering](/static/images/notes/MACAddressTableSwitchesNetworks.png)
 
-Examine source MAC address (learn)
-Each frame entering a switch is reviewed for new information. This is done by examining the frame's source MAC address and the port number through which it entered the switch. If the source MAC address does not exist, it is added to the table, along with the input port number. If the source MAC address exists, the switch updates the update timer for that entry. By default, most Ethernet switches keep a table entry for five minutes.
-
-Note: If the source MAC address exists in the table, but on a different port, the switch treats it as a new entry. The entry is replaced with the same MAC address, but with the most current port number.
-
-The MAC Address Table Learning the Switch and Forwarding (cont.)
-Find the destination MAC address (Forward)
-If the destination MAC address is a unicast address, the switch looks for a match between the destination MAC address of the frame and an entry in the MAC address table. If the destination MAC address is in the table, it forwards the frame on the specified port. If the destination MAC address is not in the table, the switch forwards the frame on all ports except the incoming one. This is known as unicast.
-
-Note: If the destination MAC address is broadcast or multicast, the frame is also sent to all ports except the incoming one.
-
-The MAC Address Table Frame Filtering
-As a switch receives frames from different devices, you can complete the MAC address table by examining the MAC address of each frame. When the switch MAC address table contains the destination MAC address, you can filter the frame and forward a single port.
-
-The MAC address table MAC address tables on connected switches
-This video will cover the following:
-How Switches Create MAC Address Tables
-How to forward frames based on the contents of your MAC address tables
-
+Every frame entering an Ethernet Switch is reviewed by examining the source MAC and the incoming port, if this MAC doesn't exist it is added to the table with the port number as its ID. If the source MAC was previously added the Switch simply updates the update timer for that entry (most switches keep the entry only for five minutes). By populating this table it will know exactly to which port it must forward the frame (unicast).
 
 **Switch Forwarding**
 
-The speed and method to forward data depend on the specific devices. In Ethernet switches some methods include: Store and Forward Switching where it receives a frame and ensures its valid, if it passes the CRC check the switch looks at the destination MAC and determines the appropriate exit interface decreasing frame corruption and bandwidth reduction due to corrupt data. It can be used in QoS analysis for traffic priority frame classification.
+The speed and method to forward data depend on the specific devices. Store and Forward Switching is where it receives a frame and ensures its valid, if it passes the CRC check the switch looks at the destination MAC and determines the appropriate exit interface, this decreases frame corruption and bandwidth reduction due to corrupt data. It can be used in QoS analysis for traffic priority frame classification.
 
 Cut Off Switching forwards the frame before being fully received. This method decreases latency but is prone to more frame errors, it can be divided into Fast Forward Switching (Forward as soon as MAC is resolved), where its up to the destination NIC to drop faulty packets, and Fragmentless Switching (First 64 byte check), where it at least ensures that no collision occurred before it forwards the frame.
 
 Frames can be buffered before forwarding or if the destination port is busy due to data congestion. Frame buffering methods include: Port Based Memory where frames are stored in queues bind to individual ports, the frame is transmitted when every previous frame has being successfully transmitted, note that a single frame can delay the whole queue in a port. 
 
-In shared based memory ports share a common frame buffer, the memory of the buffers is dynamically allocated and the frames themselves are dynamically bound to their destination ports. This method allows for larger frame transmission with fewer abandoned frames which is important for asymmetric switching (different data rates for every port), meaning that some ports can have dedicated bandwidth priority.
+In shared based memory ports share a common frame buffer, the memory of the buffers is dynamically allocated and the frames themselves are dynamically bound to their destination ports. This method allows for larger frame transmission with fewer abandoned frames which is important for asymmetric switching (different data rates per port), meaning that some ports can have dedicated bandwidth priority.
 
-When switches communicate their individual ports bandwidth (speed) and duplex setting (half or full) must match. The auto-negotiation feature allows for two switches to negotiate their best bandwidth and duplex configuration (Gigabit only work in full duplex). Duplex mismatch and crossover/straight cable mismatch are a common cause of performance problems on Ethernet links. Note that direct router host Ethernet connections must be done with crossover. Today most switches support automatic media dependent crossover or Auto-MDIX.
+![Duplex Mismatch](/static/images/notes/DuplexMismatchSwitchesNetworks.png)
+
+When switches communicate their port's bandwidth (speed) and duplex setting (half or full) must match. The auto-negotiation feature allows the switches to configure their ports. Note that Gigabit Ethernet only works on properly configured full duplex ports. Duplex and crossover mismatch are common causes of performance issues on Ethernet links. Note that direct router-host connections must be done in crossover cables, that is why today most switches support auto media dependent crossover (Auto-MDIX).
 
 ***
 
@@ -411,240 +390,89 @@ When switches communicate their individual ports bandwidth (speed) and duplex se
 
 **Third Layer**
 
+![Network Layer](/static/images/notes/NetworkLayerorIPProtocolNetworks.png)
 
+The network layer is the communications protocol that allows end devices to exchange data like IPv4 and IPv6. This layer is responsible for terminal addressing, encapsulation, *routing* and decapsulation. It encapsulates the transport layer segment in IP packets that will be examined by every device in the network. 
 
-Module 8: 
+![Characteristics Network](/static/images/notes/NetworkLayerCharacteristicsNetworks.png)
 
-Network layer characteristics
-Network Layer Characteristics The Network Layer
+In theory IPs don't change continuously like MAC's, but due to a recent lack of public IPs the addressing can change via NAT service. IP addressing is intended to have low overhead, meaning that it was designed to work connectionless, minimal or best effort and independent of the media used.
 
-Provides services to allow end devices to exchange data
-IP version 4 (IPv4) and IP version 6 (IPv6) are the main network layer communication protocols.
-The network layer performs four basic operations:
-Terminal addressing
-Encapsulation
-Routing
-Decapsulation
-Network layer characteristics IP encapsulation
+IP is connectionless because it doesn't establish any connection before sending the packet, therefore it doesn't require any control information (synchronization, confirmation). It assummes that the destination will receive the packet some time in the future. Connection oriented traffic is expected to be handled in the transport layer, usually by TCP.
 
-IP encapsulates the transport layer segment.
-IP can use an IPv4 or IPv6 packet and not affect the Layer 4 segment.
-The IP packet will be examined by all Layer 3 devices as it traverses the network.
-IP addressing does not change from source to destination.
-Note: NAT will change the addressing, but it will be discussed in a later module.
+IP is minimal or best effort since it won't guarantee the delivery of the packet and it doesn't know the state of the destination device. It is media independent meaning that it sends the data equally through every media (doesn't interact with the physical or data link layers). In short it is unreliable, can't fix undelivered or corrupt packages and cannot retransmit after failure.
 
-Network layer characteristics IP characteristics
+**Transmission Unit**
 
-IP is intended to have low overhead and can be described as:
-Without connection
-Minimal service
-Independent of the media
+This layer stablishes the Maximum Transmission Unit (MTU) based on the control information sent by the Data Link layer. From this unit IPv4 will determine the MTU size and fragment the packets into smaller units, this processes will inevitably increases latency (for example if the packet goes from Ethernet to a WAN with a smaller MTU), in contrast IPv6 doesn't fragment its packets.
 
-Network Layer Characteristics Connectionless
+![IPv4 and IPv6](/static/images/notes/IPV4andIPV6CharactNetworks.png)
 
-IP Connectionless
-IP does not establish any connection to the destination before sending the packet.
-No control information is needed (synchronizations, confirmations, etc.).
-The destination will receive the packet when it arrives, but no prior IP notifications are sent.
-If there is a need for connection-oriented traffic, another protocol will handle this (usually TCP at the transport layer).
+**IPv4 Packet**
 
-Network Layer Characteristics Best Effort
+The header ensures that the package is sent to the correct destination, contains network layer processing information and its used by every device that needs to handle the packet. It is written in binary, is read from left to right (4 bytes per line) and includes various information fields such as:
 
-IP is the best effort
-IP will not guarantee delivery of the package.
-IP has reduced the overhead as there is no mechanism to forward data that is not received.
-IP does not expect acknowledgments.
-IP does not know if the other device is operational or if it received the packet.
+| Function | Description |
+| :---: | :---: |
+| Version | For v4 it is the 4 bit string 0100 |
+| Differentiated services | Used for QoS (DiffServ-DS) or (IntServ - ToS) |
+| Header Checksum | Detect IPv4 Header Corruption |
+| Time to Live TTL | Hop Count. If zero the router drops the packet |
+| Internet | Protocol ID for the transport layer (TCP, UDP, ICMP) |
+| Source | IPv4 32 bit source address |
+| Destination | IPv4 32 bit destination address |
 
-Network layer characteristics Media Independence
+**IPv6 Packet**
 
-IP is not reliable:
-You cannot manage or fix undelivered or corrupted packages.
-IP cannot retransmit after failure.
-IP cannot realign stream packets.
-IP must rely on other protocols for these functions.
-IP is media independent:
-IP does not refer to the type of frame required at the data link layer or the type of media at the physical layer.
-IP can be sent over any type of medium: copper, fiber, or wireless.
+IPv4 has become obsolete because of address depletion (we can't assign new addresses), lack of end to end connectivity (private addresses and NAT overhead) and increased complexity (NAT modifies IPs and increases latency). IPv6 was developed to overcome IPv4 limitations with a larger address space (128 bit), improved packet handling (simplified header) and eliminates the need for NAT. IPv6 header is simpler but not smaller (40 Bytes) with fewer fields such as:
 
-Network Layer Characteristics Media Independence (cont.)
+| Function | Description |
+| :---: | :---: |
+| Version | For v6 it is the 4 bit string 0110 |
+| Traffic class | Used for QoS (DiffServ-DS)|
+| Stream Label | Handle identical stream labels equally (20 bit) |
+| Payload length | Indicates data length (16 bit) |
+| Next Header | Protocol ID for the transport layer (TCP, UDP, ICMP) |
+| Hop Limit | Replaces the hop count TTL |
+| Source | IPv4 128 bit source address |
+| Destination | IPv4 128 bit destination address |
 
-The network layer will set the Maximum Transmission Unit (MTU).
-The network layer receives it from the control information sent by the data link layer.
-The network then sets the MTU size.
-Fragmentation is when Layer 3 divides the IPv4 packet into smaller units.
-Chunking causes latency.
-IPv6 does not fragment packets.
-Example: The router goes from Ethernet to a slow WAN with a smaller MTU.
+IPv6 was also designed to contain extension headers (EH) between the header and the payload, they provide additional network layer information that can be used for security, custom fragmentation, mobility support etc.
 
-8.2 IPv4 packet
+**Host Routing**
 
-IPV4 packet IPV4 packet header
+![Host Routing](/static/images/notes/HostRoutingIPProtocolNetworks.png)
 
-IPv4 is the main communication protocol for the network layer.
-The network header has many purposes:
-It ensures that the package is sent in the correct direction (to the destination).
-Contains information for network layer processing in various fields.
-The header information is used by all Layer 3 devices handling the packet
+Packages are created at the source, each host has its own routing table and can send packets to itself `127.0.0.1` IPv4 or `::1` IPv6. Local hosts only change their last byte between them but are completely changed when communicating with remote hosts. The source will determine if the destination is local or remote, in IPv4 it will use its own IP, subnet mask and destination IP, in IPv6 it will use the network address and prefix given by the local router.
 
-IPV4 packet IPV4 packet header fields
+![Default DGW](/static/images/notes/DefaultGatewayIPProtocolNetworks.png)
 
-IPv4 Network Header Features:
-It is in binary.
-Contains various information fields
-Diagram is read from left to right, 4 bytes per line
-The two most important fields are origin and destination.
+If the destination is remote the traffic will be disconnected from the host interface to be handled by an intermediary device, if the destination is remote the traffic is forwarded directly to the default gateway router. A network layer switch or router can be configured to be the default gateway (DGW) of a LAN. Default gateways must have an IP in the same range as the rest of the LAN, they can accept LAN data and forward it to other routers (networks). 
 
-Protocols can have one or more functions.
+![Routing Tables](/static/images/notes/RoutingTablesIPProtocolNetworks.png)
 
-IPV4 packet IPV4 packet header fields
-Significant fields in the IPv4 header:
+If a LAN device doesn't have a DGW or has configured a wrong DGW it won't be able to send data outside the LAN. The source can know its DGW statically or via a DHCP service on IPv4, on IPv6 it can request a router (RS) to be the DGW. Generally DGW routers will be the last entry in the host routing table. To obtain the routing table of a PC in Windows use the command `route print` or `netstat -r`. 
 
-Function Description
-Version This will be for v4, unlike v6, a 4-bit field = 0100
-Differentiated services Used for QoS: DiffServ - DS field or the former IntServ - ToS or Type of service
-Header Checksum Detect IPv4 Header Corruption
-Time to Live (TTL) Layer 3 Hop Count. When it becomes zero, the router will drop the packet.
-Internet ID Next Level Protocol: ICMP, TCP, UDP, etc.
-Source IPv4 address 32-bit source address
-Destination IPV4 address 32-bit destination address
+![Routing the Data](/static/images/notes/RoutingTablesTwoIPProtocolNetworks.png)
 
-8.3 IPv6 packets
-IPv6 packets IPv4 limitations
-IPv4 has three main limitations:
-IPv4 address depletion - We have basically run out of IPv4 addressing.
-Lack of end-to-end connectivity: for IPv4 to survive this long time, private addresses and NAT were created. This put an end to direct communications with public speaking.
-Increased network complexity: NAT was intended as a temporary solution and creates network problems as a side effect of manipulating the network headers that it addresses. NAT causes latency and troubleshooting issues.
+When the router receives the frame from the host it will use its own routing table to decide how to forward it. As said before if it is a local destination it will use a direct route, added automatically (port identified), if it's remote the route will be manual (static), dynamic (shared) or default (no match in the current routing table). 
 
-IPv6 packets Introduction to IPv6
+![Show IP command](/static/images/notes/ShowIPCommandTableRouteNetworks.png)
 
-IPv6 was developed by the Internet Engineering Task Force (IETF).
-IPv6 overcomes the limitations of IPv4.
-Improvements provided by IPv6:
-Larger address space: based on 128-bit address, not 32-bit
-Improved packet handling - simplified header with fewer fields
-Eliminates the need for NAT - Since there is a large amount of addressing, there is no need to use private addressing internally and map to a shared public address
+The command `show ip route` displays the route types:
 
-IPv6 packets IPv4 packet header fields in the IPv6 packet header
+* L is a route directly connected to a local IP.
+* C is a direct connection network.
+* Y is a static route manually configured.
+* O is an OSPF remote route.
+* D is an EIGRP remote route.
+* S or * is the default route.
 
-The IPv6 header is simplified, but it is not smaller.
-The header is set to 40 Bytes or octets in length.
-Several IPv4 fields have been removed to improve performance.
-Some IPv4 fields have been removed to improve performance:
-Bookmark
-Displacement of fragments
-Header checksum.
+### A note about IPs ###
 
-IPV6 packets IPV6 packet header
+Suppose you have a local IP address `192.168.0.0/16` where the 16 means it has a B class subnet mask `255.255.0.0` (2 Host bytes). The subnet masks will determine how many bytes of the IP refer to the Host and how many refer to the LAN. Other subnet masks include A `255.0.0.0` (3 Host bytes) and B `255.255.255.0` (1 Host bytes). The number of host bytes will determine the number of computers that the LAN can have in its network. Note that two of this IP addresses are already asigned, one is the name of your network `192.168.0.0` (Network ID) and the other will be the Broadcast IP `192.168.255.255`.
 
-Significant fields in the IPv4 header:
-Function Description
-Version This will be for v6, unlike v4, a 4-bit field = 0110
-Traffic class Used for QoS: Equivalent to the DiffServ - DS field
-Stream Label Informs the device to handle identical stream labels in the same way, 20-bit field
-Payload length This 16-bit field indicates the length of the data portion or the payload of the IPv6 packet
-Next header I.D.s next level protocol: ICMP, TCP, UDP, etc.
-Hop Limit Replaces the Layer 3 hop count of the TTL field
-Source IPv4 address 128-bit source address
-Destination IPV4 address 128-bit destination address
-
-IPV6 packets IPV6 packet header (Cont.)
-
-The IPv6 packet can also contain extension headers (EH).
-EH Headers Features:
-provide optional network layer information
-are optional
-are placed between the IPv6 header and the payload
-can be used for fragmentation, security, mobility support, etc.
-
-Note: Unlike IPv4, routers do not fragment IPv6 packets.
-8.4 How a host is routed
-
-How a Host is Routed Host Forwarding Decision
-
-Packages are always created at the source.
-Each host device creates its own routing table.
-A host can send packets to the following:
-Itself - 127.0.0.1 (IPv4) ,:: 1 (IPv6)
-Local hosts: destination is on the same LAN
-Remote hosts: devices are not on the same LAN
-
-How a Host Is Routed Host Forwarding Decision (Cont.)
-
-The source device determines whether the destination is local or remote
-Determination method:
-IPv4 - The source uses its own IP address and subnet mask, along with the destination IP address
-IPv6: the source uses the network address and prefix advertised by the local router
-Local traffic is disconnected from the host interface to be handled by an intermediary device.
-Remote traffic is forwarded directly to the default gateway on the LAN.
-
-How Default Gateway Hosts Are Routed
-
-A Layer 3 switch or router can be a default gateway.
-Characteristics of a default gateway (DGW):
-It must have an IP address in the same range as the rest of the LAN.
-It can accept data from the LAN and is capable of forwarding traffic outside the LAN.
-It can be routed to other networks.
-If a device does not have a default gateway or a bad default gateway, its traffic will not be able to leave the LAN.
-
-How hosts are routed A host routes to the default gateway
-The host will know the default gateway (DGW) statically or via DHCP on IPv4.
-IPv6 sends the DGW through a request from a router (RS) or it can be configured manually.
- A DGW is a static route that will be a route of last resort in the routing table.
-All devices on the LAN will need the roter DGW if they intend to send traffic remotely.
-
-How a Host is Routed Host Routing Tables
-On Windows, route print or netstat -r shows the PC routing table
-Three sections displayed by these two commands:
-Interface list: all potential interfaces and MAC addressing
-IPv4 routing table
-IPv6 routing table.
-
-8.5 Introduction to routing
-Introduction to Routing Router packet forwarding decision
-What happens when the router receives the frame from the host device?
-
-Introduction to Routing Router IP Routing Table
-There are three types of routes in a router's routing table:
-Directly Connected - These routes are automatically added by the router, as long as the interface is up and has addressing.
-Remote - These are the routes that the router does not have a direct connection to and can be learned:
-Manually - with a static route
-Dynamically - by using a routing protocol for routers to share their information with each other
-Default route: forwards all traffic to a specific address when there is no match in the routing table
-
-Introduction to Routing Static Routing
-Static route features:
-It must be configured manually.
-It must be manually adjusted by the administrator when there is a change in the topology
-Good for small, non-redundant networks
-Often used in conjunction with a dynamic routing protocol to configure a default route
-
-Introduction to routing Dynamic routing
-Dynamic routes automatically:
-Discover remote networks.
-Keep information updated.
-Choose the best path to destination networks
-Search for new optimal routes when there is a topology change
-Dynamic routing can also share default static routes with the other routers
-
-Introduction to routing Introduction to an IPv4 routing table
-The show ip route command displays the following route sources:
-L - Directly connected local interface IP address
-C - Directly connected network
-Y - The static route was manually configured by an administrator
-OR - OSPF
-D - EIGRP
-This command shows the types of routes:
-Directly connected - C and L
-Remote routes - O, D, etc.
-Default routes - S *
-
-
-
-
-
-
-
+If you have a particular number of hosts that need to be included in a network ID then you must adjust the subnet mask bits with the power of two that includes that number of hosts. For example if you have the network ID `192.168.0.0` and need to fit 320 hosts then your subnet maskt will be $2^9 = 512 > 320$ or `255.255.254.0` that is equivalent to `11111111.11111111.11111110.00000000` (9 zeros) represented as `192.168.0.0/23`.
 
 ***
 
