@@ -90,6 +90,8 @@ Network protection includes protocols, technologies, devices, tools and techniqu
 
 ***
 
+# Network OS #
+
 **Operative System**
 
 Operating systems are built on top of abstraction layers. The hardware is the physical layer that includes the electronic devices of the OS. The kernel is the software-hardware interface in charge of distributing resources. The shell is the software interface and it's the first layer meant for human intervention. Shells can have a text based (CLI) or graphic based (GUI) interface. 
@@ -158,6 +160,8 @@ Message timing depends on:
 
 ***
 
+# Network OS #
+
 **Protocols Used**
 
 We use protocols so that the sender and receiver are properly identified, there is a guaranteed delivery, an efficient data flow, a continuous data sequence and data corruption detection. Protocols can work together through protocol suits like the internet (TCP/IP), most suits can be divided into their top layers (content) and lower layers (data flow).
@@ -218,7 +222,9 @@ First PC1 sends a data frame from its NIC to its default gateway DGW interface (
 
 ***
 
-**Physical Layer**
+# Physical Layer #
+
+**First Layer**
 
 Before any network communication can occur a physical connection to the local network must be established. The wired or wireless Network Interface Card is used to make this connection. It accepts an entire data frame and encodes it before sending it to the next device. Standards relating to this layer are implemented in hardware and therefore are managed by many organizations (ISO, ANSI, IEEE) while the rest of the TCP/IP stack is implemented in software and managed by the IETF.
 
@@ -263,11 +269,1334 @@ It uses the air to propagate electromagnetic signals that represent binary digit
 
 ***
 
-**Numbering System**
+# Numbering System #
 
 ![Numbering Systems](/static/images/notes/NumberingSystemsBinaryHexNetworks.png)
 
-A binary numbering system is used for IPv4 addresses. Hosts, servers and network devices that use IPv4 identify between themselves by a unique 32 bit string divided into 4 octets (bytes). Generally this binary dotted notation is represented in its decimal format. A hexadecimal numbering system is used for IPv6 and MAC addresses, it represents a 128 bit string divided into hextets.
+A binary numbering system is used for IPv4 addresses. Hosts, servers and network devices that use IPv4 identify between themselves by a unique 32 bit string divided into 4 octets (bytes). Generally this binary dotted notation is represented in its decimal format. Another hexadecimal numbering system is used for IPv6 and MAC addresses, it represents a 128 bit string divided into hextets.
+
+***
+
+# Data Link Layer #
+
+**Second Layer**
+
+![Second Layer](/static/images/notes/DataLinkLayerBasicNetworks.png)
+
+This layer communicates the end devices NIC's, it encapsulates layer 3 packets (IPv4 and IPv6) in layer 2 data frames, therefore it's the gate through which higher level layers are able to access the physical layer.It also performs the first series of error detection rejecting corrupted data frames.  Depending on the physical medium it will use different IEEE 802 LAN/MAN sublayer standards.
+
+Its main sublayers are the Logical Link Control (LLC 802.2) and the Media Access Control (MAC 802.3, 802.11 or 802.15). The LCC identifies the network protocol used and communicates between the network software and the device hardware. The MAC is responsible for the overall encapsulation, media access control and data link addressing. 
+
+The data link layer is mainly responsible for accepting a data frame from the network, exposing the encapsulated packet, re-encapsulating it in a new frame and forwarding the new data frame. There are many organizations that create data link layer standards including: Institute for Electrical and Electronic Engineers (IEEE), International Telecommunications Union (ITU), International Organizations for Standardization (ISO) and the American National Standards Institute (ANSI).
+
+**Topologies**
+
+![Data Link Topologies](/static/images/notes/DataLinkLayerTopologiesNetworks.png)
+
+Physical WAN topologies include: Point to Point (Permanent and Unique Node Link), Hub and Spoke (Central node interconnects branches) and Mesh (High availability but each node needs a connection to every other node). The Hub and Spoke variation called Extended Star topology is widely used since it is easy to install, highly scalable and easy to troubleshoot.
+
+Early Ethernet and Legacy Token Ring protocols provided the Bus (Nodes chained together in a line) and Ring (Nodes connected to their neighbors) topologies. WLAN and Legacy Bus (Ethernet Hubs) implemented half duplex communication that only allows one device to send or receive data at a time. Today Ethernet Switches implement full duplex communication that allows both devices to send and receive data at a time.
+
+**Access Control Methods**
+
+We can device the access control into Containment Based or Controlled Based. In Controlled Based Access every node has its own dedicated time to transmit data, it is a deterministic access used in legacy networks such as Token Rings and ARCNET. In a Containment Based Access every node is operating in half duplex (only one device sends or receives at a time), meaning that they compete for the medium's resources.
+
+Examples of Containment Based Access technology include Carrier Sense Multiple Access Collision Detection (CSMA/CD) mainly used in legacy bus Ethernet LAN's or Carrier Sense Multiple Access Collision Avoidance(CSMA/CD) mainly used in IEEE 802.11 WLAN's. 
+
+CSMA/CD uses a collision detection process by detecting a collision and notifying the rest of the nodes so that the culprits wait a random period of time before they relay the data. CSMA/CA uses a collision avoidance process by including the length of time needed for their transmission while other devices use this information to wait as the network is currently unavailable.
+
+**Link Header and Trailer**
+
+![Header and Trailer](/static/images/notes/DataLinkHeaderandTrailerNetworks.png)
+
+In this layer the data is encapsulated with a header and a trailer forming a data frame. The specific header and trailer used and the amount of control information they carry will vary depending on the data link protocol, the access control and the logical topology. The general header and trailer fields are:
+
+| Field | Description | 
+| :---: | :---: |
+| Link Start and Stop | Identifies the beginning and ending of the link |
+| Addressing | Indicates source and destination nodes |
+| Type | Identifies the L3 encapsulation protocol |
+| Control | Identifies flow control services needed |
+| Data | Contains the frame payload |
+| Error Detection | Used to determine transmission errors |
+
+Note that this layer uses physical addresses when forwarding data links. The MAC addresses are included in the header and are updated every time a new device forwards the data. In the end the logical topology and network media will determine the data link protocol: Ethernet, 802.11 Wireless, Point to Point PPP, Frame Relay, High-Level Data Link Control HDLC, etc.
+
+***
+
+# Ethernet Switching #
+
+The Ethernet protocol works at both the physical and data link layers. It is a family of network technologies defined in 802.2 and 802.3 that create Ethernet data frames. Like other data link protocols it uses the LCC and MAC sublayers to work.
+
+**Ethernet Frame**
+
+The data encapsulation done by the MAC sublayer (802.3) when using Ethernet creates Ethernet frames (internal structure), Ethernet addressing (MAC source and destination) and Ethernet error detection (Frame Check Sequence FCS Trailer). Every Ethernet frame is expected to come from an Ethernet NIC into another Ethernet NIC inside the LAN.
+
+**Ethernet Media Access**
+
+The 802.3 MAC sublayer specifies Ethernet standards over various types of media and topologies. Legacy Ethernet uses Bus or Hub topologies (half duplex) with access control via CSMA/CD or contention based access. Today's Ethernet Switches in LANs operate in full duplex without access control.
+
+An Ethernet MAC address is a 48 bit string expressed as 12 hex digits, since its usually transferred in bytes it can be represented in hex as the range 00 to FF. Leading zeros in the hex pair are always displayed and they are normally prefixed by 0x, suffixed by H or include the subscript 16.
+
+In an Ethernet LAN every device shares the same media and they are differentiated by their MAC at the data link layer. To ensure that every device has a unique MAC every Ethernet NIC manufacturer must register with the IEEE to obtain their starting 24 bit MAC, this string is called the Organization Unique Identifier (OUI).
+
+When a device forwards data through Ethernet the Frame Header will include the source and destination MACs. When a NIC receives an Ethernet frame it examines its header to see if it matches its physical MAC address stored in RAM, after approval it sends the frame to the next OSI layers for decapsulation.
+
+Ethernet NICs will also accept frames if the MAC address destination corresponds to a broadcast or multicast group of which the destination is a member. Different MAC addresses are used depending on the communications method (unicast, broadcast, multicast) of the data link layer.
+
+Unicast MACs are unique addresses used when sending a frame from a single device to a single destination. The process used by the source to determine the destination MAC associated with a particular IPv4 address is known as the Address Resolution Protocol (ARP) and for IPv6 its the Neighbor Discovery (ND) protocol. Note that source MAC addresses must be always unicast MACs.
+
+
+
+
+
+
+Each 
+
+
+Each device on the Ethernet LAN receives and processes an Ethernet broadcast frame. The characteristics of an Ethernet transmission are as follows:
+It has a destination MAC address of FF-FF-FF-FF-FF-FF in hexadecimal (48 units in binary).
+All ports on the Ethernet switch are flooded except the incoming port. It is not forwarded by a router.
+If the encapsulated data is an IPv4 broadcast packet, this means that the packet contains a destination IPv4 address that has all (1s) on the host side. This numbering in the address means that all hosts on that local network (broadcast domain) will receive and process the packet.
+Ethernet MAC addresses Multicast MAC address
+A group of devices belonging to the same multicast group receives and processes an Ethernet multicast frame.
+There is a destination MAC address 01-00-5E when the encapsulated data is an IPv4 multicast packet and a destination MAC address of 33-33 when the encapsulated data is an IPv6 multicast packet.
+There are other multicast destination MAC addresses reserved for when the encapsulated data is not IP, such as Spanning Tree Protocol (STP).
+All ports on the Ethernet switch are flooded except the incoming port, unless the switch is configured for multicast snooping. It is not forwarded by a router, unless the router is configured to route multicast packets.
+Because multicast addresses represent a group of addresses (sometimes referred to as a “host group”), they can only be used as the destination for a packet. The source always has a unicast address.
+As with unicast and broadcast addresses, the multicast IP address requires a corresponding multicast MAC address
+
+
+**MAC Address Table**
+
+Every Ethernet Switch has a MAC address table on their data link layer that it uses to forward Ethernet frames. The switch doesn't take into account the data or the data protocol (IPv4 ARP packet or IPv6 ND packet) just the Ethernet MAC addresses when forwarding data. Switches must examine their MAC table for every frame unlike Legacy Ethernet Hubs that forwarded the data on every available port except the incoming port. The table is empty when the switch is powered for the first time and it fills as new devices are connected to it. It is also called the Content Addressable Memory (CAM) table.
+
+
+
+Examine source MAC address (learn)
+Each frame entering a switch is reviewed for new information. This is done by examining the frame's source MAC address and the port number through which it entered the switch. If the source MAC address does not exist, it is added to the table, along with the input port number. If the source MAC address exists, the switch updates the update timer for that entry. By default, most Ethernet switches keep a table entry for five minutes.
+
+Note: If the source MAC address exists in the table, but on a different port, the switch treats it as a new entry. The entry is replaced with the same MAC address, but with the most current port number.
+
+The MAC Address Table Learning the Switch and Forwarding (cont.)
+Find the destination MAC address (Forward)
+If the destination MAC address is a unicast address, the switch looks for a match between the destination MAC address of the frame and an entry in the MAC address table. If the destination MAC address is in the table, it forwards the frame on the specified port. If the destination MAC address is not in the table, the switch forwards the frame on all ports except the incoming one. This is known as unicast.
+
+Note: If the destination MAC address is broadcast or multicast, the frame is also sent to all ports except the incoming one.
+
+The MAC Address Table Frame Filtering
+As a switch receives frames from different devices, you can complete the MAC address table by examining the MAC address of each frame. When the switch MAC address table contains the destination MAC address, you can filter the frame and forward a single port.
+
+The MAC address table MAC address tables on connected switches
+This video will cover the following:
+How Switches Create MAC Address Tables
+How to forward frames based on the contents of your MAC address tables
+
+
+**Switch Forwarding**
+
+The speed and method to forward data depend on the specific devices. In Ethernet switches some methods include: Store and Forward Switching where it receives a frame and ensures its valid, if it passes the CRC check the switch looks at the destination MAC and determines the appropriate exit interface decreasing frame corruption and bandwidth reduction due to corrupt data. It can be used in QoS analysis for traffic priority frame classification.
+
+Cut Off Switching forwards the frame before being fully received. This method decreases latency but is prone to more frame errors, it can be divided into Fast Forward Switching (Forward as soon as MAC is resolved), where its up to the destination NIC to drop faulty packets, and Fragmentless Switching (First 64 byte check), where it at least ensures that no collision occurred before it forwards the frame.
+
+Frames can be buffered before forwarding or if the destination port is busy due to data congestion. Frame buffering methods include: Port Based Memory where frames are stored in queues bind to individual ports, the frame is transmitted when every previous frame has being successfully transmitted, note that a single frame can delay the whole queue in a port. 
+
+In shared based memory ports share a common frame buffer, the memory of the buffers is dynamically allocated and the frames themselves are dynamically bound to their destination ports. This method allows for larger frame transmission with fewer abandoned frames which is important for asymmetric switching (different data rates for every port), meaning that some ports can have dedicated bandwidth priority.
+
+When switches communicate their individual ports bandwidth (speed) and duplex setting (half or full) must match. The auto-negotiation feature allows for two switches to negotiate their best bandwidth and duplex configuration (Gigabit only work in full duplex). Duplex mismatch and crossover/straight cable mismatch are a common cause of performance problems on Ethernet links. Note that direct router host Ethernet connections must be done with crossover. Today most switches support automatic media dependent crossover or Auto-MDIX.
+
+***
+
+# Network Layer #
+
+**Third Layer**
+
+
+
+Module 8: 
+
+Network layer characteristics
+Network Layer Characteristics The Network Layer
+
+Provides services to allow end devices to exchange data
+IP version 4 (IPv4) and IP version 6 (IPv6) are the main network layer communication protocols.
+The network layer performs four basic operations:
+Terminal addressing
+Encapsulation
+Routing
+Decapsulation
+Network layer characteristics IP encapsulation
+
+IP encapsulates the transport layer segment.
+IP can use an IPv4 or IPv6 packet and not affect the Layer 4 segment.
+The IP packet will be examined by all Layer 3 devices as it traverses the network.
+IP addressing does not change from source to destination.
+Note: NAT will change the addressing, but it will be discussed in a later module.
+
+Network layer characteristics IP characteristics
+
+IP is intended to have low overhead and can be described as:
+Without connection
+Minimal service
+Independent of the media
+
+Network Layer Characteristics Connectionless
+
+IP Connectionless
+IP does not establish any connection to the destination before sending the packet.
+No control information is needed (synchronizations, confirmations, etc.).
+The destination will receive the packet when it arrives, but no prior IP notifications are sent.
+If there is a need for connection-oriented traffic, another protocol will handle this (usually TCP at the transport layer).
+
+Network Layer Characteristics Best Effort
+
+IP is the best effort
+IP will not guarantee delivery of the package.
+IP has reduced the overhead as there is no mechanism to forward data that is not received.
+IP does not expect acknowledgments.
+IP does not know if the other device is operational or if it received the packet.
+
+Network layer characteristics Media Independence
+
+IP is not reliable:
+You cannot manage or fix undelivered or corrupted packages.
+IP cannot retransmit after failure.
+IP cannot realign stream packets.
+IP must rely on other protocols for these functions.
+IP is media independent:
+IP does not refer to the type of frame required at the data link layer or the type of media at the physical layer.
+IP can be sent over any type of medium: copper, fiber, or wireless.
+
+Network Layer Characteristics Media Independence (cont.)
+
+The network layer will set the Maximum Transmission Unit (MTU).
+The network layer receives it from the control information sent by the data link layer.
+The network then sets the MTU size.
+Fragmentation is when Layer 3 divides the IPv4 packet into smaller units.
+Chunking causes latency.
+IPv6 does not fragment packets.
+Example: The router goes from Ethernet to a slow WAN with a smaller MTU.
+
+8.2 IPv4 packet
+
+IPV4 packet IPV4 packet header
+
+IPv4 is the main communication protocol for the network layer.
+The network header has many purposes:
+It ensures that the package is sent in the correct direction (to the destination).
+Contains information for network layer processing in various fields.
+The header information is used by all Layer 3 devices handling the packet
+
+IPV4 packet IPV4 packet header fields
+
+IPv4 Network Header Features:
+It is in binary.
+Contains various information fields
+Diagram is read from left to right, 4 bytes per line
+The two most important fields are origin and destination.
+
+Protocols can have one or more functions.
+
+IPV4 packet IPV4 packet header fields
+Significant fields in the IPv4 header:
+
+Function Description
+Version This will be for v4, unlike v6, a 4-bit field = 0100
+Differentiated services Used for QoS: DiffServ - DS field or the former IntServ - ToS or Type of service
+Header Checksum Detect IPv4 Header Corruption
+Time to Live (TTL) Layer 3 Hop Count. When it becomes zero, the router will drop the packet.
+Internet ID Next Level Protocol: ICMP, TCP, UDP, etc.
+Source IPv4 address 32-bit source address
+Destination IPV4 address 32-bit destination address
+
+8.3 IPv6 packets
+IPv6 packets IPv4 limitations
+IPv4 has three main limitations:
+IPv4 address depletion - We have basically run out of IPv4 addressing.
+Lack of end-to-end connectivity: for IPv4 to survive this long time, private addresses and NAT were created. This put an end to direct communications with public speaking.
+Increased network complexity: NAT was intended as a temporary solution and creates network problems as a side effect of manipulating the network headers that it addresses. NAT causes latency and troubleshooting issues.
+
+IPv6 packets Introduction to IPv6
+
+IPv6 was developed by the Internet Engineering Task Force (IETF).
+IPv6 overcomes the limitations of IPv4.
+Improvements provided by IPv6:
+Larger address space: based on 128-bit address, not 32-bit
+Improved packet handling - simplified header with fewer fields
+Eliminates the need for NAT - Since there is a large amount of addressing, there is no need to use private addressing internally and map to a shared public address
+
+IPv6 packets IPv4 packet header fields in the IPv6 packet header
+
+The IPv6 header is simplified, but it is not smaller.
+The header is set to 40 Bytes or octets in length.
+Several IPv4 fields have been removed to improve performance.
+Some IPv4 fields have been removed to improve performance:
+Bookmark
+Displacement of fragments
+Header checksum.
+
+IPV6 packets IPV6 packet header
+
+Significant fields in the IPv4 header:
+Function Description
+Version This will be for v6, unlike v4, a 4-bit field = 0110
+Traffic class Used for QoS: Equivalent to the DiffServ - DS field
+Stream Label Informs the device to handle identical stream labels in the same way, 20-bit field
+Payload length This 16-bit field indicates the length of the data portion or the payload of the IPv6 packet
+Next header I.D.s next level protocol: ICMP, TCP, UDP, etc.
+Hop Limit Replaces the Layer 3 hop count of the TTL field
+Source IPv4 address 128-bit source address
+Destination IPV4 address 128-bit destination address
+
+IPV6 packets IPV6 packet header (Cont.)
+
+The IPv6 packet can also contain extension headers (EH).
+EH Headers Features:
+provide optional network layer information
+are optional
+are placed between the IPv6 header and the payload
+can be used for fragmentation, security, mobility support, etc.
+
+Note: Unlike IPv4, routers do not fragment IPv6 packets.
+8.4 How a host is routed
+
+How a Host is Routed Host Forwarding Decision
+
+Packages are always created at the source.
+Each host device creates its own routing table.
+A host can send packets to the following:
+Itself - 127.0.0.1 (IPv4) ,:: 1 (IPv6)
+Local hosts: destination is on the same LAN
+Remote hosts: devices are not on the same LAN
+
+How a Host Is Routed Host Forwarding Decision (Cont.)
+
+The source device determines whether the destination is local or remote
+Determination method:
+IPv4 - The source uses its own IP address and subnet mask, along with the destination IP address
+IPv6: the source uses the network address and prefix advertised by the local router
+Local traffic is disconnected from the host interface to be handled by an intermediary device.
+Remote traffic is forwarded directly to the default gateway on the LAN.
+
+How Default Gateway Hosts Are Routed
+
+A Layer 3 switch or router can be a default gateway.
+Characteristics of a default gateway (DGW):
+It must have an IP address in the same range as the rest of the LAN.
+It can accept data from the LAN and is capable of forwarding traffic outside the LAN.
+It can be routed to other networks.
+If a device does not have a default gateway or a bad default gateway, its traffic will not be able to leave the LAN.
+
+How hosts are routed A host routes to the default gateway
+The host will know the default gateway (DGW) statically or via DHCP on IPv4.
+IPv6 sends the DGW through a request from a router (RS) or it can be configured manually.
+ A DGW is a static route that will be a route of last resort in the routing table.
+All devices on the LAN will need the roter DGW if they intend to send traffic remotely.
+
+How a Host is Routed Host Routing Tables
+On Windows, route print or netstat -r shows the PC routing table
+Three sections displayed by these two commands:
+Interface list: all potential interfaces and MAC addressing
+IPv4 routing table
+IPv6 routing table.
+
+8.5 Introduction to routing
+Introduction to Routing Router packet forwarding decision
+What happens when the router receives the frame from the host device?
+
+Introduction to Routing Router IP Routing Table
+There are three types of routes in a router's routing table:
+Directly Connected - These routes are automatically added by the router, as long as the interface is up and has addressing.
+Remote - These are the routes that the router does not have a direct connection to and can be learned:
+Manually - with a static route
+Dynamically - by using a routing protocol for routers to share their information with each other
+Default route: forwards all traffic to a specific address when there is no match in the routing table
+
+Introduction to Routing Static Routing
+Static route features:
+It must be configured manually.
+It must be manually adjusted by the administrator when there is a change in the topology
+Good for small, non-redundant networks
+Often used in conjunction with a dynamic routing protocol to configure a default route
+
+Introduction to routing Dynamic routing
+Dynamic routes automatically:
+Discover remote networks.
+Keep information updated.
+Choose the best path to destination networks
+Search for new optimal routes when there is a topology change
+Dynamic routing can also share default static routes with the other routers
+
+Introduction to routing Introduction to an IPv4 routing table
+The show ip route command displays the following route sources:
+L - Directly connected local interface IP address
+C - Directly connected network
+Y - The static route was manually configured by an administrator
+OR - OSPF
+D - EIGRP
+This command shows the types of routes:
+Directly connected - C and L
+Remote routes - O, D, etc.
+Default routes - S *
+
+
+
+
+
+
+
+
+***
+
+# Address Resolution #
+
+
+Module 9: 
+9.1 MAC and IP
+Destination MAC and IP on the same network
+There are two main addresses assigned to a device on an Ethernet LAN:
+Layer 2 physical address (the MAC address): - used for NIC-to-NIC communications on the same Ethernet network.
+Layer 3 logical address (the IP address): - Used to send the packet from the source device to the destination device.
+Layer 2 addresses are used to deliver frames from one NIC to another NIC on the same network. If a destination IP address is on the same network, the destination MAC address will be that of the destination device.
+Destination MAC and IP on a remote network
+When the destination IP address is on a remote network, the destination MAC address is that of the default gateway.
+IPv4 uses ARP to associate the IPv4 address of a device with the MAC address of the device's NIC.
+IPv6 uses ICMPv6 to associate the IPv6 address of a device with the MAC address of the device's NIC.
+
+9.2 ARP
+ARP ARP Overview
+A device uses ARP to determine the destination MAC address of a local device when it knows its IPv4 address.
+
+ARP provides two basic functions:
+Resolution of IPv4 addresses to MAC addresses
+Maintaining an ARP Table of IPv4 to MAC Address Mappings
+
+ARP ARP functions
+To send a frame, a device will look in its ARP table for a destination IPv4 address and a corresponding MAC address.
+If the destination IPv4 address of the packet is on the same network, the device will look in the ARP table for the destination IPv4 address.
+If the destination IPv4 address is on a different network, the device will look in the ARP table for the IPv4 address of the default gateway.
+If the device finds the IPv4 address, the corresponding MAC address is used as the destination MAC address of the frame.
+If no entry is found in the ARP table, the device sends an ARP request.
+
+ARP Removing entries from an ARP table
+
+ARP table entries are not permanent and are removed when an ARP cache timer expires after a specified period of time.
+The duration of the ARP cache timer differs depending on the operating system.
+ARP table entries can also be removed manually by the administrator
+
+ARP ARP tables on network devices
+
+The show ip arp command displays the ARP table on a Cisco router.
+The arp —a command displays the ARP table on a Windows 10 computer.
+
+ARP ARP problems - ARP broadcasting and ARP spoofing
+
+ARP requests are received and processed by every device on the local network.
+Excessive ARP emissions can cause some reduction in performance.
+ARP responses can be spoofed by a threat actor to perform an ARP poisoning attack.
+Enterprise-grade switches include mitigation techniques to protect against ARP attacks.
+
+9.3 Copper wiring
+IPv6 Neighbor Discovery IPv6 Neighbor Discovery Messages
+The IPv6 Neighbor Discovery (ND) protocol provides:
+Address resolution
+Router Discovery
+Redirection services
+ICMPv6 Neighbor Request (NS) and Neighbor Advertisement (NA) messages are used for device-to-device messages, such as address resolution.
+ICMTPV6 Router Solicitation (RS) and Router Advertisement (RA) messages are used for messaging between devices and routers for router discovery.
+Routers use ICMPv6 redirect messages for better next-hop selection.
+
+IPv6 Neighbor Discovery IPv6 Neighbor Discovery - Address Resolution
+IPv6 devices use ND to resolve the MAC address of a known IPv6 address.
+ICMPv6 neighbor request messages are sent using special Ethernet and IPv6 multicast addresses.
+
+
+
+
+
+
+
+
+***
+
+# Router Configuration #
+
+
+
+
+Module 10: Basic Router Configuration
+
+10.1 Configure initial router settings
+
+
+Set the device name.
+Protect privileged EXEC mode.
+Protect user EXEC mode
+Protect remote access by Telnet and SSH
+Encrypt all unencrypted passwords.
+Provide legal notice and save settings.
+
+
+Router (config) # hostname hostname
+Router (config) # enable secret password
+Router (config) # line console 0
+Router (configuration line) # password
+Router (config-line) # login
+Router (config) # line vty 0 4
+Router (config-line) # password password
+Router (config-line) # login
+Router (config-line) # transport input {ssh | telnet}
+Router (config) # service password encryption
+Router (config) # banner motd # message #
+Router (config) # end
+Router # copy running-config startup-config
+
+Basic router configuration commands
+The configuration is saved in NVRAM.
+
+
+R1 (config) # hostname R1
+R1 (config) # enable secret class
+R1 (config) # line console 0
+R1 (config-line) # password cisco
+R1 (config-line) # login
+R1 (config-line) # line vty 0 4
+R1 (config-line) # password cisco
+R1 (config-line) # login
+R1 (config-line) # transport input ssh telnet
+R1 (config-line) # exit
+R1 (config) # service password encryption
+R1 (config) # banner motd #
+Write a text message. It ends with a new line and the #
+***********************************************
+WARNING: Unauthorized access is prohibited!
+**********************************************
+R1 (config) # exit
+R1 # copy running-config startup-config
+
+Configuring a router interface includes running the following commands:
+It is recommended to use the description command to add information about the network connected to the interface.
+The no shutdown command activates the interface.
+
+
+Router (config) # interface type-and-number Router (config-if) # description description-text Router (config-if) # ip address ipv4-address subnet-mask Router (config-if) # ipv6 address ipv6-address / prefix-length Router (config-if) # no shutdown
+
+The commands to configure the G0 / 0/0 interface on R1 are shown here:
+
+R1 (config) # interface gigabitEthernet 0/0/0
+R1 (config-if) # description link to LAN
+R1 (config-if) # ip address 192.168.10.1 255.255.255.0
+R1 (config-if) # ipv6 address 2001: db8: acad: 10:: 1/64
+R1 (config-if) # no shutdown
+R1 (config-if) # exit
+R1 (config) #
+* Aug 1 01: 43: 53.435:% LINK-3-UPDOWN: Interface GigabitEthernet0 / 0/0, changed state to down
+* Aug 1 01: 43: 56.447:% LINK-3-UPDOWN: Interface GigabitEthernet0 / 0/0, changed state to up
+* Aug 1 01: 43: 57.447:% LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0 / 0/0, changed state to up
+
+The commands to configure the G0 / 0/1 interface on R1 are shown here:
+
+
+R1 (config) # interface gigabitEthernet 0/0/1
+R1 (config-if) # description Link to R2
+R1 (config-if) # ip address 209.165.200.225 255.255.255.252
+R1 (config-if) # ipv6 address 2001: db8: feed: 224:: 1/64
+R1 (config-if) # no shutdown
+R1 (config-if) # exit
+R1 (config) #
+* Aug 1 01:46:29 .170:% LINK-3-UPDOWN: GigabiteThernet0 / 0/1 interface, status changed to inactive
+* Aug 1 01: 46: 32.171:% LINK-3-UPDOWN: Interface GigabitEthernet0 / 0/1, changed state to up
+* Aug 1 01: 46: 33.171:% LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0 / 0/1, changed state to up
+
+
+To verify the interface configuration, use the show ip interface brief and show ipv6 interface brief commands shown here:
+
+
+R1 # show ip interface brief
+Interface IP-Address OK? Method Status Protocol
+GigabitEthernet0 / 0/0 192.168.10.1 YES manual up up
+GigabiteThernet0 / 0/1 209.165.200.225 YES manual up up
+Vlan1 unassigned YES unset administratively down down
+
+R1 # show ipv6 interface brief
+GigabitEthernet0 / 0/0 [up / up]
+    FE80 :: 201: C9FF: FE89: 4501
+    2001: DB8: ACAD: 10 :: 1
+GigabitEthernet0 / 0/1 [up / up]
+    FE80 :: 201: C9FF: FE89: 4502
+    2001: DB8: FEED: 224 :: 1
+Vlan1 [administratively down / down]
+    unassigned
+R1 #
+
+The table summarizes the most popular commands used to verify the interface configuration.
+
+Commands Description
+show ip interface brief
+show ipv6 interface brief The output shows all interfaces, their IPv4 addresses, and current status.
+show ip route
+show ipv6 route Displays the contents of the IP routing tables stored in RAM.
+show interfaces This command shows statistics for all interfaces on the device. It only shows the IPv4 address information.
+show ip interfaces Displays IPv4 statistics for all interfaces on a router.
+show ipv6 interfaces Displays IPv6 statistics for all interfaces on a router.
+
+View the status of all interfaces with the show ip interface brief and show ipv6 interface brief commands, shown here:
+R1# show ip interface brief
+¿Interface IP-Address OK? Method Status Protocol 
+GigabitEthernet0/0/0 192.168.10.1 YES manual up up 
+GigabiteThernet0/0/1 209.165.200.225 YES manual up up 
+Vlan1 unassigned YES unset administratively down down 
+R1#
+
+R1# show ipv6 interface brief
+GigabitEthernet0/0/0 [up/up]
+    FE80: :201:C9FF:FE 89:4501
+    2001:DB8:ACAD:10: :1
+GigabitEthernet0/0/1 [up/up]
+    FE80: :201:C9FF:FE 89:4502
+    2001:DB8:ALIMENTACIÓN:224: :1
+Vlan1 [administratively down/down]
+    unassigned 
+R1#
+
+Display the contents of the IP routing tables with the show ip route and show ipv6 route commands as shown below:
+
+R1 # show ip route
+
+Gateway of last resort is not set
+      192.168.10.0/24 is variably subnetted, 2 subnets, 2 masks
+C 192.168.10.0/24 is directly connected, GigabitEthernet0 / 0/0
+L 192.168.10.1/32 is directly connected, GigabitEthernet0 / 0/0
+      209.165.200.0/24 is variably subnetted, 2 subnets, 2 masks
+C 209.165.200.224/30 is directly connected, GigabitEthernet0 / 0/1
+L 209.165.200.225/32 is directly connected, GigabitEthernet0 / 0/1
+R1 #
+
+R1 # show ipv6 route
+C 2001: DB8: ACAD: 10:: / 64 [0/0]
+     via GigabitEthernet0 / 0/0, directly connected
+L 2001: DB8: ACAD: 10:: 1/128 [0/0]
+     via GigabitEthernet0 / 0/0, receive
+C 2001: DB8: FEED: 224:: / 64 [0/0]
+     via GigabitEthernet0 / 0/1, directly connected
+L 2001: DB8: POWER: 224:: 1/128 [0/0]
+     via GigabitEthernet0 / 0/1, receive
+L FF00 :: / 8 [0/0]
+     via Null0, receive
+R1 #
+
+Show statistics for all interfaces with the show interfaces command, as shown below:
+
+R1 # show interfaces gig0 / 0/0
+GigabitEthernet0 / 0/0 is up, line protocol is up
+  Hardware is ISR4321-2x1GE, address is a0e0.af0d.e140 (bia a0e0.af0d.e140)
+  Description: Link to LAN
+  Internet address is 192.168.10.1/24
+  MTU 1500 bytes, BW 100000 Kbit / sec, DLY 100 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive not supported
+  Full Duplex, 100Mbps, link type is auto, media type is RJ45
+  output flow-control is off, input flow-control is off
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:01, output 00:00:35, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/375/0/0 (size / max / drops / flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size / max)
+  5 minute input rate 0 bits / sec, 0 packets / sec
+  5 minute output rate 0 bits / sec, 0 packets / sec
+     1180 packets input, 109486 bytes, 0 no buffer
+     Received 84 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles
+
+Display the IPv4 statistics for the router interfaces with the show ip interface command, as shown below:
+
+R1 # show ip interface g0 / 0/0
+GigabitEthernet0 / 0/0 is up, line protocol is up
+  Internet address is 192.168.10.1/24
+  Broadcast address is 255.255.255.255
+  Address determined by setup command
+  MTU is 1500 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Outgoing access list is not set
+  Outgoing access list is not set
+  Inbound Common access list is not set
+  Inbound access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switching is enabled
+  IP Flow switching is disabled
+R1 #
+
+
+Display the IPv6 statistics for the router interfaces with the show ipv6 interface command shown here:
+
+R1 # show ipv6 interface g0 / 0/0
+GigabitEthernet0 / 0/0 is up, line protocol is up
+  IPv6 is enabled, link-local address is FE80 :: 868A: 8DFF: FE44: 49B0
+  No Virtual link-local address (es):
+  Description: Link to LAN
+  Global unicast address (es):
+    2001: DB8: ACAD: 10:: 1, Subnet is 2001: DB8: ACAD: 10:: / 64
+  Joined group address (es):
+    FF02 :: 1
+    FF02 :: 1: FF00: 1
+    FF02 :: 1: FF44: 49B0
+  MTU is 1500 bytes
+  ICMP error messages limited to one every 100 milliseconds
+  ICMP redirects are enabled
+  ICMP unreachables are sent
+  ND DAD is enabled, number of DAD attempts: 1
+  ND reachable time is 30000 milliseconds (using 30000)
+  ND NS retransmit interval is 1000 milliseconds
+
+R1 #
+
+10.3 Setting the default gateway
+
+Configure the default gateway Default gateway on a host
+
+The default gateway is used when a host sends a packet to a device on another network.
+In general, the default gateway address is the address of the router interface connected to the host's local network.
+To reach PC3, PC1 directs a packet with the IPv4 address of PC3, but forwards the packet to its default gateway, the G0 / 0/0 interface of R1.
+Note: The IP address of the host device and the router interface address must be on the same network.
+
+Configure the default gateway Default gateway on a switch
+
+A switch must have a default gateway address configured to manage the switch remotely from another network.
+To configure an IPv4 default gateway on a switch, use the ip default-gateway ip-address global configuration command.
+
+
+
+
+
+
+
+
+
+
+
+
+***
+
+# IPv4 Addressing #
+
+
+
+Module 11: 
+11.1 IPv4 address structure
+IPv4 address structure
+Network and host portions
+An IPv4 address is a 32-bit hierarchical address that is made up of a network portion and a host portion.
+
+When determining the network portion versus the host portion, you have to look at the 32-bit stream.
+A subnet mask is used to determine the network and host portions.
+IPv4 address structure The subnet mask
+To identify the network and host portions of an IPv4 address, the subnet mask is compared to the IPv4 address bit by bit, from left to right.
+
+The actual process used to identify the network and host portions is called ANDing.
+
+Structure of an IPv4 address The prefix length
+Structure of an IPv4 address The prefix length
+A prefix length is a less cumbersome method used to identify a subnet mask address.
+The prefix length is the number of bits set to 1 in the subnet mask.
+
+It is written in "slash notation", so count the number of bits in the subnet mask and add it with a slash.
+
+IPv4 address structure Network determination: logical AND
+
+A logical Boolean AND operation is used to determine the network address.
+And logical is the two-bit comparison where only a 1 AND 1 produces a 1 and any other combination results in a 0.
+1 AND 1 = 1, 0 AND 1 = 0, 1 AND 0 = 0, 0 AND 0 = 0
+1 = True and 0 = False
+To identify the network address, the IPv4 address of the host is logically AND, bit by bit, with the subnet mask to identify the network address.
+
+Structure of an IPv4 Address Network, Host, and Broadcast Addresses
+Within each network there are three types of IP addresses:
+Network address
+Host addresses
+Broadcast address
+
+Máscara de subred
+255.255.255.0 o /24
+255 255 25511111111 111111 1111 1111
+000000000
+
+Dirección de red
+192.168.10.0 o/24
+192 168 1011000000 10100000 00001010
+000000000  All 0s
+
+Primera dirección
+192.168.10.1 o /24
+192 168 1011000000 10100000 00001010
+100000001 All 0s and a 1
+
+Última dirección
+192.168.10.254 o /24
+192 168 1011000000 10100000 00001010
+25411111110
+All 1s and a 0
+
+Dirección de broadcast
+192.168.10.255 o /24
+192 168 1011000000 10100000 00001010
+25511111111
+All 1s
+
+11.2 IPv4 Unicast, Broadcast, and Multicast
+
+IPv4 Unicast, Broadcast, and Multicast Unicast
+
+Unicast transmission is sending a packet to a destination IP address.
+
+For example, the PC at 172.16.4.1 sends a unicast packet to the printer at 172.16.4.253.
+
+IPv4 Unicast, Broadcast, and Multicast Broadcast
+Broadcast transmission is sending a packet to all other destination IP addresses.
+
+For example, the PC at 172.16.4.1 sends a broadcast packet to all IPv4 hosts.
+
+IPv4 Unicast, Broadcast, and Multicast Multicast
+
+The multicast transmission is sending a packet to a group of multicast addresses.
+
+For example, the PC at 172.16.4.1 sends a multicast packet to the multicast group address 224.10.10.5.
+
+11.3 Types of IPv4 addresses
+Types of IPv4 addresses Public and private IPv4 addresses
+As defined in RFC 1918, public IPv4 addresses are globally routed between Internet Service Provider (ISP) routers.
+
+Private addresses are common blocks of addresses used by most organizations to assign IPv4 addresses to internal hosts.
+
+Private IPv4 addresses are not unique and can be used by any internal network.
+
+However, private addresses are not globally routable.
+
+Network Address and Prefix RFC 1918 Private Address Range
+10.0.0.0/8 10.0.0.0 to 10.255.255.255
+172.16.0.0/12 172.16.0.0 to 172.31.255.255
+192.168.0.0/16 192.168.0.0 to 192.168.255.255
+
+Types of IPv4 addresses Routing to the Internet
+Network Address Translation (NAT) translates private IPv4 addresses to public IPv4 addresses.
+NAT is normally enabled on the edge router that connects to the Internet.
+
+Translates the internal private address to a public global IP address.
+
+
+Types of IPv4 addresses Public and private IPv4 addresses
+
+Loopback addresses
+127.0.0.0 / 8 (127.0.0.1 to 127.255.255.254)
+Commonly identified as only 127.0.0.1
+Used on a host to test if TCP / IP is operational.
+
+Link local addresses
+169.254.0.0 / 16 (169.254.0.1 to 169.254.255.254)
+Commonly known as Automatic Private IP Addressing (APIPA) addresses or self-assigned addresses.
+Used by Windows DHCP clients to self-configure when no DHCP servers are available.
+
+Types of IPv4 Addresses Legacy Classful Addressing
+RFC 790 (1981) asigna direcciones IPv4 en clases
+Clase A (0.0.0.0/8 a 127.0.0.0/8)
+Clase B (128.0.0.0 /16 — 191.255.0.0 /16)
+Clase C (192.0.0.0 /24 — 223.255.255.0 /24)
+Clase D (224.0.0.0 a 239.0.0.0)
+Clase E (240.0.0.0 — 255.0.0.0)
+
+Classful addressing wasted a lot of IPv4 addresses.
+
+Classful addressing has been replaced with classless addressing that ignores the rules of classes (A, B, C).
+
+Types of IPv4 Addresses IP Address Assignment
+The Internet Assigned Numbers Authority (IANA) manages and assigns IPv4 and IPv6 address blocks to five Regional Internet Registries (RIRs).
+RIRs are responsible for assigning IP addresses to ISPs that provide IPv4 address blocks to ISPs and smaller organizations.
+
+11.4 Network segmentation
+
+Network segmentation Broadcast domains and segmentation
+Many protocols use broadcasts or multicasts (for example, ARP uses broadcasts to locate other devices, hosts send DHCP discovery broadcasts to locate a DHCP server).
+The switches propagate broadcasts on all interfaces, except for the one on which they were received.
+The only device that stops transmissions is a router.
+Routers do not propagate broadcasts.
+Each router interface connects to a broadcast domain, and transmissions only propagate within that specific broadcast domain.
+
+Network segmentation Problems with large broadcast domains
+One problem with a large broadcast domain is that these hosts can generate excessive broadcasts and negatively affect the network.
+
+The solution is to reduce the size of the network to create smaller broadcast domains through a process called subnetting.
+
+Dividing the network address 172.16.0.0 / 16 into two subnets of 200 users each: 172.16.0.0 / 24 and 172.16.1.0 / 24.
+Broadcasts are only propagated within the smallest broadcast domains
+
+Network Segmentation Reasons for Subnetting
+
+Subnetting decreases overall network traffic and improves performance.
+It can be used to enforce cross-subnet security policies.
+The subnet reduces the number of devices affected by abnormal broadcast traffic.
+Subnets are used for a variety of reasons, including:
+
+11.5 Subnetting an IPv4 network
+Subnet an IPv4 network Subnetting at octet boundary
+
+Networks are more easily subdivided at the / 8/16 and / 24 octet boundary.
+
+Note that using longer prefix lengths decreases the number of hosts per subnet.
+Longitud de prefijo Máscara de subred Máscara de subred en sistema binario (n = red, h= host) Cantidad de hosts
+/8 255.0.0.0 nnnnnnnn.hhhhhhhh.hhhhhhhh.hhhhhhhh 11111111.00000000.00000000.00000000 16777214
+/16 255.255.0.0 nnnnnnnn.nnnnnnnn.hhhhhhhh.hhhhhhhh 11111111.11111111.00000000.00000000 65534
+/24 255.255.255.0 nnnnnnnn.nnnnnnnn.nnnnnnnn.hhhhhhhh 11111111.11111111.11111111.00000000 254
+
+Subnetting an IPv4 Network Subnetting at Octet Boundary (Cont.)
+In the first table 10.0.0.0/8 is subnetted using / 16 and in the second table, a / 24 mask.
+
+Subnet address (256 possible subnets) Host range (65,534 possible hosts per subnet) Address
+10.0.0.0/16 10.0.0.1 - 10.0.255.254  10.0.255.255
+10.1.0,0/16 10.1.0.1 - 10.1.255.254  10.1.255.255
+10.2.0.0/16 10.2.0.1 - 10.2.255.254  10.2.255.255
+10,3,0.0/16 10,30,1 - 10,3.255.254  10.3.255.255
+10,4,0.0/16 10,4,0,1 - 10,4,255,254 10.4.255.255
+10,5,0.0/16 10,5,0,1 - 10,5,255,254  10.5.255.255
+10,6,0.0/16  10,6,0,1 - 10,6.255.254 10.6.255.255
+10,7,0.0/16 10,7,0,1 - 10,7,255,254  10.7.255.255
+NEXT
+10.255,0.0/16 10.255.0.1 - 10.255.255.254  10.255.255.255
+
+Subnet address (65,536 possible subnets) Host range (254 possible hosts per subnet) Address
+10.0.0.0/24 10.0.0.1 -10.0.0.254 10.0.0.255
+10.0.1.0/24 10.0.1.1 - 10.0.1.254  10.0.1.255
+10.0.2.0/24 10.0.2.1 - 10.0.2.254  10.0.2.255
+NEXT
+10.0.255.0/24 10.0.255.1 - 10.0.255.254  10.0.255.255
+10.1.0.0/24 10.1.0.1 - 10.1.0.254 10.1.0.255
+10.1.1.0/24  10.1.1.1 - 10.1.1.254  10.1.1.255
+10.1.2.0/24 10.1.2.1 - 10.1.2254  10.1.2.255
+NEXT  
+10.100,0.0/24 10,100,0,1 - 10,100,0 ,254  10.100,0.255
+NEXT
+10.255.255.0/24 10.255.255.1 -10.2255.255.254 10.255.255.255
+
+Prefix length Subnet mask Subnet mask in binary system (n = network, h = host) Number of subnets Number of hosts
+
+
+/25 255.255.255.128 nnnnnnnn.nnnnnnnn.nnnnnnnn.nhhhhhhh11111111.11111111.11111111.10000000 2 126
+/26 255.255.255.192 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnhhhhhh11111111.11111111.11111111.11000000 4 62 
+/27 255.255.255.224 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnhhhhh11111111.11111111.11111111.11100000 8 30 
+/28 255.255.255.240 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnnhhhh11111111.11111111.11111111.11110000 16 14 
+/29 255.255.255.248 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnnnhhh11111111.11111111.11111111.11111000 32 6 
+/30 255.255.255.252 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnnnnhh11111111.11111111.11111111.11111100 64 2
+
+
+11.6 Subnetting a / 16 and / 8 prefix
+Subnet a / 16 and / 8 prefix Create subnets with a / 16 prefix
+
+The table highlights all possible scenarios for subnetting a / 16 prefix.
+
+
+Prefix length Subnet mask Network address (n = network, h = host) Number of subnets Number of hosts
+/17 - 255.255.128,0 nnnnnnnn.nnnnnnnn.nhhhhhhh.hhhhhhhh 11111111.11111111.10000000.00000000 2 32766
+/18 - 255.255.192,0 nnnnnnnn.nnnnnnnn.nnhhhhhh.hhhhhhhh 11111111.11111111.11000000.00000000 4 16382
+/19 - 255.255.224,0 nnnnnnnn.nnnnnnnn.nnnhhhhh.hhhhhhhh 11111111.11111111.11100000.00000000 8 8190
+/20 - 255.255.240,0 nnnnnnnn.nnnnnnnn.nnnnhhhh.hhhhhhhh 11111111.11111111.11110000.00000000 16 4094
+/21 - 255.255.248,0 nnnnnnnn.nnnnnnnn.nnnnnhhh.hhhhhhhh 11111111.11111111.11111000.00000000 32 2046
+/22 - 255.255.252,0 nnnnnnnn.nnnnnnnn.nnnnnnhh.hhhhhhhh 11111111.11111111.11111100.00000000 64 1022
+/23 - 255.255.254,0 nnnnnnnnnnnnnnnn. nnnnnnnh.hhhhhhh 11111111111111.11111110,00000000 128 510
+/24 - 255.255.255.0 nnnnnnnnnnnnnnnn. nnnnnnnn.hhhhhhh 11111111111111.11111111.00000000 256 254
+/25 - 255.255.255.128 nnnnnnnnnnnnnnnn. nnnnnnnnn.nhhhhhh 11111111111111.11111111.10000000 512 126
+/26 - 255.255.255.192 nnnnnnnnnnnnnnnn. nnnnnnnnnnhhhhhh 11111111111111.11111111.11000000 1024 62
+/27 - 255.255.255.224 nnnnnnnnnnnnnnnn. nnnnnnnnnnnhhhhh 11111111111111.11111111.11100000 2048 30
+/28 255.255.255. 240 nnnnnnnnnnnnnnnn. nnnnnnnnnnnnhhhh 111111111111.11111111.11110000 4096 14
+/29 - 255.255.255.248 nnnnnnnnnnnnnnnn. nnnnnnnnnnnnhhh 111111111111.11111111.11111000 8192 6
+/30 - 255.255.255.252 nnnnnnnnnnnnnnnn. nnnnnnnnnnnnhh 11111111111111.11111111.111100 16384 2
+
+Subnet a / 16 and / 8 prefix Create 100 subnets with a / 16 prefix
+
+Imagine a large company that requires at least 100 subnets and chose the private address 172.16.0.0/16 as its internal network address.
+
+The figure shows the number of subnets that can be created by borrowing bits from the third and fourth octets.
+Note that there are now up to 14 host bits that can be borrowed (that is, the last two bits cannot be borrowed).
+
+To satisfy the 100 subnet requirement for the enterprise, 7 bits would need to be lent (that is, 27 = 28 subnets) (for a total of 128 subnets).
+
+Subnet a / 16 and / 8 prefix Create 1000 subnets with a / 8 prefix
+
+Consider a small ISP that requires 1000 subnets for its clients using the 10.0.0.0/8 network address, which means that there are 8 bits in the network part and 24 host bits available to borrow for subnets.
+The figure shows the number of subnets that can be created by borrowing bits from the second and third.
+Note that there are now up to 22 host bits that can be borrowed (that is, the last two bits cannot be borrowed).
+
+To satisfy the 1000 subnet requirement for the enterprise, 10 bits would be borrowed (i.e. 2 10 = 1024 subnets) (for a total of 128 subnets)
+
+11.7 Subnet to meet requirements
+
+Subnet to meet the requirements Private subnet vs. public IPv4 address space
+
+Business networks will have a:
+Intranet: The internal network of a company normally uses private IPv4 addresses.
+DMZ - A company facing Internet servers. Devices in the DMZ use public IPv4 addresses.
+
+A company could use 10.0.0.0/8 and the subnet at the / 16 or / 24 network boundary.
+
+DMZ devices would have to be configured with public IP addresses.
+
+Subnet to meet requirements Minimize unused host IPv4 addresses and Maximize subnets
+
+There are two factors to consider when planning your subnets:
+The number of host addresses required for each network
+The number of individual subnets required
+
+
+Prefix length Subnet mask Subnet mask in binary system (n = network, h = host) Number of subnets Number of hosts
+/25 255.255.255.128 nnnnnnnn.nnnnnnnn.nnnnnnnn.nhhhhhhh11111111.11111111.11111111.10000000 2 126
+/26 255.255.255.192 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnhhhhhh11111111.11111111.11111111.11000000 4 62
+/27 255.255.255.224 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnhhhhh11111111.11111111.11111111.11100000 8 30
+/28 255.255.255.240 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnnhhhh11111111.11111111.11111111.11110000 16 14
+/29 255.255.255.248 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnnnhhh11111111.11111111.11111111.11111000 32 6
+/30 255.255.255.252 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnnnnhh11111111.11111111.11111111.11111100 64 2
+
+
+Subnet Example to Meet Requirements: Efficient IPv4 Subnets
+
+In this example, your ISP has assigned a public network address of 172.16.0.0/22 ​​(10 host bits) to your headquarters that provides 1,022 host addresses.
+
+There are five sites and therefore five Internet connections, which means that the organization requires 10 subnets with the largest subnet requiring 40 addresses.
+
+You assigned 10 subnets with a / 26 subnet mask (that is, 255.255.255.192).
+
+11.8 VLSM
+
+Preservation of IPv4 VLSM addresses
+
+Given the topology, 7 subnets are required (that is, four LANs and three WAN links) and the largest number of hosts is in Building D with 28 hosts.
+
+A / 27 mask would provide 8 subnets of 30 host IP addresses and therefore support this topology.
+
+IPv4 VLSM Address Preservation (cont.)
+However, point-to-point WAN links only require two addresses and therefore waste 28 addresses each for a total of 84 unused addresses.
+Applying a traditional subnetting scheme to this situation is not very efficient and is wasteful.
+
+VLSM was developed to avoid wasted addresses by allowing us to subnet a subnet.
+
+VLSM VLSM
+
+The left side shows the traditional subnet scheme (that is, the same subnet mask) while the right side illustrates how VLSM can be used to subnet a subnet and divide the last subnet into eight / 30 subnets.
+
+When using VLSM, always start by meeting the host requirements of the largest subnet and continue the subnet until the host requirements of the smallest subnet are met.
+
+The resulting topology with VLSM applied.
+
+VLSM VLSM Topology Address Assignment
+
+Using VLSM subnets, LANs and inter-router networks can be addressed without unnecessary waste, as shown in the logical topology diagram.
+
+11.9 Structured design
+
+Structured design Network address planning
+
+IP network planning is crucial to developing a scalable solution to an enterprise network.
+To develop an addressing scheme for the entire IPv4 network, you need to know how many subnets are needed, how many hosts a particular subnet requires, which devices are part of the subnet, which parts of the network use private addresses and which use public addresses, and many others. determining factors.
+
+Examine the needs of an organization's network usage and how the subnets will be structured.
+Conduct a network requirements study by looking at the entire network to determine how each area will be segmented.
+Determine how many subnets are needed and how many hosts per subnet.
+Determine DHCP address pools and Layer 2 VLAN groups.
+
+Structured Design Device Addressing
+
+Within a network, there are different types of devices that require addresses:
+End User Clients - Most use DHCP to reduce errors and the burden on network support personnel. IPv6 clients can obtain address information using DHCPv6 or SLAAC.
+Servers and peripherals: - must have a predictable static IP address.
+Servers that can be accessed from the Internet - Servers must have a public IPv4 address, which is most often accessed via NAT.
+Intermediary devices: - These devices are assigned addresses for network management, monitoring, and security.
+Gateway - Routers and firewall devices are gateways for hosts on that network.
+
+When developing an IP addressing scheme, it is generally recommended that you have an established pattern of how addresses are assigned to each type of device.
+
+
+
+
+
+
+
+
+
+
+
+
+***
+
+# Transport Layer #
+
+**Fourth Layer**
+
+Module 14: 
+1.4.1 Data transport
+Data transport Function of the transport layer
+
+The transport layer is:
+Responsible for logical communications between applications running on different hosts.
+Link between the application layers and the lower layers that are responsible for transmission through the network.
+Data transport Transport layer tasks
+The transport layer has the following responsibilities:
+Track individual conversations
+Segmentation of data and reassembly of segments
+Add header information
+Identify, separate and manage multiple conversations
+Uses segmentation and multiplexing to allow different communication conversations to be interspersed on the same network
+Data transport Transport layer protocols
+IP does not specify how the packages are delivered or transported.
+Transport layer protocols specify how to transfer messages between hosts and are responsible for managing the reliability requirements of a conversation.
+The transport layer includes the TCP and UDP protocols.
+Transmission Control Protocol
+
+TCP provides reliability and flow control Basic TCP operations:
+Number and track data segments transmitted to a specific host from a specific application
+Confirm data received
+Re-transmit any unrecognized information after a certain period of time
+Sequence data that may arrive in the wrong order
+Send data at an efficient speed that is acceptable to the receiver
+
+Data User Datagram Protocol (UDP)
+UDP provides the basic functions to deliver data segments between the appropriate applications, with very little overhead and data review.
+UDP is a connectionless protocol.
+UDP is also known as a best-effort delivery protocol because there is no recognition that data is being received at the destination.
+
+Data transport The appropriate transport layer protocol for the application in question
+UDP is also used by request and response applications where data is minimal, and retransmission can be done quickly.
+
+If it is important that all data arrive and that it can be processed in its proper sequence, TCP is used as the transport protocol.
+14.2 TCP Overview
+TCP Overview TCP Features
+
+Establish a session -TCP is a connection-oriented protocol that negotiates and establishes a permanent connection (or session) between source and destination devices before forwarding any traffic.
+Ensures Reliable Delivery- For many reasons, it is possible for a segment to be corrupted or lost entirely as it is transmitted over the network. TCP ensures that each segment sent by the source reaches the destination.
+Provide same-order delivery - Because networks can provide multiple routes that may have different transmission speeds, data may arrive in the wrong order.
+Supports flow control: - Network hosts have limited resources (that is, memory and processing power). When TCP notices that these resources are overloaded, it can request that the sending application slow down the data flow.
+TCP Overview TCP Header
+TCP is a stateful protocol, which means that it keeps track of the state of the communication session.
+
+TCP records what information was sent and what information was recognized.
+Introduction to TCP TCP header fields
+
+TCP header field Description
+Source Port 16-bit field used to identify the source application by port number.
+Destination port 16-bit field used to identify the destination application by port number.
+Sequence number 32-bit field used to reassemble data.
+32-bit A 32-bit field used to indicate that data has been received and the next expected byte from the source.
+Header length A 4-bit field known as the "data offset" that indicates the length of the TCP segment header.
+Reserved A 6-bit field that is reserved for future use.
+Control bits A 16-bit field used that includes bit codes, or flags, that indicate the purpose and function of the TCP segment.
+Window size A 16-bit field used to indicate the number of bytes that can be accepted
+Checksum A 16-bit field used for error checking of the segment header and data.
+Urgent 16-bit field used to indicate whether the data contained is urgent.
+
+TCP overview Applications that use TCP
+TCP handles all the tasks associated with dividing the data flow into segments, providing reliability, controlling the flow of data, and reordering segments.
+
+14.3 UDP overview
+UDP Overview UDP Features
+UDP features include the following:
+The data is rebuilt in the order it was received.
+Lost segments are not resent.
+There is no session establishment.
+The shipment is not informed about the availability of resources
+UDP Overview UDP Header
+
+The UDP header is much simpler than the TCP header because it only has four fields and requires 8 bytes (that is, 64 bits).
+
+UDP Overview UDP Header Fields
+The table identifies and describes the four fields of a UDP header.
+
+UDP header field Description
+Source Port 16-bit field used to identify the source application by port number.
+Destination port 16-bit field used to identify the destination application by port number.
+Length 16-bit field that indicates the length of the UDP datagram header.
+Checksum 16-bit field used for datagram header and data error checking.
+
+UDP overview Applications that use TCP
+Live Video and Multimedia Applications: - These applications can tolerate some data loss, but require little or no delay. Examples include VoIP and live video streaming.
+Simple Request and Response Applications: Simple transactional applications in which a request is sent by a host and there is a possibility that it will receive a response or not. Examples include DNS and DHCP.
+Applications that handle reliability on their own: - One-way communications where flow control, error detection, acknowledgments, and error recovery are not required or can be handled by the application. Examples include SNMP and TFTP.
+
+
+
+14.4 Port numbers
+
+Port numbers Multiple separate communications
+
+The TCP and UDP transport layer protocols use port numbers to handle multiple simultaneous conversations.
+
+The source port number is associated with the source application on the local host, while the destination port number is associated with the destination application on the remote host.
+
+Port numbers Socket pairs
+
+The source and destination ports are placed within the segment.
+The segments are encapsulated within an IP packet.
+The combination of the source IP address and the source port number, or the destination IP address and the destination port number, is known as a socket.
+Sockets allow the various processes running on a client to be distinguished from one another. They also allow the differentiation of different connections to a server process.
+
+Port numbers Port number groups
+
+Port group Number range Description
+Well-known ports 0 to 1,023 These are generally used for applications such as web browsers, email clients, and remote access clients.
+Well-known ports defined for common server applications allow clients to easily identify the required associated service.
+Registered ports 1,024 to 49,151 These port numbers are assigned to a requesting entity for use with specific processes or applications.
+These processes are primarily individual applications that the user chooses to install rather than common applications that would receive a known port number.
+For example, Cisco has registered port 1812 for its RADIUS server authentication process.
+Private and / or Dynamic ports. 49,152 to 65,535 These ports are also known as ephemeral ports.
+The client operating system typically assigns port numbers dynamically when a connection to a service is initiated.
+The dynamic port is then used to identify the client application during communication.
+
+Internet port number Application
+20 TCP File Transfer Protocol (FTP) - Data
+21 TCP File Transfer Protocol (FTP) - Control
+22 TCP Secure Shell (SSH)
+23 TCP Telnet
+25 TCP Simple Mail Transfer Protocol (SMTP)
+53 UDP, TCP Domain Name Service (DNS)
+67 UDP Dynamic Host Configuration Protocol (DHCP) - Server
+68 UDP Dynamic Host Configuration Protocol - Client
+69 UDP Trivial File Transfer Protocol (TFTP)
+80 TCP Hypertext Transfer Protocol (HTTP)
+110 TCP Post Office Protocol Version 3 (POP3)
+143 TCP Internet Message Access Protocol (IMAP)
+161 UDP Simple Network Management Protocol (SNMP)
+443 TCP Hypertext Transfer Protocol Secure (HTTPS)
+
+14.5 TCP communication process
+TCP communication process TCP server process
+
+Each application process running on the server to use a port number.
+An individual server cannot have two services assigned the same port number within the same transport layer services.
+An active server application assigned to a specific port is considered open, which means that the transport layer accepts and processes the segments directed to that port.
+Any incoming request from a client directed to the correct socket is accepted and the data is sent to the server application.
+
+Communication process in TCP Establishing TCP connections
+Step 1: The source client requests a client-to-server communication session with the server.
+Step 2: The server acknowledges the client-to-server communication session and requests a server-to-client communication session.
+Step 3: The originating client acknowledges the server-to-client communication session.
+
+Communication process in TCP Termination of the TCP session
+
+Step 1: When the client has no more data to send in the stream, it sends a segment with the FIN flag set.
+Step 2: The server sends an ACK to confirm the FIN flag and end the client-to-server session.
+Step 3: The server sends a FIN to the client to end the server-to-client session.
+Step 4: The client responds with an ACK to confirm the FIN from the server
+
+Communication process in TCP Analysis of the TCP three-way handshake
+
+Three-way link features:
+Establishes that the target device is present on the network.
+Verify that the destination device has an active service and accepts requests on the destination port number that the source client wants to use.
+Informs the target device that the source client is trying to establish a communication session on that port number
+Once the communication is complete, the sessions are closed and the connection is ended. The connection and session mechanisms enable the reliability function of TCP.
+
+Communication process in TCP Three-way TCP handshake analysis
+
+The six check bit flags are as follows:
+URG - Important Urgent Indicator Field.
+ACK - Acknowledgment indicator used in connection establishment and session termination.
+PSH - Push function.
+RST- Reestablish a connection when an error occurs or times out.
+SYN - Synchronize sequence numbers used in connection establishment.
+END - No more sender data and is used at the termination of the session
+
+14.6 - Reliability and flow control
+
+Reliability and flow control TCP reliability: Guaranteed and orderly delivery
+
+TCP can also help keep packets flowing so devices don't get overloaded.
+Sometimes TCP segments do not reach their destination or do not arrive in order.
+All data must be received and the data in these segments must be reassembled in the original order.
+To achieve this, sequence numbers are assigned in the header of each packet.
+
+Reliability and Flow Control TCP Reliability - Data Loss and Retransmission
+
+No matter how well designed a network is, data loss occasionally occurs.
+TCP provides methods for managing segment loss. Among these is a mechanism to retransmit segments for unacknowledged data.
+
+Reliability and Flow Control TCP Reliability - Data Loss and Retransmission (Cont.)
+Host operating systems today typically employ an optional TCP feature called selective handshake (SACK), negotiated during the three-way handshake.
+If both hosts support SACK, the receiver can explicitly recognize which segments (bytes) were received, including discontinuous segments.
+
+Reliability and flow control TCP flow control: window size and acknowledgments
+
+TCP also provides flow control mechanisms.
+
+Flow control is the amount of data that the destination can reliably receive and process.
+
+Flow control allows you to maintain the reliability of TCP transmission by adjusting the speed of the data flow between the source and the destination for a given session.
+
+Reliability and TCP flow control Flow control: maximum segment size
+
+Maximum Segment Size (MSS) is the maximum amount of data that the target device can receive.
+
+A common MSS is 1,460 bytes when using IPv4.
+A host determines the value of its MSS field by subtracting the IP and TCP headers from Ethernet Maximum Transmission Unit (MTU).
+1500 minus 60 (20 bytes for the IPv4 header and 20 bytes for the TCP header) leaves 1460 bytes.
+
+Reliability and Flow Control TCP Flow Control: Congestion Prevention
+When congestion occurs on a network, the overloaded router begins to drop packets.
+
+To avoid and control congestion, TCP employs various mechanisms, timers, and congestion handling algorithms.
+
+14.7 UDP communication
+
+Communication process in UDP Comparison of low overhead and reliability of UDP
+
+UDP does not establish a connection. UDP provides data transport with low overhead because it has a small datagram header with no network management traffic.
+
+Communication process in UDP Reassembly of UDP datagrams
+
+UDP does not keep track of sequence numbers in the way that TCP does.
+UDP cannot reorder datagrams in the order of transmission.
+UDP simply reassembles the data in the order it was received and sends it to the application
+
+Communication process in UDP UDP server requests and processes
+
+UDP-based server applications are assigned known or registered port numbers.
+
+UDP receives a datagram destined for one of those ports, sends the application data to the appropriate application based on its port number
+
+Communication process in UDP UDP client processes
+
+The UDP client process dynamically selects a port number from the range of port numbers and uses it as the source port for the conversation.
+Typically, the destination port is the well-known or registered port number that is assigned to the server process.
+After the client selects the source and destination ports, this same port pair is used in the header of all datagrams used in the transaction.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
