@@ -51,15 +51,15 @@ Selection and operation of actuators, theoretical foundations of actuators for d
 Mechatronic System: Measures signals, processes them and generates an action through actuators. 
 
 1. Structure: Body of the system, how we integrate components.
-2. Sensors: Devices that detect physical magnitudes and transform them to electrical signals.
-3. Actuators: Devices that perform actions in response to the signals.
+2. Sensors: Devices that detect physical magnitudes and transforms them to signals.
+3. Actuators: Devices that perform actions in response to signals.
 4. Controllers: Regulate actuators response time and logic.
 5. Interface: Devices that allow two or more systems to interact.
 
 **Mechatronic System Components**
 
 1. Actuators: Solenoid, DC Motor, Stepper Motor, Servomotor, Hydraulic, Pneumatic.
-2. Sensors: Interrupter, Potentiometer, Photoelectric, Position Encoder, Calibration Device, Thermocouple, Accelerometer, MEM.
+2. Sensors: Interrupter, Potentiometer, Photoelectric, Encoder, Thermocouple, Accelerometer, MEM.
 3. Input Signal Conditioning: Discrete Circuits, Amplifiers, Filters, Converters, Transformers.
 4. Control Architectures: Logic Circuits, Microcontrollers, PLC, Control Algorithms.
 5. Output Signal Conditioning: Amplifiers, Transistors, Op-Amps.
@@ -69,7 +69,7 @@ Mechatronic System: Measures signals, processes them and generates an action thr
 
 ![Control System Example](/static/images/notes/ControlSystemExample.png)
 
-Interconnection of components in a configuration that gives you the desired response or *output signal* with respect to the reference *input signal* we have selected. Control systems allow us to detect a variable and then execute the actions needed to modify its value into the values we want. We can find control systems on most systems, for example in animals, machines or businesses. 
+Interconnection of components in a configuration that gives you the desired response or *output signal* with respect to the reference *input signal* we have selected. Control systems allow us to detect a variable and then execute the actions needed to modify its value into the range of values we want. We can find control systems on most systems, for example in animals, machines or businesses. 
 
 **Open Loop Control System**
 
@@ -85,13 +85,11 @@ For example a simple valve. Here the water flow is the input, the valve's positi
 
 ![Open Loop System](/static/images/notes/ClosedLoopControlSystem.png)
 
-Here the output generated depends on the input and the corrections performed by the feedback signal, meaning that we compare the controlled output with the reference signal. 
-
-The reference input is compared with the feedback signal from a sensor creating an error signal that the controller uses to act on the system via actuators, then the actuators change the output signal closer to the reference. The cycle repeats when the sensor takes another measurement.
+Here the output generated depends on the input and the corrections performed by the feedback signal, meaning that we compare the controlled output with the reference signal. The difference between the feedback and the input is the error signal used by the controller to drive the actuators needed to change the output closer to the reference. The cycle repeats when the sensor takes additional measurements.
 
 ![Open Loop System Example](/static/images/notes/ClosedLoopControlSystemExample.png)
 
-For example, in a heating system the expected temperature is set in a thermostat as a reference or set point, a sensor measures the temperature in the room and compares it with the reference, their difference or error is then used by the controller to modify the valves of a gas furnace via actuators, this generates a feedback signal in the form of new heat that in turn changes the overall temperature (output signal). The cycle repeats as the sensor takes another measurement of the new output.
+For example, in a heating system the expected temperature is set in a thermostat as a reference or set point, a sensor measures the temperature output and compares it with the reference, their error is then used by the controller to modify the valves of a gas furnace, this generates a feedback signal in the form of new heat that in turn changes output. The cycle repeats as the sensor takes another measurement.
 
 **Actuator**
 
@@ -101,7 +99,7 @@ A device that transforms energy to a desired motion or action, the control syste
 
 1. Pneumatic: Transforms the energy of compressed air into to work like linear or circular motion. High power output from low applied force. 
 2. Hydraulic: Transforms the energy of incompressible fluids, generally mineral oil, into work. Highest power output from low applied force. 
-3. Electric: Transforms electrical energy into mechanical work. Lower torque but faster and more precise movements.
+3. Electric: Transforms electrical energy into mechanical work. Lower overall torque but faster and more precise movements.
 
 **Magnetic Field Concepts**
 

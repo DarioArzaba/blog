@@ -288,6 +288,169 @@ Thermistors, unlike RTD's and thermocouples, don't have standards associated wit
 
 # Instrumentation and Signals #
 
+**Signal Conditioning Methods**
+
+![Signal Conditioning](/static/images/notes/SignalConditioningfromInstrulab.png)
+
+Signal conditioning circuits or software that converts the signal from a transducer into a useful signal for the Digital Processing Unit (DPU). An example is an analog to digital converter (ADC).
+
+* Attenuation: Decrease the voltage values of the signal. For example a voltage divider.
+* Protection: Logical circuit inputs such as those from TTL (5V) and CMOS (3.3V) require protection from high voltage overloads. For example clipping diodes.
+* Amplification: Increase the signal for digitalization and processing, this can be done by either increasing the resolution or the signal to noise ratio (noise elimination CMRR). For example inverting, non inverting Op Amps and instrumentation amplifiers.
+* Isolation: Avoids electrical disturbances that could damage digital inputs. For example transformers or optocouplers.
+* Filtering: Rejects frequencies that aren't desired like the electromagnetic noise of high and low frequencies (60Hz in AC supplies). For example low, high, reject and pass band circuits.
+* Stimulus: Electrical excitation required from some sensors to generate their output. For example Resistance Temperature Detectors (RTDs).
+* Linearization: Force the signal to have a linear behavior, suppress non-linear regions of sensors like the thermocouple. For example a logarithmic amplifier.
+
+**Sensors with Signal Conditioning**
+
+IMAGE Sensors Sig conditioning
+
+**Industrial Instruments**
+
+Industrial instruments and their sensors have higher protection, quality of measuring (static and dynamic characteristics) and robustness than the instruments of the lab.
+
+Ingress protection rating (IP) or IEC 60529, determines the protection that an enclosure provides against external particles. It is composed of two numbers, the first relates to the protection against solid spheres of specific diameters, the second relates to liquid protection.
+
+| First Number | Diameter | Second Number | Description |
+| :---: | :---: | :---: | :---: |
+| 0 | None | 0 | None |
+| 1 | 50mm | 1 | Dripping |
+| 2 | 12mm | 2 | Dripping Tilted 15° |
+| 3 | 2.5mm | 3 | Spraying (60°) |
+| 4 | 1mm | 4 | Splashing |
+| 5 | Limited Dust | 5 | Jet Spray |
+| 6 | Dust Proof | 6 | Heavy Jet Spray |
+| - | - | 7 | Immersion (15cm to 1m for 30min)|
+| - | - | 8 | Submersion |
+
+General environmental protection standards include IEC 60529 and NEMA 250-1997 (National Electrical Manufacturers Association). The standards imply a basic protection from dangerous voltages (up to 1000V) and specify if the device should be used indoors or outdoors.
+
+* Type 1: Only for indoor use. Protection against dirt.
+* Type 2: Additional protection against dripping and slight splashing.
+* Type 3: Additional rain, sleet, snow, ice and windblown dust protection.
+* Type 3R: Additionally it can be used outdoors.
+* Type 3S: Additionally enclosure can be operated even with ice.
+* Type 4: Additional protection against splashing and water jet.
+* Type 4X: Additional protection against corrosion.
+* Type 5: Indoor use. Protection against settling dust, dripping, lint and fibers.
+* Type 6: Type 4 but additional protection against immersion.
+* Type 6P: Additional protection against submersion.
+* Type 12: Indoor use. Protection against circulating dust, dripping, lint and fibers.
+* Type 12K: Type 12 but additional conduit openings with cable glands.
+* Type 13: Indoor use. Protection against dust, lint fibers, dripping, splashing, oil and non corrosive coolants.
+
+IMAGE Industrial Inst Ratings
+IMAGE OF PIPING SIMBOLs
+
+**Function Classification**
+
+
+* Blind Instruments: Those instruments that have no visible indication of the current value they are measuring or controlling.
+* Primary Sensor
+* Transmitter: Transforms the signal into a standard industrial format that can be digital (pulses), pneumatic (3 to 15psi) or analogue (4-20mA, 0-20mA, 0-10V, -10-10V).
+* Converter: Can convert between pneumatic into electrical (P/I) or electrical into pneumatic (I/P).
+* Receiver: Receive signals from the transmitter and indicate or record the measured values.
+* Receiver-Controller: Receive the signals from the transmitter but instead of indicating or recording it send another signal (3-15psi or 4-20mA) to manipulate an actuator.
+* Controller: Use a target value (desired, setpoint) and a control variable to modify its output signal (3-15psi or 4-20mA) and manipulate an actuator.
+* Final Actuator: Step between the controller and the sensing element in a feedback loop. Changes the system.
+
+**Process Variable Classification**
+
+* Flow, Level, Pressure, Temperature, Density, Specific weight, Humidity, Viscosity, Position, Velocity, pH, Conductivity, Frequency and Force.
+
+Receiving Controlling Recorder of Flow.
+Controlling Recorder of Temperature.
+Receiving Indicator of Level.
+Blind Transmitter of Pressure.
+
+Combination of function, and process variable.
+
+The standards to identify an instruments are ISA (Instrument Society of America) Standard about instrumentation for measurement and control S5.1-84 and DIN (Deutch ..etc)
+
+**Instrument Identification ISA**
+
+* First: Indicates variable to control.
+* Second: Indicates modification to control variable.
+* Third: Indicates that the instrument is passive (doesn't generate output) like alarms, lights or indicators.
+* Fourth: Indicates that the instrument has output signals like controllers and transmitters.
+* Fifth: Modification to the control variable or the instrument itself.
+
+For example 
+
+PICA means a pressure indicator controller alarm.
+PHT means pressure high transmission.
+FCV means flow controller valve
+HS means manual switch.
+
+IMAGE FOR THE ISA TABLE
+
+**Plant Diagram**
+
+* Each instrument must have a tag number or alphanumeric code.
+* The number of functional characters must be minimal not exceeding four.
+* The loop number must be parallel or in series.
+* If a loop has more than one instrument with the same functional ID is preferable to add a suffix.
+* The suffix is made with capital letters.
+* An instrument taht performis two or more functions can be named by all its functions.
+	* FR-2 with PR-4 can be designated as FR-2/PR-4
+	* PR-7 with PR-8 can be designated as PR-7/8
+	* TAH-21 with TAL-21 can be designated as TAH/L-21
+* Instrument accessories (rotametros de purga, filtros manoreductores, potes de sello) that arent represented in the flow diagram must have their identification accorting to the function and assocciated loop number, alternatively they could use the ID number of their associated instruments but with clarificatio note.
+	* FE-7 with accesory as FX-7 or FE-7/BRIDAS
+	* PI-9 with accesory as PI-8/PURGA
+	* TI-9 with accesory as TW-9 or TI-9/SONDA
+
+IMAGEN CON TABLA DE SIMBOLOS ISA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Piping and Instrumentation**
+
+IMAGE OF PIPING DIGRAM
+
+Piping and Instrumentation Diagrams (P&IDs) show the layout of all relevant process vessels, pipes and machinery with the instruments superimposed to show what is being measured and control in the system. It describes the flow of the process and the flow of data between instruments. 
+
+Defined by the Institute of Instrumentation and Control as a diagram that shows the interconnection of process equipment and instrumentation used to control the process with a standard set of symbols based on the International Society of Automation (ISA) Standard S5.1
+
+It is used for construction and operation of a plant, maintenance and modificacion, physical sequence of equipment and systems, during design it provides basis for development of system control schemes (Hazard and operability study or HAZOP). For processing facilities is a pictorial representation of:
+
+* Key piping and instruemts, control and Shutdown schemes, safety and regulatory requirements, basic start up and operational information.
+
+It provides the following data for engineers, construction teams and operators:
+
+* Equipment: Tanks, vessels, heat exchangers, pumps, compressors, columns, etc. Indicating type, reference tag numbers, design data, spare parts etc.
+* Lines: Piping material class, size, fluid service, reference tag numbers, insulation, thickness, etc. Optionally operating pressure, temperature and flowrates.
+* Piping Requirements: Slope, special insulation (heat tracing), piping distance requirements etc.
+* Manually Opened Valves: Valve types (ball, gate, check), valve size, closed or open (locked, sealed, normally).
+* Piping fittings: Flanges, reducers, expanders, spectacle blinds, spacers, strainers, along with their size.
+* Drains and Vents: Indicated using typical symbosl along with their size and type (single valve, double valve).
+* Automated valves: Shutdown valves (SDV), control valves, blowdown valves (BDV) along with their size and tag numbers. Fail position (Open/Close). Actuator connections and types.
+* Safety Valves: Pressure relief valves (PRV) or temperature relief valves (TRV) are indicated with their tag numbers, setpoints and types.
+* Instruments: Gauges, transmitters, indicators, DCS indicators, interlocks and other functions are shown in detail. The interconnection between instruments is indicated by their signals (hardwired, soft, pneumatic, hydraulic). The location of the instruments (field mounted or DCS) is indicated by the distance between the symbols.
+* Notes: Written to improve clarity. Hold is sometimes used to indicate uncertainty about a piece of data.
+* Interconnections (OPC): Shown between lines (Piping) and instrument signals (Instrument) present on two different sheets. They can have unique tag numbers for easy identification between the two diagrams. If a connector is present on two sheets a line or a signal carries the same tag.
+
+
+Because of the numerous details involved for every equipment usually only one is shown per diagram with its related piping and instruments.
+
+
+
+
+
+
+
 ***
 
 # Optocouplers #
