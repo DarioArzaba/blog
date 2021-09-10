@@ -249,30 +249,11 @@ $$
 
 ***
 
-Cambiador de Rango
+**Scale Changer**
 
-SENSOR A DAQ (ACONDICIONAMIENTO DE SEÑALES, CONVERTIDOR ANALOGICO DIGITAL), A PC POR UN BUS (SOFTWARE CONTROLADOR YDE APLICACION)
+![Scale Changer](/static/images/notes/ScaleChangerForAppliedElectro.png)
 
-Ejemplo de cambiador de Rango
-
-Temperatura sensor Salida de -2.4 a 2.4 VDC que entrara a un convertidor ADC con una entrada de rango 0 a 5 VDC.
-
-Ecuacion de la recta
-
-x1 = min Salida
-x2 = max Salida
-y1 = interseccion entre min Salida con min entrada
-y2 = interseccion entre max salida con max de entrada.
-
-y = mx + b
-m = y2-y1/x2-x1
-
-IMAGEN DEL ARREGLO ESTANDAR DE UN CAMBIADOR DE RANGO.
-
-LA PRIMER PARTE GENERA LA RELACION LINEAL MEDIANTE UN SUMADOR INVERSOR PERO LA INVIERTE POR LO QUE TENEMOS QUE AGREGAR UN INVERSOR PARA QUE SEA POSITIVO
-
-NOTA CORTAR UN POTENCIOMETRO SI NO TENEMOS EL VALOR COMERCIAL
-TRIMPOT, POTENCIOMETRO, VALOR CERCANO
+When working in signal conditioning from a sensor to a DAQ you can use Op-Amps to change the voltage scale to the one you need. We can use their linear relation to find the resistances needed in a scale changer circuit. Note that if we don't have a particular resistor value we can trim its carbon to get the desired value.
 
 ***
 

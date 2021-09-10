@@ -4,138 +4,280 @@ date: '2021-07-26'
 tags: ['programming', 'python', 'gui']
 ---
 
+# User Manual #
 
+# Jump Start #
 
-# User Settings API #
+# About The PySimpleGUI Documentation System #
+
+# Platforms #
+
+# The PySimpleGUI "Family" #
+
+# Learning Resources #
+
+# The Quick Tour #
+
+# Features #
+
+# High Level API Calls #
+
+# Debug Output #
+
+# Design patterns #
+
+# Building Custom Windows #
+
+# Layouts #
+
+# Elements #
+
+Keys
+Text 
+Multiline
+Text Input
+Listbox 
+Slider 
+Radio Button
+Checkbox 
+Spin 
+Image 
+Button 
+ButtonMenu 
+VerticalSeparator 
+HorizontalSeparator 
+ProgressBar 
+Output 
+Columns
+Sizer 
+Frame
+Canvas 
+Graph 
+Table 
+Tree 
+Tab
+Colors
+
+# SystemTray #
+
+# Global Settings #
+
+# Updating Elements #
+
+# Cursors #
+
+# Menus #
+
+# Running Multiple Windows #
+
+# PySimpleGUI Debugger #
+
+The module includes the python debugger `imwatchingyou` a great little app that allows you to see and interact with your code while running. Use the `Break` or `Ctrl + Break` to open the debugger, by default it will show current events and their values. To run the debugger we need to add a timeout to any reads:
+
+```python
+# Blocking Reading Call
+while True:
+    event, values = window.read()
+# Non Blocking Reading Call
+while True:
+    event, values = window.read(timeout=200)
+    if event == sg.TIMEOUT_KEY:
+        continue
+```
+
+We need the timeout since the debugger steals a little bit of time from these read async calls, but only while the debugger is open. The value of 200 means that the debugger will update 5 times per second if the application is idle. If you don't want to add a timeout you could also add a button that causes the main loop to execute again, the debugger will use the manual execution to update.
+
+```python
+# Program to test the debugger
+import PySimpleGUI as sg
+
+window = sg.Window('Testing the Debugger', [[sg.Text('Debugger Tester'), sg.In('Input here'), sg.B('Push Me')]])
+
+while True:
+    event, values = window.read(timeout=500)
+    if event == sg.TIMEOUT_KEY:
+        continue
+    if event == sg.WIN_CLOSED:
+        break
+    print(event, values)
+window.close()
+```
+
+The Popout debugger window display as many current local scope variables as possible and isn't interactive. 
 
 
 
 ```python
 
-User Settings API
-In release 4.30.0 there is a new set of API calls available to help with "user settings". Think of user settings as a dictionary that is automatically written to your hard drive. That's basically what it is. Underpinning the code is the JSON package provided by Python.
 
-While using JSON files to save and load a settings dictionary isn't very difficult, it is still code you'll need to write if you want to save settings as part of your GUI. Since having "settings" for a GUI based program isn't uncommon, it made sense to build this capability into PySimpleGUI. Clearly you can still use your own method for saving settings, but if you're looking for a simple and easy way to do it, these calls are likely about as easy as it gets.
+One "variable" shown in the popout window that is an often asked for piece of information when debugging Issues and that variable is sg (or whatever you named the PySimpleGUI pacakge when you did your import). The assumption is that your import is import PySimpleGUI as sg. If your import is different, then you'll see a different variable. The point is that it's shown here.
 
-There have already been some demo programs written that use JSON files to store settings. You can expect that this capability will begin to show up in more demos in the future since it's now part of PySimpleGUI.
+Exiting this window is done via the little red X, or using the rickt-click menu which is also used as one way to launch the Main Debugger Window
 
-User settings are stored in a Python dictionary which is saved to / loaded from disk. Individual settings are thus keys into a dictionary. You do not need to explicitly read nor write the file. Changing any entry will cause the file to be saved. Reading any entry will cause the file to be read if it hasn't already been read.
+Ways of Launching the Popout Window
+There are 3 ways of opening the Popout window.
 
-Two Interfaces
-There are 2 ways to access User Settings
+Press the BREAK key on your keyboard.
+Call the function show_debugger_popout_window(location=(x,y))
+Add Debug() button to your layout - adds a little purple and yellow PySimpleGUI logo to your window
+When you are asked for the "Location of your PySimpleGUI package or PySimpleGUI.py file" do this
+If you wish to use the debugger to find the location of THIS running program's PySimpleGUI package / the PySimpleGUI.py file, then all you need to do is: * Press the BREAK key on your keyboard. * This is sometimes labelled as the Cancel key * May also have Pause printed on key * On some US keyboards, it is located next to Scroll Lock and/or above PageUp key * This will open a window located in the upper right corner of your screen that looks something like this: image * The information you are seeking is shown next to the sg in the window You don't need to modify your program to get this info using this technique.
 
-User Settings function calls
-The UserSettings class
-They both offer the same basic operations. The class interface has an added benefit of being able to access the individual settings using the same syntax as Python dictionary.
+If your variable's value is too long and doesn't fit, then you'lll need to collect this information using the "Main Debugger Window"
 
-List of Calls for Function Interface
-Function	Description
-user_settings	Returns settings as a dictionary
-user_settings_delete_entry	Deletes a setting
-user_settings_delete_filename	Deletes the settings file
-user_settings_file_exists	Returns True if settings file specified exists
-user_settings_filename	Returns full path and filename of current settings file
-user_settings_get_entry	Returns value for a setting. If no setting found, then specified default value is returned
-user_settings_load	Loads dictionary from the settings file. This is not normally needed
-user_settings_save	Saves settings to current or newly specified file. Not normally needed
-user_settings_set_entry	Sets an entry to a particular value
-user_settings_write_new_dictionary	Writes a specified dictionary to settings file
+What's NOT Listed In The Popout Debugger Window
+The Popup window is a "Snapshot" of your local variables at the time the window was opened. This means any variables that did not exist at the time the Popout was created will not be shown. This window does NOT expand in size by adding new variables. Maybe in the future.
 
+The "Main Debugger Window"
+Now we're talking serious Python debugging!
 
+Ever wish you had a repl>>> prompt that you could run while your program is running. Well, that's pretty much what you're getting with the PySimpleGUI debugger Main Window! Cool, huh? If you're not impressed, go get a cup of coffee and walk off that distraction in your head before carring on because we're in to some seriously cool shit here....
 
+You'll find that this window has 2 tabs, one is labelled Variables and the other is labelled REPL & Watches
 
-Operations
-There are 2 categories that the calls can be divided into.
+Ways of Opening the Main Debugger Window
+There are 3 ways to open the Main Debugger Window
 
-File operations
-Settings operations
-File operations involve working with the JSON file itself. They include: * Setting the path and/or filename * Load/save the file (these are somewhat optional as the saving loading/saving is done automatically) * Deleting the settings file * Checking if settings file exists
+Press Control + Break on your PC keyboard
+From the Popout Debug Window, right click and choose Debugger from the right click menu
+From your code call show_debugger_window(location=(x,y))
+The "Variables" Tab of Main Debugger Window
+SNAG-0440
 
-Generally speaking, a setting is specified with a key which is generally a string. Settings operations are for working with the individual settings and include: * Get the value of a setting (returns a default value if not found) * Set the value of a setting (also saves the settings to disk)
+Notice the the "frame" surrounding this window is labelled "Auto Watches" in blue. Like the Popup window, this debugger window also "Watches" variables, which means continuously updates them as often as you call Window.read.
 
-Any setting operation may cause the file to be written. This is because a "get" operation can include returning a default value if the setting isn't found. This means a new entry is made in your settings dictionary is one didn't exist before. Since a new entry is made, that means it needs to be also be written to disk.
+The maximum number of "watches" you can have any any one time is 9.
 
+Choosing variables to watch
+You can simply click "Show All Variable" button and the list of watched variables will be automatically populard by the first 9 variables it finds. Or you can click the "Choose Variables to Auto Watch" button where you can individually choose what variables, and expressions you wish to display.
 
+SNAG-0442
 
+In this window we're checking checkboxes to display these variables:
 
+event, sg, values, window, __file__
 
+SNAG-0443
 
+Additionally, you can see at the bottom of the window a "Custom Watch" has been defined. This can be any experession you want. Let's say you have a window with a LOT of values. Rather than looking through the values variable and finding the entry with the key you are looking for, the values variable's entry for a specific key is displayed.
 
-Filenames
-The settings filename defaults the filename of your Python file making the call with the extension ".json" added. If your Python program is called test.py then your default settings filename will be test.json.
+In this example the Custom Watch entered was values[0]. After clicking on the "OK" button, indicating the variables are chosen that we wish to watch, this is the Main window that is shown:
 
-In addition to the filename having a default value, the path to the file also has a default value. The default depends on your operating system.
+SNAG-0444
 
-Operating System	Default Path
-Windows	\user\user_name\AppData\Local\PySimpleGUI\settings
-Linux	~/.config/PySimpleGUI/settings
-Mac	~/Library/Application Support/PySimpleGUI/settings
-When calling the User Settings APIs, if a parameter is named filename, you can specify a full path or just the filename. This will save you the trouble of having to split up your path and filename in your code. If you specify only the path, the the filename will be added to that path and named as defined earlier.
+We can see the variables we checked as well as the defined expression values[0]. If you leave this window open, these values with continuously be updated, on the fly, every time we call the line in our example code window.read(timeout=500). This means that the Main Debugger Window and these variables we defined will be updated every 500 milliseconds.
 
-Like the rest of PySimpleGUI, the idea is for you to write as little code as possible. The default values for the filename and path should be fine for you to use. They will be stored in a location on your system that is meant to store user settings.
+The REPL & Watches Tab
+SNAG-0441
 
-Setting Filename
-If you want to see what the current filename is for your settings, then you can call user_settings_filename() with no parameters and you'll get back an absolute path and filename.
+This tab is provided to you as a way to interact with your running program on a real-time basis.
 
-To make the code for specifying the folder and filename as simple as possible, the 2 parts are separated in the call specifying the name of the settings file. However, it is possible to supply a full and complete folder + filename as well.
+If you want to quickly look at the values of variables, nearly ANY variables, then type the information into one of the 3 spaces provided to "Watch" either variables or experessions. In this example, the variable window was typed into the first slow.
 
-The default filename for your settings file is the name of the file that makes the call to the User Settings API's with the .py extension changed to a .json extension. If your source file is called demo.py, then your settings filename will be demo.json.
+Immediately after typing the character 'w', the information to the right was displayed. No button needs to be clicked. You merely neeed to type in a valid experession and it will be displayed to you.... and it will be displayed on an on-going, constantly-refreshing-basis.
 
-Setting only the filename
-If you want to control the name of the file and/or the path to the settings file, then you will use the user_settings_filename call. This function takes 2 parameters.
+SNAG-0447
 
-user_settings_filename(filename=None, path=None)
-If you set only the path, then the filename will default to the value already described. If you set only the filename, then the path will be the default path is dependent on your operating system. See the table above for the locations for each OS.
+If the area to the right of the input field is too small, then you can click on the "Detail" button and you will be shown a popup, scrolled window with all of the information displayed as if it were printed.
 
-import PySimpleGUI as sg
+I'm sure you've had the lovely experience of printing an object. When clicking the "Detail" button next to the window variable being shown, this window is shown:
 
-sg.user_settings_filename(filename='my_settings.json')
-print(sg.user_settings_filename())
-If you are running on Windows, then the result of running this code will be this printed on the console:
+SNAG-0449
 
-C:\Users\your_use_name\AppData\Local\PySimpleGUI\settings\my_settings.json
-You are not restricted to naming your settings file to an extension of .json. That is simply the default extension that's used by PySimpleGUI. You can use any extension you would like, including no extension.
+Oh, Python, -sigh-. I just want to see my window object printed.
 
-Setting only the path
-Maybe you don't care about the settings filename itself, but you do care about where the settings are stored. Let's say you want the settings to be stored in the same folder as your Python source file. Specifying path='.' will achieve this.
+Obj Button to the Rescue!
+PySimpleGUI has a fun and very useful function that is discussed in the docs named ObjToString which takes an object and converts it's contents it into a nicely formatted string. This function is used to create the text output when you click the Obj button. The result is this instead of the tiny window shown previously:
 
-Setting a fully qualified filename
-If you want to specify the full absolute path and filename of the settings file, you can do it by using the filename parameter. Instead of passing the filename only, pass in a fully qualified path and filename. If you want to name your settings file a:\temp\my_settings, then your call will look like this:
+SNAG-0446
 
-sg.user_settings_filename(filename=r'a:\temp\my_settings')
-You are not required to break your file down into 2 parameters. You could if you wanted to however. The equivalent to the above call using 2 parameters would be:
+The REPL Prompt
+While not really a Python REPL prompt, this window's REPL >>> prompt is meant to act as much like one as possible. Here you can enter experessions and code too.
 
-sg.user_settings_filename(filename='my_settings' , path=r'a:\temp')
-Getting the current filename
-Calling user_settings_filename with no parameters will return the full path and filename of your settings file as a single string.
+The uses for this prompt are so numerous and diverse that listing them all won't be attempted.
 
-File Loading / Saving
-Generally speaking you will not need to load or save your settings file. It is automatically saved after every change.
+Your "XRay" and "Endoscope" into Your Program
+Think of this prompt as a way to get specific diagnostics information about your running program. It cannot be stressed enough that the power and the usefullness of this tool is in its ability to diagnose a running program, after you've already started it running.
 
-Note that reading a setting can also cause the file to be written. If you read a setting and the setting did not exist, then your call to user_settings_get_entry will return the default value you specified. As a result, the dictionary is updated with this default value and in return the file is written with this value as well.
+Execute Code
+In addition to displaying information, getting paths to packages, finding version information, you can execute code from the PySimpleGUI Debugger's REPL >>> prompt. You can type in any expression as well as any executable statement.
 
-One of the situations where you may want to explicitly read/load the settings file is if you're expecting it to be modified by another program.
+For example, want to see what PopupError looks like while you're running your program. From the REPL prompt, type: sg.PopupError('This is an error popup')
 
-Like so much of PySimpleGUI, as much as possible is automatically done on your behalf. This includes the requirement of saving and loading your settings file. Even naming your settings file is optional.
+The result is that you are shown a popup window with the text you supplied.
 
+KNOW Answers to Questions About Your Program
+Using this runtime tool, you can be confident in the data you collect. Right?
+
+There's no better way to find what version of a package that your program is using than to ask your program. This is so true. Think about it. Rather than go into PyCharm, look at your project's "Virtual Environment", follow some path to get to a window that lists packages installed for that project, get the verstion and your're done, right? Well, maybe. But are you CERTAIN your program is using THAT version of the package in question?
+
+SO MUCH time has been wasted in the past when people KNEW, for sure, what version they were running. Or, they had NO CLUE what version, or no clue to find out. There's nothing wrong with not knowing how to do something. We ALL start there. Geeez..
+
+A real world example.....
+
+How To Use the Debugger to Find The Version Number of a Package
+Let's pull together everything we've learned to now and use the debugger to solve a problem that happens often and sometimes it's not at all obvious how to find the answer.
+
+We're using Matplotlib and want to find the "Version".
+
+For this example, the little 12-line program in the section "A Sample Program For Us To Use" is being used.
+
+That program does not import matplotlib. We have a couple of choices, we can change the code, we can can import the package from the debugger. Let's use the debgger.
+
+Pull up the Main Debugger Window by pressing CONTROL+BREAK keys. Then click the "REPL * Watches" tab. At the >>> prompt we'll first import the package by typing: import matplotlib as m
+
+The result returned from Python calls that don't return anything is the value None. You will see the command you entered in the output area followed by "None", indicating success.
+
+finally, type: m.__version__
+
+The entire set of operations is shown in this window:
+
+SNAG-0448
+
+By convention you'll find many modules have a variable __version__ that has the package's version number. PySimpleGUI has one. As you can see matplotlib has one. The requests module has this variable.
+
+For maximum compatibility, PySimpleGUI not only uses __version__, but also has the version contained in another variable version which has the version number because in some situations the __version__ is not available but the version variable is avaiable.
+
+It is recommended that you use the variable version to get the PySimpleGUI version as it's so far been the most successful method.
+
+tkinter, however does NOT.... of course.... follow this convention. No, to get the tkinter version, you need to look at the variable: TkVersion
+
+Here's the output from the REPL in the debugger showing the tkinter version:
+
+>>> import tkinter as t
+None
+>>> t.TkVersion
+8.6
+>>> t.__version__
+Exception module 'tkinter' has no attribute '__version__'
 ```
 
 
+# User Settings API #
 
+User settings are basically a python dictionary that is written to your hard drive, later to be parsed as JSON. Since it is a dictionary we consider individual settings as keys. Reading or writing to the file will save it automatically. You can interface with the file by using user settings function calls or by using the `UserSettings` class. Function calls: 
 
+| Function | Description |
+|:---:|:---:|
+| user_settings_filename | Returns path and filename of settings file (File) |
+| user_settings | Returns current settings as a dictionary (File) |
+| user_settings_set_entry | Sets an entry to a particular value (Setting) |
+| user_settings_get_entry | Returns value for a setting. If not returns default value (Setting) |
+| user_settings_delete_entry | Deletes a setting (Setting) |
+| user_settings_delete_filename | Deletes the settings file (File) |
+| user_settings_file_exists | Returns True if the file exists (File) |
+| user_settings_write_new_dictionary | Writes a dict to a new settings file (File) |
+| user_settings_load | Loads the settings file. Not normally needed (File) |
+| user_settings_save | Saves settings to file. Not normally needed (File) |
 
-
-
-
-# User Settings #
+Note that the settings filename defaults to the filename of you Python file with the extension `json` added with the default path in Windows: `\user\user_name\AppData\Local\PySimpleGUI\settings`. You can modify the default Filename, Path or Both by using `sg.user_settings_filename(filename='my_settings.json', path='.')`.
 
 Using the `UserSettings` class is like working with a Python dictionary. The first step is to create a settings object;
 
 ```python
 # Create settings object
 settings = sg.UserSettings()
-# Another way of creating the object
-sg.user_settings_filename()
+# Or use the call user_settings_filename()
 # Read a settings value
 item_value = settings['-item-']
 # Write a settings value
@@ -166,7 +308,7 @@ def main():
 sg.user_settings_silent_on_error()
 ```
 
-User settings are values that are meant to be saved so that they can be remembered and generated later on. To specify the path of your user settings file, to be the same as your app folder for example, you could use `sg.user_settings_filename(path='.')`. The convention with user settings is to use upper case for normal key strings and lower case for user settings strings. One common use is for remembering a recently used system path:
+The convention with user settings is to use upper case for normal key strings and lower case for user settings strings. User settings are values that are meant to be saved so that they can be remembered and generated later on. One common use is for remembering a recently used system path:
 
 ```python
 # Typical file input row

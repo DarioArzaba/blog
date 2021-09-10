@@ -338,5 +338,69 @@ In this experiment we learned to measure the unknown resistance and capacitance 
 
 The main objective is to learn the fundamental principles and operation of optoelectronic devices to isolate the input system from the output system and the special configurations needed when working with AC or DC sources. 
 
+Optocouplers
+An optocoupler combines, on the same base, an LED and a photodetector. Figure 1
+shows an optocoupler formed by an LED and a photodiode; the first is on the left and the
+second, on the right, the voltage that feeds the LED causes it to emit light that will affect
+the photodiode. The light striking the photodiode creates a reverse current that passes
+through resistor R2. The photodiode voltage is:
+sal ss 2 V = V - IR
+This output voltage will depend on the magnitude of the reverse current. If the
+voltage feeding the LED is modified, the light intensity, the photodiode current and,
+consequently, Vout vary. If the LED current has a variation of AC, Vout will have the same
+variation of AC
+The main advantage of the optocoupler is the electrical isolation between the LED
+circuit and the photodiode circuit; It is common for the resistance between the input circuit
+and the output circuit to be greater than 1010 Ω. For this reason, the optocoupler is also
+known as an "optoisolator"; the only contact between the input and output circuits is the
+light beam.
+
+More information in:
+https://www.youtube.com/watch?v=sKdRMdaInaA
+3. Material and equipment (virtual in case of using Proteus or physical if in Lab):
+• 1 optocoupler 4N25 o 4N26
+(phototransistor)
+• 1 optocoupler PC817
+• 1 optocoupler with triac MOC3021
+• 1 triac (auxiliary) Q4004L4
+• 2 resistors of 270Ω
+• 1 diodo
+• 1 protoboard
+• 1 multimeter
+• 1 functions or signals generator
+• 1 oscilloscope
+• 1 Power source
+• 2 push buttons
+• 1 lamp
+4. Procedure:
+EXPERIMENT 1: Optocoupler
+• To investigate the data sheet of the used optocoupler.
+• To assemble the circuit of figure 2 a) and b), set the voltage source to 2 V. Measure and record the output voltage (table 1). Attention the ground of the LED is different from the ground of the output, the circuits are being isolated!
+• Repeat step 2 for the power supply voltages listed in table1.
+• To plot the Vout in function of the Vs transfer plot of the optocoupler with the data from Table 1 in Graph 1.
+Vs (V)
+Vout (V)
+2
+4
+6
+8
+10
+12
+14
+Table 1 of optocoupler
+Figure 2: a) Circuit of an optocoupler, A) with 4N26, B) with PC817
+EXPERIMENT 2: Circuits with optocouplers for lighting LEDs
+• To investigate the data sheet of the used optocoupler
+• To reproduce the circuits in figure 3 a) and b) and try the push buttons. Write down the values of the DC multimeters
+Figura 3: a) Circuito de un optoacoplador, A) con 4N26, B) com PC817
+EXPERIMENT 3: Optocoupler circuits with TRIAC to power loads that draw alternating current (AC)
+• To investigate the data sheet of the optocoupler used
+• To reproduce the circuits in figure 4 and try the push buttons.
+Figure 4: Circuit of an optocoupler with a MOC3021 triac
 
 An optocoupler is an electronic component that transfers a signal between two isolated circuits using light. They are used to isolate parts of the system to prevent high voltages from affecting the rest of the components that receive the signal. Generally it is the combination of a light emitter, for example a LED, and photosensitive device like a photodetector. The incoming signal will determine the LED's brightness that will then be interpreted by the photodetector to recover the original signal as its output.
+
+In your own words, what are the objectives and the procedure of the practice?
+2. Explain in your own words what an optocoupler is and what is its main function?
+3. What are the two main parts of an optocoupler?
+4. Describe at least two types of optocouplers?
