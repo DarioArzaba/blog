@@ -22,9 +22,9 @@ The memory unit is where the main program and all its relevant data is stored, t
 
 Voltage and current requirements, usually 120VAC, 220VAC or 24VDC, must be supplied to ensure the PLC will provide the correct input and output signals. PLC are preferred in industrial environments to other controllers for their simplicity, sturdiness and reliable Input and Output interface that is specifically designed to communicate with modules and instrumentation (sensors and actuators).
 
-PLC's programming languages are used to create a program with the necessary control instructions, note that communication between PLC's happens through communication protocols like Profibus, Fieldbus, Modbus, Devicenet, Interbus, etc. Since PLC's are used by many professionals that don't have a programming background it is common to see high level graphic languages. 
+PLC's programming languages are used to create a program with the necessary control instructions, note that communication between PLC's happens through communication protocols like Profibus, Fieldbus, Modbus, Devicenet, Interbus, etc. Since PLC's are used by many professionals that don't have a programming background it is common to see them use high level graphic languages. 
 
-Graphic languages use symbols to declare the instructions but are limited to the available symbol combinations, for example Ladder Logic (relay based) or Logical Symbol Blocks. Textual languages use character strings to declare the instructions therefore they are more flexible, for example Instruction List (Assembly based) or Structured Text Language (C and PASCAL based).
+Graphic languages use symbols to declare the instructions but are limited to the available symbol combinations, for example Ladder Logic (relay based) or Logical Symbol Blocks. Textual languages use character strings to declare the instructions and therefore are more flexible, for example Instruction List (Assembly based) or Structured Text Language (C and PASCAL based).
 
 ***
 
@@ -105,6 +105,7 @@ The CLI is the preferred operating system for network technicians to configure, 
 | ping | Sends data packages to a host and waits for the echo response. | Use hostname or IP |
 | ipconfig | Network information of the local device | All, release, renew, flushdns |
 | tracert | Trace the route of a data packet | Test-NetConnection PS equivalent |
+| arp | Display the device ARP table | All |
 
 **Cisco IOS**
 
@@ -126,6 +127,7 @@ The CLI is the preferred operating system for network technicians to configure, 
 | banner motd #string# | Add a terminal login banner | - |
 | ip address ip | Define the device IP and subnet mask | ip subnetmask |
 | no shutdown | It enables the status of the configured interface | - | 
+| show ip arp | Displays device ARP table |
 
 * Startup-config: Configuration file stored in NVRAM containing the persistent device configuration.
 * Running-config: Configuration file stored in RAM containing the volatile device configuration.
@@ -160,7 +162,7 @@ Message timing depends on:
 
 ***
 
-# Network OS #
+# Protocols #
 
 **Protocols Used**
 
@@ -283,7 +285,7 @@ A binary numbering system is used for IPv4 addresses. Hosts, servers and network
 
 ![Second Layer](/static/images/notes/DataLinkLayerBasicNetworks.png)
 
-This layer communicates the end devices NIC's, it encapsulates layer 3 packets (IPv4 and IPv6) in layer 2 data frames, therefore it's the gate through which higher level layers are able to access the physical layer.It also performs the first series of error detection rejecting corrupted data frames.  Depending on the physical medium it will use different IEEE 802 LAN/MAN sublayer standards.
+This layer communicates the end devices NIC's, it encapsulates Layer 3 packets (IPv4 and IPv6) in Layer 2 data frames, therefore it's the gate through which higher level layers are able to access the physical layer. It also performs the first series of error detection to reject corrupted data frames. Depending on the physical medium it will use different IEEE 802 LAN/MAN sublayer standards.
 
 Its main sublayers are the Logical Link Control (LLC 802.2) and the Media Access Control (MAC 802.3, 802.11 or 802.15). The LCC identifies the network protocol used and communicates between the network software and the device hardware. The MAC is responsible for the overall encapsulation, media access control and data link addressing. 
 
@@ -299,7 +301,7 @@ Early Ethernet and Legacy Token Ring protocols provided the Bus (Nodes chained t
 
 **Access Control Methods**
 
-We can device the access control into Containment Based or Controlled Based. In Controlled Based Access every node has its own dedicated time to transmit data, it is a deterministic access used in legacy networks such as Token Rings and ARCNET. In a Containment Based Access every node is operating in half duplex (only one device sends or receives at a time), meaning that they compete for the medium's resources.
+We can divide access control into Containment Based or Controlled Based. In Controlled Based Access every node has its own dedicated time to transmit data, it is a deterministic access used in legacy networks such as Token Rings and ARCNET. In a Containment Based Access every node is operating in half duplex (only one device sends or receives at a time), meaning that they compete for the medium's resources.
 
 Examples of Containment Based Access technology include Carrier Sense Multiple Access Collision Detection (CSMA/CD) mainly used in legacy bus Ethernet LAN's or Carrier Sense Multiple Access Collision Avoidance(CSMA/CD) mainly used in IEEE 802.11 WLAN's. 
 
@@ -320,7 +322,7 @@ In this layer the data is encapsulated with a header and a trailer forming a dat
 | Data | Contains the frame payload |
 | Error Detection | Used to determine transmission errors |
 
-Note that this layer uses physical addresses when forwarding data links. The MAC addresses are included in the header and are updated every time a new device forwards the data. In the end the logical topology and network media will determine the data link protocol: Ethernet, 802.11 Wireless, Point to Point PPP, Frame Relay, High-Level Data Link Control HDLC, etc.
+Note that this layer uses physical addresses when forwarding data links. The MAC addresses are included in the header and are updated every time a new device forwards the data. In the end the logical topology and network media will determine the data link protocol used: Ethernet, 802.11 Wireless, Point to Point PPP, Frame Relay, High-Level Data Link Control HDLC, etc.
 
 ***
 
@@ -468,7 +470,7 @@ The command `show ip route` displays the route types:
 * D is an EIGRP remote route.
 * S or * is the default route.
 
-### A note about IPs ###
+## Subnetting ##
 
 Suppose you have a local IP address `192.168.0.0/16` where the 16 means it has a B class subnet mask `255.255.0.0` (2 Host bytes). The subnet masks will determine how many bytes of the IP refer to the Host and how many refer to the LAN. Other subnet masks include A `255.0.0.0` (3 Host bytes) and B `255.255.255.0` (1 Host bytes). The number of host bytes will determine the number of computers that the LAN can have in its network. Note that two of this IP addresses are already asigned, one is the name of your network `192.168.0.0` (Network ID) and the other will be the Broadcast IP `192.168.255.255`.
 
@@ -478,683 +480,76 @@ If you have a particular number of hosts that need to be included in a network I
 
 # Address Resolution #
 
-9.1 MAC and IP
-Destination MAC and IP on the same network
-There are two main addresses assigned to a device on an Ethernet LAN:
-Layer 2 physical address (the MAC address): - used for NIC-to-NIC communications on the same Ethernet network.
-Layer 3 logical address (the IP address): - Used to send the packet from the source device to the destination device.
-Layer 2 addresses are used to deliver frames from one NIC to another NIC on the same network. If a destination IP address is on the same network, the destination MAC address will be that of the destination device.
-Destination MAC and IP on a remote network
-When the destination IP address is on a remote network, the destination MAC address is that of the default gateway.
-IPv4 uses ARP to associate the IPv4 address of a device with the MAC address of the device's NIC.
-IPv6 uses ICMPv6 to associate the IPv6 address of a device with the MAC address of the device's NIC.
+![IPv4 Address Res](/static/images/notes/IP4AddressResolutionNetworks.png)
 
-9.2 ARP
-ARP ARP Overview
-A device uses ARP to determine the destination MAC address of a local device when it knows its IPv4 address.
+As previously said every device in an Ethernet LAN has a MAC or L2 Physical Address used for NIC to NIC communication and an IP or L3 Logical Address used for sending packets. Address resolution is the process of obtaining a MAC address from a known destination IP. IPv4 uses ARP tables and IPv6 uses ND messages for their MAC to IP mappings.
 
-ARP provides two basic functions:
-Resolution of IPv4 addresses to MAC addresses
-Maintaining an ARP Table of IPv4 to MAC Address Mappings
+When sending a frame the device will look up in the ARP table for the destination IPv4 and its corresponding MAC. If the destination IP is in the LAN it will look on its ARP table for the IP and MAC pair, if the destination IP is on another network it will look on its ARP table for the IP and MAC pair of the DGW. If the destination IP isn't in the ARP table it will send an ARP request to update the known devices.
 
-ARP ARP functions
-To send a frame, a device will look in its ARP table for a destination IPv4 address and a corresponding MAC address.
-If the destination IPv4 address of the packet is on the same network, the device will look in the ARP table for the destination IPv4 address.
-If the destination IPv4 address is on a different network, the device will look in the ARP table for the IPv4 address of the default gateway.
-If the device finds the IPv4 address, the corresponding MAC address is used as the destination MAC address of the frame.
-If no entry is found in the ARP table, the device sends an ARP request.
+ARP table entries are temporary, removed when the ARP cache timer expires or after manual deletion by the admin. ARP requests are sent to every device on the LAN so excessive ARP request could reduce performance. They are also prone to ARP poisoning attacks were a LAN device pretends to be the DGW and sends malicious ARP responses.
 
-ARP Removing entries from an ARP table
+![IPv6 Address Res](/static/images/notes/IP6AddressResolutionNetworks.png)
 
-ARP table entries are not permanent and are removed when an ARP cache timer expires after a specified period of time.
-The duration of the ARP cache timer differs depending on the operating system.
-ARP table entries can also be removed manually by the administrator
-
-ARP ARP tables on network devices
-
-The show ip arp command displays the ARP table on a Cisco router.
-The arp —a command displays the ARP table on a Windows 10 computer.
-
-ARP ARP problems - ARP broadcasting and ARP spoofing
-
-ARP requests are received and processed by every device on the local network.
-Excessive ARP emissions can cause some reduction in performance.
-ARP responses can be spoofed by a threat actor to perform an ARP poisoning attack.
-Enterprise-grade switches include mitigation techniques to protect against ARP attacks.
-
-9.3 Copper wiring
-IPv6 Neighbor Discovery IPv6 Neighbor Discovery Messages
-The IPv6 Neighbor Discovery (ND) protocol provides:
-Address resolution
-Router Discovery
-Redirection services
-ICMPv6 Neighbor Request (NS) and Neighbor Advertisement (NA) messages are used for device-to-device messages, such as address resolution.
-ICMTPV6 Router Solicitation (RS) and Router Advertisement (RA) messages are used for messaging between devices and routers for router discovery.
-Routers use ICMPv6 redirect messages for better next-hop selection.
-
-IPv6 Neighbor Discovery IPv6 Neighbor Discovery - Address Resolution
-IPv6 devices use ND to resolve the MAC address of a known IPv6 address.
-ICMPv6 neighbor request messages are sent using special Ethernet and IPv6 multicast addresses.
-
-
-
-
-
-
-
+IPv6 uses neighbor discovery (ND) and neighbor advertisement (NA) messages for address resolution in device to device communication and it uses router solicitation (RS) and router advertisement (RA) messages for router discovery in device to router communication. For router redirection (next-hop selection) it uses ICMPv6 redirect messages. Note that ICMPv6 needs multicast Ethernet and special IPv6 addresses.
 
 ***
 
 # Router Configuration #
 
+The following are some standard router configuration steps:
 
+| Command | Description |
+| :---: | :---: |
+| hostname | Change the device name |
+| enable secret *password* | Set root EXEC mode password |
+| line console 0 | Change to user EXEC terminal |
+| password *password* | Create password for user EXEC | 
+| login | Set user EXEC mode password | 
+| line vty 0 4 | Change to line mode |
+| password *password* | Create password for Telnet SSH |
+| login | Set password for Telnet SSH |
+| transport input ssh telnet | Save Telnet SSH settings |
+| exit | Exit line mode |
+| service password encryption | Encrypt every password |
+| banner motd # *message* # | Set banner |
+| exit | Exit line configuration mode |
+| copy running-config startup-config | Save settings |
 
+Router Interface configuration:
 
-Module 10: Basic Router Configuration
-
-10.1 Configure initial router settings
-
-
-Set the device name.
-Protect privileged EXEC mode.
-Protect user EXEC mode
-Protect remote access by Telnet and SSH
-Encrypt all unencrypted passwords.
-Provide legal notice and save settings.
-
-
-Router (config) # hostname hostname
-Router (config) # enable secret password
-Router (config) # line console 0
-Router (configuration line) # password
-Router (config-line) # login
-Router (config) # line vty 0 4
-Router (config-line) # password password
-Router (config-line) # login
-Router (config-line) # transport input {ssh | telnet}
-Router (config) # service password encryption
-Router (config) # banner motd # message #
-Router (config) # end
-Router # copy running-config startup-config
-
-Basic router configuration commands
-The configuration is saved in NVRAM.
-
-
-R1 (config) # hostname R1
-R1 (config) # enable secret class
-R1 (config) # line console 0
-R1 (config-line) # password cisco
-R1 (config-line) # login
-R1 (config-line) # line vty 0 4
-R1 (config-line) # password cisco
-R1 (config-line) # login
-R1 (config-line) # transport input ssh telnet
-R1 (config-line) # exit
-R1 (config) # service password encryption
-R1 (config) # banner motd #
-Write a text message. It ends with a new line and the #
-***********************************************
-WARNING: Unauthorized access is prohibited!
-**********************************************
-R1 (config) # exit
-R1 # copy running-config startup-config
-
-Configuring a router interface includes running the following commands:
-It is recommended to use the description command to add information about the network connected to the interface.
-The no shutdown command activates the interface.
-
-
-Router (config) # interface type-and-number Router (config-if) # description description-text Router (config-if) # ip address ipv4-address subnet-mask Router (config-if) # ipv6 address ipv6-address / prefix-length Router (config-if) # no shutdown
-
-The commands to configure the G0 / 0/0 interface on R1 are shown here:
-
-R1 (config) # interface gigabitEthernet 0/0/0
-R1 (config-if) # description link to LAN
-R1 (config-if) # ip address 192.168.10.1 255.255.255.0
-R1 (config-if) # ipv6 address 2001: db8: acad: 10:: 1/64
-R1 (config-if) # no shutdown
-R1 (config-if) # exit
-R1 (config) #
-* Aug 1 01: 43: 53.435:% LINK-3-UPDOWN: Interface GigabitEthernet0 / 0/0, changed state to down
-* Aug 1 01: 43: 56.447:% LINK-3-UPDOWN: Interface GigabitEthernet0 / 0/0, changed state to up
-* Aug 1 01: 43: 57.447:% LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0 / 0/0, changed state to up
-
-The commands to configure the G0 / 0/1 interface on R1 are shown here:
-
-
-R1 (config) # interface gigabitEthernet 0/0/1
-R1 (config-if) # description Link to R2
-R1 (config-if) # ip address 209.165.200.225 255.255.255.252
-R1 (config-if) # ipv6 address 2001: db8: feed: 224:: 1/64
-R1 (config-if) # no shutdown
-R1 (config-if) # exit
-R1 (config) #
-* Aug 1 01:46:29 .170:% LINK-3-UPDOWN: GigabiteThernet0 / 0/1 interface, status changed to inactive
-* Aug 1 01: 46: 32.171:% LINK-3-UPDOWN: Interface GigabitEthernet0 / 0/1, changed state to up
-* Aug 1 01: 46: 33.171:% LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0 / 0/1, changed state to up
-
-
-To verify the interface configuration, use the show ip interface brief and show ipv6 interface brief commands shown here:
-
-
-R1 # show ip interface brief
-Interface IP-Address OK? Method Status Protocol
-GigabitEthernet0 / 0/0 192.168.10.1 YES manual up up
-GigabiteThernet0 / 0/1 209.165.200.225 YES manual up up
-Vlan1 unassigned YES unset administratively down down
-
-R1 # show ipv6 interface brief
-GigabitEthernet0 / 0/0 [up / up]
-    FE80 :: 201: C9FF: FE89: 4501
-    2001: DB8: ACAD: 10 :: 1
-GigabitEthernet0 / 0/1 [up / up]
-    FE80 :: 201: C9FF: FE89: 4502
-    2001: DB8: FEED: 224 :: 1
-Vlan1 [administratively down / down]
-    unassigned
-R1 #
-
-The table summarizes the most popular commands used to verify the interface configuration.
-
-Commands Description
-show ip interface brief
-show ipv6 interface brief The output shows all interfaces, their IPv4 addresses, and current status.
-show ip route
-show ipv6 route Displays the contents of the IP routing tables stored in RAM.
-show interfaces This command shows statistics for all interfaces on the device. It only shows the IPv4 address information.
-show ip interfaces Displays IPv4 statistics for all interfaces on a router.
-show ipv6 interfaces Displays IPv6 statistics for all interfaces on a router.
-
-View the status of all interfaces with the show ip interface brief and show ipv6 interface brief commands, shown here:
-R1# show ip interface brief
-¿Interface IP-Address OK? Method Status Protocol 
-GigabitEthernet0/0/0 192.168.10.1 YES manual up up 
-GigabiteThernet0/0/1 209.165.200.225 YES manual up up 
-Vlan1 unassigned YES unset administratively down down 
-R1#
-
-R1# show ipv6 interface brief
-GigabitEthernet0/0/0 [up/up]
-    FE80: :201:C9FF:FE 89:4501
-    2001:DB8:ACAD:10: :1
-GigabitEthernet0/0/1 [up/up]
-    FE80: :201:C9FF:FE 89:4502
-    2001:DB8:ALIMENTACIÓN:224: :1
-Vlan1 [administratively down/down]
-    unassigned 
-R1#
-
-Display the contents of the IP routing tables with the show ip route and show ipv6 route commands as shown below:
-
-R1 # show ip route
-
-Gateway of last resort is not set
-      192.168.10.0/24 is variably subnetted, 2 subnets, 2 masks
-C 192.168.10.0/24 is directly connected, GigabitEthernet0 / 0/0
-L 192.168.10.1/32 is directly connected, GigabitEthernet0 / 0/0
-      209.165.200.0/24 is variably subnetted, 2 subnets, 2 masks
-C 209.165.200.224/30 is directly connected, GigabitEthernet0 / 0/1
-L 209.165.200.225/32 is directly connected, GigabitEthernet0 / 0/1
-R1 #
-
-R1 # show ipv6 route
-C 2001: DB8: ACAD: 10:: / 64 [0/0]
-     via GigabitEthernet0 / 0/0, directly connected
-L 2001: DB8: ACAD: 10:: 1/128 [0/0]
-     via GigabitEthernet0 / 0/0, receive
-C 2001: DB8: FEED: 224:: / 64 [0/0]
-     via GigabitEthernet0 / 0/1, directly connected
-L 2001: DB8: POWER: 224:: 1/128 [0/0]
-     via GigabitEthernet0 / 0/1, receive
-L FF00 :: / 8 [0/0]
-     via Null0, receive
-R1 #
-
-Show statistics for all interfaces with the show interfaces command, as shown below:
-
-R1 # show interfaces gig0 / 0/0
-GigabitEthernet0 / 0/0 is up, line protocol is up
-  Hardware is ISR4321-2x1GE, address is a0e0.af0d.e140 (bia a0e0.af0d.e140)
-  Description: Link to LAN
-  Internet address is 192.168.10.1/24
-  MTU 1500 bytes, BW 100000 Kbit / sec, DLY 100 usec,
-     reliability 255/255, txload 1/255, rxload 1/255
-  Encapsulation ARPA, loopback not set
-  Keepalive not supported
-  Full Duplex, 100Mbps, link type is auto, media type is RJ45
-  output flow-control is off, input flow-control is off
-  ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 00:00:01, output 00:00:35, output hang never
-  Last clearing of "show interface" counters never
-  Input queue: 0/375/0/0 (size / max / drops / flushes); Total output drops: 0
-  Queueing strategy: fifo
-  Output queue: 0/40 (size / max)
-  5 minute input rate 0 bits / sec, 0 packets / sec
-  5 minute output rate 0 bits / sec, 0 packets / sec
-     1180 packets input, 109486 bytes, 0 no buffer
-     Received 84 broadcasts (0 IP multicasts)
-     0 runts, 0 giants, 0 throttles
-
-Display the IPv4 statistics for the router interfaces with the show ip interface command, as shown below:
-
-R1 # show ip interface g0 / 0/0
-GigabitEthernet0 / 0/0 is up, line protocol is up
-  Internet address is 192.168.10.1/24
-  Broadcast address is 255.255.255.255
-  Address determined by setup command
-  MTU is 1500 bytes
-  Helper address is not set
-  Directed broadcast forwarding is disabled
-  Outgoing access list is not set
-  Outgoing access list is not set
-  Inbound Common access list is not set
-  Inbound access list is not set
-  Proxy ARP is enabled
-  Local Proxy ARP is disabled
-  Security level is default
-  Split horizon is enabled
-  ICMP redirects are always sent
-  ICMP unreachables are always sent
-  ICMP mask replies are never sent
-  IP fast switching is enabled
-  IP Flow switching is disabled
-R1 #
-
-
-Display the IPv6 statistics for the router interfaces with the show ipv6 interface command shown here:
-
-R1 # show ipv6 interface g0 / 0/0
-GigabitEthernet0 / 0/0 is up, line protocol is up
-  IPv6 is enabled, link-local address is FE80 :: 868A: 8DFF: FE44: 49B0
-  No Virtual link-local address (es):
-  Description: Link to LAN
-  Global unicast address (es):
-    2001: DB8: ACAD: 10:: 1, Subnet is 2001: DB8: ACAD: 10:: / 64
-  Joined group address (es):
-    FF02 :: 1
-    FF02 :: 1: FF00: 1
-    FF02 :: 1: FF44: 49B0
-  MTU is 1500 bytes
-  ICMP error messages limited to one every 100 milliseconds
-  ICMP redirects are enabled
-  ICMP unreachables are sent
-  ND DAD is enabled, number of DAD attempts: 1
-  ND reachable time is 30000 milliseconds (using 30000)
-  ND NS retransmit interval is 1000 milliseconds
-
-R1 #
-
-10.3 Setting the default gateway
-
-Configure the default gateway Default gateway on a host
-
-The default gateway is used when a host sends a packet to a device on another network.
-In general, the default gateway address is the address of the router interface connected to the host's local network.
-To reach PC3, PC1 directs a packet with the IPv4 address of PC3, but forwards the packet to its default gateway, the G0 / 0/0 interface of R1.
-Note: The IP address of the host device and the router interface address must be on the same network.
-
-Configure the default gateway Default gateway on a switch
-
-A switch must have a default gateway address configured to manage the switch remotely from another network.
-To configure an IPv4 default gateway on a switch, use the ip default-gateway ip-address global configuration command.
-
-
-
-
-
-
-
-
-
-
-
+| Command | Description |
+| :---: | :---: |
+| interface *type* *port* | Enter interface configuration mode |
+| description *text* | Add information about the router network |
+| ip address *ipv4* *subnet-mask* | Set the router IP and subnet mask |
+| ipv6 address *ipv6* *prefix-length* | Set the router IPv6 |
+| no shutdown | Activate the device interface |
+| exit | Exit interface configuration mode |
+| show ip/ipv6 interface brief | Verify IPv4 configuration |
+| show ip/ipv6 route | Show IP routing tables in RAM | 
+| show ip/ipv6 interfaces | Show active interfaces |
+| ip default-gateway *ip* | Set the DGW of a switch |
 
 ***
 
 # IPv4 Addressing #
 
+![ANDing](/static/images/notes/IPANDINGAddressResolutionNetworks.png)
 
+IPv4 addresses are 32 bit hierarchical strings made up of a network and a host portion. The portions are differentiated with the subnet mask in a process called ANDing. Every subnet mask has an associated prefix length (number of bits set to 1). By ANDing the host IP address and the mask we obtain the network IP address back.
 
-Module 11: 
-11.1 IPv4 address structure
-IPv4 address structure
-Network and host portions
-An IPv4 address is a 32-bit hierarchical address that is made up of a network portion and a host portion.
+| Name | Decimal | Network Portion | Host Portion |
+| :---: | :---: | :---: | :---: |
+| Subnet Mask | 255.255.255.0 | 255.255.255 | 0 |
+| Network IP | 192.168.10.0 | 192.168.10 | 0 | 
+| First IP | 192.168.10.1 | 192.168.10 | 1 |
+| Last IP | 192.168.10.254 | 192.168.10 | 254 |
+| Broadcast IP | 192.168.10.255 | 192.168.10 | 255 |
+| Loopback Local | 127.0.0.0 | 127 | 0.0.0 |
 
-When determining the network portion versus the host portion, you have to look at the 32-bit stream.
-A subnet mask is used to determine the network and host portions.
-IPv4 address structure The subnet mask
-To identify the network and host portions of an IPv4 address, the subnet mask is compared to the IPv4 address bit by bit, from left to right.
+![Subnetting](/static/images/notes/SubSubnettingNetworks.png)
 
-The actual process used to identify the network and host portions is called ANDing.
-
-Structure of an IPv4 address The prefix length
-Structure of an IPv4 address The prefix length
-A prefix length is a less cumbersome method used to identify a subnet mask address.
-The prefix length is the number of bits set to 1 in the subnet mask.
-
-It is written in "slash notation", so count the number of bits in the subnet mask and add it with a slash.
-
-IPv4 address structure Network determination: logical AND
-
-A logical Boolean AND operation is used to determine the network address.
-And logical is the two-bit comparison where only a 1 AND 1 produces a 1 and any other combination results in a 0.
-1 AND 1 = 1, 0 AND 1 = 0, 1 AND 0 = 0, 0 AND 0 = 0
-1 = True and 0 = False
-To identify the network address, the IPv4 address of the host is logically AND, bit by bit, with the subnet mask to identify the network address.
-
-Structure of an IPv4 Address Network, Host, and Broadcast Addresses
-Within each network there are three types of IP addresses:
-Network address
-Host addresses
-Broadcast address
-
-Máscara de subred
-255.255.255.0 o /24
-255 255 25511111111 111111 1111 1111
-000000000
-
-Dirección de red
-192.168.10.0 o/24
-192 168 1011000000 10100000 00001010
-000000000  All 0s
-
-Primera dirección
-192.168.10.1 o /24
-192 168 1011000000 10100000 00001010
-100000001 All 0s and a 1
-
-Última dirección
-192.168.10.254 o /24
-192 168 1011000000 10100000 00001010
-25411111110
-All 1s and a 0
-
-Dirección de broadcast
-192.168.10.255 o /24
-192 168 1011000000 10100000 00001010
-25511111111
-All 1s
-
-11.2 IPv4 Unicast, Broadcast, and Multicast
-
-IPv4 Unicast, Broadcast, and Multicast Unicast
-
-Unicast transmission is sending a packet to a destination IP address.
-
-For example, the PC at 172.16.4.1 sends a unicast packet to the printer at 172.16.4.253.
-
-IPv4 Unicast, Broadcast, and Multicast Broadcast
-Broadcast transmission is sending a packet to all other destination IP addresses.
-
-For example, the PC at 172.16.4.1 sends a broadcast packet to all IPv4 hosts.
-
-IPv4 Unicast, Broadcast, and Multicast Multicast
-
-The multicast transmission is sending a packet to a group of multicast addresses.
-
-For example, the PC at 172.16.4.1 sends a multicast packet to the multicast group address 224.10.10.5.
-
-11.3 Types of IPv4 addresses
-Types of IPv4 addresses Public and private IPv4 addresses
-As defined in RFC 1918, public IPv4 addresses are globally routed between Internet Service Provider (ISP) routers.
-
-Private addresses are common blocks of addresses used by most organizations to assign IPv4 addresses to internal hosts.
-
-Private IPv4 addresses are not unique and can be used by any internal network.
-
-However, private addresses are not globally routable.
-
-Network Address and Prefix RFC 1918 Private Address Range
-10.0.0.0/8 10.0.0.0 to 10.255.255.255
-172.16.0.0/12 172.16.0.0 to 172.31.255.255
-192.168.0.0/16 192.168.0.0 to 192.168.255.255
-
-Types of IPv4 addresses Routing to the Internet
-Network Address Translation (NAT) translates private IPv4 addresses to public IPv4 addresses.
-NAT is normally enabled on the edge router that connects to the Internet.
-
-Translates the internal private address to a public global IP address.
-
-
-Types of IPv4 addresses Public and private IPv4 addresses
-
-Loopback addresses
-127.0.0.0 / 8 (127.0.0.1 to 127.255.255.254)
-Commonly identified as only 127.0.0.1
-Used on a host to test if TCP / IP is operational.
-
-Link local addresses
-169.254.0.0 / 16 (169.254.0.1 to 169.254.255.254)
-Commonly known as Automatic Private IP Addressing (APIPA) addresses or self-assigned addresses.
-Used by Windows DHCP clients to self-configure when no DHCP servers are available.
-
-Types of IPv4 Addresses Legacy Classful Addressing
-RFC 790 (1981) asigna direcciones IPv4 en clases
-Clase A (0.0.0.0/8 a 127.0.0.0/8)
-Clase B (128.0.0.0 /16 — 191.255.0.0 /16)
-Clase C (192.0.0.0 /24 — 223.255.255.0 /24)
-Clase D (224.0.0.0 a 239.0.0.0)
-Clase E (240.0.0.0 — 255.0.0.0)
-
-Classful addressing wasted a lot of IPv4 addresses.
-
-Classful addressing has been replaced with classless addressing that ignores the rules of classes (A, B, C).
-
-Types of IPv4 Addresses IP Address Assignment
-The Internet Assigned Numbers Authority (IANA) manages and assigns IPv4 and IPv6 address blocks to five Regional Internet Registries (RIRs).
-RIRs are responsible for assigning IP addresses to ISPs that provide IPv4 address blocks to ISPs and smaller organizations.
-
-11.4 Network segmentation
-
-Network segmentation Broadcast domains and segmentation
-Many protocols use broadcasts or multicasts (for example, ARP uses broadcasts to locate other devices, hosts send DHCP discovery broadcasts to locate a DHCP server).
-The switches propagate broadcasts on all interfaces, except for the one on which they were received.
-The only device that stops transmissions is a router.
-Routers do not propagate broadcasts.
-Each router interface connects to a broadcast domain, and transmissions only propagate within that specific broadcast domain.
-
-Network segmentation Problems with large broadcast domains
-One problem with a large broadcast domain is that these hosts can generate excessive broadcasts and negatively affect the network.
-
-The solution is to reduce the size of the network to create smaller broadcast domains through a process called subnetting.
-
-Dividing the network address 172.16.0.0 / 16 into two subnets of 200 users each: 172.16.0.0 / 24 and 172.16.1.0 / 24.
-Broadcasts are only propagated within the smallest broadcast domains
-
-Network Segmentation Reasons for Subnetting
-
-Subnetting decreases overall network traffic and improves performance.
-It can be used to enforce cross-subnet security policies.
-The subnet reduces the number of devices affected by abnormal broadcast traffic.
-Subnets are used for a variety of reasons, including:
-
-11.5 Subnetting an IPv4 network
-Subnet an IPv4 network Subnetting at octet boundary
-
-Networks are more easily subdivided at the / 8/16 and / 24 octet boundary.
-
-Note that using longer prefix lengths decreases the number of hosts per subnet.
-Longitud de prefijo Máscara de subred Máscara de subred en sistema binario (n = red, h= host) Cantidad de hosts
-/8 255.0.0.0 nnnnnnnn.hhhhhhhh.hhhhhhhh.hhhhhhhh 11111111.00000000.00000000.00000000 16777214
-/16 255.255.0.0 nnnnnnnn.nnnnnnnn.hhhhhhhh.hhhhhhhh 11111111.11111111.00000000.00000000 65534
-/24 255.255.255.0 nnnnnnnn.nnnnnnnn.nnnnnnnn.hhhhhhhh 11111111.11111111.11111111.00000000 254
-
-Subnetting an IPv4 Network Subnetting at Octet Boundary (Cont.)
-In the first table 10.0.0.0/8 is subnetted using / 16 and in the second table, a / 24 mask.
-
-Subnet address (256 possible subnets) Host range (65,534 possible hosts per subnet) Address
-10.0.0.0/16 10.0.0.1 - 10.0.255.254  10.0.255.255
-10.1.0,0/16 10.1.0.1 - 10.1.255.254  10.1.255.255
-10.2.0.0/16 10.2.0.1 - 10.2.255.254  10.2.255.255
-10,3,0.0/16 10,30,1 - 10,3.255.254  10.3.255.255
-10,4,0.0/16 10,4,0,1 - 10,4,255,254 10.4.255.255
-10,5,0.0/16 10,5,0,1 - 10,5,255,254  10.5.255.255
-10,6,0.0/16  10,6,0,1 - 10,6.255.254 10.6.255.255
-10,7,0.0/16 10,7,0,1 - 10,7,255,254  10.7.255.255
-NEXT
-10.255,0.0/16 10.255.0.1 - 10.255.255.254  10.255.255.255
-
-Subnet address (65,536 possible subnets) Host range (254 possible hosts per subnet) Address
-10.0.0.0/24 10.0.0.1 -10.0.0.254 10.0.0.255
-10.0.1.0/24 10.0.1.1 - 10.0.1.254  10.0.1.255
-10.0.2.0/24 10.0.2.1 - 10.0.2.254  10.0.2.255
-NEXT
-10.0.255.0/24 10.0.255.1 - 10.0.255.254  10.0.255.255
-10.1.0.0/24 10.1.0.1 - 10.1.0.254 10.1.0.255
-10.1.1.0/24  10.1.1.1 - 10.1.1.254  10.1.1.255
-10.1.2.0/24 10.1.2.1 - 10.1.2254  10.1.2.255
-NEXT  
-10.100,0.0/24 10,100,0,1 - 10,100,0 ,254  10.100,0.255
-NEXT
-10.255.255.0/24 10.255.255.1 -10.2255.255.254 10.255.255.255
-
-Prefix length Subnet mask Subnet mask in binary system (n = network, h = host) Number of subnets Number of hosts
-
-
-/25 255.255.255.128 nnnnnnnn.nnnnnnnn.nnnnnnnn.nhhhhhhh11111111.11111111.11111111.10000000 2 126
-/26 255.255.255.192 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnhhhhhh11111111.11111111.11111111.11000000 4 62 
-/27 255.255.255.224 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnhhhhh11111111.11111111.11111111.11100000 8 30 
-/28 255.255.255.240 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnnhhhh11111111.11111111.11111111.11110000 16 14 
-/29 255.255.255.248 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnnnhhh11111111.11111111.11111111.11111000 32 6 
-/30 255.255.255.252 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnnnnhh11111111.11111111.11111111.11111100 64 2
-
-
-11.6 Subnetting a / 16 and / 8 prefix
-Subnet a / 16 and / 8 prefix Create subnets with a / 16 prefix
-
-The table highlights all possible scenarios for subnetting a / 16 prefix.
-
-
-Prefix length Subnet mask Network address (n = network, h = host) Number of subnets Number of hosts
-/17 - 255.255.128,0 nnnnnnnn.nnnnnnnn.nhhhhhhh.hhhhhhhh 11111111.11111111.10000000.00000000 2 32766
-/18 - 255.255.192,0 nnnnnnnn.nnnnnnnn.nnhhhhhh.hhhhhhhh 11111111.11111111.11000000.00000000 4 16382
-/19 - 255.255.224,0 nnnnnnnn.nnnnnnnn.nnnhhhhh.hhhhhhhh 11111111.11111111.11100000.00000000 8 8190
-/20 - 255.255.240,0 nnnnnnnn.nnnnnnnn.nnnnhhhh.hhhhhhhh 11111111.11111111.11110000.00000000 16 4094
-/21 - 255.255.248,0 nnnnnnnn.nnnnnnnn.nnnnnhhh.hhhhhhhh 11111111.11111111.11111000.00000000 32 2046
-/22 - 255.255.252,0 nnnnnnnn.nnnnnnnn.nnnnnnhh.hhhhhhhh 11111111.11111111.11111100.00000000 64 1022
-/23 - 255.255.254,0 nnnnnnnnnnnnnnnn. nnnnnnnh.hhhhhhh 11111111111111.11111110,00000000 128 510
-/24 - 255.255.255.0 nnnnnnnnnnnnnnnn. nnnnnnnn.hhhhhhh 11111111111111.11111111.00000000 256 254
-/25 - 255.255.255.128 nnnnnnnnnnnnnnnn. nnnnnnnnn.nhhhhhh 11111111111111.11111111.10000000 512 126
-/26 - 255.255.255.192 nnnnnnnnnnnnnnnn. nnnnnnnnnnhhhhhh 11111111111111.11111111.11000000 1024 62
-/27 - 255.255.255.224 nnnnnnnnnnnnnnnn. nnnnnnnnnnnhhhhh 11111111111111.11111111.11100000 2048 30
-/28 255.255.255. 240 nnnnnnnnnnnnnnnn. nnnnnnnnnnnnhhhh 111111111111.11111111.11110000 4096 14
-/29 - 255.255.255.248 nnnnnnnnnnnnnnnn. nnnnnnnnnnnnhhh 111111111111.11111111.11111000 8192 6
-/30 - 255.255.255.252 nnnnnnnnnnnnnnnn. nnnnnnnnnnnnhh 11111111111111.11111111.111100 16384 2
-
-Subnet a / 16 and / 8 prefix Create 100 subnets with a / 16 prefix
-
-Imagine a large company that requires at least 100 subnets and chose the private address 172.16.0.0/16 as its internal network address.
-
-The figure shows the number of subnets that can be created by borrowing bits from the third and fourth octets.
-Note that there are now up to 14 host bits that can be borrowed (that is, the last two bits cannot be borrowed).
-
-To satisfy the 100 subnet requirement for the enterprise, 7 bits would need to be lent (that is, 27 = 28 subnets) (for a total of 128 subnets).
-
-Subnet a / 16 and / 8 prefix Create 1000 subnets with a / 8 prefix
-
-Consider a small ISP that requires 1000 subnets for its clients using the 10.0.0.0/8 network address, which means that there are 8 bits in the network part and 24 host bits available to borrow for subnets.
-The figure shows the number of subnets that can be created by borrowing bits from the second and third.
-Note that there are now up to 22 host bits that can be borrowed (that is, the last two bits cannot be borrowed).
-
-To satisfy the 1000 subnet requirement for the enterprise, 10 bits would be borrowed (i.e. 2 10 = 1024 subnets) (for a total of 128 subnets)
-
-11.7 Subnet to meet requirements
-
-Subnet to meet the requirements Private subnet vs. public IPv4 address space
-
-Business networks will have a:
-Intranet: The internal network of a company normally uses private IPv4 addresses.
-DMZ - A company facing Internet servers. Devices in the DMZ use public IPv4 addresses.
-
-A company could use 10.0.0.0/8 and the subnet at the / 16 or / 24 network boundary.
-
-DMZ devices would have to be configured with public IP addresses.
-
-Subnet to meet requirements Minimize unused host IPv4 addresses and Maximize subnets
-
-There are two factors to consider when planning your subnets:
-The number of host addresses required for each network
-The number of individual subnets required
-
-
-Prefix length Subnet mask Subnet mask in binary system (n = network, h = host) Number of subnets Number of hosts
-/25 255.255.255.128 nnnnnnnn.nnnnnnnn.nnnnnnnn.nhhhhhhh11111111.11111111.11111111.10000000 2 126
-/26 255.255.255.192 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnhhhhhh11111111.11111111.11111111.11000000 4 62
-/27 255.255.255.224 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnhhhhh11111111.11111111.11111111.11100000 8 30
-/28 255.255.255.240 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnnhhhh11111111.11111111.11111111.11110000 16 14
-/29 255.255.255.248 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnnnhhh11111111.11111111.11111111.11111000 32 6
-/30 255.255.255.252 nnnnnnnn.nnnnnnnn.nnnnnnnn.nnnnnnhh11111111.11111111.11111111.11111100 64 2
-
-
-Subnet Example to Meet Requirements: Efficient IPv4 Subnets
-
-In this example, your ISP has assigned a public network address of 172.16.0.0/22 ​​(10 host bits) to your headquarters that provides 1,022 host addresses.
-
-There are five sites and therefore five Internet connections, which means that the organization requires 10 subnets with the largest subnet requiring 40 addresses.
-
-You assigned 10 subnets with a / 26 subnet mask (that is, 255.255.255.192).
-
-11.8 VLSM
-
-Preservation of IPv4 VLSM addresses
-
-Given the topology, 7 subnets are required (that is, four LANs and three WAN links) and the largest number of hosts is in Building D with 28 hosts.
-
-A / 27 mask would provide 8 subnets of 30 host IP addresses and therefore support this topology.
-
-IPv4 VLSM Address Preservation (cont.)
-However, point-to-point WAN links only require two addresses and therefore waste 28 addresses each for a total of 84 unused addresses.
-Applying a traditional subnetting scheme to this situation is not very efficient and is wasteful.
-
-VLSM was developed to avoid wasted addresses by allowing us to subnet a subnet.
-
-VLSM VLSM
-
-The left side shows the traditional subnet scheme (that is, the same subnet mask) while the right side illustrates how VLSM can be used to subnet a subnet and divide the last subnet into eight / 30 subnets.
-
-When using VLSM, always start by meeting the host requirements of the largest subnet and continue the subnet until the host requirements of the smallest subnet are met.
-
-The resulting topology with VLSM applied.
-
-VLSM VLSM Topology Address Assignment
-
-Using VLSM subnets, LANs and inter-router networks can be addressed without unnecessary waste, as shown in the logical topology diagram.
-
-11.9 Structured design
-
-Structured design Network address planning
-
-IP network planning is crucial to developing a scalable solution to an enterprise network.
-To develop an addressing scheme for the entire IPv4 network, you need to know how many subnets are needed, how many hosts a particular subnet requires, which devices are part of the subnet, which parts of the network use private addresses and which use public addresses, and many others. determining factors.
-
-Examine the needs of an organization's network usage and how the subnets will be structured.
-Conduct a network requirements study by looking at the entire network to determine how each area will be segmented.
-Determine how many subnets are needed and how many hosts per subnet.
-Determine DHCP address pools and Layer 2 VLAN groups.
-
-Structured Design Device Addressing
-
-Within a network, there are different types of devices that require addresses:
-End User Clients - Most use DHCP to reduce errors and the burden on network support personnel. IPv6 clients can obtain address information using DHCPv6 or SLAAC.
-Servers and peripherals: - must have a predictable static IP address.
-Servers that can be accessed from the Internet - Servers must have a public IPv4 address, which is most often accessed via NAT.
-Intermediary devices: - These devices are assigned addresses for network management, monitoring, and security.
-Gateway - Routers and firewall devices are gateways for hosts on that network.
-
-When developing an IP addressing scheme, it is generally recommended that you have an established pattern of how addresses are assigned to each type of device.
-
-
-
-
-
-
-
-
-
-
-
+When devices connect to a local network they are assigned a valid IP address in a process known as Automatic Private IP Addressing (APIPA). This process is used by DHCP clients to self configure if there are no remote DHCP servers available. Many protocols use broadcast or multicast, for example ARP tables use broadcasts, however note that switches are able to propagate broadcasts but routers cannot. An advantage of subnetting is that we reduce the potential of excessive broadcasts to reduce the network's performance. Other reasons for subnetting devices are their location, their function or their type.
 
 ***
 

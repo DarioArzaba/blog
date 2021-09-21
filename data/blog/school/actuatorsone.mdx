@@ -15,12 +15,12 @@ Selection and operation of actuators, theoretical foundations of actuators for d
 	3. [Magnetic Circuit (with Air-Gap)](#magnetic-circuit-with-air-gap)
 	4. [Inductance in Actuators](#magnetic-circuit-inductance)
 	5. [Hysteresis](#Hysteresis)
-3. Electromechanical Energy Conversion
-	1. Energy Conversion Process
-	2. Field Energy (Energy and Co-Energy)
-	3. Mechanical Force in the System
-	4. Rotating and Cylindrical Machines
-4. DC Machines
+3. [Electromechanical Energy Conversion](#energy-conversion)
+	1. [Energy Conversion Process](#energy-conversion-process)
+	2. [Energy and CoEnergy](#energy-and-coenergy)
+	3. [Linear Systems](#linear-systems)
+	4. [Rotating Machines](#rotating-machines)
+4. [DC Machines](#dc-machines)
 	1. Electromagnetic Energy Conversion
 	2. Construction of DC Machines
 	3. Armature Windings and Voltage
@@ -113,7 +113,6 @@ A device that transforms energy to a desired motion or action, the control syste
 ***
 
 # Electromagnetic Actuators #
-
 
 ![Linear and Rotational Example](/static/images/notes/LinearandRotationalActuators.png)
 
@@ -439,7 +438,7 @@ By applying a reversed magnetic field strength we can adjust the operating point
 
 $$
 \begin{gathered}
-	(H_m)(l_m) = (H_g)(l_g) = 0\\
+	(H_m)(l_m) + (H_g)(l_g) = 0\\
 	H_g = (H_m)\frac{-l_m}{l_g}\\
 	\Phi = (B_m)(A_m) = (B_g)(A_g)\\
 	B_m = \frac{(A_g)(B_g)}{(A_m)}\\
@@ -466,20 +465,414 @@ Thus to establish and maintain a flux density $B_g$ in an air gap of volume $V_g
 
 ![Example of Hard Iron](/static/images/notes/ExampleofHardIronActuators.png)
 
-The permanent magnet is made of alnico 5, its magnetization curve is shown in the figure. A flux density of $0.8T$ needs to be established in the air gap when the keeper is removed. The operating point on the curve corresponds to the point at which the product of the field strength and the flux density are at their maximum: $B_m = 0.95\,\text{T}$ and $H_m = -42\,\text{kA/m}$.
+The permanent magnet is made of alnico 5, its magnetization curve is shown in the figure. A flux density of $0.8T$ needs to be established in the air gap when the keeper is removed. The operating point on the curve corresponds to the point at which the product of the field strength and the flux density are at their maximum: $B_m = 0.95\,\text{T}$ and $H_m = -42\,\text{kA/m}$. Calculate the length and area of the permanent magnet.
 
 $$
 \begin{gathered}
-	A_g = 2.5\,\text{cm}^2 \land I_g = 0.4\,\text{cm}\\
+	A_g = 2.5\,\text{cm}^2 \land l_g = 0.4\,\text{cm}\\
+	(H_m)(l_m) + (H_g)(l_g) = 0 \land H_g = \frac{B_g}{\mu_0}\\
+	l_m = \frac{-(H_g)(l_g)}{H_m} = \frac{-(B_g)(l_g)}{(H_m)(\mu_0)}\\
+	l_m = \frac{-(0.8)(0.004)}{(-42)(1.25663 \times 10^{-6})} = 0.06\,\text{m}\\
+	(B_m)(A_m) = (B_g)(A_g) \implies A_m = \frac{(0.8)(2.5)}{0.95} = 2.1\times 10^{-4}\,\text{m}^2\\
+	\therefore l_m = 0.06\,\text{m} \land A_m = 2.1\times 10^{-4}\,\text{m}^2
+\end{gathered}
+$$
+
+***
+
+# Energy Conversion #
+
+![Energy Conversion](/static/images/notes/EnergyConversionDiagramStepsActuators.png)
+
+The principle of conservation of energy is widely used when calculating the force or torque developed in an energy conversion device. The electromechanical converter system has an electric system, a mechanical system and a coupling field. 
+
+The electrical energy loss is mainly due to heating in the wires caused by the current, this is known as the $i^2R$ resistance loss of the winding. The magnetic field energy loss is due to the increase in stored field energy in the core's field, this is known as core loss. Mechanical energy loss is due to friction and windage loss of moving components. All losses are converted into heat.
+
+Neglecting the small resistance loss we know that the changes in the electrical energy applied $dW_e$ during a time interval $dt$ will produce a change in the energy supplied to the field (stored and lost) $dW_f$ and a change in the converted mechanical energy $dW_m$ (useful and lost).
+
+$$
+dW_e = dW_f + dW_m 
+$$
+
+***
+
+## Energy Conversion Process ##
+
+**Stored Field Energy**
+
+![Energy Relay Example](/static/images/notes/FieldEnergyStoredInConversionActuators.png)
+
+For example if we consider a relay where there is a movable part that is kept in static equilibrium by a spring $dW_m=0$ then every change in electrical energy will translate directly into a change in the magnetic field energy $dW_e=dW_f$. From this relation we can calculate the change in electrical energy and the change in magnetic energy in the relay:
+
+$$
+\begin{gathered}
+	\text{Faraday's Law}\\
+	e = \frac{N d\Phi}{dt}\\
+	\lambda = (N)(\Phi) \implies e = \frac{d\lambda}{dt}\\
+	\therefore dW_e = (e)(i)(dt) \land dW_f = (i)(d\lambda)
+\end{gathered}
+$$
+
+We conclude there is a relation between the flux linkage and the current for an air gap of a particular length (static equilibrium) and therefore the the integral of the current with respect to an interval of flux linkage is the total magnetic field energy stored.
+
+$$
+\begin{gathered}
+	dW_f = (i)(d\lambda) \implies W_f = \int_{0}^{\lambda} i \, d\lambda\\
+	(N)(i) = (H_c)(l_c) + (H_g)(l_g) \land \lambda = (N)(\Phi) = (N)(B)(A)\\
+	W_f = \int \left(\frac{(H_c)(l_c) + (H_g)(l_g)}{N}\right) (N)(A) \, dB \\
+	W_f = \int \left((H_c)(l_c) + \frac{(B)(l_g)}{\mu_0}\right) (A) \, dB \\
+	W_f = \int \left((H_c)(l_c)(A)\,dB + \frac{(B)(l_g)}{\mu_0}(A)\,dB\right) \\
+	W_f = \int \left((H_c\,dB)((l_c)(A)) \right) + \frac{B^2}{2\mu_0}((l_g)(A)) \\
+	W_f = \left(\int (H_c\,dB_c)\right)(V_c) + \frac{B^2}{2\mu_0}(V_g) \\
+	W_f = (w_{fc})(V_c) + (w_{fg})(V_g) = W_{fc} + W_{fg}\\
+	w_{fc} = \text{ Energy Density In the Core} \land V_c = \text{ Core's Volume}\\
+	W_{fc} = \text{ Energy In the Core}\\
+\end{gathered}
+$$
+
+Normally $W_{fc}$ can be neglected when compared to $W_{fg}$, also if we consider that the flux linkage and current relation is linear for a particular device then:
+
+$$
+\begin{gathered}
+	H_c = \frac{B_c}{\mu_c}\\
+	\therefore w_{fc} = \int \frac{(B_c)\,dB_c}{\mu_c} (B_c) = \frac{B_c^2}{2\mu_c}
+\end{gathered}
+$$
+
+**Exercise 1**
+
+![Energy Relay Example](/static/images/notes/FieldEnergyStoredExerciceOneActuators.png)
+
+The magnetic core is made from cast steel and we need to produce a 1T flux density in the air gap. Calculate the DC voltage needed and the final stored field energy in the magnetic circuit.
+
+$$
+\begin{gathered}
+	N = 250 \land R = 5\Omega \land l_g = 5\,\text{mm}\\
+	V = (R)(i) \land (N)(i) = (H_c)(l_c) + (H_g)(l_g)\\
+	i = \frac{(670)(0.6)+(\frac{1}{1.2567 \times 10^{-6}})((2)(0.005))}{250} = 33.44 \,\text{A}\\
+	\therefore V = (5)(33.44) = 167.2 \, \text{V}\\
+	W_f = (w_{fc})(V_c) + (w_{fg})(V_g)\\
+	w_{fc} \approx \frac{(b)(h)}{2} = \frac{(670)(1)}{2} = 335 \, \text{J/m^3}\\
+	\mu_c = \frac{B_c}{H_c} = \frac{1}{670} = 0.0015\\
+	w_{fc} \approx \frac{(1)^2}{2(0.0015)} - \frac{(0)^2}{2(0.0015)} = 333.33 \, \text{J/m^3} \approx 335\, \text{J/m^3}\\
+	V_c = (A_c)(l_c) = ((0.05)(0.1))(0.6) = 0.003\,\text{m}^3\\
+	W_{fc} = (335)(0.003) = 1.005\,\text{J}\\
+	w_{fg} \approx \frac{(1)^2}{2(1.2567 \times 10^{-6})} - \frac{(0)^2}{2(1.2567 \times 10^{-6})} = 397900 \, \text{J/m^3}\\
+	V_g = (A_g)(l_g) = ((0.05)(0.1))(0.01) = 0.00005\,\text{m}^3\\
+	W_{fc} = (397900)(0.00005) = 19.89\,\text{J}\\
+	W_f = 1.005 + 19.89 = 20.9 \, \text{J}\\
+	\therefore W_f = 20.9 \, \text{J}\\
+\end{gathered}
+$$
+
+***
+
+## Energy and CoEnergy ##
+
+![Mechanical energy curves](/static/images/notes/MechanicalEnergyCurvesActuators.png)
+
+We know that the flux linkage and current relation depends on the air gap length and the magnetization curve of the material. The Co energy is the area under the flux linkage and current relation but integrating the linkage instead of the current $W_f'$, this quantity has no physical meaning but can be used to calculate the final mechanical energy developed by the system.
+
+$$
+W_f' = \int_0^{i} \lambda \, di
+$$
+
+Again, if we consider that the flux linkage and current relation is linear for a particular device then:
+
+$$
+W_f' = W_f = \lambda (i)
+$$
+
+When trying to calculate the mechanical energy output we must consider that the system will no longer be in static equilibrium and therefore the length of the air gap will change through time. This change in length will from one point to another will create a change in linkage but not in current as long as the movement is quasistatic. 
+
+$$
+\begin{gathered}
+	\text{During motion}\\
+	dW_e = \int (e)(i)\,dt = \int_{\lambda 1}^{\lambda 2} (i)\,d\lambda = A_{abcd}\\
+	dW_f = A_{0bc} - A_{0ad}\\
+	dW_m = dW_e - dW_f\\
+	dW_m = A_{abcd} + A_{0bc} - A_{0ad}\\
+	dW_m = A_{0ab}\\
+\end{gathered}
+$$
+
+![Quasistatic And Non Change](/static/images/notes/QuasiAndNonQuasiChangeActuators.png)
+
+The area between the two linkage-current curves $A_{0ab}$ is in fact equal to the change in Co-Energy. From the mechanical energy we can then calculate the mechanical force $f_m$ that generated the change in air gap length (Quasistatic or Energy Method):
+
+$$
+\begin{gathered}
+	dW_m = A_{0ab} = dW_f'\\
+	(f_m)(dx) = dW_m = dW_f'\\
+	f_m = \frac{dW_f'(i,x)}{dx}
+\end{gathered}
+$$
+
+If the movement is not quasistatic and on the contrary it is fast enough then we might consider that the magnetic field linkage remains constant and the mechanical output energy is therefore supplied entirely by the field energy. In other words the mechanical work done can be represented as a simple decrease in the field's energy (Non-Quasistatic or Co-Energy Method):
+
+$$
+\begin{gathered}
+	dW_m = A_{0ap} = dW_f\\
+	(f_m)(dx) = dW_m = -dW_f\\
+	f_m = -\frac{dW_f'(\lamda , x)}{dx}
+\end{gathered}
+$$
+
+**Exercise 1**
+
+The $\lamda - i$ curve is given by $i = (\frac{\lamda g}{0.09})^2$ , valid for $0 < i < 4$ and $0.03 < g < 0.1$. Find the mechanical force of the moving part when the operating point is $i=3$ and $g=0.05$ using the energy and coenergy of the field.
+
+$$
+\begin{gathered}
+	dW_f' = \int_{0}^{i} \lambda \, di\\
+	dW_f' = \int_{0}^{i} \frac{(0.09)(i^{1/2})}{g} \, di = \frac{(0.09)(i^{3/2})}{(g)\frac{3}{2}} \\
+	dW_f' = \frac{(0.09)(2)(i^{3/2})}{3g} \, \text{J}\\
+	f_m = \frac{dW_f'(i,x)}{dx} = \frac{d}{dg}\left(\frac{(0.09)(2)(i^{3/2})}{3g}\right)\\
+	f_m = -\frac{(0.09)(2)(i^{3/2})}{3g^2}\\
+	f_m (i=3 , g=0.05) = -\frac{(0.09)(2)((3)^{3/2})}{3(0.05)^2} = -129.7 N\\
+	\therefore f_m = -129.7N\\
+	W_f = \int_{0}^{\lambda} (i) \, d\lambda\\
+	W_f = \int_{0}^{\lambda} \left(\frac{\lamda g}{0.09}\right)^2 \, d\lambda\\
+	W_f = \frac{\lamda^3 g^2}{0.09^2 (3)}\\
+	f_m = -\frac{dW_f'(\lamda , x)}{dx}\\
+	f_m = -\frac{d}{dg}\left(\frac{\lamda^3 g^2}{0.09^2 (3)}\right)\\
+	\lambda = \frac{(0.09)\sqrt{3}}{0.05} = 3.118 \, \text{Wb}\\
+	f_m = - \frac{(2)(g)(\lambda)^3}{(3)(0.09)^2} = - \frac{(2)(0.05)(3.118)^3}{(3)(0.09)^2} = -129.7\\
+	\therefore f_m = -129.7N
 \end{gathered}
 $$
 
 
+***
 
+## Linear Systems ##
 
+If the energy and co-energy force generated is the same we are working with a linear actuator. This will always be true if the magnetic core reluctance is negligible compared to the air gap reluctance, in this cases we can simplify the energy, co-energy and force equations using the coil inductance:
 
+$$
+\begin{gathered}
+	\text{For linear systems}\\
+	\lambda = L(x)(i)\\
+	L(x) = \text{ Coil Inductance Function}\\
+	W_f = \int (i)\, d\lambda = \int_{0}^{\lambda} \frac{\lambda}{L(x)} \, d\lambda\\
+	W_f = \frac{\lambda^2}{(2)(L(x))}\\
+	f_m = -\frac{d}{dx}\left(\frac{\lamda^2}{(2)(L(x))}\right)\\
+	f_m = \frac{\lambda^2}{(2)(L^2(x))} \frac{d(L(x))}{dx} = \frac{i^2}{2} \frac{d(L(x))}{dx}\\
+	\therefore W_f = W_f' = \frac{i^2(L(x))}{2}
+	f_m = \frac{d}{dx}\left( \frac{i^2(L(x))}{2} \right) = \frac{i^2}{2} \frac{d(L(x))}{dx}\\
+\end{gathered}
+$$
 
+Furthermore if the core reluctance is neglected then:
 
+$$
+\begin{gathered}
+	(N)(i) = (H_g)(2)(g) = \frac{B_g}{\mu_0}(2)(g)\\
+	W_f = \frac{B_g^2}{(2)\mu_0}(2)(g)(A_g)\\
+	f_m = \frac{d}{dg}\left( \frac{B_g^2}{(2)\mu_0}(2)(g)(A_g) \right) = \frac{B_g^2}{(2)\mu_0}(2)(A_g)
+\end{gathered}
+$$
 
+Since the cross sectional area of the gap in this case is $(2)(A_g)$ then the force per unit area of the air gap or *Magnetic Pressure* can be calculated as:
+
+$$
+\begin{gathered}
+	F_m = \frac{B_g^2}{(2)\mu_0} \, N/m^2
+\end{gathered}
+$$
+
+**Exercise 1**
+
+![Exercise of a Linear System](/static/images/notes/LinearSystemsFieldExerciseActuators.png)
+
+The system has an infinitely permeable core and plunger, the air gap length is negligible compared to the length of the plunger. Find an expression for the stored field energy as a function of the plunger position from 0 to d. 
+
+$$
+\begin{gathered}
+	N = 1000 \land g = 0.002 \land d = 0.15 \land l = 0.1 \land i = 10\\ 
+\end{gathered}
+$$
+
+***
+
+## Rotating Machines ##
+
+![Rotator and Stator](/static/images/notes/RotatorStatorComponentsActuators.png)
+
+The moving part in a rotating machine is called *Rotor* and the fixed part *Stator*. The rotor is mounted on a shaft between the ends of the stator. The simplest rotating machine would supply two independent paths, one to the rotor and one to the stator, using two independent coils. The rotor coil are fixed brushes and rotor slip rings. Both currents are taken into account to calculate their corresponding stored field energy:
+
+$$
+\begin{gathered}
+	\text{ Static Equilibrium}
+	dW_f = (e)(i_s) \,dt + (e)(i_r) \,dt\\
+	dW_f = (i_s) \,d\lambda_s + (i_r) \,d\lambda_r
+\end{gathered}
+$$
+
+If we consider that the rotating machine has a linear linkage-current curve then we can also use the coil inductance to represent the rotor and stator field linkage:
+
+$$
+\begin{gathered}
+	\lambda_s = L_{ss}(\theta)(i_s) + L_{sr}(\theta)(i_r)\\
+	\lambda_r = L_{rs}(\theta)(i_s) + L_{rr}(\theta)(i_r)\\
+	L_{ss} = \text{ Stator Coil Self Inductance}\\
+	L_{rr} = \text{ Rotor Coil Self Inductance}\\
+	L_{sr} = L_{rs} = \text{ Mutual Inductances}\\
+	\text{ Linear System}\\
+	L_{sr} = L_{rs}\\
+	\begin{bmatrix}
+		\lambda_s\\
+		\lambda_r
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		L_{ss} & L_{sr}\\
+		L_{rs} & L_{rr}
+	\end{bmatrix}
+	\begin{bmatrix}
+		i_s\\
+		i_r
+	\end{bmatrix}
+	\\
+	dW_f = (i_s)d(L_{ss}(i_s)+L_{sr}(i_r)) + (i_r)d(L_{rs}(i_s)+L_{rr}(i_r))\\
+	dW_f = L_{ss}(i_s)(di_s) + L_{rr}(i_r)(di_r) + L_{sr}(di_s i_r)\\
+	W_f = L_{ss} \int_{0}^{i_s} (i_s)(di_s) + L_{rr} \int_{0}^{i_r} (i_r)(di_r) + L_{sr} \int_{0}^{i_s i_r} (di_s i_r)\\
+	W_f = \frac{L_{ss}(i_s^2)}{2} + \frac{L_{rr}(i_r^2)}{2} + L_{sr}(i_s)(i_r)
+\end{gathered}
+$$
+
+Just like with the magnetic force obtained from the stored field energy (when the current is constant) we can obtain the magnetic torque of the rotating machine:
+
+$$
+\begin{gathered}
+	T = \frac{dW_f'(i , \theta)}{d\theta}\\
+	W_f = W_f' = \text{ Linear System}\\
+	T = \frac{(i_s^2)}{2} \frac{dL_{ss}}{d\theta}  + \frac{(i_r^2)}{2} \frac{dL_{rr}}{d\theta} + (i_s)(i_r) \frac{dL_{sr}}{d\theta}
+\end{gathered}
+$$
+
+Note that the first two terms of the equations are the *Reluctance Torque* produced from the variation of the self inductance as a function of the rotor position while the last term is the *Mutual Inductance Torque* produced from the variation of their mutual inductance as a function of the rotor position. Usually reluctance variation can be achieved simply by the change in air gap length as the rotor rotates.
+
+**Exercise 1**
+
+![Exercise of Torque in Rotating](/static/images/notes/RotatorExercisePositionInductanceActuators.png)
+
+We are given the inductance function of a rotating machine as $L(\theta)=(25.4)+(8.3)\cos(2\theta) + (1.8)\sin(4\theta)$. Find the torque for a stator current of 3.5 A and the rotor position that produces the maximum (negative) torque.
+
+$$
+\begin{gathered}
+	T = \frac{(i_s^2)}{2} \frac{dL_{ss}}{d\theta}\\
+	T = \frac{(i_s^2)}{2} \frac{d}{d\theta} ((0.0254)+(0.0083)\cos(2\theta) + (0.0018)\sin(4\theta))\\
+	T = \frac{(i_s^2)}{2} ((-(2)(0.0083)\sin(2\theta)) + ((4)(0.0018)\cos(2\theta)))\\
+	T = (3.5^2)((-(0.0083)\sin(2\theta)) + ((2)(0.0018)\cos(2\theta)))\\
+	\therefore T = -0.1017\sin(2\theta) + 0.044\cos(4\theta) \, \text{Nm}\\
+	\sin(2\theta) = 1 \implies \theta = 45° \land \cos(2\theta) = -1 \implies \theta = 45°\\
+	T = -0.1017(1) + 0.044(-1) = -0.1457 \, \text{Nm}\\
+	\therefore \theta_{max} = 45°	
+\end{gathered}
+$$
+
+**Exercise 2**
+
+![Exercise of Torque Two](/static/images/notes/RotatorExercisePositionTwoActuators.png)
+
+We are given the inductance function of a reluctance (no rotor coil) rotating machine as $L_{ss}(\theta)=(L_0)+(L_2)\cos(2\theta)$. Find the torque expression for a stator current of $i_s = I_{sm}\sin(\omega t)$. If $\theta = \omega_m t + \delta$ where $\omega_m$ is the rotor angular velocity and $\delta$ is the rotor position at $t=0$, calculate the nonzero average torque condition and an average torque expression.
+
+$$
+\begin{gathered}
+	T = \frac{(i_s^2)}{2} \frac{dL_{ss}}{d\theta}\\
+	T = \frac{((I_{sm}\sin(\omega t))^2)}{2} \frac{d}{d\theta} ((L_0)+(L_2)\cos(2\theta))\\
+	T = \frac{(I_{sm}^2\sin^2(\omega t))}{2} (-(2)(L_2)\sin(2\theta))\\
+	T = -(I_{sm}^2)(\sin^2(\omega t))(L_2)(\sin(2\theta))\\
+	T = -(I_{sm}^2)(\sin^2(\omega t))(L_2)(\sin(2(\omega_m t + \delta)))\\
+	T = -(I_{sm}^2)(\frac{1}{2} - \frac{\cos(2\omega t)}{2})(L_2)(\sin(2(\omega_m t + \delta)))\\
+	T = -\frac{(I_{sm}^2)(L_2)}{2} (\sin(2(\omega_m t + \delta)) - ((\sin(2(\omega_m t + \delta)))(\cos(2\omega t))) )\\
+	\sin(A)\cos(B) = \frac{1}{2}(\sin(A+B)+\sin(A-B))\\
+	A = 2(\omega_m t + \delta) \land B = 2\omega t \land C = \omega_m t + \delta \land D = \omega t\\
+	T = -\frac{(I_{sm}^2)(L_2)}{2} ( (\sin(A)) - ((\frac{1}{2})(\sin(2(C + D)))) - ((\frac{1}{2})(\sin(2(C - D)))) )\\
+	\therefore T = -\frac{(I_{sm}^2)(L_2)}{2} ( (\sin(A)) - (\frac{1}{2})(\sin(2((\omega_m + \omega)(t) + \delta))) - (\frac{1}{2})(\sin(2((\omega_m - \omega)(t) + \delta))) )\\
+	\omega_m = 0 \implies T_{avg} = -\frac{(I_{sm}^2)(L_2)(\sin(2\delta))}{2}\\
+	\omega_m + \omega = 0 \implies T_{avg} = \frac{(I_{sm}^2)(L_2)(\sin(2\delta))}{4}\\
+	\omega_m - \omega = 0 \implies T_{avg} = \frac{(I_{sm}^2)(L_2)(\sin(2\delta))}{4}
+\end{gathered}
+$$
+
+Note that the nonzero torque conditions are those where the coefficients that multiply time must be zero.
+
+***
+
+**First Exam**
+
+![Toroid Problem](/static/images/notes/FirstExamToroidProblemoActuators.png)
+
+Given that the number of turns in the coil is $N = 200$, the internal radii is $r_i = 0.06$, the external radii is $r_e = 0.1$ and the core cross sectional permeability is $\mu_r = 1500$ calculate:
+
+1. The mean length of the toroid. $0.16\pi \, \text{m}$
+2. The permeability of the core material. $0.001885$
+3. The current required to produce a flux density of 1.8T at the mean radius. $2.4\,\text{A}$
+4. The cross sectional area. $0.001256 \, \text{m}^2$
+5. The core magnetic flux. $2.26 \, \text{mWb}$
+6. The new current required to maintain the same flux density with a $0.0035$ length air gap. $27.449 \, \text{A}$
+
+$$
+\begin{gathered}
+	r_p = \frac{0.1+0.06}{2} = 0.08 \, \text{m}\\
+	l_c = (2)(\pi)(r_p) = (2)(0.08)(\pi) = 0.16 \pi \, \text{m}\\
+	\mu_c = (\mu_r)(\mu_0) = (1500)(1.2566 \times 10^{-6}) = 0.001885\\
+	(N)(i) = (H_c)(l_c) = \frac{B_c}{\mu_c}(l_c)\\
+	i = \frac{(B_c)(l_c)}{(\mu_c)(N)} = \frac{(1.8)(0.16\pi)}{(0.001885)(200)} = 2.399\,\text{A}\\
+	d = 0.1-0.06 = 0.04 \, \text{m}\\
+	A = \frac{\pi(d)^2}{4} = \frac{\pi(0.04)^2}{4} = 0.001256 \, \text{m}^2\\
+	\Phi = (B)(A) = (1.8 \, \text{T})(0.001256 \, \text{m}^2) = 0.00226 \, \text{Wb}\\
+	\Phi = 2.26 \, \text{mWb}\\
+	(N)(i) = (H_c)(l_c) + (H_g)(l_g) = \frac{B_c}{\mu_c}(l_c) + \frac{B_g}{\mu_g}(l_g)\\
+	B_c = B_g \implies i = \frac{(B)(l_c + (l_g \mu_r))}{(\mu_r)(\mu_0)(N)}\\
+	i = \frac{(1.8)((0.16\pi - 0.0035) + ((0.0035)(1500)))}{(1500)(1.2566 \times 10^{-6})(200)} = 27.449\,\text{A}
+\end{gathered}
+$$
+
+![Reluctance Motor Problem](/static/images/notes/ReluctanceMotorProblemActuators.png)
+
+A reluctance motor with four rotor poles has a reluctance $\Re$ that varies with the position of the rotor with the function $\Re(\theta) = 200000 - 100000\cos(4\theta)$. The coil has $N = 200$ and a negligible resistance while connected to an AC supply of $120V_{rms}$ and $60Hz$.
+
+1. The magnetic flux as a function of time. $-0.00225 (\cos(120\pi t))$
+2. The torque as an expression of the reluctance and the magnetic flux. $-0.00225 (\cos(\omega t))$
+3. The specific torque expression of the system. $T$
+4. The speed values of the rotor where it has an average torque. $0 \land \pm (60)(\pi)$
+5. Maximum possible torque at each speed value. $0.506 \land 0.253$
+
+$$
+\begin{gathered}
+	e = (N)(\frac{d\Phi}{dt}) = (A)(\sin(\omega t)) = 120\sqrt{2}\sin(\omega t)\\
+	\Phi = \int \frac{e}{N} \, dt = \frac{1}{N} \int 120\sqrt{2}\sin(\omega t)\\
+	u = \omega t \land \frac{du}{dt} = \omega = (2)(\pi)(f)\\
+	\Phi = -\frac{120\sqrt{2}\cos(\omega t)}{(200)(\omega)} = -\frac{120\sqrt{2}\cos((120\pi) t)}{(200)(120\pi)} 
+	\Phi = -0.00225 (\cos(120\pi t))\\
+	T = -\frac{(i_s^2)}{2} \frac{dL(\theta)}{d\theta}\\
+	L = \frac{N^2}{\Re} \land F = (\Phi)(\Re) = (N)(i) \implies i = \frac{(\Phi)(\Re)}{N}\\
+	T = -\frac{(\Phi)^2(\Re)^2}{(2)(N)^2} \left(\frac{(dL)(d\Re)}{(d\Re)(d\theta)}\right) = -\frac{(\Phi)^2(\Re)^2}{(2)(N)^2} -\left(\frac{N^2(d\Re)}{(\Re)^2(d\theta)}\right)\\
+	T = -\frac{(\Phi)(d\Re(\theta))}{(2)(d\theta)}\\
+	\Re(\theta) = 200000 - 100000\cos(4\theta)\\
+	\Phi = (\Phi_m) \cos(\omega t) = -0.00225 (\cos(\omega t))\\
+	\frac{d\Re(\theta)}{d\theta} = 400000 \sin(4\theta) = (R)\sin(4((\omega_m t) + \delta))\\
+	T = -\frac{(\Phi_m)^2(\cos^2(\omega t)) ((R)\sin(4((\omega_m t) + \delta)))}{(2)}\\
+	\sin(A)\cos(B) = \frac{1}{2}(\sin(A+B)+\sin(A-B))\\
+	R = 400000 \land \Phi_m^2 = -0.00225\\
+	T = (0.506)( (\sin(4(\omega_m t + \delta))) +\\
+	((0.5)(\sin((4\omega_m + 2\omega)(t) + 4\delta))) + \\
+	((0.5)(\sin((4\omega_m - 2\omega)(t) + 4\delta))) )\\
+	\omega_m = 0\\
+	(4)(\omega_m) + (2)(120(\pi)) = 0 \implies \omega_m = -60\pi\\
+	(4)(\omega_m) - (2)(120(\pi)) = 0 \implies \omega_m = -60\pi\\
+	\omega_m = 0 \implies T = 0.506\sin(4\delta)\\
+	\sin(4\delta) = 1 \implies T_{max} = 0.506\\
+	\omega = \pm (60)(\pi) \implies T = 0.506(0.5\sin(4\delta)) = 0.253\sin(4\delta)\\
+	\sin(4\delta) = 1 \implies T_{max} = 0.253\\
+\end{gathered}
+$$
+
+***
+
+# DC Machines #
 
 
