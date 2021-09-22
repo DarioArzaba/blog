@@ -89,79 +89,74 @@ Using AND and OR bifurcations we can create complex relations.
 
 # Sorting Line #
 
-Virtual model of a sorting line. Composed from a storage tower with conveyor chain, a transport band or conveyor belt (both with unidirectional gear motors), three pistons (bidirectional motors) and four discharging tables. 
+Virtual model of a sorting line. Composed from a storage tower with conveyor chain, a transport band or conveyor belt (both with unidirectional gear motors), three pistons (bidirectional motors) and four discharging tables. This control system has 17 digital inputs and 8 digital outputs. The virtual model can be emulated using a virtual machine within the LabVIEW environment and PLCSim. 
 
-1. Piece moved out of the warehouse by a conveyor chain.
-2. Chain has a magnetic activation switch (single piece).
-3. Identification unit reads code with two magnetic sensors.
-4. Code corresponds to number of magnets at the bottom.
-5. Chain pushes the piece to the conveyor belt.
-6. Piece moves to their corresponding discharging station.
-7. Inductive proximity sensor in piston detects arrival.
-8. Conveyor belt stops completely.
-9. Pushed by an electromechanic piston into their station.
-10. Pistons have two limit position sensors (end and start).
-11. Station is busy if piece detected by light reflection.
-12. Conveyor belt continues moving.
-13. Ends if all stations are busy (have a piece).
-14. Ends if warehouse is empty (light barrier sensor).
-
-| Piece | Magnets Location | Total magnets | Sensors | 
-| :---: | :---: | :---: | :---: |
-| Workpiece 1 | 1 upper left | 1 | I10.3(1) I10.4(0) or I10.3(0) I10.4(1) |
-| Workpiece 2 | 2 left side | 2 | I10.3(2) I10.4(0) or I10.3(0) I10.4(2) |
-| Workpiece 3 | 1 missing lower right | 3 | I10.3(2) I10.4(1) or I10.3(1) I10.4(2) |
-| Workpiece 4 | 0 missing | 4 | I10.3(2) I10.4(2)|
-
-This control system has 17 digital inputs and 8 digital outputs. The virtual model can be emulated using a virtual machine within the LabVIEW environment and PLCSim. 
-
-| Address | Name | Description | Type |
-| :---: | :---: | :---: | :---: |
-| I10.0 | P3inWork | Pusher 3 at work | Mechanical sensor (NO) | 
-| I10.1 | P3inHome | Pusher 3 at home | Mechanical sensor (NO) | 
-| I10.2 | P3engaged | Pusher 3 engage | Reflective light sensor (NC) | 
-| I10.3 | RStation1 | Reading Sensor 1 | Magnetic Sensor (NC) | 
-| I10.4 | RStation2 | Reading Sensor 2 | Magnetic Sensor (NC) | 
-| I10.5 | Lightbarrier | Piece in Warehouse | Light beam (NO) | 
-| I10.6 | inPlace3 | Station 3 busy | Reflective light sensor (NC) | 
-| I10.7 | inPlace4 | Station 4 busy | Reflective light sensor (NC) | 
-| I11.0 | P1inWork | Pusher 1 at work | Mechanical sensor (NO) | 
-| I11.1 | P1inHome | Pusher 1 at home | Mechanical sensor (NO) | 
-| I11.2 | P2inWork | Pusher 2 at work | Mechanical sensor (NO) | 
-| I11.3 | P2inHome | Pusher 2 at home | Mechanical sensor (NO) | 
-| I11.4 | P1engaged | Pusher 1 engage | Reflective light sensor (NC) | 
-| I11.5 | P2engaged | Pusher 2 engage | Reflective light sensor (NC) | 
-| I11.6 | inPlace1 | Station 1 busy | Reflective light sensor (NC) | 
-| I11.7 | inPlace2 | Station 2 busy | Reflective light sensor (NC) | 
-| I13.6 | chainMagnet | Conveyor chain | Magnetic Sensor (NC) | 
-
-NO sensors are inactive when pressed or obstructed. NC sensors are active when pressed or obstructed.
-
-| Address | Name | Description | Type |
-| :---: | :---: | :---: | :---: |
-| Q11.0 | Chain | Conveyor Chain | Motor |
-| Q11.1 | Belt | Conveyor Chain | Motor |
-| Q11.2 | P1toWork | Pusher 1 to Work | Motor |
-| Q11.3 | P1toHome | Pusher 1 to Home | Motor |
-| Q11.4 | P2toWork | Pusher 2 to Work | Motor |
-| Q11.5 | P2toHome | Pusher 2 to Home | Motor |
-| Q11.6 | P3toWork | Pusher 3 to Work | Motor |
-| Q11.7 | P4toHome | Pusher 3 to Home | Motor |
-
-Use `Shift` and F1, F2, F3 or F4 to make a piece appear or disappear in the corresponding discharging station. 
+* [CADESIMU Pistons](/static/images/files/CADESIMUPistonsSimuPOne.cad)
+* [CADESIMU SortingLine](/static/images/files/CADESIMUSortingLine.7z)
+* [Sorting Line Without Color](/static/images/files/TIASortingLineNoColor.zip)
+* [Sorting Line With Color](/static/images/files/TIASortingLineColor.zip)
 
 ***
 
-First class project under the European standard:
+# PLC 1200 # 
 
-1. PLC configuration, project creation and communication via MPI.
-2. Configuration of sensor-actuator devices in the network.
-3. Configuration and programming of decentralized periphery.
-4. Configuration and programming of HMI interfaces.
-5. Control of motors in decentralized periphery.
-6. Supervisory control and data acquisition system via TCP / IP.
+![Data Types](/static/images/notes/DataTypesAndBitsNetworksLab.png)
 
-Second class project under the American standard:
+Most PLC input and output addresses use individual bits but you can also reference a group of bits using bytes, words and double words. The range of possible values this groups can have depends on the data type they use (with sign or without sign). Note that only PLC 1500 and forwards can use 64 bit data types.
 
-1. Configuration and programming of the main frame by means of the PLC system.
-2. Configuration and programming of HMI interfaces.
+| Data Type | Address | Bits | Range Sign | Range No Sign |
+|:---:| :---: | :---: | :---: | :---: |
+| Bit or Bool | M0.1 | 1 | 0 to 1 | 0 to 1 |
+| Byte | MB10 | 8 | -128 to 127 (SINT) | 0 to 255 (USINT) |
+| Word | MW10 | 16 | -32768 to 32767 (INT) | 0 to 65535 (UINT) |
+| DWord | MD10 | 32 | -2147483648 to 2147483647 (DINT) | 0 to 4294967295 (UDINT) |
+| LWord | ML10 | 64 | LINT | ULINT |
+
+**Set and Reset**
+
+![Set and Reset](/static/images/notes/SetANDResetNetworksLab.png)
+
+We have been setting (S) and resetting (R) bits to control the input and output of the PLC. This can be done more efficiently if we have stablished a state diagram using RS (activation) and SR (deactivation) flipflops. 
+
+| R | S1 | Q | S | R1 | Q |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| 0 | 0 | Q | 0 | 0 | Q |
+| 0 | 1 | 0 | 0 | 1 | 0 |
+| 1 | O | 1 | 1 | 0 | 1 |
+| 1 | 1 | 0 | 1 | 1 | 1 |
+
+**Timers**
+
+1. TP: Pulse timer when activated it generates a pulse with a set duration.
+2. TON: When activated the output will generate a signal after a set delay.
+3. TOF: When deactivated the output will generate a signal after a set delay.
+4. TONR: When activated the output will generate a signal after a set accumulated delay.
+5. RT: When activated it deletes the time data in the data block of another timer.
+
+**Counters**
+
+1. CTU: Ascending counter.
+2. CTD: Descending counter.
+3. CTUD: Ascending and Descending counter.
+
+The CU or CD pulse input increments or decrements the counter by one, the R input resets the counter, the LOAD input sets a new PV input, the PV input is the value needed to activate the counter output, the QU output is true if CV>=PV, the QD output is true if CV<=0 and the CV output is the current counter value. Note that PV and CV can input and output values different than boolean.
+
+**Comparators**
+
+We can use comparators to compare two values as long as they have the same data type, generally if the comparison is true then the PLC contact will be activated. Valid comparisons include equal, different, greater, less, greater or equal and less or equal.
+
+**Scale and Standardize**
+
+The `SCALE_X` instruction scales the real normalized VALUE parameter (0.0 <= VALUE <= 1.0) to the data type and range of values specified in the MIN and MAX parameters, therefore OUT = VALUE(MAX-MIN)+MIN. The `NORM_X` instruction normalizes the VALUE parameter (0.0 <= OUT <= 1.0), therefore OUT = (VALUE-MIN)/(MAX-MIN). Note that every parameter (MIN, MAX, OUT, VALUE) must be of the same data type.
+
+***
+
+https://apps.apple.com/us/app/real-code-breaker-mastermind/id964554684
+https://www.youtube.com/watch?v=McUP8PZNIxk
+https://www.youtube.com/watch?v=XwuwWTH39ac
+https://www.youtube.com/watch?v=dMHxyulGrEk
+https://www.webgamesonline.com/mastermind/index.php
+https://en.wikipedia.org/wiki/Mastermind_(board_game)
+https://www.archimedes-lab.org/mastermind.html
+
+
