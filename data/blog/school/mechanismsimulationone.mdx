@@ -193,4 +193,61 @@ $$
 
 ## Simulation Analysis ##
 
+![Four Link Analysis](/static/images/notes/AnalysisFourLinksMechanismSimulation.png)
+
+For most four link mechanisms you can use an auxiliary vector to find unknown angles, however if we know the angles and we are asked to find the link dimensions then we can directly apply the system of equations without the need of an auxiliary vector. Remember that the analysis will work for angles as long as you have a maximum of two unknown variables.
+
+$$
+\begin{gathered}
+	\vec{R_2} + \vec{R_3} = \vec{R_1} + \vec{R_4}\\
+	\vec{R_2} + \vec{R_e} = \vec{R_1}\\	
+	(R_2)(e^{j\theta_2}) + (R_e)(e^{j\theta_e}) = (R_1)(e^{j\theta_1})
+	(R_2)((\cos(\theta_2)) + \sin(\theta_2) \, j) + (R_e)((\cos(\theta_e)) + \sin(\theta_e) \, j) = (R_1)((\cos(\theta_1)) + \sin(\theta_1) \, j)\\
+	((R_2)(\cos(\theta_2))) + ((R_e)(\cos(\theta_e))) = (R_1)\\
+	((R_2)(\sin(\theta_2))) + ((R_e)(\sin(\theta_e))) = 0\\
+	(((R_2)(\cos(\theta_2))) - (R_1))^2 = (-(R_e)(\cos(\theta_e)))^2\\
+	((R_2)(\sin(\theta_2)))^2 = (-(R_e)(\sin(\theta_e)))^2\\
+	(R_2)^2(\cos^2(\theta_2)) - ((2)(R_2)(R_1)(\cos(\theta_2))) + (R_2)^2(\sin^2(\theta_2)) + (R_1)^2 = (R_e)^2(\cos^2(\theta_e)) + (R_e)^2(\sin^2(\theta_e))\\
+	(R_2)^2((\cos^2(\theta_2)) + (\sin^2(\theta_2))) - ((2)(R_2)(R_1)(\cos(\theta_2))) + (R_1)^2 = (R_e)^2((\cos^2(\theta_e)) + (\sin^2(\theta_e)))\\
+	(R_2)^2 - ((2)(R_2)(R_1)(\cos(\theta_2))) + (R_1)^2 = (R_e)^2\\
+	R_e = \sqrt{(R_2)^2 - ((2)(R_2)(R_1)(\cos(\theta_2))) + (R_1)^2}\\
+	\theta_e = -(\sin^{-1})\left(\frac{-(R_2)(\sin(\theta_2))}{(R_e)}\right)
+	\vec{R_3} = \vec{R_e} + \vec{R_4}\\
+	(R_3)(e^{j\theta_3}) = (R_e)(e^{j\theta_e}) + (R_4)(e^{j\theta_4})\\
+	((R_3)(\cos(\theta_3))) = ((R_e)(\cos(\theta_e))) + ((R_4)(\cos(\theta_4)))\\
+	((R_3)(\sin(\theta_3))) = ((R_e)(\sin(\theta_e))) + ((R_4)(\sin(\theta_4)))\\
+	(R_3)^2 = (R_e)^2 + ((2)(R_e)(R_4)(\cos(\theta_2)\cos(\theta_4) + \sin(\theta_2)\sin(\theta_4))) + (R_4)^2\\
+	(R_3)^2 = (R_e)^2 + ((2)(R_e)(R_4)(\cos(\theta_e - \theta_4)) + (R_4)^2\\
+	\theta_4 = -(\cos^{-1})\left(\frac{(R_3)^2-(R_e)^2-(R_4)^2}{(2)(R_e)((R_4))}\right) + \theta_e\\
+	\theta_3 = (\cos^{-1})\left(\frac{(R_e)(\cos(\theta_e))+(R_4)(\cos(\theta_4))}{(R_3)}\right)\\
+	\theta_3 = (\sin^{-1})\left(\frac{(R_e)(\sin(\theta_e))+(R_4)(\sin(\theta_4))}{(R_3)}\right)
+\end{gathered}
+$$
+
+![Four Link Analysis](/static/images/notes/ActivityFourLinkPartwoMechanismSimulation.png)
+
+$$
+\begin{gathered}
+	\vec{R_1} + \vec{R_4} = \vec{R_2} + \vec{R_3}\\
+	\vec{R_4} + \vec{R_7} + \vec{R_5} = x + h\\
+	\vec{R_e} + \vec{R_4} = \vec{R_3}\\
+	\vec{R_2} + \vec{R_e} = \vec{R_1}\\
+	(R_2)(e^{j\theta_2}) + (R_e)(e^{j\theta_e}) = (R_1)(e^{j\theta_1})
+	((R_2)(\cos(\theta_2))) + ((R_e)(\cos(\theta_e))) = -(R_1)\\
+	((R_2)(\sin(\theta_2))) + ((R_e)(\sin(\theta_e))) = 0\\
+	(R_2)^2(\cos^2(\theta_2)) - ((2)(R_2)(R_1)(\cos(\theta_2))) + (R_2)^2(\sin^2(\theta_2)) + (R_1)^2 = (R_e)^2(\cos^2(\theta_e)) + (R_e)^2(\sin^2(\theta_e))\\
+	R_e = \sqrt{(R_2)^2 - ((2)(R_2)(R_1)(\cos(\theta_2))) + (R_1)^2}\\
+	\theta_e = (\sin^{-1})\left(\frac{-(R_2)(\sin(\theta_2))}{(R_e)}\right)
+	(R_e)(e^{j\theta_e}) + (R_4)(e^{j\theta_4}) = (R_3)(e^{j\theta_3})
+	((R_e)(\cos(\theta_e))) + ((R_4)(\cos(\theta_4))) = ((R_3)(\cos(\theta_3)))\\
+	((R_e)(\sin(\theta_e))) + ((R_4)(\sin(\theta_4))) = ((R_3)(\cos(\theta_3)))\\
+	\theta_4 = (\cos^{-1})\left(\frac{(R_3)^2-(R_4)^2-(R_e)^2}{(2)(R_e)(R_4)}\right) - \theta_e\\
+	\theta_e = (\cos^{-1})\left(\frac{(R_4)(\cos(\theta_4)) + (R_e)(\cos(\theta_e))}{(R_3)}\right)\\
+	(R_4)(e^{j\theta_4}) + (R_7)(e^{j\theta_7}) = (x)(e^{j\theta_x}) + (h)(e^{j\theta_h})\\
+	((R_4)(\cos(\theta_4))) + ((R_7)(\cos(\theta_7))) + ((R_5)(\cos(\theta_5))) = -(x)\\
+	((R_4)(\sin(\theta_4))) + ((R_7)(\sin(\theta_7))) + ((R_5)(\sin(\theta_5))) = (h)\\
+	\theta_5 = (\sin^{-1})\left(\frac{-(h)-((R_4)(\sin(\theta_4)))-((R_7)(\sin(\theta_7)))}{(R_5)}\right)
+\end{gathered}
+$$
+
 
