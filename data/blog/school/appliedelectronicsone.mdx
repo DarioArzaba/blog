@@ -255,6 +255,17 @@ $$
 
 When working in signal conditioning from a sensor to a DAQ you can use Op-Amps to change the voltage scale to the one you need. We can use their linear relation to find the resistances needed in a scale changer circuit. Note that if we don't have a particular resistor value we can trim its carbon to get the desired value.
 
+$$
+\begin{gathered}
+	y = \mu (x) + b = 1.0416(x) + 2.5\\
+	V_o = -\frac{R_5}{R_4} \left(-\frac{R_3}{R_1}(V_1)-\frac{R_3}{R_2}(V_2)\right)\\
+	\mu = 1.0416 = \frac{R_3}{R_1}\\
+	R_4 = R_5 = 47\, \text{k\Omega}\\
+	R_1 = 10 \, \text{k\Omega}\\
+	\therefore R_2 = R_3 = 10.416\, \text{k\Omega}
+\end{gathered}
+$$
+
 ***
 
 **Project Description**

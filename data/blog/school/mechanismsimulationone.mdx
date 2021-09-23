@@ -187,7 +187,8 @@ $$
 	\text{Adding Them Together}\\
 	(R_2)^2 = (R_4)^2 + (2)(R_1)(R_4)(\cos(\theta_4)) + (R_1)^2\\
 	\therefore R_4 = \pm \sqrt{R_2^2 + (R_1)^2(\cos^2(\theta_4)) - (R_1)^2} - (R_1)(\cos(\theta_4))\\
-	\therefore \theta_2 = -(\sin^{-1})(\frac{(R_4)(\sin(\theta_4))}{(R_2)})
+	\therefore \theta_2 = -(\sin^{-1})(\frac{(R_4)(\sin(\theta_4))}{(R_2)})\\
+	\theta_7 = \theta_3 + 120°
 \end{gathered}
 $$
 
@@ -201,14 +202,17 @@ $$
 \begin{gathered}
 	\vec{R_2} + \vec{R_3} = \vec{R_1} + \vec{R_4}\\
 	\vec{R_2} + \vec{R_e} = \vec{R_1}\\	
-	(R_2)(e^{j\theta_2}) + (R_e)(e^{j\theta_e}) = (R_1)(e^{j\theta_1})
-	(R_2)((\cos(\theta_2)) + \sin(\theta_2) \, j) + (R_e)((\cos(\theta_e)) + \sin(\theta_e) \, j) = (R_1)((\cos(\theta_1)) + \sin(\theta_1) \, j)\\
+	(R_2)(e^{j\theta_2}) + (R_e)(e^{j\theta_e}) = (R_1)(e^{j\theta_1})\\
+	(R_2)((\cos(\theta_2)) + \sin(\theta_2) \, j) + (R_e)((\cos(\theta_e)) + \sin(\theta_e) \, j) =\\
+	(R_1)((\cos(\theta_1)) + \sin(\theta_1) \, j)\\
 	((R_2)(\cos(\theta_2))) + ((R_e)(\cos(\theta_e))) = (R_1)\\
 	((R_2)(\sin(\theta_2))) + ((R_e)(\sin(\theta_e))) = 0\\
 	(((R_2)(\cos(\theta_2))) - (R_1))^2 = (-(R_e)(\cos(\theta_e)))^2\\
 	((R_2)(\sin(\theta_2)))^2 = (-(R_e)(\sin(\theta_e)))^2\\
-	(R_2)^2(\cos^2(\theta_2)) - ((2)(R_2)(R_1)(\cos(\theta_2))) + (R_2)^2(\sin^2(\theta_2)) + (R_1)^2 = (R_e)^2(\cos^2(\theta_e)) + (R_e)^2(\sin^2(\theta_e))\\
-	(R_2)^2((\cos^2(\theta_2)) + (\sin^2(\theta_2))) - ((2)(R_2)(R_1)(\cos(\theta_2))) + (R_1)^2 = (R_e)^2((\cos^2(\theta_e)) + (\sin^2(\theta_e)))\\
+	(R_2)^2(\cos^2(\theta_2)) - ((2)(R_2)(R_1)(\cos(\theta_2))) +\\
+	(R_2)^2(\sin^2(\theta_2)) + (R_1)^2 = (R_e)^2(\cos^2(\theta_e)) + (R_e)^2(\sin^2(\theta_e))\\
+	(R_2)^2((\cos^2(\theta_2)) + (\sin^2(\theta_2))) -\\
+	((2)(R_2)(R_1)(\cos(\theta_2))) + (R_1)^2 = (R_e)^2((\cos^2(\theta_e)) + (\sin^2(\theta_e)))\\
 	(R_2)^2 - ((2)(R_2)(R_1)(\cos(\theta_2))) + (R_1)^2 = (R_e)^2\\
 	R_e = \sqrt{(R_2)^2 - ((2)(R_2)(R_1)(\cos(\theta_2))) + (R_1)^2}\\
 	\theta_e = -(\sin^{-1})\left(\frac{-(R_2)(\sin(\theta_2))}{(R_e)}\right)
@@ -232,13 +236,14 @@ $$
 	\vec{R_4} + \vec{R_7} + \vec{R_5} = x + h\\
 	\vec{R_e} + \vec{R_4} = \vec{R_3}\\
 	\vec{R_2} + \vec{R_e} = \vec{R_1}\\
-	(R_2)(e^{j\theta_2}) + (R_e)(e^{j\theta_e}) = (R_1)(e^{j\theta_1})
+	(R_2)(e^{j\theta_2}) + (R_e)(e^{j\theta_e}) = (R_1)(e^{j\theta_1})\\
 	((R_2)(\cos(\theta_2))) + ((R_e)(\cos(\theta_e))) = -(R_1)\\
 	((R_2)(\sin(\theta_2))) + ((R_e)(\sin(\theta_e))) = 0\\
-	(R_2)^2(\cos^2(\theta_2)) - ((2)(R_2)(R_1)(\cos(\theta_2))) + (R_2)^2(\sin^2(\theta_2)) + (R_1)^2 = (R_e)^2(\cos^2(\theta_e)) + (R_e)^2(\sin^2(\theta_e))\\
+	(R_2)^2(\cos^2(\theta_2)) - ((2)(R_2)(R_1)(\cos(\theta_2))) +\\
+	(R_2)^2(\sin^2(\theta_2)) + (R_1)^2 = (R_e)^2(\cos^2(\theta_e)) + (R_e)^2(\sin^2(\theta_e))\\
 	R_e = \sqrt{(R_2)^2 - ((2)(R_2)(R_1)(\cos(\theta_2))) + (R_1)^2}\\
-	\theta_e = (\sin^{-1})\left(\frac{-(R_2)(\sin(\theta_2))}{(R_e)}\right)
-	(R_e)(e^{j\theta_e}) + (R_4)(e^{j\theta_4}) = (R_3)(e^{j\theta_3})
+	\theta_e = (\sin^{-1})\left(\frac{-(R_2)(\sin(\theta_2))}{(R_e)}\right)\\
+	(R_e)(e^{j\theta_e}) + (R_4)(e^{j\theta_4}) = (R_3)(e^{j\theta_3})\\
 	((R_e)(\cos(\theta_e))) + ((R_4)(\cos(\theta_4))) = ((R_3)(\cos(\theta_3)))\\
 	((R_e)(\sin(\theta_e))) + ((R_4)(\sin(\theta_4))) = ((R_3)(\cos(\theta_3)))\\
 	\theta_4 = (\cos^{-1})\left(\frac{(R_3)^2-(R_4)^2-(R_e)^2}{(2)(R_e)(R_4)}\right) - \theta_e\\

@@ -442,13 +442,94 @@ Because of the numerous details involved for every piece of equipment usually on
 
 # Optocouplers #
 
+PC817 
+led Y PHOTODIODO fotoresistor
+El fotodiodo actua como un switch dejando pasar una fuente a una carga cuando el led emita luz
+El metodo de fabricacion por fotolitografia se ocupa en la creacion de diodos y MEMS
+FC 50mA
+
+El 4N26 tiene una pata adicional que sirve de backup por si el diodo emisor se rompe podamos activar manualmente mediante otro switch el FOTOTRANSITOR con una conecicon a base
+FC 60 mA
+CC 50 mA
+
+FORWARD CURRENT es el minimo de corriente que van a necesitar para funcionar, es decir la corriente que requiere el led para prenderse correctamente
+
+COLLECTOR CURRENT es la corriente que el fototransitor puede suministrar a la carga extrerna 
+
+HAY FOTOTRANSITOR, FOTOTRANSISTOR DARLINGTON (DC), TRIAC (AC) Y SRC (AC)
+
+lOS Optotriac tambien tienen un diodo
+MOC301X
+El triac es un diodo de potencia MOSFET
+Es necesario el triac en AC porque permite trabajar en ambas direcciones es bidireccional en cuanto a la carga output
+
+Forward current max 60 mA
+Input Forward voltage (at a temperature and current show typucal and maximum voltages for the LED)
+
+Tambien muestra las corrientes de trigger para el LED dependiendo del modelo IFT entonces se recomienda que este entre estos dos valores
+
+El OPTOTRIAC no debe ser utilizado para la carga directamente se debe utilizar un TRIAC auxiliar que va a conducir la carga de AC de un foco por ejemplo
+Porque no puede suministrar la corriente
+
+LAS CURVAS generalmente dependen de la temperatura en el datasheet
+
+
+
+
+
 ***
 
 # Operational Amplifiers #
 
+Es un amplificador con dos entradas, dos alimentaciones y una salida
+Dispositivos lineales ideales para la amplificacione DC
+Usados en acondicionamiento, filtrado y como comparadores.
+El principio de retroalizmentacion negativa es fundamental para el control de procesos
+En la configuracion de amplificador diferencial se amplifica la diferencia entre las tensiones de las entradas proporcionando una salida que no esta influida por cualquier voltaje comun entre ellas.
+
+Vs = - R2 /R1 (V1-V2)
+Con R1 y V1 en no inversor 
+Con V2 en inversor
+
+En el modelo ideal 
+La ganancia en lazo abierto es infinita
+El ancho de banda es infinito
+La impedancia de entrada es infinita
+La impedancia de salida es cero
+
+Av = Vo/Vi (Ganancia Final)
+
+Sin retroalimentacion (lazo abierto) Aplicacion no lineal.
+Retroalimentacion positiva (Aplicacion en osciladores) Aplicacion no lineal-
+Retroalimentacion negativa Aplicacion lineal.
+
+El voltaje de salida maximo es el voltaje de entrada mas el 90 porciento del voltaje de entrada 
+
+La relacion de rechazo de modo omun o CMRR queremos que sea pequeña ya que inidica que la ganancia es tal que no se dejaran pasar variaciones pequeñas como el ruido.
+
+En un OP AMP ideal es 0 indicando que en un diferenciador con entradas iguales la salida sera cero, en la realidad en este msmo caso la salida tendra un pequeño votaje que corre el riesgo de ser amplificado por el circuito y terminar generando un offset indeseado.
+
+La frecuencia de transicion es aquella frecuencia para entradas en corriente alterna en donde la ganancia que tienen debido al op amp sera unitaria.
+
+Velocidad de subida o slew rate es que tan rapido la salida seguira a la entrada o si existira un desfazamiento entre ellas.
+
+DIAGRAMAS
+
+Inversor Y nO INVERSOR
+Amplificador sumador inversor
+Amlificador Diferencial.
+Seguidor de voltaje
+Integrador
+Derivador
+Amplificador de intrumentacion 
+Amplificador inversor de audio
+
 ***
 
 # Filters #
+
+
+
 
 ***
 
