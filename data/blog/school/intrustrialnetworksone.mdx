@@ -557,271 +557,99 @@ When devices connect to a local network they are assigned a valid IP address in 
 
 **Fourth Layer**
 
+![Transport Layer Protocols](/static/images/notes/TransportLayerProtocolsNetworks.png)
 
+This layer is responsible for the logical communication between applications on different hosts and acts as the link between application and lower layers. Since the IP protocol doesn't specify delivery methods or reliability requirements this layer (via TCP and UDP) will do both by tracking individual conversations using segmentation and multiplexing.
 
+![Transport Layer Headers](/static/images/notes/TCPandUDPHeadersNetworks.png)
 
+**TCP Protocol**
 
-Module 14: 
-1.4.1 Data transport
-Data transport Function of the transport layer
-
-The transport layer is:
-Responsible for logical communications between applications running on different hosts.
-Link between the application layers and the lower layers that are responsible for transmission through the network.
-Data transport Transport layer tasks
-The transport layer has the following responsibilities:
-Track individual conversations
-Segmentation of data and reassembly of segments
-Add header information
-Identify, separate and manage multiple conversations
-Uses segmentation and multiplexing to allow different communication conversations to be interspersed on the same network
-Data transport Transport layer protocols
-IP does not specify how the packages are delivered or transported.
-Transport layer protocols specify how to transfer messages between hosts and are responsible for managing the reliability requirements of a conversation.
-The transport layer includes the TCP and UDP protocols.
-Transmission Control Protocol
-
-TCP provides reliability and flow control Basic TCP operations:
-Number and track data segments transmitted to a specific host from a specific application
-Confirm data received
-Re-transmit any unrecognized information after a certain period of time
-Sequence data that may arrive in the wrong order
-Send data at an efficient speed that is acceptable to the receiver
-
-Data User Datagram Protocol (UDP)
-UDP provides the basic functions to deliver data segments between the appropriate applications, with very little overhead and data review.
-UDP is a connectionless protocol.
-UDP is also known as a best-effort delivery protocol because there is no recognition that data is being received at the destination.
-
-Data transport The appropriate transport layer protocol for the application in question
-UDP is also used by request and response applications where data is minimal, and retransmission can be done quickly.
-
-If it is important that all data arrive and that it can be processed in its proper sequence, TCP is used as the transport protocol.
-14.2 TCP Overview
-TCP Overview TCP Features
-
-Establish a session -TCP is a connection-oriented protocol that negotiates and establishes a permanent connection (or session) between source and destination devices before forwarding any traffic.
-Ensures Reliable Delivery- For many reasons, it is possible for a segment to be corrupted or lost entirely as it is transmitted over the network. TCP ensures that each segment sent by the source reaches the destination.
-Provide same-order delivery - Because networks can provide multiple routes that may have different transmission speeds, data may arrive in the wrong order.
-Supports flow control: - Network hosts have limited resources (that is, memory and processing power). When TCP notices that these resources are overloaded, it can request that the sending application slow down the data flow.
-TCP Overview TCP Header
-TCP is a stateful protocol, which means that it keeps track of the state of the communication session.
-
-TCP records what information was sent and what information was recognized.
-Introduction to TCP TCP header fields
-
-TCP header field Description
-Source Port 16-bit field used to identify the source application by port number.
-Destination port 16-bit field used to identify the destination application by port number.
-Sequence number 32-bit field used to reassemble data.
-32-bit A 32-bit field used to indicate that data has been received and the next expected byte from the source.
-Header length A 4-bit field known as the "data offset" that indicates the length of the TCP segment header.
-Reserved A 6-bit field that is reserved for future use.
-Control bits A 16-bit field used that includes bit codes, or flags, that indicate the purpose and function of the TCP segment.
-Window size A 16-bit field used to indicate the number of bytes that can be accepted
-Checksum A 16-bit field used for error checking of the segment header and data.
-Urgent 16-bit field used to indicate whether the data contained is urgent.
-
-TCP overview Applications that use TCP
-TCP handles all the tasks associated with dividing the data flow into segments, providing reliability, controlling the flow of data, and reordering segments.
-
-14.3 UDP overview
-UDP Overview UDP Features
-UDP features include the following:
-The data is rebuilt in the order it was received.
-Lost segments are not resent.
-There is no session establishment.
-The shipment is not informed about the availability of resources
-UDP Overview UDP Header
-
-The UDP header is much simpler than the TCP header because it only has four fields and requires 8 bytes (that is, 64 bits).
-
-UDP Overview UDP Header Fields
-The table identifies and describes the four fields of a UDP header.
-
-UDP header field Description
-Source Port 16-bit field used to identify the source application by port number.
-Destination port 16-bit field used to identify the destination application by port number.
-Length 16-bit field that indicates the length of the UDP datagram header.
-Checksum 16-bit field used for datagram header and data error checking.
-
-UDP overview Applications that use TCP
-Live Video and Multimedia Applications: - These applications can tolerate some data loss, but require little or no delay. Examples include VoIP and live video streaming.
-Simple Request and Response Applications: Simple transactional applications in which a request is sent by a host and there is a possibility that it will receive a response or not. Examples include DNS and DHCP.
-Applications that handle reliability on their own: - One-way communications where flow control, error detection, acknowledgments, and error recovery are not required or can be handled by the application. Examples include SNMP and TFTP.
-
-
-
-14.4 Port numbers
-
-Port numbers Multiple separate communications
-
-The TCP and UDP transport layer protocols use port numbers to handle multiple simultaneous conversations.
-
-The source port number is associated with the source application on the local host, while the destination port number is associated with the destination application on the remote host.
+TCP is a connection oriented protocol that stablishes a permanent connection (session) between source and target before forwarding information. It is reliable since it confirms received data, retransmits lost or corrupted data as well as sequencing segments that arrive in the wrong order. It also provides flow control by analyzing available resources and slowing data flow speed if necessary to maintain a reliable response.
 
-Port numbers Socket pairs
+| field | Description |
+| :---: | :---: |
+| source | 16 bit field used to identify source port |
+| destination | 16 bit field used to identify destination port |
+| sequence | 32 bit used to reassemble data |
+| acknowledgment | 32 bit identify data has been received and next expected byte |
+| header length | 4 bit known as data offset, indicates length of the header |
+| reserved | 6 bit field reserved for future use |
+| control bits | 16 bit flags that indicate the function of the segment |
+| window size | 16 bit used to indicate how many bytes can be accepted |
+| checksum | 16 bit field for segment error checking |
+| urgent | 16 bit field used to indicate data priority | 
 
-The source and destination ports are placed within the segment.
-The segments are encapsulated within an IP packet.
-The combination of the source IP address and the source port number, or the destination IP address and the destination port number, is known as a socket.
-Sockets allow the various processes running on a client to be distinguished from one another. They also allow the differentiation of different connections to a server process.
+TCP is generally used for applications that need segmentation, reliability and data flow control such as HTTP, SSH, SMTP and FTP.
 
-Port numbers Port number groups
+**UDP Protocol**
 
-Port group Number range Description
-Well-known ports 0 to 1,023 These are generally used for applications such as web browsers, email clients, and remote access clients.
-Well-known ports defined for common server applications allow clients to easily identify the required associated service.
-Registered ports 1,024 to 49,151 These port numbers are assigned to a requesting entity for use with specific processes or applications.
-These processes are primarily individual applications that the user chooses to install rather than common applications that would receive a known port number.
-For example, Cisco has registered port 1812 for its RADIUS server authentication process.
-Private and / or Dynamic ports. 49,152 to 65,535 These ports are also known as ephemeral ports.
-The client operating system typically assigns port numbers dynamically when a connection to a service is initiated.
-The dynamic port is then used to identify the client application during communication.
+UDP is a connectionless oriented and best effort protocol where data is rebuilt as it arrives, missing segments aren't resent and there is no session providing basic data delivery with little overhead or checking. The client selects a well known source port and a dynamically generated destination port were it will receive back the response from the target.
 
-Internet port number Application
-20 TCP File Transfer Protocol (FTP) - Data
-21 TCP File Transfer Protocol (FTP) - Control
-22 TCP Secure Shell (SSH)
-23 TCP Telnet
-25 TCP Simple Mail Transfer Protocol (SMTP)
-53 UDP, TCP Domain Name Service (DNS)
-67 UDP Dynamic Host Configuration Protocol (DHCP) - Server
-68 UDP Dynamic Host Configuration Protocol - Client
-69 UDP Trivial File Transfer Protocol (TFTP)
-80 TCP Hypertext Transfer Protocol (HTTP)
-110 TCP Post Office Protocol Version 3 (POP3)
-143 TCP Internet Message Access Protocol (IMAP)
-161 UDP Simple Network Management Protocol (SNMP)
-443 TCP Hypertext Transfer Protocol Secure (HTTPS)
+| field | Description |
+| :---: | :---: |
+| source | 16 bit field used to identify source port |
+| destination | 16 bit field used to identify destination port |
+| length | 16 bit field indicates length of the datagram header |
+| checksum | 16 bit field for datagram error checking |
 
-14.5 TCP communication process
-TCP communication process TCP server process
+UDP was designed to be used in minimal data applications (DNS, DHCP), applications where a degree of data loss is acceptable (Streaming, Live Media, VoIP) or where the reliability is handled by the applications themselves (SNMP, TFTP). 
 
-Each application process running on the server to use a port number.
-An individual server cannot have two services assigned the same port number within the same transport layer services.
-An active server application assigned to a specific port is considered open, which means that the transport layer accepts and processes the segments directed to that port.
-Any incoming request from a client directed to the correct socket is accepted and the data is sent to the server application.
+![Pair Sockets](/static/images/notes/PairSocketsNetworks.png)
 
-Communication process in TCP Establishing TCP connections
-Step 1: The source client requests a client-to-server communication session with the server.
-Step 2: The server acknowledges the client-to-server communication session and requests a server-to-client communication session.
-Step 3: The originating client acknowledges the server-to-client communication session.
+**Port Numbers**
 
-Communication process in TCP Termination of the TCP session
+TCP and UDP use port numbers to handle multiple simultaneous conversations by individual applications. To assign port numbers the transport layer will place a header within the segment that will be encapsulated within an IP packet, this combination of IP and Port is called Socket Pair. Sockets allow for host and process differentiation within the client and the server.
 
-Step 1: When the client has no more data to send in the stream, it sends a segment with the FIN flag set.
-Step 2: The server sends an ACK to confirm the FIN flag and end the client-to-server session.
-Step 3: The server sends a FIN to the client to end the server-to-client session.
-Step 4: The client responds with an ACK to confirm the FIN from the server
+Port numbers can be grouped into three main ranges: Well known ports (0-1023) used for browsers, email, remote access and general connections. Registered ports (1024-49151) are linked to specific processes or applications that the user has installed. Private and Dynamic ports (49152-65635) also known as *ephemeral* are temporary ports assigned dynamically only for the duration of a particular connection. 
 
-Communication process in TCP Analysis of the TCP three-way handshake
+| Port | Description |
+| :---: | :---: |
+| 20 | TCP Data File Transfer Protocol FTP |
+| 21 | TCP Data Control File Transfer Protocol FTP |
+| 22 | TCP Secure Shell Connection SSH | 
+| 23 | TCP Telnet | 
+| 25 | TCP Simple mail transfer protocol SMTP |
+| 53 | UDP and TCP Domain Name Service DNS |
+| 67 | UDP Dynamic Host Configuration Protocol DHCP Server |
+| 68 | UDP Dynamic Host Configuration Protocol DHCP Client |
+| 69 | UDP Trivial File Transfer Protocol TFTP |
+| 80 | TCP Hypertext Transfer Protocol HTTP |
+| 110 | TCP Post Office Protocol Version 3 POP3 |
+| 143 | TCP Internet Message Access Protocol IMAP |
+| 161 | UDP Simple Network Management Protocol SNMP |
+| 443 | TCP Hypertext Transfer Protocol Secure HTTPS |
 
-Three-way link features:
-Establishes that the target device is present on the network.
-Verify that the destination device has an active service and accepts requests on the destination port number that the source client wants to use.
-Informs the target device that the source client is trying to establish a communication session on that port number
-Once the communication is complete, the sessions are closed and the connection is ended. The connection and session mechanisms enable the reliability function of TCP.
+![TCP Communication Process](/static/images/notes/TCPCommunicationProcessNetworks.png)
 
-Communication process in TCP Three-way TCP handshake analysis
+**TCP Communication Process**
 
-The six check bit flags are as follows:
-URG - Important Urgent Indicator Field.
-ACK - Acknowledgment indicator used in connection establishment and session termination.
-PSH - Push function.
-RST- Reestablish a connection when an error occurs or times out.
-SYN - Synchronize sequence numbers used in connection establishment.
-END - No more sender data and is used at the termination of the session
+Each server application or service must use a unique port number, usually in the dynamic port range, if the application is active then the port is considered open meaning that the transport layer will accept and process segments directed to that port. The TCP communication process can be divided into 7 steps:
 
-14.6 - Reliability and flow control
+1. The source requests a client to server session. From a dynamic to a well known port.
+2. The server acknowledges and requests a server to client session. From a well known to a dynamic port.
+3. The source acknowledges the session and can start sending segments.
+4. The clients sends a segment with an END flag meaning it has finished sending data.
+5. The server responds with an ACK ending the client to server session.
+6. After closing the session the server sends an END flag to the client.
+7. The client responds with an ACK ending the server to client session.
 
-Reliability and flow control TCP reliability: Guaranteed and orderly delivery
+This process is called three way link communication and it ensures that the target device is present on the network, verifies that the destination has an active service and accepts request on the designated port, informs the target that the source is trying to establish a session on a specific port and ends the connection once communication is complete.
 
-TCP can also help keep packets flowing so devices don't get overloaded.
-Sometimes TCP segments do not reach their destination or do not arrive in order.
-All data must be received and the data in these segments must be reassembled in the original order.
-To achieve this, sequence numbers are assigned in the header of each packet.
+| Bit Flag | Description |
+| :---: | :---: |
+| URG | Important Urgent Segment Indicator Field |
+| ACK | Connection Established and Session Termination |
+| PSH | Push Segment Function | 
+| RST | Reestablish Connection after Error or Time Out | 
+| SYN | Synchronize sequence field used in connection establishment |
+| END | No more sender data therefore Session Termination |
 
-Reliability and Flow Control TCP Reliability - Data Loss and Retransmission
+If some segments are lost the TCP protocol can resend all the segments (retransmission) ignoring the duplicates however currently most devices and applications support TCP SACK a technology that allows for selective acknowledgment of the segments received and specification of the segments that need retransmission. 
 
-No matter how well designed a network is, data loss occasionally occurs.
-TCP provides methods for managing segment loss. Among these is a mechanism to retransmit segments for unacknowledged data.
+![TCP Flow Control](/static/images/notes/TCPFlowControlNetworks.png)
 
-Reliability and Flow Control TCP Reliability - Data Loss and Retransmission (Cont.)
-Host operating systems today typically employ an optional TCP feature called selective handshake (SACK), negotiated during the three-way handshake.
-If both hosts support SACK, the receiver can explicitly recognize which segments (bytes) were received, including discontinuous segments.
+TCP also implements data flow control in the form of window sizes and acknowledgments that slow down data flow speed if the target can't reliably acknowledge segments fast enough. To this end TCP assigns each session a Maximum Segment Size (MSS). 
 
-Reliability and flow control TCP flow control: window size and acknowledgments
-
-TCP also provides flow control mechanisms.
-
-Flow control is the amount of data that the destination can reliably receive and process.
-
-Flow control allows you to maintain the reliability of TCP transmission by adjusting the speed of the data flow between the source and the destination for a given session.
-
-Reliability and TCP flow control Flow control: maximum segment size
-
-Maximum Segment Size (MSS) is the maximum amount of data that the target device can receive.
-
-A common MSS is 1,460 bytes when using IPv4.
-A host determines the value of its MSS field by subtracting the IP and TCP headers from Ethernet Maximum Transmission Unit (MTU).
-1500 minus 60 (20 bytes for the IPv4 header and 20 bytes for the TCP header) leaves 1460 bytes.
-
-Reliability and Flow Control TCP Flow Control: Congestion Prevention
-When congestion occurs on a network, the overloaded router begins to drop packets.
-
-To avoid and control congestion, TCP employs various mechanisms, timers, and congestion handling algorithms.
-
-14.7 UDP communication
-
-Communication process in UDP Comparison of low overhead and reliability of UDP
-
-UDP does not establish a connection. UDP provides data transport with low overhead because it has a small datagram header with no network management traffic.
-
-Communication process in UDP Reassembly of UDP datagrams
-
-UDP does not keep track of sequence numbers in the way that TCP does.
-UDP cannot reorder datagrams in the order of transmission.
-UDP simply reassembles the data in the order it was received and sends it to the application
-
-Communication process in UDP UDP server requests and processes
-
-UDP-based server applications are assigned known or registered port numbers.
-
-UDP receives a datagram destined for one of those ports, sends the application data to the appropriate application based on its port number
-
-Communication process in UDP UDP client processes
-
-The UDP client process dynamically selects a port number from the range of port numbers and uses it as the source port for the conversation.
-Typically, the destination port is the well-known or registered port number that is assigned to the server process.
-After the client selects the source and destination ports, this same port pair is used in the header of all datagrams used in the transaction.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+MSS is usually calculated by substracting the IP and TCP headers from the Ethernet Maximum Transmission Unit (MTU). For example a typical MTU of 1500 bytes will produce a typical IPv4 MSS of 1460 bytes since both headers are 20 bytes each. TCP can prevent router congestion through timers and congestion handling mechanisms.
 

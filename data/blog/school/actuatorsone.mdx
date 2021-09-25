@@ -875,4 +875,55 @@ $$
 
 # DC Machines #
 
+**Activity 1**
+
+
+
+$$
+\begin{gathered}
+	\omega = 3600\,\text{rpm} \land i_s = 5\,\text{A}\, , \,60\text{Hz}\\
+	\text{Ejercicio A}\\
+	i_{r} = (5)(\sqrt{2})\,\text{A}\\
+	\omega_{syn} = \frac{120(f)}{p} = \frac{120(60)}{2} = 3600\,\text{rpm}\\
+	V_r = L_r\frac{di_r}{dt} + L_{sr}\frac{di_s}{dt}\\
+	\omega_m = \omega_r \implies i_r = 0\\
+	V_r = L_{sr}\frac{di_s}{dt}\\
+	L_{sr} = 0.08\cos(\theta)\\
+	\theta = \omega_m(t) + d\\
+	L_{sr} = 0.08\cos((120)(\pi)(t))\\
+	i_s = (5)(\sqrt{2})(\sin((2)(\pi)(60)(t)))\\
+	V_r = - 0.08\cos((120)(\pi)(t)) \frac{d}{dt} \left((5)(\sqrt{2})(\sin((2)(\pi)(60)(t))) \right)\\
+	V_r = - 0.08(5)(\sqrt{2})\cos((120)(\pi)(t))\cos((120)(\pi)(t))(120)(t)\\
+	V_r = - 0.08(5)(\sqrt{2})(120)(\pi) \left(\frac{1+\cos((2)(120)(\pi)(t))}{2}\right)\\
+	V_r = -0.08\cos(\theta)(5)(\sqrt{2})(120)(\pi)(\sin(120\pi t))\\
+	V_r = -106.6291(1+\cos((240)(\pi)(t))\\
+	\therefore V_{inst} = 106.6291(\sin(\delta)-\sin(240\pi t + \delta))\\
+	V_{rms} = 106.63\sqrt{(\sin(\delta))^2 + (\frac{1}{2})^2}\\
+	\therefore V_{rms} = 106.63\sqrt{\sin^2(\delta) + \frac{1}{4}}\\
+	i_s = (5)(\sqrt{2})(\sin(\omega t) = 7.07\sin(120\pi t)\\
+	\theta_2 = \frac{d}{dt}((0.08)(\cos(120\pi t + \delta)(7.07)(\sin(120\pi t)))\\
+	\theta_2 = 213.2\cos(240\pi t + \delta)\\
+	\theta_2 = \sqrt{2}(150.8)(\cos(240\pi t + \delta))\\
+	\therefore f_2 = 120\,\text{Hz}\\
+	\text{Ejercicio B}\\
+	T = (i_s)(i_r) \frac{d}{d\theta} L_{sr}\\
+	i_s = I_{sm}\cos(\omega_s(t))\\
+	i_r = I_{rm}\cos(\omega_r(t) + \delta)\\
+	T = 50\cos^2(\omega t)(0.08\sin(\theta)\\
+	T = -4\cos^2(\omega t)(\sin(\omega_m t + \delta))\\
+	T = -2 (1 + \cos(2\omega t))(\sin(\omega_m t + \delta))\\
+	T = -2\sin(\omega_m t + \delta) + 2\cos(2\omega t)\sin(\omega_m t + \delta)\\
+	T_{inst} = -2\sin(\omega_m t + \delta) + \sin(2\omega t + \omega_mt + \delta) + \sin(\omega_m t + \delta - 2\omega t)\\
+	\omega_m \ne (2)(\omega) \implies T_{inst} = 0\\
+	\omega_m = (2)(\omega) = (2)(2)(\pi)(60) = 240\pi\,\text{rad/s}\\
+	\omega_m = 753.9822\,\text{rad/s}\\
+	\therefore \omega_m = 0 \implies T_{avg} = -(2)(\sin(\delta)) \land T_{max} = 2\,\text{Nm}\\
+	\therefore \omega_m = \pm240\pi \implies T_{avg} = (1)(\sin(\delta)) \land T_{max} = 1\,\text{Nm}\\
+\end{gathered}
+$$
+
+
+
+
+
 
