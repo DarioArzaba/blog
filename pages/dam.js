@@ -27,8 +27,6 @@ export default function Dam() {
         
 		<div className="container py-12">
 			
-						<div className="pt-8 pb-8 prose dark:prose-dark max-w-none"><hr/></div>
-
 			<div className="pt-4 pb-4 space-y-2 md:space-y-5"><h1 className="pt-4 pb-2 text-3xl font-bold leading-8 tracking-tight">Lapiz y Carbon</h1></div>
 
 			<ImageGallery slideDuration={0} disableKeyDown={true} showIndex={true} showPlayButton={false} showNav={true} lazyload={true} showThumbnails={false} items={
@@ -52,7 +50,6 @@ export default function Dam() {
 					{ original: 'https://storage.googleapis.com/bucket-dam/Pencil/CuerpoHumano16.jpg'},
 					{ original: 'https://storage.googleapis.com/bucket-dam/Pencil/CuerpoHumano17.jpg'},
 					{ original: 'https://storage.googleapis.com/bucket-dam/Pencil/CuerpoHumano18.jpg'},
-					{ original: 'https://storage.googleapis.com/bucket-dam/Pencil/CuerpoHumano19.jpg'},
 					{ original: 'https://storage.googleapis.com/bucket-dam/Pencil/CuerpoHumano20.jpg'},
 					{ original: 'https://storage.googleapis.com/bucket-dam/Pencil/CuerpoHumano21.jpg'},
 					{ original: 'https://storage.googleapis.com/bucket-dam/Pencil/CuerpoHumano22.jpg'},
