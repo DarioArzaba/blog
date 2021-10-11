@@ -4,14 +4,15 @@ date: '2021-08-15'
 tags: ['school', 'actuators']
 ---
 
-## Solenoid Field ##
+## Solenoid ##
 
 A solenoid of length 0.6m has three layers of turns each with 500 turns. Calculate the magnetic field density inside the solenoid if we apply a 2A current.
 
 $$
 \begin{gathered}
 	B = (\mu_0)(i_0)(n)\\
-	B = (1.25663 \times 10^{-6})\frac{(1500)(2)}{0.6} = 0.006283 \, \text{T}
+	B = (1.25663 \times 10^{-6})(2)\frac{1500}{0.6}\\
+	B = 0.006283 \, \text{T}
 \end{gathered}
 $$
 
@@ -29,15 +30,20 @@ $$
 \begin{gathered}
 	F = (N)(i) = (H_c)(l_c) + (H_g)(l_g)(2)\\
 	\text{From the graph: } 0.8 \, \text{T} =  510 \, \text{At/m}\\
-	F_c = (H_c)(l_c) = (510)(0.36) = 184 \, \text{At}\\
+	F_c = (H_c)(l_c) = (510)(0.36)\\
+	F_c = 184 \, \text{At}\\
 	B = (\mu)(H) \implies H_g = \frac{B_g}{\mu_0}\\
-	F_g = (H_g)(l_g)(2) = \frac{(0.8)(0.0015)(2)}{1.25663 \times 10^{-6}}  = 1909.8 \approx 1910 \, \text{At}\\
-	(N)(i) = 184 + 1910 \implies i = \frac{2094}{500} = 4.18\,\text{A}\\
-	\therefore i = 4.18\,\text{A}\\\\
-	B_c = (\mu_c)(H_c) \implies \mu_c = \frac{B_c}{H_c} = \frac{0.8}{510} = 0.00157\\
-	\mu = (\mu_0)(\mu_r) \implies \mu_r = \frac{\mu_c}{\mu_0} = \frac{0.00157}{1.25663 \times 10^{-6}} = 1250\\
-	\therefore \mu_c = 0.00157 \land \mu_r = 1250\\\\
-	(N)(i) = (H_c)(l_c) \implies i = \frac{(H_c)(l_c)}{N} = \frac{(510)(0.36)}{500} = 0.36\,\text{A}\\  
+	F_g = (H_g)(l_g)(2) = \frac{(B_g)(l_g)(2)}{\mu_0}\\
+	F_g = \frac{(0.8)(0.0015)(2)}{1.25663 \times 10^{-6}}\\
+	F_g = 1909.8 \approx 1910 \, \text{At}\\
+	(N)(i) = F_c + F_g \implies i = \frac{F_c + F_g}{N}\\
+	i = \frac{184 + 1910}{500}\\
+	\therefore i =  4.18\,\text{A}\\\\
+	B_c = (\mu_c)(H_c) \implies \mu_c = \frac{B_c}{H_c} = \frac{0.8}{510}\\
+	\therefore \mu_c = 0.00157\\\\
+	\mu = (\mu_0)(\mu_r) \implies \mu_r = \frac{\mu_c}{\mu_0} = \frac{0.00157}{1.25663 \times 10^{-6}}\\
+	\therefore \mu_r = 1250\\\\
+	(N)(i) = (H_c)(l_c) \implies i = \frac{(H_c)(l_c)}{N} = \frac{(510)(0.36)}{500}\\
 	\therefore i_2 = 0.36\,\text{A}
 \end{gathered}
 $$
@@ -52,20 +58,27 @@ $$
 \begin{gathered}
 	N_1 = N_2 = 500 \land i_1 = 10 \land l_g = 0.005\\
 	A_c = A_g = 0.0004 \land \mu_r = 1200 \\
-	F_1 = F_2 = (N)(i) = (500)(10) = 5000 \, \text{At}\\
-	\mu_c = (\mu_r)(\mu_0) = (1200)(1.25663 \times 10^{-6}) = 0.00150796\\
-	\Re_{bafe} = \frac{l_{bafe}}{(\mu_c)(A_c)} = \frac{0.52(3)}{(0.00150796)(0.0004)} = 2.58 \times 10^{6} \, \text{At/wb}\\
-	\Re_{bafe} = \Re_{bcde} \, \text{By symmetry}\\
-	\Re_{be} = \frac{l_{be}}{(\mu_c)(A_c)} = \frac{(0.52)-(0.005)}{(0.00150796)(0.0004)} = 0.82 \times 10^{6} \, \text{At/wb}\\
-	\Re_{g} = \frac{l_{g}}{(\mu_0)(A_g)} = \frac{(0.005)}{(1.25663 \times 10^{-6})(0.0004)} = 9.94 \times 10^{6} \, \text{At/wb}\\
+	F_1 = F_2 = (N)(i) = (500)(10) = 5000 \, \text{At}\\\\
+	\mu_c = (\mu_r)(\mu_0) = (1200)(1.25663 \times 10^{-6})\\
+	\mu_c = 0.00150796\\
+	\Re_{bafe} = \frac{l_{bafe}}{(\mu_c)(A_c)} = \frac{0.52(3)}{(0.00150796)(0.0004)}\\
+	\Re_{bafe} = 2.58 \times 10^{6} \, \text{At/wb}\\
+	\Re_{bafe} = \Re_{bcde} \, \text{ Symmetry}\\
+	\Re_{be} = \frac{l_{be}}{(\mu_c)(A_c)} = \frac{(0.52)-(0.005)}{(0.00150796)(0.0004)}\\
+	\Re_{be} = 0.82 \times 10^{6} \, \text{At/wb}\\
+	\Re_{g} = \frac{l_{g}}{(\mu_0)(A_g)} = \frac{(0.005)}{(1.25663 \times 10^{-6})(0.0004)}\\
+	\Re_{g} = 9.94 \times 10^{6} \, \text{At/wb}\\\\
 	F_1 - (\Re_{bafe})(\Phi_1) - (\Re_{be} + \Re_{g})(\Phi_1 + \Phi_2) = 0\\
 	-F_2 + (\Re_{bafe})(\Phi_2) + (\Re_{be} + \Re_{g})(\Phi_1 + \Phi_2) = 0\\
 	(\Re_{bafe})(\Phi_2) - (\Re_{bafe})(\Phi_1) = 0 \implies \Phi_2 = \Phi_1\\
 	5000 = (2.58 \times 10^{6})(\Phi_1) + (0.82 \times 10^{6} + 9.94 \times 10^{6})(\Phi_1 + \Phi_1) \\
-	\Phi_1 = 2.07 \times 10^{-4} \, \text{wb}\\
-	\therefore \Phi_g = \Phi_1 + \Phi_2 = (2.07 \times 10^{-4})(2) = 4.14 \times 10^{-4} \, \text{wb}\\
-	\therefore B_g = \frac{\Phi_g}{A_g} = \frac{4.14 \times 10^{-4}}{0.0004} = 2.035 \, \text{T}\\
-	\therefore H_g = \frac{B_g}{\mu_0} = \frac{2.035}{(1.25663 \times 10^{-6})} = 0.82 \, \text{At/m}
+	\Phi_1 = 2.07 \times 10^{-4} \, \text{Wb}\\\\
+	\Phi_g = \Phi_1 + \Phi_2 = (2.07 \times 10^{-4})(2)
+	\therefore \Phi_g = 4.14 \times 10^{-4} \, \text{Wb}\\\\
+	B_g = \frac{\Phi_g}{A_g} = \frac{4.14 \times 10^{-4}}{0.0004}\\
+	\therefore B_g = 2.035 \, \text{T}\\\\
+	H_g = \frac{B_g}{\mu_0} = \frac{2.035}{(1.25663 \times 10^{-6})}\\
+	\therefore H_g = 0.82 \, \text{At/m}
 \end{gathered}
 $$
 
@@ -75,34 +88,47 @@ $$
 
 **Activity 1**
 
-Using the following data calculate the magnetic flux, magnetic flux density and inductance of a simple air gap magnetic circuit.
+Using the following data to calculate the magnetic flux, magnetic flux density and coil inductance of a simple air gap magnetic circuit.
 
 $$
 \begin{gathered}
 	N = 400 \land i = 1 \land l_c = 0.5 \land l_g = 0.001\\
 	A_c = A_g = 0.0015 \land \mu_r = 3000\\\\
-	\mu_c = (\mu_r)(\mu_0) = (3000)(1.256 \times 10^{-6}) = 0.003769\\
-	\Re_c = \frac{l_c}{(\mu_c)(A_c)} = \frac{0.5}{(0.003769)(0.0015)} = 88419 \, \text{At}{wb}\\
-	\Re_g = \frac{l_g}{(\mu_0)(A_g)} = \frac{0.001}{(1.256 \times 10^{-6})(0.0015)} = 530516 \, \text{At}{wb}\\
-	\therefore \Phi = \frac{(N)(i)}{\Re_c + \Re_g} = \frac{(400)(1)}{88419+530516} = 0.00064627 \, \text{Wb}\\
-	\therefore B_g = \frac{\Phi}{A} = \frac{0.00064627}{0.0015} = 0.43085 \, \text{T}\\
-	\therefore L = \frac{(N)^2}{\Re} = \frac{(400)^2}{88419+530516} = 0.25852 \, \text{H}
+	\mu_c = (\mu_r)(\mu_0) = (3000)(1.256 \times 10^{-6})\\
+	\mu_c = 0.003769\\
+	\Re_c = \frac{l_c}{(\mu_c)(A_c)} = \frac{0.5}{(0.003769)(0.0015)}\\
+	\Re_c = = 88419 \, \text{At}{wb}\\
+	\Re_g = \frac{l_g}{(\mu_0)(A_g)} = \frac{0.001}{(1.256 \times 10^{-6})(0.0015)}\\
+	\Re_g = 530516 \, \text{At}{wb}\\
+	\Phi = \frac{(N)(i)}{\Re_c + \Re_g} = \frac{(400)(1)}{88419+530516}\\
+	\therefore \Phi = = 0.00064627 \, \text{Wb}\\\\
+	B_g = \frac{\Phi}{A} = \frac{0.00064627}{0.0015}\\
+	\thereforeB_g = 0.43085 \, \text{T}\\\\
+	L = \frac{(N)^2}{\Re} = \frac{(400)^2}{88419+530516}\\
+	\therefore L = 0.25852 \, \text{H}
 \end{gathered}
 $$
 
 **Activity 2**
 
-We apply 2.5A to a coil around a toroid with no air gap and 250 turns. The toroid is made of silicon sheet steel. For the toroid with respect to its center its inner radii is of 20cm and its outer radii is of 25cm. Calculate the magnetic flux density at the mean radius of the toroid and the coil inductance. 
+We apply 2.5A to a coil around a toroid with *no air gap* and 250 turns. The toroid is made of silicon sheet steel. The inner radii of the toroid with respect to its center is of 20cm while its outer radii is of 25cm. Calculate the magnetic flux density at the mean radius and its coil inductance. 
 
 $$
 \begin{gathered}
-	r_m = \frac{25+20}{2} = 22.5 \, \text{cm} = 0.225 \, \text{m}\\
-	H_c = \frac{(N)(i)}{l} = \frac{(250)(2.5)}{2 \pi 0.225} = 442.3 \, \text{At/m}\\
+	r_m = \frac{r_o + r_i}{2} = \frac{25+20}{2}\\
+	r_m = 22.5 \, \text{cm} = 0.225 \, \text{m}\\
+	H_c = \frac{(N)(i)}{l} = \frac{(250)(2.5)}{(2)(\pi)(0.225)}\\
+	H_c = 442.3 \, \text{At/m}\\
+	\text{From the Graph}
 	\therefore B_c = 1.225 \, \text{T}\\\\
-	A = \pi(r_A)^2 = \pi(\frac{25-20}{2})^2 = 1.9635 \times 10^{-3}\\
-	\Phi = (B)(A) = (1.225)(1.9635 \times 10^{-3}) = 0.002405 \, \text{wb}\\
-	\lambda = (N)(\Phi) =  (250)(0.002405) = 0.60132 \, \text{Wb t}\\
-	\therefore L = \frac{0.60132}{2.5} = 240.4 \, \text{mH}
+	A = (\pi)(r_A)^2 = \pi\left(\frac{25-20}{2}\right)^2\\
+	A = 1.9635 \times 10^{-3}\\
+	\Phi = (B)(A) = (1.225)(1.9635 \times 10^{-3})\\
+	\Phi = 0.002405 \, \text{Wb}\\
+	\lambda = (N)(\Phi) =  (250)(0.002405)\\
+	\lambda = 0.60132 \, \text{Wb t}\\
+	L = \frac{\lambda}{i} = \frac{0.60132}{2.5}\\
+	\therefore L = 240.4 \, \text{mH}
 \end{gathered}
 $$
 
@@ -116,16 +142,23 @@ Given a sinusoidal excitation obtain an expression for the flux density in the c
 
 $$
 \begin{gathered}
-	e(t) = 1\Phi\,120\text{Vrms}\,60\text{Hz} \land N = 200\\
+	e(t) = 120\text{Vrms}\,60\text{Hz} \land N = 200\\
 	l_c = 100\,\text{cm} \land A_c = 20\,\text{cm}^2 \land \mu_r = 2500\\\\
-	\Phi_{max} = \frac{120}{(4.44)(200)(60)} = 0.00225 \, \text{wb}\\
+	E_{rms} = (4.44)(N)(f)(\Phi_{max})\\
+	\Phi_{max} = \frac{120}{(4.44)(200)(60)}\\
+	\Phi_{max} = 0.00225 \, \text{wb}\\
 	\Phi = (B)(A) \implies B_{max} = \frac{\Phi_{max}}{A}\\
-	B_{max} = \frac{0.00225 \, \text{wb}}{20\times 10^{-4}\, \text{m}} = 1.126 \, \text{T}\\
-	\therefore B = B_{max}(\sin(\omega (t))) = 1.126(\sin(120\pi (t)))\\\\
-	(N)(i) = (A)(l) \implies i_{max} = \frac{(H_{max})(l)}{N}\\
-	H_{max} = \frac{B_{max}}{\mu_r(\mu_0)} = \frac{1.126}{(2500)(1.256 \times 10^{-6})} = 358.5 \, \text{At/m}\\
+	B_{max} = \frac{0.00225}{20\times 10^{-4}}\\
+	B_{max} = 1.126 \, \text{T}\\
+	B = B_{max}(\sin(\omega (t)))\\
+	\therefore B = 1.126(\sin(((2)(\pi)(60))(t)))\\\\
+	(N)(i_{max}) = (H_{max})(l) \implies i_{max} = \frac{(H_{max})(l)}{N}\\
+	H_{max} = \frac{B_{max}}{\mu_r(\mu_0)}\\
+	H_{max} = \frac{1.126}{(2500)(1.256 \times 10^{-6})}\\
+	H_{max} = 358.5 \, \text{At/m}\\
 	i_{max} = \frac{(358.5)(1)}{200} = 1.79 \, \text{A}\\
-	\therefore i = 1.79(\sin(120 \pi (t)))
+	i = i_{max}(\sin(\omega (t)))\\
+	\therefore i = 1.79(\sin(((2)(\pi)(60))(t)))
 \end{gathered}
 $$
 
@@ -133,16 +166,17 @@ $$
 
 ![Example of Hard Iron](/static/images/notes/ExampleofHardIronActuators.png)
 
-The permanent magnet is made of alnico 5, its magnetization curve is shown in the figure. A flux density of $0.8T$ needs to be established in the air gap when the keeper is removed. The operating point on the curve corresponds to the point at which the product of the field strength and the flux density are at their maximum: $B_m = 0.95\,\text{T}$ and $H_m = -42\,\text{kA/m}$. Calculate the length and area of the permanent magnet.
+The permanent magnet is made of alnico 5, its magnetization curve is shown in the figure. A flux density of $0.8T$ needs to be established in the air gap when the keeper is removed. The operating point of the permanent magnet is $B_m = 0.95\,\text{T}$ and $H_m = -42\,\text{kA/m}$. Calculate the length and area of the permanent magnet needed to maintain the flux in the air gap.
 
 $$
 \begin{gathered}
 	A_g = 2.5\,\text{cm}^2 \land l_g = 0.4\,\text{cm}\\
 	(H_m)(l_m) + (H_g)(l_g) = 0 \land H_g = \frac{B_g}{\mu_0}\\
-	l_m = \frac{-(H_g)(l_g)}{H_m} = \frac{-(B_g)(l_g)}{(H_m)(\mu_0)}\\
-	l_m = \frac{-(0.8)(0.004)}{(-42)(1.25663 \times 10^{-6})} = 0.06\,\text{m}\\
-	(B_m)(A_m) = (B_g)(A_g) \implies A_m = \frac{(0.8)(2.5)}{0.95} = 2.1\times 10^{-4}\,\text{m}^2\\
-	\therefore l_m = 0.06\,\text{m} \land A_m = 2.1\times 10^{-4}\,\text{m}^2
+	l_m = \frac{-(H_g)(l_g)}{H_m} = \frac{-(B_g)(l_g)}{(H_m)(\mu_0)} = \frac{-(0.8)(0.004)}{(-42)(1.25663 \times 10^{-6})}\\
+	\therefore l_m = 0.06\,\text{m}\\\\
+	\Phi_m = \Phi_g \implies (B_m)(A_m) = (B_g)(A_g)\\
+	A_m = \frac{(B_g)(A_g)}{B_m} = \frac{(0.8)(2.5)}{0.95}\\
+	\therefore A_m = 2.1\times 10^{-4}\,\text{m}^2
 \end{gathered}
 $$
 
@@ -156,21 +190,26 @@ The magnetic core is made from cast steel and we need to produce a 1T flux densi
 
 $$
 \begin{gathered}
-	N = 250 \land R = 5\Omega \land l_g = 5\,\text{mm}\\
-	V = (R)(i) \land (N)(i) = (H_c)(l_c) + (H_g)(l_g)\\
-	i = \frac{(670)(0.6)+(\frac{1}{1.2567 \times 10^{-6}})((2)(0.005))}{250} = 33.44 \,\text{A}\\
-	\therefore V = (5)(33.44) = 167.2 \, \text{V}\\
+	N = 250 \land R = 5\Omega \land l_g = 5\,\text{mm}\\\\
+	(N)(i) = (H_c)(l_c) + (H_g)(l_g)\\
+	i = \frac{(670)(0.6)+(\frac{(1)(2)(0.005)}{1.2567 \times 10^{-6}})}{250}\\
+	i = 33.44 \,\text{A}\\
+	V = (R)(i) = (5)(33.44)\\
+	\therefore V = 167.2 \, \text{V}\\\\
 	W_f = (w_{fc})(V_c) + (w_{fg})(V_g)\\
 	w_{fc} \approx \frac{(b)(h)}{2} = \frac{(670)(1)}{2} = 335 \, \text{J/m}^3\\
+	\text{Integrating Linear Approximation}\\
 	\mu_c = \frac{B_c}{H_c} = \frac{1}{670} = 0.0015\\
-	w_{fc} \approx \frac{(1)^2}{2(0.0015)} - \frac{(0)^2}{2(0.0015)} = 333.33 \, \text{J/m}^3 \approx 335\, \text{J/m}^3\\
+	w_{fc} \approx \frac{(1)^2}{2(0.0015)} - \frac{(0)^2}{2(0.0015)}\\
+	w_{fc} = 333.33 \, \text{J/m}^3 \approx 335\, \text{J/m}^3\\
 	V_c = (A_c)(l_c) = ((0.05)(0.1))(0.6) = 0.003\,\text{m}^3\\
-	W_{fc} = (335)(0.003) = 1.005\,\text{J}\\
-	w_{fg} \approx \frac{(1)^2}{2(1.2567 \times 10^{-6})} - \frac{(0)^2}{2(1.2567 \times 10^{-6})} = 397900 \, \text{J/m}^3\\
+	W_{fc} = (335)(0.003) = 1.005\,\text{J}\\\\
+	w_{fg} \approx \frac{(1)^2}{2(1.2567 \times 10^{-6})} - \frac{(0)^2}{2(1.2567 \times 10^{-6})}\\
+	w_{fg} = 397900 \, \text{J/m}^3\\
 	V_g = (A_g)(l_g) = ((0.05)(0.1))(0.01) = 0.00005\,\text{m}^3\\
-	W_{fc} = (397900)(0.00005) = 19.89\,\text{J}\\
+	W_{fg} = (397900)(0.00005) = 19.89\,\text{J}\\\\
 	W_f = 1.005 + 19.89 = 20.9 \, \text{J}\\
-	\therefore W_f = 20.9 \, \text{J}\\
+	\therefore W_f = 20.9 \, \text{J}
 \end{gathered}
 $$
 
@@ -178,25 +217,23 @@ $$
 
 ## Energy and CoEnergy ##
 
-The $\lambda - i$ curve is given by $i = (\frac{\lambda g}{0.09})^2$ , valid for $0 < i < 4$ and $0.03 < g < 0.1$. Find the mechanical force of the moving part when the operating point is $i=3$ and $g=0.05$ using the energy and coenergy of the field.
+The $\lambda - i$ curve is given by the linkage - current expression $i = (\frac{\lambda g}{0.09})^2$ , valid for $0 < i < 4$ and $0.03 < g < 0.1$. Find the mechanical force of the moving part when the operating point is $i=3$ and $g=0.05$ using the energy and coenergy methods.
 
 $$
 \begin{gathered}
 	dW_f' = \int_{0}^{i} \lambda \, di\\
 	dW_f' = \int_{0}^{i} \frac{(0.09)(i^{1/2})}{g} \, di = \frac{(0.09)(i^{3/2})}{(g)\frac{3}{2}} \\
-	dW_f' = \frac{(0.09)(2)(i^{3/2})}{3g} \, \text{J}\\
+	dW_f' = \frac{(0.09)(2)(i^{3/2})}{3g}\\
 	f_m = \frac{dW_f'(i,x)}{dx} = \frac{d}{dg}\left(\frac{(0.09)(2)(i^{3/2})}{3g}\right)\\
 	f_m = -\frac{(0.09)(2)(i^{3/2})}{3g^2}\\
-	f_m (i=3 , g=0.05) = -\frac{(0.09)(2)((3)^{3/2})}{3(0.05)^2} = -129.7 N\\
-	\therefore f_m = -129.7N\\
-	W_f = \int_{0}^{\lambda} (i) \, d\lambda\\
-	W_f = \int_{0}^{\lambda} \left(\frac{\lambda g}{0.09}\right)^2 \, d\lambda\\
+	f_m (i=3 , g=0.05) = -\frac{(0.09)(2)((3)^{3/2})}{3(0.05)^2}\\
+	\therefore f_m = - 129.7\,\text{N}\\\\
+	W_f = \int_{0}^{\lambda} (i) \, d\lambda = \int_{0}^{\lambda} \left(\frac{\lambda g}{0.09}\right)^2 \, d\lambda\\
 	W_f = \frac{\lambda^3 g^2}{0.09^2 (3)}\\
-	f_m = -\frac{dW_f'(\lambda , x)}{dx}\\
-	f_m = -\frac{d}{dg}\left(\frac{\lambda^3 g^2}{0.09^2 (3)}\right)\\
-	\lambda = \frac{(0.09)\sqrt{3}}{0.05} = 3.118 \, \text{Wb}\\
-	f_m = - \frac{(2)(g)(\lambda)^3}{(3)(0.09)^2} = - \frac{(2)(0.05)(3.118)^3}{(3)(0.09)^2} = -129.7\\
-	\therefore f_m = -129.7N
+	f_m = -\frac{dW_f'(\lambda , x)}{dx} = -\frac{d}{dg}\left(\frac{\lambda^3 g^2}{0.09^2 (3)}\right)\\
+	\lambda = \frac{(0.09)\sqrt{3}}{0.05} = 3.118\\
+	f_m = - \frac{(2)(g)(\lambda)^3}{(3)(0.09)^2} = - \frac{(2)(0.05)(3.118)^3}{(3)(0.09)^2}\\
+	\therefore f_m = - 129.7\,\text{N}
 \end{gathered}
 $$
 
@@ -206,11 +243,14 @@ $$
 
 ![Exercise of a Linear System](/static/images/notes/LinearSystemsFieldExerciseActuators.png)
 
-The system has an infinitely permeable core and plunger, the air gap length is negligible compared to the length of the plunger. Find an expression for the stored field energy as a function of the plunger position from 0 to d. 
+The system has an infinitely permeable core and plunger, the air gap length is negligible compared to the length of the plunger. Find an expression for the stored field energy as a function of the plunger position x from 0 to d. 
 
 $$
 \begin{gathered}
-	N = 1000 \land g = 0.002 \land d = 0.15 \land l = 0.1 \land i = 10\\ 
+	N = 1000 \land g = 0.002 \land d = 0.15 \land l = 0.1 \land i = 10\\
+	W_f = \frac{(i^2)(L(x))}{2} \implies L(x) = \frac{\mu_0 N^2 (A_g)}{2g}\\
+	W_f = \frac{(0.5) \mu_0 N^2 l (d - x)}{2g} = \frac{(0.5)(1.2566\times 10^{-6}) (1000)^2 (0.1)(0.15)(1 - \frac{x}{d})}{2(0.002)}\\
+	W_f = 235.619 (1 - \frac{x}{d})
 \end{gathered}
 $$
 
@@ -222,45 +262,51 @@ $$
 
 ![Exercise of Torque in Rotating](/static/images/notes/RotatorExercisePositionInductanceActuators.png)
 
-We are given the inductance function of a rotating machine as $L(\theta)=(25.4)+(8.3)\cos(2\theta) + (1.8)\sin(4\theta)$. Find the torque for a stator current of 3.5 A and the rotor position that produces the maximum (negative) torque.
+We are given the inductance function of a rotating machine as $L(\theta)=(25.4)+(8.3)\cos(2\theta) + (1.8)\sin(4\theta)$, with its values in cm. Find the torque expression for an applied stator current of 3.5 A and the rotor position (angle) that will produce the maximum (negative) torque.
 
 $$
 \begin{gathered}
-	T = \frac{(i_s^2)}{2} \frac{dL_{ss}}{d\theta}\\
-	T = \frac{(i_s^2)}{2} \frac{d}{d\theta} ((0.0254)+(0.0083)\cos(2\theta) + (0.0018)\sin(4\theta))\\
-	T = \frac{(i_s^2)}{2} ((-(2)(0.0083)\sin(2\theta)) + ((4)(0.0018)\cos(2\theta)))\\
-	T = (3.5^2)((-(0.0083)\sin(2\theta)) + ((2)(0.0018)\cos(2\theta)))\\
-	\therefore T = -0.1017\sin(2\theta) + 0.044\cos(4\theta) \, \text{Nm}\\
-	\sin(2\theta) = 1 \implies \theta = 45° \land \cos(2\theta) = -1 \implies \theta = 45°\\
-	T = -0.1017(1) + 0.044(-1) = -0.1457 \, \text{Nm}\\
-	\therefore \theta_{max} = 45°	
+	\text{Only Stator Coil Active}\\
+	\frac{i_s^2}{2} \frac{d(L_{ss}(\theta))}{d\theta}
+	T = \frac{i_s^2}{2} \frac{d}{d\theta} (0.0254+0.0083\cos(2\theta) + 0.0018\sin(4\theta))\\
+	T = \frac{i_s^2}{2} ((-(2)(0.0083)\sin(2\theta)) + ((4)(0.0018)\cos(2\theta)))\\
+	T = (3.5^2)((-0.0083\sin(2\theta)) + ((2)(0.0018)\cos(2\theta)))\\
+	\therefore T = -0.1017\sin(2\theta) + 0.044\cos(4\theta) \, \text{Nm}\\\\
+	\sin(2\theta) = 1 \implies \theta = 45°\\
+	\cos(4\theta) = -1 \implies \theta = 45°\\
+	T_{max} = -0.1017(1) + 0.044(-1) = -0.1457 \, \text{Nm}\\
+	\therefore \theta_{max} = 45°
 \end{gathered}
 $$
 
 **Exercise 2**
 
-We are given the inductance function of a reluctance (no rotor coil) rotating machine as $L_{ss}(\theta)=(L_0)+(L_2)\cos(2\theta)$. Find the torque expression for a stator current of $i_s = I_{sm}\sin(\omega t)$. If $\theta = \omega_m t + \delta$ where $\omega_m$ is the rotor angular velocity and $\delta$ is the rotor position at $t=0$, calculate the nonzero average torque condition and an average torque expression.
+We are given the inductance function of a reluctance (no rotor coil) rotating machine as $L_{ss}(\theta)=(L_0)+(L_2)\cos(2\theta)$. Find the torque expression for a stator with an applied AC current of $i_s = I_{sm}\sin(\omega t)$. If $\theta = \omega_m t + \delta$ where $\omega_m$ is the rotor angular velocity at any time $t$ and $\delta$ is the rotor position at $t=0$, calculate the  verage torque expression and the conditions where we have a nonzero average torque.
 
 $$
 \begin{gathered}
-	T = \frac{(i_s^2)}{2} \frac{dL_{ss}}{d\theta}\\
+	T = \frac{i_s^2}{2} \frac{dL_{ss}(\theta)}{d\theta}\\
 	T = \frac{((I_{sm}\sin(\omega t))^2)}{2} \frac{d}{d\theta} ((L_0)+(L_2)\cos(2\theta))\\
 	T = \frac{(I_{sm}^2\sin^2(\omega t))}{2} (-(2)(L_2)\sin(2\theta))\\
 	T = -(I_{sm}^2)(\sin^2(\omega t))(L_2)(\sin(2\theta))\\
 	T = -(I_{sm}^2)(\sin^2(\omega t))(L_2)(\sin(2(\omega_m t + \delta)))\\
 	T = -(I_{sm}^2)(\frac{1}{2} - \frac{\cos(2\omega t)}{2})(L_2)(\sin(2(\omega_m t + \delta)))\\
-	T = -\frac{(I_{sm}^2)(L_2)}{2} (\sin(2(\omega_m t + \delta)) - ((\sin(2(\omega_m t + \delta)))(\cos(2\omega t))) )\\
+	T = -\frac{(I_{sm}^2)(L_2)}{2} [\sin(2\omega_m t + 2\delta) - (\sin(2\omega_m t + 2\delta))(\cos(2\omega t))]\\
 	\sin(A)\cos(B) = \frac{1}{2}(\sin(A+B)+\sin(A-B))\\
-	A = 2(\omega_m t + \delta) \land B = 2\omega t \land C = \omega_m t + \delta \land D = \omega t\\
-	T = -\frac{(I_{sm}^2)(L_2)}{2} ( (\sin(A)) - ((\frac{1}{2})(\sin(2(C + D)))) - ((\frac{1}{2})(\sin(2(C - D)))) )\\
-	\therefore T = -\frac{(I_{sm}^2)(L_2)}{2} ( (\sin(A)) - (\frac{1}{2})(\sin(2((\omega_m + \omega)(t) + \delta))) - (\frac{1}{2})(\sin(2((\omega_m - \omega)(t) + \delta))) )\\
+	A = 2\omega_m t + 2\delta \land B = 2\omega t \land C = \omega_m t + \delta \land D = \omega t\\
+	T = -\frac{(I_{sm}^2)(L_2)}{2} [ (\sin(A)) \\ 
+	\;- ((\frac{1}{2})(\sin(2(C + D)))) \\
+	\;- ((\frac{1}{2})(\sin(2(C - D)))) ]\\
+	\therefore T = -\frac{(I_{sm}^2)(L_2)}{2} [ (\sin(2\omega_m t + 2\delta)) 
+	\;- (\frac{1}{2})(\sin(2((\omega_m + \omega)(t) + \delta))) \\
+	\;- (\frac{1}{2})(\sin(2((\omega_m - \omega)(t) + \delta))) ]\\
 	\omega_m = 0 \implies T_{avg} = -\frac{(I_{sm}^2)(L_2)(\sin(2\delta))}{2}\\
 	\omega_m + \omega = 0 \implies T_{avg} = \frac{(I_{sm}^2)(L_2)(\sin(2\delta))}{4}\\
 	\omega_m - \omega = 0 \implies T_{avg} = \frac{(I_{sm}^2)(L_2)(\sin(2\delta))}{4}
 \end{gathered}
 $$
 
-Note that the nonzero torque conditions are those where the coefficients that multiply time must be zero.
+Note that the torque expression consists of three sinusoidal equations, if the coefficients that depend on time equal any value other than zero then the overall average torque will be zero, meaning that in order to have a nonzero average torque this coefficients that depend on time must equal zero.
 
 ***
 
@@ -272,35 +318,64 @@ Note that the nonzero torque conditions are those where the coefficients that mu
 
 Given that the number of turns in the coil is $N = 200$, the internal radii is $r_i = 0.06$, the external radii is $r_e = 0.1$ and the core cross sectional permeability is $\mu_r = 1500$ calculate:
 
-1. The mean length of the toroid. $0.16\pi \, \text{m}$
-2. The permeability of the core material. $0.001885$
-3. The current required to produce a flux density of 1.8T at the mean radius. $2.4\,\text{A}$
-4. The cross sectional area. $0.001256 \, \text{m}^2$
-5. The core magnetic flux. $2.26 \, \text{mWb}$
+1. The mean length of the toroid.
+
+	$$
+	\begin{gathered}
+		r_p = \frac{0.1+0.06}{2} = 0.08 \, \text{m}\\
+		l_c = (2)(\pi)(r_p) = (2)(0.08)(\pi) = 0.16 \pi \, \text{m}
+	\end{gathered}
+	$$
+
+2. The permeability of the core material.
+
+	$$
+	\begin{gathered}
+		\mu_c = (\mu_r)(\mu_0) = (1500)(1.2566 \times 10^{-6}) = 0.001885
+	\end{gathered}
+	$$
+
+3. The current required to produce a flux density of 1.8T at the mean radius.
+
+	$$
+	\begin{gathered}
+		(N)(i) = (H_c)(l_c) = \frac{B_c}{\mu_c}(l_c)\\
+		i = \frac{(B_c)(l_c)}{(\mu_c)(N)} = \frac{(1.8)(0.16\pi)}{(0.001885)(200)} = 2.399\,\text{A}
+	\end{gathered}
+	$$
+
+4. The cross sectional area.
+
+	$$
+	\begin{gathered}
+		d = 0.1-0.06 = 0.04 \, \text{m}\\
+		A = \frac{\pi(d)^2}{4} = \frac{\pi(0.04)^2}{4} = 0.001256 \, \text{m}^2
+	\end{gathered}
+	$$
+
+5. The core magnetic flux.
+
+	$$
+	\begin{gathered}
+		\Phi = (B)(A) = (1.8 \, \text{T})(0.001256 \, \text{m}^2) = 0.00226 \, \text{Wb}
+	\end{gathered}
+	$$
+
 6. The new current required to maintain the same flux density with a $0.0035$ length air gap. $27.449 \, \text{A}$
 
-$$
-\begin{gathered}
-	r_p = \frac{0.1+0.06}{2} = 0.08 \, \text{m}\\
-	l_c = (2)(\pi)(r_p) = (2)(0.08)(\pi) = 0.16 \pi \, \text{m}\\
-	\mu_c = (\mu_r)(\mu_0) = (1500)(1.2566 \times 10^{-6}) = 0.001885\\
-	(N)(i) = (H_c)(l_c) = \frac{B_c}{\mu_c}(l_c)\\
-	i = \frac{(B_c)(l_c)}{(\mu_c)(N)} = \frac{(1.8)(0.16\pi)}{(0.001885)(200)} = 2.399\,\text{A}\\
-	d = 0.1-0.06 = 0.04 \, \text{m}\\
-	A = \frac{\pi(d)^2}{4} = \frac{\pi(0.04)^2}{4} = 0.001256 \, \text{m}^2\\
-	\Phi = (B)(A) = (1.8 \, \text{T})(0.001256 \, \text{m}^2) = 0.00226 \, \text{Wb}\\
-	\Phi = 2.26 \, \text{mWb}\\
-	(N)(i) = (H_c)(l_c) + (H_g)(l_g) = \frac{B_c}{\mu_c}(l_c) + \frac{B_g}{\mu_g}(l_g)\\
-	B_c = B_g \implies i = \frac{(B)(l_c + (l_g \mu_r))}{(\mu_r)(\mu_0)(N)}\\
-	i = \frac{(1.8)((0.16\pi - 0.0035) + ((0.0035)(1500)))}{(1500)(1.2566 \times 10^{-6})(200)} = 27.449\,\text{A}
-\end{gathered}
-$$
+	$$
+	\begin{gathered}
+		(N)(i) = (H_c)(l_c) + (H_g)(l_g) = \frac{B_c}{\mu_c}(l_c) + \frac{B_g}{\mu_g}(l_g)\\
+		B_c = B_g \implies i = \frac{(B)(l_c + (l_g \mu_r))}{(\mu_r)(\mu_0)(N)}\\
+		i = \frac{(1.8)((0.16\pi - 0.0035) + ((0.0035)(1500)))}{(1500)(1.2566 \times 10^{-6})(200)} = 27.449\,\text{A}
+	\end{gathered}
+	$$
 
 **Exercise 2**
 
 ![Reluctance Motor Problem](/static/images/notes/ReluctanceMotorProblemActuators.png)
 
-A reluctance motor with four rotor poles has a reluctance $\Re$ that varies with the position of the rotor with the function $\Re(\theta) = 200000 - 100000\cos(4\theta)$. The coil has $N = 200$ and a negligible resistance while connected to an AC supply of $120V_{rms}$ and $60Hz$.
+A reluctance motor with four rotor poles has a reluctance $\Re$ that varies with the position of the rotor with the function $\Re(\theta) = 200000 - 100000\cos(4\theta)$. The stator coil has $N = 200$ and a negligible resistance while connected to an AC supply of $120V_{rms}$ and $60Hz$.
 
 1. The magnetic flux as a function of time. $-0.00225 (\cos(120\pi t))$
 2. The torque as an expression of the reluctance and the magnetic flux. $-0.00225 (\cos(\omega t))$

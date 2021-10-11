@@ -104,9 +104,9 @@ A device that transforms energy to a desired motion or action, the control syste
 **Magnetic Field Concepts**
 
 * Magnetic field $B$: Field that influences moving charges, electric currents and magnetic materials by inducing magnetic forces.
-* Magnetic field intensity or strength $H$: Amount of magnetizing force in space. Measured in ampere per meter.
-* Magnetic flux density $B$: Amount of magnetic force induced on a body due to a magnetizing force. Measured in tesla.
-* Magnetic flux $\Phi$: Surface integral of the flux lines over a surface. Measured in weber.
+* Magnetic field intensity or strength $H$: Amount of magnetizing force in space. Measured in ampere per meter equal to an ampere-turn per meter $At/m$.
+* Magnetic flux density $B$: Amount of magnetic force induced on a body due to a magnetizing force. Measured in tesla $T$.
+* Magnetic flux $\Phi$: Surface integral of the flux lines over a surface. Measured in weber $Wb$.
 * Magnetization $M$: Capability of a particular magnetic field strength to increase the magnetic flux density of a material.
 * Magnetomotive Force $mmf$: Magnetic force that drives the motion of the magnetic flux through a body.
 
@@ -133,11 +133,13 @@ There is a direct relation between the current in a conductor and the magnetic f
 $$
 \begin{gathered}
 	\text{Ampere's Law}\\
-	\oint \vec{B} \, \vec{dl} = (\mu_0)(i)\\\\
-	\oint \vec{H} \, \vec{dl} \, \cos(\theta) = \sum i\\\\
+	\oint \vec{B} \, \vec{dl} = (\mu_0)(i)\\
+	\oint \vec{H} \, \vec{dl} \, \cos(\theta) = \sum i\\
 	\text{Circle with one current}\\
 	\oint H \, dl = i \implies H \oint dl = i\\
-	(H)(2 \pi r) = i \implies H = \frac{i}{2 \pi r}
+	(H)(2 \pi r) = i \implies H = \frac{i}{2 \pi r}\\\\
+	\text{i H Relation}\\
+	\boxed{H = \frac{i}{2 \pi r}}
 \end{gathered}
 $$
 
@@ -153,6 +155,7 @@ As H increases so does the magnetic flux density $B$. Permeability $\mu$ represe
 
 $$
 \begin{gathered}
+	\text{B H Relation}\\
 	B = (\mu)(H) \, \text{T}\\
 	\mu = (\mu_0)(\mu_r) \, \text{H/m}\\
 	\mu_0 = 1.256637062 \times 10^{-6}
@@ -171,7 +174,7 @@ When we arrange a conductor into a coil we generate a uniform magnetic field, we
 
 ![Ideal Solenoid Field](/static/images/notes/IdealSolenoidActuators.png)
 
-If we consider an ideal solenoid (infinitely large) then the outside horizontal lines go in opposite directions canceling each other out, furthermore even if the solenoid isn't infinite the density of the outside flux lines is still negligible since their magnetic loop around the solenoid covers a far greater volume. Using an ideal solenoid and applying Ampere's Law to any contour, for example a rectangle where the current passes through gets us the solenoid field equations:
+If we consider an ideal solenoid (infinitely large) then the outside horizontal lines go in opposite directions canceling each other out, furthermore even if the solenoid isn't infinite the density of the outside flux lines is still negligible since their magnetic loop around the solenoid covers a far greater volume. Using an ideal solenoid and applying Ampere's Law to any contour, for example a rectangle where the current passes through, gets us the solenoid field equations:
 
 $$
 \begin{gathered}
@@ -179,14 +182,15 @@ $$
 	\int_a^b B (0) = 0 \land  \int_c^d B \, (0) = 0\\
 	\int_d^a B \, dl = 0 \text{ (ideal solenoid)}\\
 	\oint B \, dl = \int_b^c B \, dl\\
-	\text{Closed current in the rectangle}\\
+	\text{Closed i in Rectangle}\\
 	\sum i = i = (i_0)(n)(l)\\
-	i_0 = \text{ Applied current}\\
+	i_0 = \text{ Applied Current}\\
 	\text{Ampere's Circuit Law}\\
 	\oint \vec{B} \, \vec{dl} = (\mu_0)(i)\\
 	(B)(l) = (\mu_0)((i_0)(n))\\
-	\therefore B = (\mu_0)(i_0)(n)\\
-	n = \text{ Turns per unit of length}
+	n = \text{ Turns per unit of length}\\\\
+	\text{Solenoid Field Equation}\\
+	B = (\mu_0)(i_0)(n)
 \end{gathered}
 $$
 
@@ -200,41 +204,47 @@ This equation states that the flux density inside an ideal solenoid doesn't depe
 
 ![Toroid Only](/static/images/notes/CreatingAToroidActuators.png)
 
-A magnetic circuit can be made by looping a solenoid around a ferromagnetic toroid where most of the flux density will remain inside solenoid's core.  Here the solenoid field equation remains almost the same with the only addition that this time the unit of length instead of being the length of the solenoid will be the circumference of the toroid $l = 2\pi r$.
+A magnetic circuit can be made by looping a solenoid around a ferromagnetic toroid core so that most of the flux density will remain inside.  Here the solenoid field equation remains almost the same only that this time the unit of length instead of being the length of the solenoid will be the circumference of the toroid: $l = 2\pi r$.
 
 $$
 \begin{gathered}
-	\text{Solenoid Field}
+	\text{Solenoid Field Equation}\\
 	\oint \vec{B} \, \vec{dl} = (\mu)(n)(i) \land n = \frac{N}{l}\\
-	B = (\mu)(H) \implies \oint \vec{H} \, \vec{dl} = (N)(i)\\
-	H (2 \pi r) = (H)(l) = (N)(i) = F\\
-	F = \text{ Magnetomotive Force mmf}\\
-	\therefore H = \frac{(N)(i)}{l} \, \text{At/m} \land B = (\mu)\frac{(N)(i)}{l} \, \text{T}
+	B = (\mu)(H) \implies \oint \vec{H} \, \vec{dl} = (N)(i)\\\\
+	\text{Magnetomotive Force}\\
+	F = (H)(l) = (H)(2 \pi r) = (N)(i)\\
+	\text{Toroid Magnetic Circuit}\\
+	H = \frac{(N)(i)}{l}\\
+	B = (\mu)\frac{(N)(i)}{l}\\
 \end{gathered}
 $$
 
-Since we are using a ferromagnetic core $\mu$ must have a relative value to vacuum. Now that we know the $H$ inside the toroid we can calculate how much flux $\Phi$ there is at any cross sectional area of the core.
+Since we are using a ferromagnetic core then $\mu$ must be considered relative to vacuum. From the equation of $H$ inside the toroid we can now calculate the flux $\Phi$ at any cross sectional area of the core.
 
 $$
 \begin{gathered}
-	\Phi = \int B \, dA = (B)(A) \, \text{Wb}\\
-	B = (\mu)\frac{(N)(i)}{l} \, \text{T} \implies \Phi = (\mu)\frac{(N)(i)(A)}{l}\\
-	\Phi = \frac{(N)(i)}{\frac{l}{(\mu)(A)}} = \frac{(N)(i)}{\Re} \, \text{Wb}\\
+	\Phi = \int B \, dA \implies \Phi = (B)(A)\\
+	B = (\mu)\frac{(N)(i)}{l} \implies \Phi = (\mu)\frac{(N)(i)(A)}{l}\\
+	\Phi = \frac{(N)(i)}{\frac{l}{(\mu)(A)}} \implies \Phi = \frac{(N)(i)}{\Re}\\
 	\Re = \frac{l}{(\mu)(A)} = \frac{1}{P}\\
 	\Re = \text{ Magnetic Path Reluctance}\\
-	P = \text{ Magnetic Path Permeance}
+	P = \text{ Magnetic Path Permeance}\\\\
+	\text{Magnetic Flux Inside the Core}\\
+	\Phi = (\mu)\frac{(N)(i)(A)}{l} = \frac{(N)(i)}{\Re}
 \end{gathered}
 $$
 
 ![Equivalent Magnetic Circuit](/static/images/notes/EquivalentMagneticCircuitInActuators.png)
 
-We can use our knowledge of electric circuits with this magnetic circuit by equating the Magnetomotive Force $F$ to the Electromotive Force $E$ , the Flux flow $\Phi = \frac{F}{\Re}$ to the Current $i = \frac{E}{R}$ and the Magnetic Path Reluctance $\Re = \frac{l}{(\mu)(A)}$ to the Resistance $R = \frac{l}{(\sigma)(A)}$. The main difference being that the in a magnetic circuit the power dissipation is not associated with reluctance.
+We can use our knowledge of electric circuits with this magnetic circuit by equating the Magnetomotive Force $F$ to the Electromotive Force $E$ , the Flux flow $\Phi = \frac{F}{\Re}$ to the Current $i = \frac{E}{R}$ and the Magnetic Path Reluctance $\Re = \frac{l}{(\mu)(A)}$ to the Resistance $R = \frac{l}{(\sigma)(A)}$. The main difference being that in this case power dissipation is not associated with reluctance.
+
+**Magnetization Curve**
 
 ![Magnetization Curve](/static/images/notes/MagnetizationCurvesInActuators.png)
 
-The magnetization curve represents how much $B$ will increase inside the material as we increase $H$, for example by driving a higher current. This relation is linear for low $H$ values but at some point it will reach the material's saturation region. Note that the linear region is characterized by a low reluctance and the saturation region by a high reluctance. We can see that:
+The magnetization curve represents how much $B$ will increase inside the material as we increase $H$, by driving a higher current for example. This relation is linear at low $H$ values but at some point the material will reach its saturation region. Note that the linear region is characterized by a low reluctance and the saturation region by a high reluctance. We can see that:
 
-1. For different materials you will need a different to achieve the same magnetic flux density.
+1. For different materials a different field strength is needed to achieve the same magnetic flux density.
 
 ***
 
@@ -242,27 +252,31 @@ The magnetization curve represents how much $B$ will increase inside the materia
 
 ![Rotational Machine](/static/images/notes/RotationalMachineWithEquivalentActuators.png)
 
-In rotating machines we leave an air gap between the core (rotor) and the solenoid (stator). This air gap is necessary to maintain a *frictionless* rotation of the motor shaft, in small motors is as small as it can get to reduce electromagnetic energy losses but on larger motors we increase its size to protect the rotor form being pulled into contact with the stator.
+In rotating machines we leave an air gap between the core (rotor) and the solenoid (stator). This air gap is necessary to maintain the *frictionless* rotation of the motor shaft, in small motors its length is reduced to balanced the electromagnetic energy losses it produces but on bigger motors its length may be increased to protect the rotor from being pulled into contact with the stator. 
 
-A disadvantage of the air gap is that it introduces a higher $F$ requirement to maintain the same flux density in the inside of the solenoid, however it also allows for the core to be completely saturated in a safely manner since the air will remain unsaturated. To account for the air gap we introduce an additional reluctance to the equivalent magnetic circuit .
+Air gaps introduce higher $F$ requirements to maintain the same flux density $\Phi$ inside the core however they allow the rest of the core to reach its saturation point safely. In the equivalent magnetic circuit model we account for air gaps as an additional reluctances $\Re_g$.
 
 $$
 \begin{gathered}
-	\Re_c = \frac{l_c}{(\mu_c)(A_c)}\\
-	\Re_g = \frac{l_g}{(\mu_0)(A_g)}\\
+	\Re_c = \frac{l_c}{(\mu_c)(A_c)} \land \Re_g = \frac{l_g}{(\mu_0)(A_g)}\\
 	\Phi = \frac{(N)(i)}{\Re} = \frac{(N)(i)}{\Re_c + \Re_g}\\
-	(N)(i) = (H_c)(l_c) + (H_g)(l_g)\\ 
-	l_c = \text{ Core length} \land l_g = \text{ Air Gap length}\\
+	F = (N)(i) = (H)(l) \implies (H)(l) = (H_c)(l_c) + (H_g)(l_g)\\
 	\Phi = (B)(A) \implies B_c = \frac{\Phi_c}{A_c} \land B_g = \frac{\Phi_g}{A_g}
 \end{gathered}
 $$
 
-Note: Since the air gap isn't contained inside a solenoid, flux lines start to bulge outwards when magnetizing the core, this is known as the fringing effect. To account for it we increase the cross sectional area of the air gap *capturing* the additional flux lines. Most of the time, if the air gap is small, the fringing effect can be neglected and the cross sectional areas remain equal.
+**Fringing Effect**
+
+Since the air gap isn't contained inside a solenoid, flux lines will start to bulge outwards when magnetizing the core, this is known as the fringing effect. To account for then we normally increase the cross sectional area of the air gap therefore *capturing* the additional flux lines. Most of the time, if the air gap is relatively small, the fringing effect can be neglected.
 
 $$
 \begin{gathered}
-	\text{By neglecting the fringing effect}\\
-	A_c = A_g = A \land B_c = B_g = \frac{\Phi}{A}
+	\text{Neglecting Fringing Effect}\\
+	A_c = A_g = A\\
+	B_c = B_g = B = \frac{\Phi}{A}\\\\
+	\text{Magnetic Circuit Air Gap}\\
+	F = (N)(i) = (H_c)(l_c) + (H_g)(l_g)\\
+	B = \frac{\Phi}{A}
 \end{gathered}
 $$
 
@@ -270,13 +284,16 @@ $$
 
 ## Magnetic Circuit Inductance ##
 
-The coil used in a magnetic circuit may be thought as an inductor, here inductance is defined as the *Magnetic Flux Linkage* $\lambda$ per Ampere of current:
+The coil used in the magnetic circuit as the flux source can be thought of as an inductor where the inductance of the coil is defined as the Magnetic Flux Linkage $\lambda$ per Ampere of current:
 
 $$
 \begin{gathered}
-	\lambda = (N)(\Phi) \, \text{Wb t}\\
+	\lambda = (N)(\Phi)\\
 	L = \frac{\lambda}{i} = \frac{(N)(\Phi)}{i} = \frac{(N)(B)(A)}{i} = \frac{(N)(\mu)(H)(A)}{i}\\
-	L = \frac{(N)(\mu)(H)(A)}{\frac{H(l)}{N}} = \frac{(\mu)(A)(N)^2}{l} = \frac{N^2}{\Re}
+	L = \frac{(N)(\mu)(H)(A)}{\frac{H(l)}{N}} = \frac{(\mu)(A)(N)^2}{l} = \frac{N^2}{\Re}\\\\
+	\text{Flux Linkage and Inductance}\\
+	\lambda = (N)(\Phi)\\
+	L = \frac{N^2}{\Re}
 \end{gathered}
 $$
 
@@ -286,26 +303,28 @@ $$
 
 ![Hysteresis Curves](/static/images/notes/HysteresisCurvesMagnetActuators.png)
 
-Magnetic hysteresis, from the Greek word of *being late*, means that the magnetic material will retain the magnetic flux (residual) acquired through the increase of the magnetic field strength. Once magnetized the opposing magnetic field strength needed to demagnetize the material is called the coercivity or coercive force. 
+Magnetic hysteresis, from the Greek word of *being late*, means that the magnetic material will retain some residual magnetic flux acquired through the increase of the magnetic field strength. Once the material is magnetized an opposite magnetic field strength is needed to demagnetize the material, this is called the coercivity or coercive force.
 
-Depending on the material, the current and the current magnetic saturation you can form hysteresis of different shapes and sizes, in practice the bigger the hysteresis the lower the current you need to keep the core magnetized, however it will also lower the overall response time of the actuator.
+Depending on the material, the current applied and the magnetic saturation you can form hysteresis curves of different shapes and sizes, in practice the bigger the hysteresis curve the lower the current needed to keep the core magnetized, the tradeoff is that this will also lower the overall response time of the actuator.
 
 **Sinusoidal Excitation**
 
 ![Sinusoidal Excitation](/static/images/notes/SinusoidalExitationActuators.png)
 
-When you apply an AC voltage source to a magnetic circuit it will produce a sinusoidal excitation, being an inductor we will see a phase angle between the induced voltage and the magnetic flux of the circuit. The relation between the induced voltage and the magnetic flux is determined by Faraday's Law.
+When you apply an AC voltage source (with its corresponding current) to a magnetic circuit this will produce a sinusoidal excitation, since the coil acts as an inductor we will see a phase angle between the induced voltage and the magnetic flux. The relation between the induced voltage and the magnetic flux is determined by Faraday's Law.
 
 $$
 \begin{gathered}
 	\Phi(t) = \Phi_{max}(\sin(\omega (t)))\\
-	\Phi_{max}  = \text{ Core flux amplitude}\\
-	\omega  = \text{ Angular frequency} = 2\pi f\\
-	\text{Applying Faraday's Law}\\
+	\Phi_{max}  = \text{ Flux Amplitude}\\
+	\omega  = 2\pi f = \text{ Angular Frequency}\\
+	\text{Faraday's Law}\\
 	e(t) = N\frac{d\Phi}{dt}\\
-	e(t) = N(\Phi)(\omega)(\cos(\omega (t)))\\
+	e(t) = (N)(\Phi_{max})(\omega)(\cos(\omega (t)))\\
 	e(t) = E_{max}(\cos(\omega (t)))\\
-	E_{rms} = \frac{E_max}{\sqrt{2}} = \frac{N\Phi_{max} \omega}{\sqrt{2}} = 4.44Nf\phi_{max}
+	E_{rms} = \frac{E_{max}}{\sqrt{2}} = \frac{(N)(\Phi_{max})(\omega)}{\sqrt{2}}\\\\
+	\text{Voltage Flux Relation}\\
+	E_{rms} = (4.44)(N)(f)(\Phi_{max})
 \end{gathered}
 $$
 
@@ -313,28 +332,29 @@ $$
 
 ![Permanent Magnet](/static/images/notes/PermanentMagnetHysteresisCurveActuators.png)
 
-By introducing a material with a high hysteresis into the magnetic circuit we can create a permanent magnet. The permanent magnet will maintain the magnetic flux required for the application with little to none additional current, they are made from iron, nickel and cobalt and usually called *hard iron* while the rest of the unmagnetized core is called *soft iron*. 
+By introducing a material with high hysteresis into the magnetic circuit path we are creating a permanent magnet. This permanent magnet will help maintain the magnetic flux we obtain with little to none additional current, generally the high hysteresis component or hard iron is made from iron, nickel or cobalt while the rest of the unmagnetized core is called the soft iron. 
 
-We start by magnetizing the hard iron with a positive magnetic field strength, after we remove the current the permanent magnet will retain its maximum magnetic flux, we call this the operating point of the permanent magnet. 
+Ideally after magnetizing the hard iron with a positive magnetic field and removing the applied current the permanent magnet will retain its maximum magnetic flux (point a), this is called its operating point. With a negative magnetic field ($-H_1$) we can adjust the operating point of the permanent magnet (to point b). 
 
-**Magnetization**
-
-By applying a reversed magnetic field strength we can adjust the operating point of the magnet. From the operating point in the hysteresis loop and the presence or absence of the keeper the magnetic flux will be confined to the recoil line between the operating point and the vertical axis. Note that removing the keeper makes the air gap the active magnetic field region of the circuit. Assuming no leakage, no fringing and no soft iron reluctance:
+From the hysteresis loop and the presence or absence of the keeper, the magnetic flux will be confined to the recoil line (line b to c) between the operating point (b) and the vertical axis (a). Note that removing the keeper makes the air gap the active magnetic field region of the circuit, meaning that the electromotive force of the air gap $F_g$ will equal the electromotive force of the permanent magnet $F_m$. Therefore, assuming no leakage, no fringing and no soft iron reluctance:
 
 $$
 \begin{gathered}
-	(H_m)(l_m) + (H_g)(l_g) = 0\\
-	H_g = (H_m)\frac{-l_m}{l_g}\\
+	F_g = F_m \implies (H_m)(l_m) + (H_g)(l_g) = 0\\
+	H_g = (H_m)\left(\frac{-l_m}{l_g}\right)\\
 	\Phi = (B_m)(A_m) = (B_g)(A_g)\\
 	B_m = \frac{(A_g)(B_g)}{(A_m)}\\
-	B_g = (\mu_0)(H_g)\\
-	\therefore B_m = -\frac{(\mu_0)(A_g)(l_m)(H_m)}{(A_m)(l_g)}
+	B_g = (\mu_0)(H_g)\\\\
+	\text{Permanent Magnet with Air Gap}\\
+	(H_m)(l_m) + (H_g)(l_g) = 0
+	\text{Shear Line Equation}\\
+	B_m = -\frac{(\mu_0)(A_g)(l_m)(H_m)}{(A_m)(l_g)}
 \end{gathered}
 $$
 
 ![Shear Line](/static/images/notes/ShearLineImageDemagnetizeActuators.png)
 
-This equation represents a straight line through the origin called the *shear line*. The intersection of the shear line with the demagnetization curve determines the new operating values $B$ and $H$ of the hard iron (with no keeper in the air gap). If the keeper is reinserted the operating point moves up the recoil line $bc$. This indicates that the operating point of a permanent magnet can be adjusted by adjusting the shear line.
+The shear line equation represents the straight line that passes through the origin and the operating point of the permanent magnet, the intersection between the shear line and the demagnetization curve determines the new operating values (B and H) of the permanent magnet (hard iron). Note that if we reinsert the keeper then the operating point will move up the recoil line. 
 
 $$
 \begin{gathered}
@@ -344,7 +364,7 @@ $$
 \end{gathered}
 $$
 
-Thus to establish and maintain a flux density $B_g$ in an air gap of volume $V_g$ a minimum volume of hard iron is required given the rest of the circuit characteristics. Since there is no current present we can neglect the reluctance of the soft iron when there is a magnetized hard iron present.
+The shear line equation can be used to relate volume of the hard iron needed to maintain a particular magnetic flux density inside the air gap. Note that since the hard iron removes the need of an applied current we can usually neglect the reluctance of the soft iron in the equivalent magnetic circuit.
 
 ***
 
@@ -352,14 +372,19 @@ Thus to establish and maintain a flux density $B_g$ in an air gap of volume $V_g
 
 ![Energy Conversion](/static/images/notes/EnergyConversionDiagramStepsActuators.png)
 
-The principle of conservation of energy is widely used when calculating the force or torque developed in an energy conversion device. The electromechanical converter system has an electric system, a mechanical system and a coupling field. 
+The principle of conservation of energy is widely used when calculating the force or torque developed in an energy conversion machine. The electromechanical converter system has an electrical system, a mechanical system and a coupling field between them. 
 
-The electrical energy loss is mainly due to heating in the wires caused by the current, this is known as the $i^2R$ resistance loss of the winding. The magnetic field energy loss is due to the increase in stored field energy in the core's field, this is known as core loss. Mechanical energy loss is due to friction and windage loss of moving components. All losses are converted into heat.
+* The electrical energy loss is mainly due to heating in the wires, this is known as the $i^2R$ resistance loss of the winding. 
+* The magnetic field energy loss is due to the increase in the stored field energy of the core's field, also known as core loss. 
+* Mechanical energy loss is due to friction and windage losses of moving components. All losses are converted into heat.
 
-Neglecting the small resistance loss we know that the changes in the electrical energy applied $dW_e$ during a time interval $dt$ will produce a change in the energy supplied to the field (stored and lost) $dW_f$ and a change in the converted mechanical energy $dW_m$ (useful and lost).
+Neglecting the small resistance loss we know that the changes in the electrical energy applied $dW_e$ during a time interval $dt$ will produce a change in the energy supplied to the field (stored and lost) $dW_f$ and in the final mechanical energy $dW_m$ (useful and lost).
 
 $$
-dW_e = dW_f + dW_m 
+\begin{gathered}
+	\text{Conservation of Energy}\\
+	dW_e = dW_f + dW_m 
+\end{gathered}
 $$
 
 ***
@@ -370,40 +395,47 @@ $$
 
 ![Energy Relay Example](/static/images/notes/FieldEnergyStoredInConversionActuators.png)
 
-For example if we consider a relay where there is a movable part that is kept in static equilibrium by a spring $dW_m=0$ then every change in electrical energy will translate directly into a change in the magnetic field energy $dW_e=dW_f$. From this relation we can calculate the change in electrical energy and the change in magnetic energy in the relay:
+For example if we consider a relay where there is a movable part that is kept in static equilibrium by a spring $dW_m=0$ then every change in electrical energy will translate directly into a change in the magnetic field energy $dW_e=dW_f$. From this conditions we can calculate the change in electrical energy and the change in magnetic energy in the relay:
 
 $$
 \begin{gathered}
 	\text{Faraday's Law}\\
-	e = \frac{N d\Phi}{dt}\\
-	\lambda = (N)(\Phi) \implies e = \frac{d\lambda}{dt}\\
-	\therefore dW_e = (e)(i)(dt) \land dW_f = (i)(d\lambda)
+	e(t) = \frac{N d\Phi}{dt}\\
+	\lambda = (N)(\Phi) \implies e(t) = \frac{d\lambda}{dt}\\\\
+	\text{Electrical and Field Energy Change}\\
+	dW_e = (e)(i)(dt) \land dW_f = (i)(d\lambda)
 \end{gathered}
 $$
 
-We conclude there is a relation between the flux linkage and the current for an air gap of a particular length (static equilibrium) and therefore the the integral of the current with respect to an interval of flux linkage is the total magnetic field energy stored.
+Note that the electrical and field energy change equations represent a machine with a fixed air gap length (no mechanical energy changes). By integrating the equations we can calculate the stored magnetic field energy $W_f$ or the induced electrical energy $W_e$ of the machine.
 
 $$
 \begin{gathered}
 	dW_f = (i)(d\lambda) \implies W_f = \int_{0}^{\lambda} i \, d\lambda\\
-	(N)(i) = (H_c)(l_c) + (H_g)(l_g) \land \lambda = (N)(\Phi) = (N)(B)(A)\\
+	(N)(i) = (H_c)(l_c) + (H_g)(l_g)\\
+	\lambda = (N)(\Phi) = (N)(B)(A)\\
 	W_f = \int \left(\frac{(H_c)(l_c) + (H_g)(l_g)}{N}\right) (N)(A) \, dB \\
 	W_f = \int \left((H_c)(l_c) + \frac{(B)(l_g)}{\mu_0}\right) (A) \, dB \\
 	W_f = \int \left((H_c)(l_c)(A)\,dB + \frac{(B)(l_g)}{\mu_0}(A)\,dB\right) \\
-	W_f = \int \left((H_c\,dB)((l_c)(A)) \right) + \frac{B^2}{2\mu_0}((l_g)(A)) \\
-	W_f = \left(\int (H_c\,dB_c)\right)(V_c) + \frac{B^2}{2\mu_0}(V_g) \\
+	W_f = \frac{B^2}{2\mu_0}((l_g)(A)) + \int \left((H_c\,dB)((l_c)(A)) \right)\\
+	W_f = \frac{B^2}{2\mu_0}(V_g) + \left(\int (H_c\,dB_c)\right)(V_c)\\
 	W_f = (w_{fc})(V_c) + (w_{fg})(V_g) = W_{fc} + W_{fg}\\
-	w_{fc} = \text{ Energy Density In the Core} \land V_c = \text{ Core's Volume}\\
-	W_{fc} = \text{ Energy In the Core}\\
+	w_{fc} = \text{ Energy Density In the Core}\\
+	V_c = \text{ Core's Volume}\\
+	W_{fc} = \text{ Energy In the Core}\\\\
+	\text{Field Energy Stored}\\
+	W_f = (w_{fc})(V_c) + (w_{fg})(V_g)
 \end{gathered}
 $$
 
-Normally $W_{fc}$ can be neglected when compared to $W_{fg}$, also if we consider that the flux linkage and current relation is linear for a particular device then:
+Normally $W_{fc}$ can be neglected when compared to $W_{fg}$. If the flux linkage and current relation happens to be linear for a particular device then:
 
 $$
 \begin{gathered}
 	H_c = \frac{B_c}{\mu_c}\\
-	\therefore w_{fc} = \int \frac{(B_c)\,dB_c}{\mu_c} (B_c) = \frac{B_c^2}{2\mu_c}
+	w_{fc} = \int \frac{(B_c)\,dB_c}{\mu_c} (B_c) = \frac{B_c^2}{2\mu_c}\\\\
+	\text{Field Energy Density Approximation}\\
+	w_{fc} = \frac{B_c^2}{2\mu_c}
 \end{gathered}
 $$
 
@@ -413,19 +445,23 @@ $$
 
 ![Mechanical energy curves](/static/images/notes/MechanicalEnergyCurvesActuators.png)
 
-We know that the flux linkage and current relation depends on the air gap length and the magnetization curve of the material. The Co energy is the area under the flux linkage and current relation but integrating the linkage instead of the current $W_f'$, this quantity has no physical meaning but can be used to calculate the final mechanical energy developed by the system.
+We know that the linkage - current (magnetic to electric) relation is dependent on the air gap length and the particular magnetization curve of the material. We call co-energy to the area under the linkage - current curve, in other words to the integral of the linkage with respect to the current $W_f'$ instead of the integral of the current with respect to the linkage $W_f$.
+
+The co-energy has no physical meaning but is useful when trying to determine the mechanical energy that the machine has developed:
 
 $$
 W_f' = \int_0^{i} \lambda \, di
 $$
 
-Again, if we consider that the flux linkage and current relation is linear for a particular device then:
+Again, if the flux linkage and current relation happens to be linear for a particular device then:
 
 $$
 W_f' = W_f = \lambda (i)
 $$
 
-When trying to calculate the mechanical energy output we must consider that the system will no longer be in static equilibrium and therefore the length of the air gap will change through time. This change in length will from one point to another will create a change in linkage but not in current as long as the movement is quasistatic. 
+![Quasistatic And Non Change](/static/images/notes/QuasiAndNonQuasiChangeActuators.png)
+
+When calculating the mechanical energy output we must consider that the system can't be in static equilibrium, this means the length of the air gap will change through time. This change in air gap length will correspond to an additional change in linkage (with respect to time) however we can neglect the additional change in current (with respect to time) as long as the movement is quasistatic.
 
 $$
 \begin{gathered}
@@ -433,30 +469,31 @@ $$
 	dW_e = \int (e)(i)\,dt = \int_{\lambda 1}^{\lambda 2} (i)\,d\lambda = A_{abcd}\\
 	dW_f = A_{0bc} - A_{0ad}\\
 	dW_m = dW_e - dW_f\\
-	dW_m = A_{abcd} + A_{0bc} - A_{0ad}\\
-	dW_m = A_{0ab}\\
+	dW_m = A_{abcd} + A_{0bc} - A_{0ad}\\\\
+	\text{Mechanical Energy Output}\\
+	dW_m = A_{0ab}
 \end{gathered}
 $$
 
-![Quasistatic And Non Change](/static/images/notes/QuasiAndNonQuasiChangeActuators.png)
-
-The area between the two linkage-current curves $A_{0ab}$ is in fact equal to the change in Co-Energy. From the mechanical energy we can then calculate the mechanical force $f_m$ that generated the change in air gap length (Quasistatic or Energy Method):
+Here is where the concept of co-energy is useful since the area between the two linkage - current curves is in fact equal to the change in co-energy. Once we have calculated the mechanical energy output we can then obtain the mechanical force $f_m$ that caused the corresponding change in air gap length (Quasistatic or Energy Method).
 
 $$
 \begin{gathered}
+	\text{Quasistatic Movement Force}\\
 	dW_m = A_{0ab} = dW_f'\\
 	(f_m)(dx) = dW_m = dW_f'\\
 	f_m = \frac{dW_f'(i,x)}{dx}
 \end{gathered}
 $$
 
-If the movement is not quasistatic and on the contrary it is fast enough then we might consider that the magnetic field linkage remains constant and the mechanical output energy is therefore supplied entirely by the field energy. In other words the mechanical work done can be represented as a simple decrease in the field's energy (Non-Quasistatic or Co-Energy Method):
+If on the contrary the movement is non-quasistatic from a quick change in air gap length then we might consider that the linkage remains constant therefore the mechanical energy output will come entirely from the the field energy stored, meaning that the mechanical work done can be represented as a simple decrease in the field's energy (Non-Quasistatic or CoEnergy Method).
 
 $$
 \begin{gathered}
+	\text{NonQuasistatic Movement Force}\\
 	dW_m = A_{0ap} = dW_f\\
 	(f_m)(dx) = dW_m = -dW_f\\
-	f_m = -\frac{dW_f'(\lambda , x)}{dx}
+	f_m = -\frac{dW_f(\lambda , x)}{dx}
 \end{gathered}
 $$
 
@@ -464,19 +501,24 @@ $$
 
 ## Linear Systems ##
 
-If the energy and co-energy force generated is the same we are working with a linear actuator. This will always be true if the magnetic core reluctance is negligible compared to the air gap reluctance, in this cases we can simplify the energy, co-energy and force equations using the coil inductance:
+![Exercise of a Linear System](/static/images/notes/LinearSystemsFieldExerciseActuators.png)
+
+If the mechanical force calculated from the energy and the co-energy is the same then the linkage - current relation is perfectly linear and the machine must be a linear actuator. When working with linear systems, as long as the core reluctance is negligible compared to its air gap reluctance then we can simplify the mechanical force equations by using the coil inductance equation:
 
 $$
 \begin{gathered}
-	\text{For linear systems}\\
-	\lambda = L(x)(i)\\
-	L(x) = \text{ Coil Inductance Function}\\
+	\lambda = L(x)(i) \land W_f' = W_f\\ 
 	W_f = \int (i)\, d\lambda = \int_{0}^{\lambda} \frac{\lambda}{L(x)} \, d\lambda\\
 	W_f = \frac{\lambda^2}{(2)(L(x))}\\
+	\text{Energy Method}\\
 	f_m = -\frac{d}{dx}\left(\frac{\lambda^2}{(2)(L(x))}\right)\\
 	f_m = \frac{\lambda^2}{(2)(L^2(x))} \frac{d(L(x))}{dx} = \frac{i^2}{2} \frac{d(L(x))}{dx}\\
-	\therefore W_f = W_f' = \frac{i^2(L(x))}{2}
-	f_m = \frac{d}{dx}\left( \frac{i^2(L(x))}{2} \right) = \frac{i^2}{2} \frac{d(L(x))}{dx}\\
+	f_m = \frac{dW_f(i,x)}{dx}\\
+	W_f = \frac{i^2(L(x))}{2}\\
+	\text{CoEnergy Method}\\
+	f_m = \frac{d}{dx}\left( \frac{i^2(L(x))}{2} \right) = \frac{i^2}{2} \frac{d(L(x))}{dx}\\\\
+	\text{Linear Mechanical Force}\\
+	f_m = \frac{i^2}{2} \frac{d(L(x))}{dx}
 \end{gathered}
 $$
 
@@ -486,7 +528,8 @@ $$
 \begin{gathered}
 	(N)(i) = (H_g)(2)(g) = \frac{B_g}{\mu_0}(2)(g)\\
 	W_f = \frac{B_g^2}{(2)\mu_0}(2)(g)(A_g)\\
-	f_m = \frac{d}{dg}\left( \frac{B_g^2}{(2)\mu_0}(2)(g)(A_g) \right) = \frac{B_g^2}{(2)\mu_0}(2)(A_g)
+	f_m = \frac{d}{dg}\left( \frac{B_g^2}{(2)\mu_0}(2)(g)(A_g) \right)\\
+	f_m = \frac{B_g^2}{(2)\mu_0}(2)(A_g)
 \end{gathered}
 $$
 
@@ -504,63 +547,45 @@ $$
 
 ![Rotator and Stator](/static/images/notes/RotatorStatorComponentsActuators.png)
 
-The moving part in a rotating machine is called *Rotor* and the fixed part *Stator*. The rotor is mounted on a shaft between the ends of the stator. The simplest rotating machine would supply two independent paths, one to the rotor and one to the stator, using two independent coils. The rotor coil are fixed brushes and rotor slip rings. Both currents are taken into account to calculate their corresponding stored field energy:
+The moving part in a rotating machine is called *Rotor* and the fixed part *Stator*. The rotor is mounted on a shaft between the ends of the stator. The simplest rotating machine would supply two independent paths, one to the rotor and one to the stator, using two independent coils, with the rotor coil using fixed brushes and rotor slip rings. Both currents are taken into account to calculate their corresponding stored field energy:
 
 $$
 \begin{gathered}
-	\text{ Static Equilibrium}
+	\text{ Static Equilibrium}\\
 	dW_f = (e)(i_s) \,dt + (e)(i_r) \,dt\\
 	dW_f = (i_s) \,d\lambda_s + (i_r) \,d\lambda_r
 \end{gathered}
 $$
 
-If we consider that the rotating machine has a linear linkage-current curve then we can also use the coil inductance to represent the rotor and stator field linkage:
+As with linear systems we can use the coil inductance function $L(\theta)$ (this time in terms of the angle) to represent the rotor and stator linkage. This coil inductance function can be further subdivided into its self inductance ($L_{ss}(\theta)$ and $L_{rr}(\theta)$) and mutual inductance ($L_{ss}(\theta)$) components.
 
 $$
 \begin{gathered}
 	\lambda_s = L_{ss}(\theta)(i_s) + L_{sr}(\theta)(i_r)\\
 	\lambda_r = L_{rs}(\theta)(i_s) + L_{rr}(\theta)(i_r)\\
-	L_{ss} = \text{ Stator Coil Self Inductance}\\
-	L_{rr} = \text{ Rotor Coil Self Inductance}\\
-	L_{sr} = L_{rs} = \text{ Mutual Inductances}\\
-	\text{ Linear System}\\
 	L_{sr} = L_{rs}\\
-	\begin{bmatrix}
-		\lambda_s\\
-		\lambda_r
-	\end{bmatrix}
-	=
-	\begin{bmatrix}
-		L_{ss} & L_{sr}\\
-		L_{rs} & L_{rr}
-	\end{bmatrix}
-	\begin{bmatrix}
-		i_s\\
-		i_r
-	\end{bmatrix}
-	\\
-	dW_f = (i_s)d(L_{ss}(i_s)+L_{sr}(i_r)) + (i_r)d(L_{rs}(i_s)+L_{rr}(i_r))\\
-	dW_f = L_{ss}(i_s)(di_s) + L_{rr}(i_r)(di_r) + L_{sr}(di_s i_r)\\
-	W_f = L_{ss} \int_{0}^{i_s} (i_s)(di_s) + L_{rr} \int_{0}^{i_r} (i_r)(di_r) + L_{sr} \int_{0}^{i_s i_r} (di_s i_r)\\
-	W_f = \frac{L_{ss}(i_s^2)}{2} + \frac{L_{rr}(i_r^2)}{2} + L_{sr}(i_s)(i_r)
+	dW_f = (i_s)d(L_{ss} i_s + L_{sr} i_r) + (i_r)d(L_{rs} i_s + L_{rr} i_r )\\
+	dW_f = L_{ss} i_s  d(i_s) + L_{rr} i_r  d(i_r) + L_{sr} d(i_s i_r)\\
+	W_f = L_{ss} \int_{0}^{i_s} (i_s)(di_s) + L_{rr} \int_{0}^{i_r} (i_r)(di_r) + L_{sr} \int_{0}^{i_s i_r} (di_s i_r)\\\\
+	\text{Linear System Rotating Field Energy}\\
+	W_f = W_f' = \frac{L_{ss} i_s^2 }{2} + \frac{L_{rr} i_r^2}{2} + L_{sr} i_s  i_r
 \end{gathered}
 $$
 
-Just like with the magnetic force obtained from the stored field energy (when the current is constant) we can obtain the magnetic torque of the rotating machine:
+Just like the magnetic force we obtained from the stored field energy (with a constant current) we can also obtain the magnetic torque of the machine:
 
 $$
 \begin{gathered}
 	T = \frac{dW_f'(i , \theta)}{d\theta}\\
-	W_f = W_f' = \text{ Linear System}\\
-	T = \frac{(i_s^2)}{2} \frac{dL_{ss}}{d\theta}  + \frac{(i_r^2)}{2} \frac{dL_{rr}}{d\theta} + (i_s)(i_r) \frac{dL_{sr}}{d\theta}
+	T = \frac{i_s^2}{2} \frac{d(L_{ss}(\theta))}{d\theta}  + \frac{i_r^2}{2} \frac{d(L_{rr}(\theta))}{d\theta} + i_s i_r \frac{d(L_{sr}(\theta))}{d\theta}
 \end{gathered}
 $$
 
-Note that the first two terms of the equations are the *Reluctance Torque* produced from the variation of the self inductance as a function of the rotor position while the last term is the *Mutual Inductance Torque* produced from the variation of their mutual inductance as a function of the rotor position. Usually reluctance variation can be achieved simply by the change in air gap length as the rotor rotates.
+Note that the first two terms of the last equation are the *Reluctance Torques* produced from the variation of the self inductance as a function of the rotor position (angle) while the last term is the *Mutual Inductance Torque* produced from the variation of their mutual inductance, also as a function of the rotor angle. Reluctance Torque can be produced naturally from the change in air gap length as the rotor rotates inside the stator.
 
 ***
 
-# DC Machines #
+# DC Machines # 
 
 Just as a motor transforms from electrical into mechanical energy a generator transforms from mechanical energy into electrical energy. In both cases the intermediary or coupling field energy can be described in terms of the charges generated (Lorentz) or in terms of the conductors (Laplace).
 
