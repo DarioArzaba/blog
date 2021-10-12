@@ -295,11 +295,11 @@ $$
 	\sin(A)\cos(B) = \frac{1}{2}(\sin(A+B)+\sin(A-B))\\
 	A = 2\omega_m t + 2\delta \land B = 2\omega t \land C = \omega_m t + \delta \land D = \omega t\\
 	T = -\frac{(I_{sm}^2)(L_2)}{2} [ (\sin(A)) \\ 
-	\;- ((\frac{1}{2})(\sin(2(C + D)))) \\
-	\;- ((\frac{1}{2})(\sin(2(C - D)))) ]\\
-	\therefore T = -\frac{(I_{sm}^2)(L_2)}{2} [ (\sin(2\omega_m t + 2\delta)) 
-	\;- (\frac{1}{2})(\sin(2((\omega_m + \omega)(t) + \delta))) \\
-	\;- (\frac{1}{2})(\sin(2((\omega_m - \omega)(t) + \delta))) ]\\
+	\;\;- ((\frac{1}{2})(\sin(2(C + D)))) \\
+	\;\;- ((\frac{1}{2})(\sin(2(C - D)))) ]\\
+	\therefore T = -\frac{(I_{sm}^2)(L_2)}{2} [ (\sin(2\omega_m t + 2\delta))\\
+	\;\;- (\frac{1}{2})(\sin(2((\omega_m + \omega)(t) + \delta))) \\
+	\;\;- (\frac{1}{2})(\sin(2((\omega_m - \omega)(t) + \delta))) ]\\
 	\omega_m = 0 \implies T_{avg} = -\frac{(I_{sm}^2)(L_2)(\sin(2\delta))}{2}\\
 	\omega_m + \omega = 0 \implies T_{avg} = \frac{(I_{sm}^2)(L_2)(\sin(2\delta))}{4}\\
 	\omega_m - \omega = 0 \implies T_{avg} = \frac{(I_{sm}^2)(L_2)(\sin(2\delta))}{4}
@@ -377,45 +377,147 @@ Given that the number of turns in the coil is $N = 200$, the internal radii is $
 
 A reluctance motor with four rotor poles has a reluctance $\Re$ that varies with the position of the rotor with the function $\Re(\theta) = 200000 - 100000\cos(4\theta)$. The stator coil has $N = 200$ and a negligible resistance while connected to an AC supply of $120V_{rms}$ and $60Hz$.
 
-1. The magnetic flux as a function of time. $-0.00225 (\cos(120\pi t))$
-2. The torque as an expression of the reluctance and the magnetic flux. $-0.00225 (\cos(\omega t))$
-3. The specific torque expression of the system. $T$
-4. The speed values of the rotor where it has an average torque. $0 \land \pm (60)(\pi)$
-5. Maximum possible torque at each speed value. $0.506 \land 0.253$
+1. The magnetic flux as a function of time.
 
-$$
-\begin{gathered}
-	e = (N)(\frac{d\Phi}{dt}) = (A)(\sin(\omega t)) = 120\sqrt{2}\sin(\omega t)\\
-	\Phi = \int \frac{e}{N} \, dt = \frac{1}{N} \int 120\sqrt{2}\sin(\omega t)\\
-	u = \omega t \land \frac{du}{dt} = \omega = (2)(\pi)(f)\\
-	\Phi = -\frac{120\sqrt{2}\cos(\omega t)}{(200)(\omega)} = -\frac{120\sqrt{2}\cos((120\pi) t)}{(200)(120\pi)} 
-	\Phi = -0.00225 (\cos(120\pi t))\\
-	T = -\frac{(i_s^2)}{2} \frac{dL(\theta)}{d\theta}\\
-	L = \frac{N^2}{\Re} \land F = (\Phi)(\Re) = (N)(i) \implies i = \frac{(\Phi)(\Re)}{N}\\
-	T = -\frac{(\Phi)^2(\Re)^2}{(2)(N)^2} \left(\frac{(dL)(d\Re)}{(d\Re)(d\theta)}\right) = -\frac{(\Phi)^2(\Re)^2}{(2)(N)^2} -\left(\frac{N^2(d\Re)}{(\Re)^2(d\theta)}\right)\\
-	T = -\frac{(\Phi)(d\Re(\theta))}{(2)(d\theta)}\\
-	\Re(\theta) = 200000 - 100000\cos(4\theta)\\
-	\Phi = (\Phi_m) \cos(\omega t) = -0.00225 (\cos(\omega t))\\
-	\frac{d\Re(\theta)}{d\theta} = 400000 \sin(4\theta) = (R)\sin(4((\omega_m t) + \delta))\\
-	T = -\frac{(\Phi_m)^2(\cos^2(\omega t)) ((R)\sin(4((\omega_m t) + \delta)))}{(2)}\\
-	\sin(A)\cos(B) = \frac{1}{2}(\sin(A+B)+\sin(A-B))\\
-	R = 400000 \land \Phi_m^2 = -0.00225\\
-	T = (0.506)( (\sin(4(\omega_m t + \delta))) +\\
-	((0.5)(\sin((4\omega_m + 2\omega)(t) + 4\delta))) + \\
-	((0.5)(\sin((4\omega_m - 2\omega)(t) + 4\delta))) )\\
-	\omega_m = 0\\
-	(4)(\omega_m) + (2)(120(\pi)) = 0 \implies \omega_m = -60\pi\\
-	(4)(\omega_m) - (2)(120(\pi)) = 0 \implies \omega_m = -60\pi\\
-	\omega_m = 0 \implies T = 0.506\sin(4\delta)\\
-	\sin(4\delta) = 1 \implies T_{max} = 0.506\\
-	\omega = \pm (60)(\pi) \implies T = 0.506(0.5\sin(4\delta)) = 0.253\sin(4\delta)\\
-	\sin(4\delta) = 1 \implies T_{max} = 0.253\\
-\end{gathered}
-$$
+	$$
+	\begin{gathered}
+		e = (N)(\frac{d\Phi}{dt}) = (A)(\sin(\omega t)) = 120\sqrt{2}\sin(\omega t)\\
+		\Phi = \int \frac{e}{N} \, dt = \frac{1}{N} \int 120\sqrt{2}\sin(\omega t)\\
+		u = \omega t \land \frac{du}{dt} = \omega = (2)(\pi)(f)\\
+		\Phi = -\frac{120\sqrt{2}\cos(\omega t)}{(200)(\omega)} = -\frac{120\sqrt{2}\cos((120\pi) t)}{(200)(120\pi)}\\
+		\Phi = -0.00225 (\cos(120\pi t))
+	\end{gathered}
+	$$
+
+2. The torque as an expression of the reluctance and the magnetic flux.
+
+	$$
+	\begin{gathered}
+		T = -\frac{(i_s^2)}{2} \frac{dL(\theta)}{d\theta}\\
+		L = \frac{N^2}{\Re} \land F = (\Phi)(\Re) = (N)(i) \implies i = \frac{(\Phi)(\Re)}{N}\\
+		T = -\frac{(\Phi)^2(\Re)^2}{(2)(N)^2} \left(\frac{(dL)(d\Re)}{(d\Re)(d\theta)}\right) = -\frac{(\Phi)^2(\Re)^2}{(2)(N)^2} -\left(\frac{N^2(d\Re)}{(\Re)^2(d\theta)}\right)\\
+		T = -\frac{(\Phi)(d\Re(\theta))}{(2)(d\theta)}
+	\end{gathered}
+	$$
+
+3. The specific torque expression of the system.
+
+	$$
+	\begin{gathered}
+		\Re(\theta) = 200000 - 100000\cos(4\theta)\\
+		\Phi = (\Phi_m) \cos(\omega t) = -0.00225 (\cos(\omega t))\\
+		\frac{d\Re(\theta)}{d\theta} = 400000 \sin(4\theta) = (R)\sin(4((\omega_m t) + \delta))\\
+		T = -\frac{(\Phi_m)^2(\cos^2(\omega t)) ((R)\sin(4((\omega_m t) + \delta)))}{(2)}\\
+		\sin(A)\cos(B) = \frac{1}{2}(\sin(A+B)+\sin(A-B))\\
+		R = 400000 \land \Phi_m^2 = -0.00225\\
+		T = (0.506)( (\sin(4(\omega_m t + \delta))) +\\
+		((0.5)(\sin((4\omega_m + 2\omega)(t) + 4\delta))) + \\
+		((0.5)(\sin((4\omega_m - 2\omega)(t) + 4\delta))) )
+	\end{gathered}
+	$$
+
+4. The speed values of the rotor where it has a nonzero average torque.
+
+	$$
+	\begin{gathered}
+		\omega_m = 0\\
+		(4)(\omega_m) + (2)(120(\pi)) = 0 \implies \omega_m = -60\pi\\
+		(4)(\omega_m) - (2)(120(\pi)) = 0 \implies \omega_m = -60\pi
+	\end{gathered}
+	$$
+
+5. Maximum possible torques when the rotor is at its nonzero average torque speed values.
+
+	$$
+	\begin{gathered}
+		\omega_m = 0 \implies T = 0.506\sin(4\delta)\\
+		\sin(4\delta) = 1 \implies T_{max} = 0.506\\
+		\omega = \pm (60)(\pi) \implies T = 0.506(0.5\sin(4\delta)) = 0.253\sin(4\delta)\\
+		\sin(4\delta) = 1 \implies T_{max} = 0.253
+	\end{gathered}
+	$$
 
 ***
 
 # DC Machines #
+
+**Exercise 1**
+
+A DC machine with 4 poles has an armature ratio of 12.5 cm and an effective longitude of 25 cm. The poles cover 75% of the armature's periphery. The armature winding (loop configuration) consists of 33 coils, each on an individual slot, with every coil consisting of 7 individual loops. The average flux density of every pole is 0.75 T.
+
+1. Calculate armature constant.
+
+	$$
+	\begin{gathered}
+		K_a = \frac{(Z)(p)}{(2)(\pi)(a)}\\
+		K_a = \frac{(33)(7)(2)(4)}{(2)(\pi)(4)}\\
+		K_a = 73.53
+	\end{gathered}
+	$$
+
+2. Calculate armature's induced voltage if it's rotating at 1000 rpm.
+
+	$$
+	\begin{gathered}
+		E_a = (K_a)(\Phi_p)(\omega_m)\\
+		\Phi_p = (B_p)(A_p)\\
+		A_p = \frac{(2)(\pi)(0.125)}{4} (0.75)\\
+		A_p = 36.8 \times 10^{-3}\\
+		\Phi_p = (0.75)(36.8 \times 10^{-3})\\
+		\Phi_p = 0.0276 \, \text{Wb}\\
+		\omega_m = (1000)(\frac{(2)(\pi)}{60})\\
+		\omega_m = 104.7197\\
+		E_a = (73.53)(0.0276)(104.7197)\\
+		E_a = 212.5 \, \text{V}
+	\end{gathered}
+	$$
+
+3. Calculate the current in the coil and the torque in the armature when the armature has an applied current of 400 A.
+
+	$$
+	\begin{gathered}
+		I_a = 400\\
+		I_c = \frac{I_a}{a} = \frac{400}{4} = 100\\
+		T = (K_a)(\Phi)(I_a) = (73.53)(0.0276)(400) = 811.8 \, \text{Nm}
+	\end{gathered}
+	$$
+
+4. Calculate the power developed by the armature from its induced voltage and applied current.
+
+	$$
+	\begin{gathered}
+		P_a = (E_a)(I_a) = (212.5)(400) = 85\, \text{kW}\\
+		P_a = (T)(\omega_m) = (811.8)(104.7197) = 85\, \text{kW}
+	\end{gathered}
+	$$
+
+5. Suppose the armature has a wave configuration. Calculate the differences.
+
+$$
+\begin{gathered}
+	K_a = \frac{(Z)(p)}{(2)(\pi)(a)}\\
+	K_a = \frac{(33)(7)(2)(4)}{(2)(\pi)(2)}\\
+	K_a = 147.06\\
+	E_a = (147.06)(0.0276)(104.7197)\\
+	E_a = 425.04 \, \text{V}\\
+	I_c = 100\\
+	I_a = (100)(2) = 200\\
+	T = (K_a)(\Phi)(I_a) = (147.06)(0.0276)(200) = 811.8 \, \text{Nm}\\	
+	P_a = (E_a)(I_a) = (425.04)(200) = 85\, \text{kW}
+\end{gathered}
+$$
+
+**Exercise 2**
+
+![Magnet Curve Excersice](/static/images/notes/MagnetCurveExcersiceDCGenActuators.png)
+
+A DC generator of separated excitation with 12kW, 100V and 1000rpm has an armature resistance of 0.1 Ohm. The field winding resistance is 80 Ohms. Te turns per pole is 1200 and the nominal field current is 1 A. 
+
+1. Neglect the armature's reaction and determine the voltage in its terminals at full charge.
+2. Now consider that the armatures reaction is of 0.06 A. Calculate the voltage in the terminals at full charge.
+3. Calculate the field current required to achieve a voltage in the terminals of 100V at full charge.
+
+SOLUCION FALTA
 
 **Activity 1**
 
