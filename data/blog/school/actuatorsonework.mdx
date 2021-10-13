@@ -441,33 +441,34 @@ A reluctance motor with four rotor poles has a reluctance $\Re$ that varies with
 
 **Activity 1**
 
+A rotating machine has the following parameters: $L_{ss}=0.15 \land L_{rr}=0.06 \land L_{sr} = 0.08\cos(\theta)$. The rotor is turning at 3600 rpm and the stator carries a 5A current at 60Hz. Calculate the instantaneous voltage and rms voltage in the rotor coil. Calculate the frequency of the rotor induced voltage.
+
 $$
 \begin{gathered}
-	\omega = 3600\,\text{rpm} \land i_s = 5\,\text{A}\, , \,60\text{Hz}\\
-	\text{Ejercicio A}\\
+	\omega = 3600\,\text{rpm} \land i_s = 5\,\text{A}\, , \,60\text{Hz}\\\\
 	i_{r} = (5)(\sqrt{2})\,\text{A}\\
 	\omega_{syn} = \frac{120(f)}{p} = \frac{120(60)}{2} = 3600\,\text{rpm}\\
 	V_r = L_r\frac{di_r}{dt} + L_{sr}\frac{di_s}{dt}\\
-	\omega_m = \omega_r \implies i_r = 0\\
-	V_r = L_{sr}\frac{di_s}{dt}\\
-	L_{sr} = 0.08\cos(\theta)\\
-	\theta = \omega_m(t) + d\\
+	\omega_m = \omega_r \implies i_r = 0 \land V_r = L_{sr}\frac{di_s}{dt}\\
+	L_{sr} = 0.08\cos(\theta) \land \theta = \omega_m(t) + d\\
 	L_{sr} = 0.08\cos((120)(\pi)(t))\\
 	i_s = (5)(\sqrt{2})(\sin((2)(\pi)(60)(t)))\\
-	V_r = - 0.08\cos((120)(\pi)(t)) \frac{d}{dt} \left((5)(\sqrt{2})(\sin((2)(\pi)(60)(t))) \right)\\
-	V_r = - 0.08(5)(\sqrt{2})\cos((120)(\pi)(t))\cos((120)(\pi)(t))(120)(t)\\
-	V_r = - 0.08(5)(\sqrt{2})(120)(\pi) \left(\frac{1+\cos((2)(120)(\pi)(t))}{2}\right)\\
-	V_r = -0.08\cos(\theta)(5)(\sqrt{2})(120)(\pi)(\sin(120\pi t))\\
+	\text{Substitute in Vr equation}\\
 	V_r = -106.6291(1+\cos((240)(\pi)(t))\\
 	\therefore V_{inst} = 106.6291(\sin(\delta)-\sin(240\pi t + \delta))\\
-	V_{rms} = 106.63\sqrt{(\sin(\delta))^2 + (\frac{1}{2})^2}\\
-	\therefore V_{rms} = 106.63\sqrt{\sin^2(\delta) + \frac{1}{4}}\\
+	\therefore V_{rms} = 106.63\sqrt{\sin^2(\delta) + \frac{1}{4}}\\\\
 	i_s = (5)(\sqrt{2})(\sin(\omega t) = 7.07\sin(120\pi t)\\
-	\theta_2 = \frac{d}{dt}((0.08)(\cos(120\pi t + \delta)(7.07)(\sin(120\pi t)))\\
+	\theta_2 = \frac{d}{dt}(0.08(\cos(120\pi t + \delta)(7.07\sin(120\pi t))))\\
 	\theta_2 = 213.2\cos(240\pi t + \delta)\\
 	\theta_2 = \sqrt{2}(150.8)(\cos(240\pi t + \delta))\\
-	\therefore f_2 = 120\,\text{Hz}\\
-	\text{Ejercicio B}\\
+	\therefore f_2 = 120\,\text{Hz}
+\end{gathered}
+$$
+
+Suppose the stator and rotor coils are connected in series and a 5A 60Hz passes through them. Determine the average torque speeds and the maximum torque produced at those speeds.
+
+$$
+\begin{gathered}
 	T = (i_s)(i_r) \frac{d}{d\theta} L_{sr}\\
 	i_s = I_{sm}\cos(\omega_s(t))\\
 	i_r = I_{rm}\cos(\omega_r(t) + \delta)\\
@@ -475,16 +476,22 @@ $$
 	T = -4\cos^2(\omega t)(\sin(\omega_m t + \delta))\\
 	T = -2 (1 + \cos(2\omega t))(\sin(\omega_m t + \delta))\\
 	T = -2\sin(\omega_m t + \delta) + 2\cos(2\omega t)\sin(\omega_m t + \delta)\\
-	T_{inst} = -2\sin(\omega_m t + \delta) + \sin(2\omega t + \omega_mt + \delta) + \sin(\omega_m t + \delta - 2\omega t)\\
+	T_{inst} = -2\sin(\omega_m t + \delta) +\\ 
+	\;\;\sin(2\omega t + \omega_mt + \delta) +\\
+	\;\;\sin(\omega_m t + \delta - 2\omega t)\\
 	\omega_m \ne (2)(\omega) \implies T_{inst} = 0\\
 	\omega_m = (2)(\omega) = (2)(2)(\pi)(60) = 240\pi\,\text{rad/s}\\
-	\omega_m = 753.9822\,\text{rad/s}\\
-	\therefore \omega_m = 0 \implies T_{avg} = -(2)(\sin(\delta)) \land T_{max} = 2\,\text{Nm}\\
-	\therefore \omega_m = \pm240\pi \implies T_{avg} = (1)(\sin(\delta)) \land T_{max} = 1\,\text{Nm}\\
+	\omega_m = 753.9822\,\text{rad/s}\\\\
+	\omega_m = 0\\
+	T_{avg} = -(2)(\sin(\delta)) \land T_{max} = 2\,\text{Nm}\\
+	\omega_m = \pm 240 \pi\\
+	T_{avg} = (1)(\sin(\delta)) \land T_{max} = 1\,\text{Nm}\\
 \end{gathered}
 $$
 
-# DC Machines #
+***
+
+## DC Machines ##
 
 **Exercise 1**
 
@@ -684,7 +691,7 @@ A DC generator of *self excitation* with 12kW, 100V and 1000rpm has an armature 
 
 	$$
 	\begin{gathered}
-	\text{From the graph}\\
+		\text{From the graph}\\
 		I_a = \frac{E_{ar}}{R_a} = \frac{6}{0.1}\\
 		I_a = 60\,\text{A}
 	\end{gathered} 
@@ -696,9 +703,84 @@ A DC compound generator of *self excitation* with 12kW, 100V and 1000rpm has an 
 
 1. Calculate the series turns per pole required for a zero regulation voltage.
 
+$$
+\begin{gathered}
+	V_t = R_f I_f\\
+	R_f = \frac{V_f}{I_f} = \frac{100}{1} = 100\\
+	I_a = \frac{12000}{100} = 120\\	
+	I_a = I_f + I_t\\
+	I_t = 120 - I_f\\
+	I_f R_f - V_t - R_{sr} I_t= 0\\
+	I_f R_f - V_t - R_{sr} (120 - I_f) = 0\\
+	I_f (100) - 100 - 0.01 (120 - I_f) = 0\\
+	I_f = 1.012\\
+	I_t = 120 - 1.012 = 118.98\\
+	\text{Armature Circuit}\\
+	-E_a + R_a I_a + R_{sr} I_t + V_t = 0\\
+	E_a = R_a I_a + R_{sr} I_t + V_t\\
+	E_a = 0.1(120) + 0.01(118.98) + 100\\
+	E_a = 113.2\\
+	\text{From the graph}\\
+	I_{feff} = 1.45
+	I_{feff} = I_f + \frac{N_{sr} I_{sr}}{N_f} - I_{fAR}\\
+	1.45 = 1.012 + \frac{N_{sr} (118.98)}{1200} - 0.06\\
+	\therefore N_{sr} = 5.04 \approx 5
+\end{gathered} 
+$$
 
+***
 
+## DC Motors ##
 
+**Exercise 1**
+
+![DC Motor Exercise](/static/images/notes/DiagramMotorDCMachineLoadActuators.png)
+
+A DC shunt motor with 12kW, 100V and 1000rpm has an armature resistance of 0.1 Ohm. A field winding resistance of 80 Ohms and 1200 turns per pole. It is connected to a DC source of 100V, at no load condition it operates at 1000rpm with the armature at 6A.
+
+1. Calculate the control resistance value used in the shunt field winding.
+
+	$$
+	\begin{gathered}
+		I_a = 6\\
+		V_t = I_a R_a + E_a\\
+		100 = 6(0.1) + E_a\\
+		E_a = 99.4\\
+		\text{From the graph}\\
+		I_f = 0.99\\
+		R_f = R_{fc} + R_{fw}\\
+		V_f = I_f R_f = I_f (R_{fc} + R_{fw})\\
+		100 = 0.99 (R_{fc} + 80)\\
+		\therefore R_{fc} = 21\,\Omega
+	\end{gathered} 
+	$$
+
+2. Calculate the rotational loss experienced at that speed.
+
+	$$
+	\begin{gathered}
+		P_{rot} = E_a I_a = 99.4(6) = 594.4\,\text{W}\\
+	\end{gathered} 
+	$$
+
+3. Calculate the speed, electromagnetic torque and efficiency of the motor when a rated current flows in the armature. Consider that the air gap flux is the same as the no load or without load condition.
+
+	$$
+	\begin{gathered}
+		I_a = \frac{12000}{100} = 120\\
+		\Phi_{without} = \Phi_{full}\\
+		E_{a} = 99.4\\
+		E_{afull} = V_f - I_a R_a = 100 - 120(0.1) = 88\\
+		E_a = K_a \Phi \omega_m\\
+		\frac{E_a}{E_{afull}} = \frac{K_a \Phi \omega_{full}}{K_a \Phi \omega_{w}}\\
+		\frac{88}{99.4} = \frac{\omega_{full}}{1000(\frac{2\pi}{60})}\\
+		\therefore \omega_{full} = 92.71\,\text{rad/s}\\\\
+	\end{gathered} 
+	$$
+
+4. Calculate the speed, electromagnetic torque and efficiency of the motor when a rated current flows in the armature. Consider that the air gap flux is reduced by 5 percent when the rated current in the armature has an additional armature reaction.
+
+5. Calculate the starting torque if the starting armature current is limited to 150 percent of its nominal value. Neglect armature reaction in this case.
 
 
 
