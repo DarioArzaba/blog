@@ -119,7 +119,7 @@ $$
 	r_m = 22.5 \, \text{cm} = 0.225 \, \text{m}\\
 	H_c = \frac{(N)(i)}{l} = \frac{(250)(2.5)}{(2)(\pi)(0.225)}\\
 	H_c = 442.3 \, \text{At/m}\\
-	\text{From the Graph}
+	\text{From the Graph}\\
 	\therefore B_c = 1.225 \, \text{T}\\\\
 	A = (\pi)(r_A)^2 = \pi\left(\frac{25-20}{2}\right)^2\\
 	A = 1.9635 \times 10^{-3}\\
@@ -439,6 +439,51 @@ A reluctance motor with four rotor poles has a reluctance $\Re$ that varies with
 
 ***
 
+**Activity 1**
+
+$$
+\begin{gathered}
+	\omega = 3600\,\text{rpm} \land i_s = 5\,\text{A}\, , \,60\text{Hz}\\
+	\text{Ejercicio A}\\
+	i_{r} = (5)(\sqrt{2})\,\text{A}\\
+	\omega_{syn} = \frac{120(f)}{p} = \frac{120(60)}{2} = 3600\,\text{rpm}\\
+	V_r = L_r\frac{di_r}{dt} + L_{sr}\frac{di_s}{dt}\\
+	\omega_m = \omega_r \implies i_r = 0\\
+	V_r = L_{sr}\frac{di_s}{dt}\\
+	L_{sr} = 0.08\cos(\theta)\\
+	\theta = \omega_m(t) + d\\
+	L_{sr} = 0.08\cos((120)(\pi)(t))\\
+	i_s = (5)(\sqrt{2})(\sin((2)(\pi)(60)(t)))\\
+	V_r = - 0.08\cos((120)(\pi)(t)) \frac{d}{dt} \left((5)(\sqrt{2})(\sin((2)(\pi)(60)(t))) \right)\\
+	V_r = - 0.08(5)(\sqrt{2})\cos((120)(\pi)(t))\cos((120)(\pi)(t))(120)(t)\\
+	V_r = - 0.08(5)(\sqrt{2})(120)(\pi) \left(\frac{1+\cos((2)(120)(\pi)(t))}{2}\right)\\
+	V_r = -0.08\cos(\theta)(5)(\sqrt{2})(120)(\pi)(\sin(120\pi t))\\
+	V_r = -106.6291(1+\cos((240)(\pi)(t))\\
+	\therefore V_{inst} = 106.6291(\sin(\delta)-\sin(240\pi t + \delta))\\
+	V_{rms} = 106.63\sqrt{(\sin(\delta))^2 + (\frac{1}{2})^2}\\
+	\therefore V_{rms} = 106.63\sqrt{\sin^2(\delta) + \frac{1}{4}}\\
+	i_s = (5)(\sqrt{2})(\sin(\omega t) = 7.07\sin(120\pi t)\\
+	\theta_2 = \frac{d}{dt}((0.08)(\cos(120\pi t + \delta)(7.07)(\sin(120\pi t)))\\
+	\theta_2 = 213.2\cos(240\pi t + \delta)\\
+	\theta_2 = \sqrt{2}(150.8)(\cos(240\pi t + \delta))\\
+	\therefore f_2 = 120\,\text{Hz}\\
+	\text{Ejercicio B}\\
+	T = (i_s)(i_r) \frac{d}{d\theta} L_{sr}\\
+	i_s = I_{sm}\cos(\omega_s(t))\\
+	i_r = I_{rm}\cos(\omega_r(t) + \delta)\\
+	T = 50\cos^2(\omega t)(0.08\sin(\theta)\\
+	T = -4\cos^2(\omega t)(\sin(\omega_m t + \delta))\\
+	T = -2 (1 + \cos(2\omega t))(\sin(\omega_m t + \delta))\\
+	T = -2\sin(\omega_m t + \delta) + 2\cos(2\omega t)\sin(\omega_m t + \delta)\\
+	T_{inst} = -2\sin(\omega_m t + \delta) + \sin(2\omega t + \omega_mt + \delta) + \sin(\omega_m t + \delta - 2\omega t)\\
+	\omega_m \ne (2)(\omega) \implies T_{inst} = 0\\
+	\omega_m = (2)(\omega) = (2)(2)(\pi)(60) = 240\pi\,\text{rad/s}\\
+	\omega_m = 753.9822\,\text{rad/s}\\
+	\therefore \omega_m = 0 \implies T_{avg} = -(2)(\sin(\delta)) \land T_{max} = 2\,\text{Nm}\\
+	\therefore \omega_m = \pm240\pi \implies T_{avg} = (1)(\sin(\delta)) \land T_{max} = 1\,\text{Nm}\\
+\end{gathered}
+$$
+
 # DC Machines #
 
 **Exercise 1**
@@ -511,58 +556,159 @@ $$
 
 ![Magnet Curve Excersice](/static/images/notes/MagnetCurveExcersiceDCGenActuators.png)
 
-A DC generator of separated excitation with 12kW, 100V and 1000rpm has an armature resistance of 0.1 Ohm. The field winding resistance is 80 Ohms. Te turns per pole is 1200 and the nominal field current is 1 A. 
+A DC generator of *separated excitation* with 12kW, 100V and 1000rpm has an armature resistance of 0.1 Ohm. The field winding resistance is 80 Ohms. The turns per pole is 1200 and the nominal field current is 1 A. 
 
 1. Neglect the armature's reaction and determine the voltage in its terminals at full charge.
+
+	$$
+	\begin{gathered}
+		I_a = \frac{12000}{100} = 120\\
+		V_t = E_a - R_a I_a = 100 - (0.1)(120)\\
+		\therefore V_t = 88\, \text{V}
+	\end{gathered}
+	$$
+
 2. Now consider that the armatures reaction is of 0.06 A. Calculate the voltage in the terminals at full charge.
+
+	$$
+	\begin{gathered}
+		I_{feff} = I_{freal} - I_{fAR}\\
+		I_{feff} = 1 - 0.06 = 0.94\\
+		\text{From the Graph}\\
+		E_a = 98\\
+		V_t = E_a - R_a I_a = 98 - (0.1)(120)\\
+		\therefore V_t = 86\, \text{V}
+	\end{gathered}
+	$$
+
 3. Calculate the field current required to achieve a voltage in the terminals of 100V at full charge.
 
-SOLUCION FALTA
+	$$
+	\begin{gathered}
+		E_a = V_t + R_a I_a\\
+		E_a = 100 + 0.1 (120) = 112\\
+		\text{From the Graph}\\
+		I_{feff} = 1.4\\
+		I_{freal} = I_{feff} + I_{fAR} = 1.4 + 0.06\\
+		\therefore I_{freal} = 1.46 \, \text{A}
+	\end{gathered}
+	$$
 
-**Activity 1**
+**Exercise 3**
 
-$$
-\begin{gathered}
-	\omega = 3600\,\text{rpm} \land i_s = 5\,\text{A}\, , \,60\text{Hz}\\
-	\text{Ejercicio A}\\
-	i_{r} = (5)(\sqrt{2})\,\text{A}\\
-	\omega_{syn} = \frac{120(f)}{p} = \frac{120(60)}{2} = 3600\,\text{rpm}\\
-	V_r = L_r\frac{di_r}{dt} + L_{sr}\frac{di_s}{dt}\\
-	\omega_m = \omega_r \implies i_r = 0\\
-	V_r = L_{sr}\frac{di_s}{dt}\\
-	L_{sr} = 0.08\cos(\theta)\\
-	\theta = \omega_m(t) + d\\
-	L_{sr} = 0.08\cos((120)(\pi)(t))\\
-	i_s = (5)(\sqrt{2})(\sin((2)(\pi)(60)(t)))\\
-	V_r = - 0.08\cos((120)(\pi)(t)) \frac{d}{dt} \left((5)(\sqrt{2})(\sin((2)(\pi)(60)(t))) \right)\\
-	V_r = - 0.08(5)(\sqrt{2})\cos((120)(\pi)(t))\cos((120)(\pi)(t))(120)(t)\\
-	V_r = - 0.08(5)(\sqrt{2})(120)(\pi) \left(\frac{1+\cos((2)(120)(\pi)(t))}{2}\right)\\
-	V_r = -0.08\cos(\theta)(5)(\sqrt{2})(120)(\pi)(\sin(120\pi t))\\
-	V_r = -106.6291(1+\cos((240)(\pi)(t))\\
-	\therefore V_{inst} = 106.6291(\sin(\delta)-\sin(240\pi t + \delta))\\
-	V_{rms} = 106.63\sqrt{(\sin(\delta))^2 + (\frac{1}{2})^2}\\
-	\therefore V_{rms} = 106.63\sqrt{\sin^2(\delta) + \frac{1}{4}}\\
-	i_s = (5)(\sqrt{2})(\sin(\omega t) = 7.07\sin(120\pi t)\\
-	\theta_2 = \frac{d}{dt}((0.08)(\cos(120\pi t + \delta)(7.07)(\sin(120\pi t)))\\
-	\theta_2 = 213.2\cos(240\pi t + \delta)\\
-	\theta_2 = \sqrt{2}(150.8)(\cos(240\pi t + \delta))\\
-	\therefore f_2 = 120\,\text{Hz}\\
-	\text{Ejercicio B}\\
-	T = (i_s)(i_r) \frac{d}{d\theta} L_{sr}\\
-	i_s = I_{sm}\cos(\omega_s(t))\\
-	i_r = I_{rm}\cos(\omega_r(t) + \delta)\\
-	T = 50\cos^2(\omega t)(0.08\sin(\theta)\\
-	T = -4\cos^2(\omega t)(\sin(\omega_m t + \delta))\\
-	T = -2 (1 + \cos(2\omega t))(\sin(\omega_m t + \delta))\\
-	T = -2\sin(\omega_m t + \delta) + 2\cos(2\omega t)\sin(\omega_m t + \delta)\\
-	T_{inst} = -2\sin(\omega_m t + \delta) + \sin(2\omega t + \omega_mt + \delta) + \sin(\omega_m t + \delta - 2\omega t)\\
-	\omega_m \ne (2)(\omega) \implies T_{inst} = 0\\
-	\omega_m = (2)(\omega) = (2)(2)(\pi)(60) = 240\pi\,\text{rad/s}\\
-	\omega_m = 753.9822\,\text{rad/s}\\
-	\therefore \omega_m = 0 \implies T_{avg} = -(2)(\sin(\delta)) \land T_{max} = 2\,\text{Nm}\\
-	\therefore \omega_m = \pm240\pi \implies T_{avg} = (1)(\sin(\delta)) \land T_{max} = 1\,\text{Nm}\\
-\end{gathered}
-$$
+A DC generator of *self excitation* with 12kW, 100V and 1000rpm has an armature resistance of 0.1 Ohm. The field winding resistance is 80 Ohms. The turns per pole is 1200 and the nominal field current is 1 A. 
+
+1. Calculate the maximum possible voltage that can be generated.
+
+	$$
+	\begin{gathered}
+		R_f = R_{fw} + R_{fc}\\
+		R_{fmin} = R_{fw} + 0\\
+		R_f = R_{fw} = 80\\
+		V_f = R_f I_f\\
+		\text{From the graph}\\
+		V_f = (80)(1.4) = 112\\
+		\therefore P = E_{amax} \approx 111\, \text{V}
+	\end{gathered}
+	$$
+
+2. Calculate the value of the field circuit control resistance required for the rated voltage of 100V.
+
+	$$
+	\begin{gathered}
+		V_f = 100\\
+		R_f = \frac{100}{1} = 100\\
+		R_f = R_{fw} + R_{fc}\\
+		R_{fc} = R_f - R_{fw} = 100 - 80\\
+		\therefore R_{fc} = 20 \, \Omega
+	\end{gathered}
+	$$
+
+3. Calculate the critical field circuit resistance.
+
+	$$
+	\begin{gathered}
+		\text{From the graph}\\
+		R_{fcrit} = \frac{E_a}{I_f} = \frac{68}{0.4}\\
+		\therefore R_{fcrit} =  170\, \Omega
+	\end{gathered}
+	$$
+
+
+Note that the maximum possible voltage is the point where the field resistance is at its lowers, this happens when the field control resistance is zero.
+
+**Exercise 4**
+
+A DC generator of *self excitation* with 12kW, 100V and 1000rpm has an armature resistance of 0.1 Ohm. The field winding resistance is 80 Ohms. The turns per pole is 1200 and the nominal field current is 1 A. 
+
+1. Calculate the full load terminal voltage neglecting armature reaction and if the no load terminal voltage is 100V.
+
+	$$
+	\begin{gathered}
+		V_{tsc} = 100\\
+		V_t = I_f R_f\\
+		R_f = \frac{100}{1} = 100\\
+		I_a = \frac{12000}{100} = 120\\
+		V_a = R_a I_a = (0.1)(120) = 12\\
+		E_a = V_t + V_a = 100 + 12 = 112\\
+		\text{From the graph}\\
+		\therefore V_t = 80\,\text{V}
+	\end{gathered} 
+	$$
+
+2. Calculate the full load terminal voltage assuming an armature reaction of 0.06.
+
+	$$
+	\begin{gathered}
+		I_{fAR} = 0.06\\
+		I_{feff} = I_{freal} - I_{fAR}\\
+		I_{feff} = 1 - 0.06 = 0.94\\
+		\text{From the graph}\\
+		\therefore V_t = 0.69 + 0.06 = 0.75\,\text{V}
+	\end{gathered} 
+	$$
+
+3. Determine the maximum armature current that the generator can supply and its corresponding voltage.
+
+	$$
+	\begin{gathered}
+		\text{From the graph}\\
+		V_a = 17\\
+		I_a = \frac{V_a}{R_a} = \frac{17}{0.1}\\
+		I_{amax} = 170 \, \text{A}\\
+		V_{tmax} = 53\,\text{V}
+	\end{gathered} 
+	$$
+
+4. Determine the short circuit current.
+
+	$$
+	\begin{gathered}
+	\text{From the graph}\\
+		I_a = \frac{E_{ar}}{R_a} = \frac{6}{0.1}\\
+		I_a = 60\,\text{A}
+	\end{gathered} 
+	$$
+
+**Exercise 5**
+
+A DC compound generator of *self excitation* with 12kW, 100V and 1000rpm has an armature resistance of 0.1 Ohm. The field winding resistance is 80 Ohms. The turns per pole is 1200 and the nominal field current is 1 A. We consider an armature response current of 0.06 A. The machine must deliver 100 V on its terminals with our without full load (commulative compound). Assume a short connection and a series winding resistance of $R_{sr} = 0.01\Omega$.
+
+1. Calculate the series turns per pole required for a zero regulation voltage.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
