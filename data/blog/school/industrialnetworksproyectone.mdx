@@ -1,5 +1,5 @@
 ---
-title: Industrial Networks Lab 1
+title: Industrial Networks Lab Notes
 date: '2021-08-15'
 tags: ['school', 'networks']
 ---
@@ -114,8 +114,6 @@ Most PLC input and output addresses use individual bits but you can also referen
 
 **Set and Reset**
 
-![Set and Reset](/static/images/notes/SetANDResetNetworksLab.png)
-
 We have been setting (S) and resetting (R) bits to control the input and output of the PLC. This can be done more efficiently if we have stablished a state diagram using RS (activation) and SR (deactivation) flipflops. 
 
 | R | S1 | Q | S | R1 | Q |
@@ -148,15 +146,3 @@ We can use comparators to compare two values as long as they have the same data 
 **Scale and Standardize**
 
 The `SCALE_X` instruction scales the real normalized VALUE parameter (0.0 <= VALUE <= 1.0) to the data type and range of values specified in the MIN and MAX parameters, therefore OUT = VALUE(MAX-MIN)+MIN. The `NORM_X` instruction normalizes the VALUE parameter (0.0 <= OUT <= 1.0), therefore OUT = (VALUE-MIN)/(MAX-MIN). Note that every parameter (MIN, MAX, OUT, VALUE) must be of the same data type.
-
-***
-
-https://apps.apple.com/us/app/real-code-breaker-mastermind/id964554684
-https://www.youtube.com/watch?v=McUP8PZNIxk
-https://www.youtube.com/watch?v=XwuwWTH39ac
-https://www.youtube.com/watch?v=dMHxyulGrEk
-https://www.webgamesonline.com/mastermind/index.php
-https://en.wikipedia.org/wiki/Mastermind_(board_game)
-https://www.archimedes-lab.org/mastermind.html
-
-
