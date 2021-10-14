@@ -1,5 +1,5 @@
 ---
-title: Actuators 1 Notes
+title: Actuator Notes
 date: '2021-08-15'
 tags: ['school', 'actuators']
 ---
@@ -21,17 +21,16 @@ Selection and operation of actuators, theoretical foundations of actuators for d
 	3. [Linear Systems](#linear-systems)
 	4. [Rotating Machines](#rotating-machines)
 4. [DC Machines](#dc-machines)
-	1. Electromagnetic Energy Conversion
-	2. Construction of DC Machines
-	3. Armature Windings and Voltage
-	4. Developed Torque
-	5. Classification
-	6. Generators
-	7. Separately Excited Generator
-	8. Shunt (self-excited) Generator
-	9. Compound Machines and Series Generator
-	10. Motors, Shunt Motor, Series Motor
-5. Introduction Machines
+	1. [Electromagnetic Energy Conversion](#electromagnetic-conversion)
+	2. [Construction of DC Machines](#machine-construction)
+	3. [Armature Windings and Voltage](#armature-voltage)
+	4. [Developed Torque](#developed-torque)
+	5. [Generator Classification](#generator-classification)
+	6. [Separately Excited Generator](#separately-excited-generator)
+	7. [Shunt (self-excited) Generator](#self-excited-generator)
+	8. [Compound Machines and Series Generator](#compound-machines)
+	9. [Motors, Shunt Motor, Series Motor](#direct-current-motors)
+5. [Induction Machines](#induction-machines)
 	1. Rotating Magnetic Field
 	2. Induced Voltages
 	3. Polyphase Induction Machine
@@ -122,7 +121,7 @@ Permanent magnets and a layer of air in rotating machines help maintain the high
 
 ***
 
-## Electromagnetic Relations ###
+## Electromagnetic Relations ##
 
 **i-H Relation**
 
@@ -587,6 +586,8 @@ Note that the first two terms of the last equation are the *Reluctance Torques* 
 
 # DC Machines # 
 
+## Electromagnetic Conversion ##
+
 ![Mutually Perpendicular](/static/images/notes/InducedVoltageandForceVectorsActuators.png)
 
 A motor transforms electrical into mechanical energy, a generator mechanical into electrical energy, both use the stored magnetic field coupling as their intermediary. The electric or mechanical force that results from the transformation can be described in terms of the charges involved (Lorentz) or the conductors involved (Laplace).
@@ -607,6 +608,10 @@ $$
 The Lenz's law describes the induced voltage in a conductor traveling through a magnetic field at a certain velocity (generator) while the Lorentz force describes the induced force in a conductor with an applied current inside a magnetic field (motor). In both cases the three vectors (field, length and velocity or current) are mutually perpendicular to each other. 
 
 If the rotor or stator are subjected to a time variable magnetic field parasitic Eddy Currents might develop, to decrease the energy losses the core can be laminated.
+
+***
+
+## Machine Construction ##
 
 ![DC Machine Two poles](/static/images/notes/DiagramofTwoPoleActuators.png)
 
@@ -640,7 +645,9 @@ In a Lap winding configuration the coils are simply laid in series, meaning that
 
 In a Wave winding configuration the number of parallel conductor paths will always be two, independent of the number of poles along the winding. Even if the number of parallel conductor paths is always two the number of brush positions can be two or more.
 
-**Voltage and Torque in the Armature**
+***
+
+## Armature Voltage ##
 
 ![Armatures Torque and Voltage](/static/images/notes/ActuatorsArmaturesTorqueAndVoltage.png)
 
@@ -691,6 +698,10 @@ $$
 \end{gathered}
 $$
 
+***
+
+## Developed Torque ##
+
 From the armature conductor's force we can calculate its average torque, the contributions of every conductor's torque is the overall average torque of the armature.
 
 $$
@@ -718,7 +729,7 @@ The last relation between electric and mechanical power is fundamental when tryi
 
 ***
 
-# DC Machines Two # 
+## Generator Classification ##
 
 ![Equivalent Magnetic Circuit](/static/images/notes/EquivalentMagneticCircuitForArmatureActuators.png)
 
@@ -735,8 +746,6 @@ $$
 
 If the field current and therefore the flux increases at some point some parts through the magnetic path will start to saturate (usually the rotor teeth) slowing down the Flux - Fp curve. Using the magnetic circuit model it is common to represent magnetization as Armature Voltage - Fp (with a different curve for each armature speed).
 
-**Machine Classification**
-
 ![Magnetic Circuit Configurations](/static/images/notes/ShuntandWindingConfigurationsActuators.png)
 
 Depending on how we excite the field windings and the field that the armature's magnetomotive force will interact with we can have different configurations. First we can divide them into separate excitation and self excitation. Self excitation (using residual magnetism in the poles) can be in series, in parallel (shunt) or compound. Compound self excitation can be short (series dominant) or long (parallel dominant).
@@ -746,7 +755,9 @@ Depending on how we excite the field windings and the field that the armature's 
 * In Parallel (shunt): The voltage output can self regulate based on the load and its speed. They usually need backup generators or batteries to compensate unexpended load changes. This can be used to generate a small but stable torque for a wider range of speeds.
 * Compound: Combines series and parallel configurations, it can achieve a greater torque for a wide range of speeds. A major disadvantage is that it can't be used to charge batteries. 
 
-**Separate Excitation Generator**
+***
+
+## Separately Excited Generator ##
 
 ![Separate Excitation](/static/images/notes/EquivalentLoadSeparateExActuators.png)
 
@@ -803,7 +814,9 @@ $$
 
 An expensive and often rare way to compensate for the effects of armature reaction is to use additional compensating windings in series with the armature, the coils of this winding are inserted into slots at the poles generating an additional current that opposes the armature's reaction.
 
-**Self Excitation Generator**
+***
+
+## Self Excited Generator ##
 
 ![Self Excitation](/static/images/notes/SelfExitationGeneratorActuators.png)
 
@@ -812,10 +825,6 @@ In this type of generator after the armature is turning at a certain velocity we
 The newly induced voltage $E_{a1}$ will increase the field current again $I_{f2}$. The process repeats as long as there is some residual magnetism from the magnetization curve that the armature can use, note that for some residual magnetism to exist the resistance line must be lower to the critical field circuit resistance, the lower this resistance line is the higher the stable voltage we will achieve.
 
 For self excitation to work there must be some residual magnetism that the armature can use, the winding field force must be enabled to help the gradual increase and the field circuit resistance line must be lower than its critical value.
-
-***
-
-# DC Machines Three # 
 
 ![Voltage Current Char](/static/images/notes/CharacterVoltageCurrentActuators.png)
 
@@ -847,7 +856,7 @@ $$
 
 ***
 
-# DC Machines Four # 
+## Compound Machines ##
 
 ![Compound machines types](/static/images/notes/CompuntMachineConfigurationActuators.png)
 
@@ -889,7 +898,7 @@ $$
 
 ***
 
-# DC Machines Five # 
+## Direct Current Motors ##
 
 The DC rotating machine can operate as a generator or as a motor, when operating as a motor the same basic equations apply. We will have a fixed DC source at the terminals feeding the motor and a rheostat controlling its speed, notice that the armature current and speed will also very according to the mechanical load we apply.
 
@@ -913,4 +922,4 @@ $$
 
 ***
 
-# PROXIMO TEMA # 
+# Induction Machines # 

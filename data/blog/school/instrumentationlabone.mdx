@@ -1,10 +1,10 @@
 ---
-title: Instrumentation Lab 1
+title: Instrumentation Lab Notes
 date: '2021-08-15'
 tags: ['school', 'instrumentation']
 ---
 
-This is an overview of the knowledge needed for the selection and operation of measuring instruments for different variables. Understand the measurement principles of sensors and instrumentation used in industrial processes. Requires knowledge in circuits, electricity and magnetism.
+Selection and operation of measuring instruments for different variables. Understand the measurement principles of sensors and instrumentation used in industrial processes. Requires knowledge in circuits, electricity and magnetism.
 
 ***
 
@@ -384,12 +384,6 @@ We can identify an instrument by combining every function it performs with its p
 * Receiving Indicator of Level.
 * Blind Transmitter of Pressure.
 
-**Instrument Identification ISA**
-
-![LetterIdentification](/static/images/notes/LetterIdentificationISAInstrulab.png)
-
-This combination of function and control variable is represented in the ANSI/ISA (Instrument Society of America) norm S5.1-84 or its equivalent DIN (Deutsches Institut für Normung) 19227
-
 **Plant Diagram**
 
 ![PlantDiagram Symbols](/static/images/notes/PlantSymbolsISAInstrulab.jpg)
@@ -411,7 +405,96 @@ This combination of function and control variable is represented in the ANSI/ISA
 
 Industry can be subdivided into discrete manufacturing (Cars, TVs, Celphones, etc), that uses distance sensors, conveying belts, robots and CNC machines or into continuous manufacturing (cement, food, drinks) that uses valves, flow, pressure controllers and controllers. Instrumentation diagrams are particularly useful to continuous manufacturing processes. 
 
-**Piping and Instrumentation Diagram**
+***
+
+# Optocouplers #
+
+![Optocouplers](/static/images/notes/SimpleOptocouplerInstrumentationLab.png)
+
+An optocoupler is a device that allows an electrical signal to be transmitted between two isolated circuits, their properties are useful since they can isolate low voltage devices from high voltage circuits, this is essential to be able to avoid damage or disruptions from high voltage surges. They can also be used with triacs to drive large AC voltages from small digital signals, making them good noise attenuators.
+
+Optocouplers use a transmitter diode, usually a LED or IRED, that encodes the incoming signal into light and then receiver, usually a photosensor diode, decodes the incoming light signal form the transmitter. They can be classified based on the type of photosensor used (Transistor Based, Darlington, SCR, TRIAC etc). Common optocouplers include the 4N26, PC817 and MOC3021.
+
+TRIAC and SCR based optocouplers use GaAs infrared LED as their transmitter but differ on their photosensitive part, the first uses a TRIAC (triode for alternating current) that can conduct current in either direction when triggered (intended to draw from an AC line), while a SCR (silicon-controlled rectifier) is intended for small DC currents since they can only conduct current in one direction.
+
+The forward current of the photodiode is the minimum current needed for operation (around 50mA), that is the minimum current required by the LED to fall correctly. The collector current is the maximum current that the phototransistor can deliver to the external load (around 50mA). The input forward voltage shows the typical and maximum voltage ratings for the LED at a particular operating current.
+
+Datasheets will usually include additional characteristic curves that depend on temperature. For higher current a optotriac with an auxiliary triac to drive the high current AC load can be used.
+
+***
+
+# Operational Amplifiers #
+
+![OpAmps](/static/images/notes/OpAmpConfigurationsInstrumentationLab.png)
+
+Op-Amps are high gain, coupled electronic amplifiers with two inputs and one output, in other words they are voltage dependent voltage sources. The voltage gain of its voltage output will depend on the voltage supplied and the voltage signals on the Non Inverting (Vp) and Inverting (Vn) inputs. The gain will originate inside the OpAmp from the multiple transistors that constitute the device.
+
+An operational amplifier is used for signal conditioning, control systems, filtering (low, high, band, reject band), signal comparators (adder, differentiator, instrumentation amplifier etc) and even as voltage followers or buffers preventing the input impedance of one stage from loading the prior stage’s output impedance (signal transfer loss).
+
+For the power supplies need to be at least as high as the output signal you expect to obtain, except in the cases where the operational amplifier saturation is desirable for example when working as a signal clipper. The absolute maximum ratings specified by the manufacturer must be taking into account, with typical values ranging from ±5V to ±18V, with the most common being ±10V and ±12V.
+
+In the ideal model we consider that the open loop gain, the bandwidth and the input impedance is infinite while the output impedance is zero. Non linear applications use a non feedback (open loop) configuration or a positive feedback configuration if working with oscillators. Linear applications usually use a negative feedback application. The maximum output voltage is 90 percent of the source voltage, after this point the device will become saturated.
+
+The input bias current is a parasitic current generated at the input signal in non ideal amplifiers. The CMRR (Common Mode Rejection Ratio) is measure of how much the differential OpAmp is amplifying noise, we want this value to be as low as possible, in an ideal OpAmp it will be zero. The transition frequency is the specific frequency for alternating current inputs where their gain will be unitary. The running speed or slew rate represents how quickly the output can follow the excitation of the input signal. 
+
+***
+
+# Filters #
+
+**Types of Filters**
+
+![Filters Instrument](/static/images/notes/FrequencyInFiltersInstrumentationLab.png)
+
+**Frequency Response**
+
+![Filters](/static/images/notes/BandPassNotchFiltersInstrumentationLab.png)
+
+The cutoff frequency in filters is the frequency at which the output power is reduced by one half or the frequency at which the input signal begins to be greatly attenuated, meaning that the output has fallen to a given proportion of the passband input, approximately 0.707, representing the starting point of the stop band. 
+
+For low pass filters and high pass filters there will be only one cutoff frequency (fc) but for band pass and notch filters there will be two (f1) and (f2). The bandwidth (B.W.) of the filters is the frequency range where the gain remains constant (don’t experience significant attenuation) for the range of frequencies that the filter lets through (passband width).
+
+
+**Circuit Configurations**
+
+![Filters Diagram](/static/images/notes/TypesForFiltersDiagramInstrumentationLab.png)
+
+Active filters can work at extremely low frequencies making them ideal when working for example at 60Hz. They have the ability to provide a signal gain, can be arranged to build higher order filters, have a higher input and lower output impedance (isolation), no excessive loading and generally reduce costs and space. Also, the quality factor (Q) and the tuned frequency of active filters can be easily adjusted by altering the resistances used in their configuration. 
+
+Passive filters have good high frequency performance (up to 300MHz), since they don’t have the bandwidth limitations of using components like the OpAmp, they have a higher voltage and current tolerance, reduced noise output and generally provide simpler control systems. Their difficulty filtering frequencies lower than 3kHz stems from the increased capacitance and inductance needed in their components and at extremely high frequencies (more than 300MHz) they will develop an unwanted parasitic capacitance.
+
+
+***
+
+# Oscillators and Converters #
+
+![ADC Process](/static/images/notes/AnalogtoDigitProcessInstrumentationLab.png)
+
+An analog to digital converter consists of two stages, the first is the sampling and holding and the second is the quantizing and encoding. By sampling the continuous input signal by a sampling period (that needs a clock) we obtain a series of points along the original input curve, this is represented by a switching device. Holding is the process of converting the points into horizontal lines so that the level they are at can be more easily identified, this is represented by a capacitive device.
+
+By quantizing we are assigning a particular value to each sample based on the resolution we are working with, usually rounding the numbers to their nearest integer. Encoding is the process of converting the rounded numbers into binary. After quantizing and encoding we end up with a binary number that represents the original analog signal. Quantizing and Encoding depend on a particular conversion time that needs to be lower than the sampling period.
+
+Performance of ADC is measured in their resolution, as the resolution bits increase so does the detectable range of values, meaning that the quantization error decreases but the maximum sampling rate possible also decreases. Common ADC types include Flash, Single Slope, Delta Sigma, SAR, Dual Slope, Digital Ramp, Tracking, while common DAC types include R-2RLadder and Binary Weighted Resistor.
+
+![Resolution Bits](/static/images/notes/IndicatorConverterInstrumentationLab.png)
+
+Flash ADC's are the fastest type but the number of comparators needed greatly increases as we increase the bit resolution, for example 7 comparators are needed for 3 bit resolution and 15 comparators for 4 bit. If we want to have a digital output we can force a comparator to use its input sources from 0V to 5V.
+
+***
+
+# Piping and Diagrams #
+
+**Instrument Identification ISA**
+
+![LetterIdentification](/static/images/notes/LetterIdentificationISAInstrulab.png)
+
+This combination of function and control variable is represented in the ANSI/ISA (Instrument Society of America) norm S5.1-84 or its equivalent DIN (Deutsches Institut für Normung) 19227
+
+**Types of Instrumentation Diagrams**
+
+1. Process Flow Diagrams (PFDs): Shows a high level overview on the expected inputs and outputs of the process. The most important information is every mayor process interconnection,
+2. Piping and Instrumentation Diagrams (P&ID's): Shows a middle level overview of the relevant processes with their instruments superimposed. Used to view process or data flow.
+3. Loop Diagrams: Shows a low level overview of a group of specific instruments and their interconnections integrating them into a process loop. 
+4. Functional Diagrams: Shows the reasoning behind a particular control system strategy. Used to view control process algorithms, they are common in the power generation industry.
 
 ![Piping and I Diagram](/static/images/notes/PipingAndInstrumentationDiagramforIntru.png)
 
@@ -429,121 +512,65 @@ To achieve its purpose it must provide the following data for engineers, constru
 * Drains and Vents: Indicated using typical symbols along with their size and type (single valve, double valve).
 * Automated valves: Shutdown valves (SDV), control valves, blowdown valves (BDV), size, tags, fail position (Open/Close), actuators.
 * Safety Valves: Pressure relief valves (PRV) or temperature relief valves (TRV) are indicated with their tags, setpoints and types.
+* Notes: Written to improve clarity. Hold is sometimes used to indicate uncertainty about a piece of data.
 * Instruments: Gauges, transmitters, indicators, DCS indicators, interlocks and other functions are shown in detail. 
 	* Their interconnection is shown based on their type of signals (hardwired, soft, pneumatic, hydraulic). 
 	* The location of the instruments (field mounted or DCS) is indicated by the distance between the symbols.
-* Notes: Written to improve clarity. Hold is sometimes used to indicate uncertainty about a piece of data.
 * Interconnections (OPC): Shown between lines (Piping) and instrument signals (Instrument) sheets. 
 	* They can have unique tag for easy identification between diagrams. 
 
 Because of the numerous details involved for every piece of equipment usually only one type is shown per diagram with its related piping and instruments.
 
-***
+![Process Flow Diagram](/static/images/notes/POipingDiagramEntiryInstrumentationLab.png)
 
-# Optocouplers #
+Process Flow Diagrams (PFDs) essentially capture the process flow of a processing plant. They are used to capture the equipment, process stream, design conditions and the basic process control scheme used.
 
-PC817 
-led Y PHOTODIODO fotoresistor
-El fotodiodo actua como un switch dejando pasar una fuente a una carga cuando el led emita luz
-El metodo de fabricacion por fotolitografia se ocupa en la creacion de diodos y MEMS
-FC 50mA
+Process equipment in a PFD must have a reference tag number, name, process operating conditions and design requirements. The diagram must show reference stream numbers, normally no flow streams (NNF), stream process data, legends and PFD interconnections.
 
-El 4N26 tiene una pata adicional que sirve de backup por si el diodo emisor se rompe podamos activar manualmente mediante otro switch el FOTOTRANSITOR con una conecicon a base
-FC 60 mA
-CC 50 mA
+Usually PFD put emphasis on important isolation valves, normally closed or locked closed valves, automatic valves (motor, emergency shutdown, control). A utility flow diagram (UFD) is a PFD variation designed to capture the utility flow, such as steam, nitrogen and water flow. 
 
-FORWARD CURRENT es el minimo de corriente que van a necesitar para funcionar, es decir la corriente que requiere el led para prenderse correctamente
+Some items that are usually reserved for P&ID and may not appear on the PFD are safety valves, detailed instruments, lines, fittings, drain vents and instrument tag numbers.
 
-COLLECTOR CURRENT es la corriente que el fototransitor puede suministrar a la carga extrerna 
+**Loop Diagrams**
 
-HAY FOTOTRANSITOR, FOTOTRANSISTOR DARLINGTON (DC), TRIAC (AC) Y SRC (AC)
+![Loop Diagram Components](/static/images/notes/FunctionLoopDiagramCOmpoInstrumentationLab.png)
 
-lOS Optotriac tambien tienen un diodo
-MOC301X
-El triac es un diodo de potencia MOSFET
-Es necesario el triac en AC porque permite trabajar en ambas direcciones es bidireccional en cuanto a la carga output
+This is the most detailed control system diagram. The drawing is fairly constrained as per the ISA 5.1 standard but provide input and output calibration for every single instrument, they are particularly useful for diagnosing problems.
 
-Forward current max 60 mA
-Input Forward voltage (at a temperature and current show typucal and maximum voltages for the LED)
+**Loop Diagram Example**
 
-Tambien muestra las corrientes de trigger para el LED dependiendo del modelo IFT entonces se recomienda que este entre estos dos valores
+![Loop Diagram Example](/static/images/notes/LoopDiagramExampleOneInstrumentationLab.png)
 
-El OPTOTRIAC no debe ser utilizado para la carga directamente se debe utilizar un TRIAC auxiliar que va a conducir la carga de AC de un foco por ejemplo
-Porque no puede suministrar la corriente
+**Functional Diagrams**
 
-LAS CURVAS generalmente dependen de la temperatura en el datasheet
+![Functional Diagram Ex1](/static/images/notes/FunctionDiagramExampInstrumentationLab.png)
 
+1. Example of the function diagram of a flow transmitter (FT) sending a process variable signal to a PID controller that then sends a manipulated variable signal to a flow control valve (FCV).
+2. Example of a cascaded control system where the output of one controller is the setpoint of another, it uses the same components from the previous functional diagram.
 
+**Electrical Safety Standard**
 
+IEC 61508 (previously IEC 1508) is a seven part standard that defines the functional safety of any electrical, electroic or programmable electronic (E/E/PES) related system. It was developed by the international electrotechnical commission (IEC). 
 
+The first three parts define safe management, development, deployment and operation of electrical systems's hardware and software. The remaining four parts define applications, common definitions and informative annexes.
 
-***
+* IEC 61508-1: System Integrators, overall safety lifecycle process. How to identify safety risks from a point of view of project management, quality assurance and configuration. Safety and performance of industrial processes in the field.
+* IEC 61508-2: Provides objectives for safe development of electrical hardware. 
+* IEC 61508-3: Provides objectives for safe development of electrical software.
+* IEC 61508-4: Provides standard definitions, abbreviations and terminology.
+* IEC 61508-5: Provides formal approach to determine the Safety Integrity Level (SIL) of the safety system (SIS or SRS) implemented.
+* IEC 61508-6: General guidelines for implementing the second and third part.
+* IEC 61508-7: Safety techniques, methods and measurements relevant to the implementation of the second and third part.
 
-# Operational Amplifiers #
+The IEC is global organization consisting of 60 countries that was founded in 1906 to prepare and publish international electrical and electronic standards. Third party organizations use the CASS (Conformity Assessment of Safety Related Systems) to certify that a system has met the requirements set by IEC 61508.
 
-Es un amplificador con dos entradas, dos alimentaciones y una salida
-Dispositivos lineales ideales para la amplificacione DC
-Usados en acondicionamiento, filtrado y como comparadores.
-El principio de retroalizmentacion negativa es fundamental para el control de procesos
-En la configuracion de amplificador diferencial se amplifica la diferencia entre las tensiones de las entradas proporcionando una salida que no esta influida por cualquier voltaje comun entre ellas.
+Having CASS certification enhances safety confidence, reduces procurement, long term operation, capital, design and development costs and promotes an international trade in certified equipment. CASS Assessment can be divided into:
 
-Vs = - R2 /R1 (V1-V2)
-Con R1 y V1 en no inversor 
-Con V2 en inversor
-
-En el modelo ideal 
-La ganancia en lazo abierto es infinita
-El ancho de banda es infinito
-La impedancia de entrada es infinita
-La impedancia de salida es cero
-
-Av = Vo/Vi (Ganancia Final)
-
-Sin retroalimentacion (lazo abierto) Aplicacion no lineal.
-Retroalimentacion positiva (Aplicacion en osciladores) Aplicacion no lineal-
-Retroalimentacion negativa Aplicacion lineal.
-
-El voltaje de salida maximo es el voltaje de entrada mas el 90 porciento del voltaje de entrada 
-
-La relacion de rechazo de modo omun o CMRR queremos que sea pequeña ya que inidica que la ganancia es tal que no se dejaran pasar variaciones pequeñas como el ruido.
-
-En un OP AMP ideal es 0 indicando que en un diferenciador con entradas iguales la salida sera cero, en la realidad en este msmo caso la salida tendra un pequeño votaje que corre el riesgo de ser amplificado por el circuito y terminar generando un offset indeseado.
-
-La frecuencia de transicion es aquella frecuencia para entradas en corriente alterna en donde la ganancia que tienen debido al op amp sera unitaria.
-
-Velocidad de subida o slew rate es que tan rapido la salida seguira a la entrada o si existira un desfazamiento entre ellas.
-
-DIAGRAMAS
-
-Inversor Y nO INVERSOR
-Amplificador sumador inversor
-Amlificador Diferencial.
-Seguidor de voltaje
-Integrador
-Derivador
-Amplificador de intrumentacion 
-Amplificador inversor de audio
-
-***
-
-# Filters #
-
-IMAGEN CON LA CLASEIFICACION DE FILTROS POR COMPONENTES Y POR FRECUENCIAS 
-
-Descripcion de filtros y como nos daran las frecencias que queremos.
-
-Frecuency of cut bandwid pass band stop band and logarithmic graphics.
-
-Diference betwen active and passive, componentes, description and advantegas and disadvantages
-
-
-***
-
-# Oscillators and Converters #
-
-***
-
-# Piping and Diagrams #
+1. Type 1 or Application Independent Assessment (Components).
+2. Type 2 or Application Specific Products (Tailored Installations).
+3. Type 3 or Operations and Maintenance Assessment
+4. Type 4 or Safety Requirements Assessment
+5. Type 5 or Functional Safety Capability Assessment (FSCA).
 
 ***
 
