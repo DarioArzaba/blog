@@ -900,6 +900,8 @@ $$
 
 ## Direct Current Motors ##
 
+![Shunt Motor](/static/images/notes/ShuntandMotorGenPowerLossesActuators.png)
+
 The DC rotating machine can operate as a generator or as a motor, when operating as a motor the same basic equations apply. We will have a fixed DC source at the terminals feeding the motor and a rheostat controlling its speed, notice that the armature current and speed will also very according to the mechanical load we apply.
 
 $$
@@ -917,6 +919,81 @@ $$
 \begin{gathered}
 	\text{Motor Efficiency}\\
 	E_{ff} = \frac{P_{Output}}{P_{Input}}
+\end{gathered}
+$$
+
+**Torque Speed Relation**
+
+![Torque Speed](/static/images/notes/TorqueSpeedCharactersitMotorsActuators.png)
+
+Considering a separate excitation motor we can obtain its torque vs speed function using the following relations:
+
+$$
+\begin{gathered}
+	E_a = K_a \Phi \omega_m\\
+	T = K_a \Phi I_a\\
+	I_a = \frac{T}{K_a \Phi}\\
+	\omega_m = \frac{V_t - I_a R_a}{K_a \Phi}\\
+	\omega_m = \frac{- R_a}{(K_a\Phi)^2} (T) + \frac{V_t}{K_a \Phi}
+\end{gathered}
+$$
+
+From the last relation we can observe that the motor speed can be controlled with:
+
+![Armature Control](/static/images/notes/ArmatureControlActuators.png)
+
+* Armature voltage control: Varying the voltage in the armature terminals (usually through an expensive variable source).
+
+$$
+\begin{gathered}
+	\omega_m = \frac{- R_a}{(K_a\Phi)^2} (T) + \frac{V_t}{K_a \Phi}\\
+	\omega_m =  - K_2(T) + K_1(V_t)
+\end{gathered}
+$$
+
+![Field Control](/static/images/notes/FieldControlMotorActuators.png)
+
+* Field control: Varying the field current with a variable field resistance (rheostat $R_{fc}$), assuming magnetic linearity.
+
+$$
+\begin{gathered}
+	K_a \Phi = K_f I_f\\
+	E_a = K_f I_f \omega_m\\
+	\omega_m = \frac{- R_a(T)}{(K_f I_f)^2} + \frac{V_t}{K_f I_f}\\
+	\text{Without load then:}\\
+	\omega_m \approx \frac{V_t}{K_f I_f}
+\end{gathered}
+$$
+
+Note that the constant $K_f$ depends on dimensions of the motor, the magnetic material and the number of turns in the field winding. This method is less expensive but due to the high field circuit inductance the change in the field current will be slow resulting in an overall slow speed response.
+
+![Armature Resistance Control](/static/images/notes/ArmatureResistanceControlActuators.png)
+
+* Armature resistance control: Varying the armature current with a variable armature resistance (rheostat $R_{ae}$).
+
+$$
+\begin{gathered}
+	\omega_m = \frac{- (R_a + R_{ae})}{(K_a\Phi)^2} (T) + \frac{V_t}{K_a \Phi}\\
+	\omega_m =  - K_2(T) + K_1(V_t)
+\end{gathered}
+$$
+
+This method is also easy to implement but is less efficient due to a loss in $R_{ae}$ as the rheostat must be able to carry the armature resistance.
+
+**Series Motor**
+
+![Series Motor Speed](/static/images/notes/SeriesMotorFieldControlSpeedActuators.png)
+
+In a series motor configuration, where the armature and field circuits are in series, if we try to control the speed of the motor using a rheostat then the field control and the armature resistance control methods will be the same. We use series configuration for large startup torques (subways, car gears, blenders) at low speeds and high speeds at low torques. assuming
+
+$$
+\begin{gathered}
+	K_a \Phi = K_{sr} I_a\\
+	E_a = K_{sr} I_a \omega_m\\
+	T = K_{sr} I_a^2\\
+	E_a = V_t - I_a (R_a + R_{ae} + R_{sr})\\
+	\omega_m = \frac{V_t}{K_{sr} I_a} - \frac{R_a + R_{sr} + R_{ae}}{K_{sr}}\\
+	\omega_m = \frac{V_t}{\sqrt{K_{sr}}\sqrt{T}} - \frac{R_a + R_{sr} + R_{ae}}{K_{sr}}
 \end{gathered}
 $$
 

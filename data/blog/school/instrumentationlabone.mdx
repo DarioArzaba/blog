@@ -496,6 +496,8 @@ This combination of function and control variable is represented in the ANSI/ISA
 3. Loop Diagrams: Shows a low level overview of a group of specific instruments and their interconnections integrating them into a process loop. 
 4. Functional Diagrams: Shows the reasoning behind a particular control system strategy. Used to view control process algorithms, they are common in the power generation industry.
 
+**Piping and Instrumentation Diagrams**
+
 ![Piping and I Diagram](/static/images/notes/PipingAndInstrumentationDiagramforIntru.png)
 
 Piping and Instrumentation Diagrams (P&IDs) show the layout of all relevant vessels, pipes and machinery with their instruments superimposed, describing the flow of substances or data between components. Formally defined by the Institute of Instrumentation and Control as a diagram that shows the interconnection of equipment and instrumentation used to control the process using a standard set of symbols based on ISA standard S5.1.
@@ -504,22 +506,25 @@ It is used for construction and operation of a plant, maintenance and modificati
 
 To achieve its purpose it must provide the following data for engineers, construction teams and operators:
 
-* Equipment: Tanks, vessels, heat exchangers, pumps, compressors, columns, etc. Indicating type, tags, design data, spare parts etc.
-* Lines: Piping material class, size, fluid service, tags, insulation, thickness, operating pressure, temperature and flowrates.
-* Piping Requirements: Slope, special insulation (heat tracing), piping distance requirements etc.
-* Manually Opened Valves: Valve types (ball, gate, check), valve size, closed or open (locked, sealed, normally).
-* Piping fittings: Flanges, reducers, expanders, spectacle blinds, spacers, strainers, along with their size.
-* Drains and Vents: Indicated using typical symbols along with their size and type (single valve, double valve).
-* Automated valves: Shutdown valves (SDV), control valves, blowdown valves (BDV), size, tags, fail position (Open/Close), actuators.
-* Safety Valves: Pressure relief valves (PRV) or temperature relief valves (TRV) are indicated with their tags, setpoints and types.
-* Notes: Written to improve clarity. Hold is sometimes used to indicate uncertainty about a piece of data.
-* Instruments: Gauges, transmitters, indicators, DCS indicators, interlocks and other functions are shown in detail. 
-	* Their interconnection is shown based on their type of signals (hardwired, soft, pneumatic, hydraulic). 
-	* The location of the instruments (field mounted or DCS) is indicated by the distance between the symbols.
-* Interconnections (OPC): Shown between lines (Piping) and instrument signals (Instrument) sheets. 
+* General: Tags, setpoints, types (single, double), sizes, fail positions, locked, sealed.
+* Equipment: Tanks, vessels, heat exchangers, pumps, compressors, columns, spare parts etc. 
+* Lines: Material, fluid service, insulation, thickness, pressure, temperature and flowrates.
+* Piping Requirements: Slope, special insulation (heat tracing), distance requirement etc.
+* Manually Opened Valves: Valve types (ball, gate, check), size and normal position.
+* Piping fittings: Flanges, reducers, expanders, spectacle blinds, spacers, strainers.
+* Drains and Vents: Indicated using typical symbols and if they use single or double valve.
+* Automated valves: Shutdown valves (SDV), control valves, blowdown valves (BDV), actuators.
+* Safety Valves: Pressure relief vales and temperature relief valves (PRV, TRV).
+* Notes: Written to improve clarity. Word "hold" indicates uncertainty about a piece of data.
+* Instruments: Gauges, transmitters, indicators, DCS indicators, interlocks and other functions. 
+	* Interconnection based on their type of signals (hardwired, soft, pneumatic, hydraulic). 
+	* Location of instruments (field mounted or DCS) is indicated by the distance between symbols.
+* Interconnections (OPC): Shown between lines (Piping) and instrument signal sheets. 
 	* They can have unique tag for easy identification between diagrams. 
 
 Because of the numerous details involved for every piece of equipment usually only one type is shown per diagram with its related piping and instruments.
+
+**Process Flow Diagrams**
 
 ![Process Flow Diagram](/static/images/notes/POipingDiagramEntiryInstrumentationLab.png)
 

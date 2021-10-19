@@ -775,22 +775,151 @@ A DC shunt motor with 12kW, 100V and 1000rpm has an armature resistance of 0.1 O
 		\frac{E_a}{E_{afull}} = \frac{K_a \Phi \omega_{full}}{K_a \Phi \omega_{w}}\\
 		\frac{88}{99.4} = \frac{\omega_{full}}{1000(\frac{2\pi}{60})}\\
 		\therefore \omega_{full} = 92.71\,\text{rad/s}\\\\
+		E_{a} I_{a} = T \omega_m \\
+		T = \frac{E_a I_a}{\omega_m} = \frac{(88)(120)}{92.71}\\
+		\therefore T = 113.9 \, \text{Nm}\\\\
+		P_o = E_a I_a - P_{rot} = (88)(120) - 594.4 = 9963.6\\
+		P_i = V_t I_t = V_t (I_a + I_t) = 100 (120 + 0.99) = 12099\\
+		Eff = \eta = \frac{P_o}{P_i} = \frac{9963.6}{12099}\\
+		\therefore \eta = 0.8235
 	\end{gathered} 
 	$$
 
-4. Calculate the speed, electromagnetic torque and efficiency of the motor when a rated current flows in the armature. Consider that the air gap flux is reduced by 5 percent when the rated current in the armature has an additional armature reaction.
+4. Obtain the previous variables but now consider that the air gap flux is reduced by 5 percent when the rated current in the armature has an additional armature reaction.
+
+	$$
+	\begin{gathered}
+		\Phi_{full} = (0.95)\Phi_{without}\\
+		\frac{E_a}{E_{afull}} = \frac{K_a (0.95)\Phi \omega_{full}}{K_a \Phi \omega_{w}}\\
+		\frac{88}{99.4} = \frac{(0.95)\omega_{full}}{1000(\frac{2\pi}{60})}\\
+		\omega_{full} = 97.59\,\text{rad/s}\\
+		T = \frac{E_a I_a}{\omega_m} = \frac{(88)(120)}{97.59}\\
+		T = 108.21 \, \text{Nm}\\
+		\eta = 0.8235
+	\end{gathered} 
+	$$
 
 5. Calculate the starting torque if the starting armature current is limited to 150 percent of its nominal value. Neglect armature reaction in this case.
 
+	$$
+	\begin{gathered}
+		T = K_a \Phi I_a\\
+		E_{a} = K_a \Phi \omega_m\\
+		99.4 = K_a \Phi 1000(\frac{2\pi}{60})\\
+		K_a \Phi = 0.949\\
+		I_{astart} = (1.5)(I_{amax}) = 1.5(120) = 180\\
+		\therefore T_{start} =  0.949(180) = 170.8 \, \text{Nm}
+	\end{gathered} 
+	$$
 
+**Exercise 2**
 
+A DC shunt motor of 500V with an armature resistance of 0.25 Ohm, a field circuit resistance of 240 Ohms is connected to a 500V source from which the motor takes 100A to rotate at 1100 rpm. Calculate the resistance needed if we want to use an armature resistance control for lowering the speed to 900 rpm.
 
+$$
+\begin{gathered}
+	V_t = 500\\
+	I_t = 100\\
+	I_t = I_a + I_f\\
+	I_a = I_t - I_f\\
+	V_t = I_f R_f\\
+	I_f = \frac{500}{240} = 2.003\\
+	I_a = 100-2.083 = 97.92\\
+	-V_f + R_a I_a + E_a = 0\\
+	E_{a1100} = V_t - R_a I_a = 500 - 0.25(97.92)\\
+	E_{a1100} = 475.52\\
+	\frac{E_{a1100}}{E_{a900}} = \frac{1100}{900}\\
+	E_{a900} = (475.52)\frac{900}{1100} = 389.06\\
+	\frac{I_{a1100}}{I_{a900}} = \frac{1100}{900}\\
+	I_{a900} = (97.92)\frac{900}{1100} = 80.116\\
+	\text{From Shunt Configuration}\\
+	-V_t + R_a I_a + E_a + R_{ae} I_a = 0\\
+	R_{ae} = \frac{V_t - E_a - R_a I_a}{I_a}\\
+	R_{ae} = \frac{500 - 389.06 - 0.25 (80.116)}{80.116}\\
+	\therefore R_{ae} = 1.13
+\end{gathered} 
+$$
 
+**Exercise 3**
 
+A DC series motor of 220V with an armature resistance of 0.6 Ohm drives a fan that requires a minimum torque proportional to the square of the speed. The motor is connected to a 220V source ($R_{ae}=0$), taking 25A and rotates at 300 rpm. 
 
+1. Calculate the torque of the motor and the power delivered to the fan.
 
+$$
+\begin{gathered}
+	P = E_a I_a\\
+	E_a = V_f - I_a (R_{sr} + R_a)\\
+	E_a = 220 - 25(0.4 + 0.6)
+	E_a = 195\\
+	P = 195(25) = 4875\\
+	\therefore P = 4875 \, \text{W}\\\\
+	T\omega_m = E_a I_a\\
+	T = \frac{E_a I_a}{\omega_m} = \frac{4875}{300\frac{2\pi}{60}}\\
+	\therefore T = 155.17 \, \text{Nm}
+\end{gathered} 
+$$
 
+2. Calculate the armature rheostat resistance ($R_{ae}$) needed to lower the speed to 200 rpm. Calculate the new power delivered to the fan.
 
+$$
+\begin{gathered}
+	\frac{T_{300}}{T_{200}} = \left(\frac{300}{200}\right)\\
+	T_{200} = \left(\frac{200}{300}\right)^2(155.17) = 68.96\\
+	T = K_{sr} I_a^2\\
+	K_{sr} = \frac{T}{I_a^2} = \frac{155.17}{25^2} = 0.248\\
+	\omega_m = \frac{V_t}{\sqrt{K_{sr}}\sqrt{T}} - \frac{R_a + R_{sr} + R_{ae}}{K_{sr}}\\
+	200\frac{2\pi}{60} = \frac{220}{\sqrt{0.248}\sqrt{68.96}} - \frac{0.6 + 0.4 + R_{ae}}{0.248}\\
+	\therefore R_{ae} = 7 \, \Omega\\\\
+	P = E_a I_a\\
+	T = K_{sr} I_a^2\\
+	I_a = \sqrt{\frac{68.96}{0.248}}= 16.68 \text{A}\\
+	E_a = K_{sr} I_a \omega_m = (0.248)(16.68)(200\frac{2\pi}{60})\\
+	E_a = 86.64\\
+	P = (86.64)(16.68)\\
+	\therefore P = 1444 \text{W}
+\end{gathered} 
+$$
+
+Note that in this exercise the torque to speed relation is non linear.
+
+**Exercise 4**
+
+A DC shunt motor has an armature resistance of 47 Ohms, a shunt winding resistance of 187 Ohms, an applied voltage at its terminals of 240V, a field current of 0.34A and a speed of 3600 without load. A rheostat is installed in series with the field winding to vary the speed. Calculate the range of rheostat resistances to maintain the speed of the motor between 1800 rpm and 3600 rpm. Ignore rotational losses. The motor has a load that varies with the speed by the following relation:
+
+$$
+\begin{gathered}
+	P = (22.4)\left(\frac{speed}{3600}\right)^3\,\text{kW}\\
+	T \omega_m = P\\
+	T = 22.4\times 10^3 \frac{\omega_m^2}{(120\pi)^3}\\
+	T_{1800} = \frac{22.4\times 10^3}{(120\pi)^3} (1800\frac{2\pi}{60})^2\\
+	T_{1800} = 14.85\\
+	T_{3600} = \frac{22.4\times 10^3}{(120\pi)^3} (120\pi)^2\\
+	T_{3600} = 59.41\\\\
+	\omega_m = \frac{- R_a(T)}{(K_f I_f)^2} + \frac{V_t}{K_f I_f}\\
+	\text{Without load:}\\
+	\omega_m \approx \frac{V_t}{K_f I_f}\\
+	K_f = \frac{V_t}{\omega_m I_f} = \frac{290}{120\pi(0.34)}\\
+	K_f = 1.87\\
+	\omega_m = \frac{V_t K_f I_f - R_a T}{K_f^2 I_f^2}\\
+	\omega_m K_f^2 I_f^2 - \frac{I_f V_t}{\omega_m K_f} + \frac{R_a T}{\omega_m K_f^2} = 0\\
+	\text{Quadratic Formula:}\\
+	I_f = (\frac{1}{2})\frac{V_t}{\omega_m K_f} \pm \sqrt{\left(\frac{V_t}{\omega_m K_f}\right)^2 - (4)(1)\left(\frac{R_a T}{\omega_m K_f^2}\right)}\\
+	I_f = \frac{V_t}{2 K_f \omega_m} \left(1 \pm \sqrt{1 - \frac{4 R_a T \omega_m}{V_t^2}}\right)\\
+	I_{f1800} = \frac{240}{2(1.87) (60\pi)} \left(1 + \sqrt{1 - \frac{4 (0.0047)(14.85)(60\pi)}{(240)^2}}\right)\\
+	I_{f1800} = 0.678\\
+	I_{f3600} = \frac{240}{2(1.87) (120\pi)} \left(1 + \sqrt{1 - \frac{4 (0.0047)(59.41)(120\pi)}{(240)^2}}\right)\\
+	I_{f3600} = 0.333\\\\
+	V_f = I_f R_f\\
+	R_f = \frac{V_t}{I_f}\\
+	R_{f1800} = \frac{240}{0.678} = 354\\
+	R_{f3600} = \frac{240}{0.333} = 720.7\\
+	R_f = R_{fc} + R_{fw}\\
+	R_{fc} = R_f - R_{fw}\\
+	\therefore R_{fc1800} = 354 - 187 = 167 \, \Omega\\
+	\therefore R_{fc3600} = 720.7 - 187 = 533.7 \, \Omega
+\end{gathered} 
+$$
 
 
 
