@@ -11,17 +11,8 @@ Understand the different types of materials used in current technology. Understa
 1. [Materials Introduction](#materials-introduction)
 2. [Atomic Bonds](#atomic-bonds)
 3. [Mechanical properties](#mechanical-properties)
-4. Fracture, fatigue and creep
-	1. Rapid fracture and toughness. Stress intensity factor and fracture toughness.
-	2. Micromechanisms of rapid fracture. Fatigue failure and tests, high and low cycling.
-	3. Fatigue crack growth and creep problem. Mechanisms of creep and Larson Miller parameter.
-5. Cold work, hot work and annealing
-	1. Cold work hardening and dislocation density. Effect of cold work on material properties.
-	2. Work in cold, warm and hot. Annealing process.
-6. Polymerics
-	1. Thermoset polymers, thermoplastics and elastomers. Physical properties of polymerics.
-	2. Glass transition. Addition, condensation degree and crystallinity.
-	3. Recycled plastics, degradable plastics. Mechanical and chemical recycling processes.
+4. [Fracture, fatigue and creep](#fracture-fatigue-creep)
+5. [Polymerics](#polymerics)
 7. Solidification, nucleation and growth
 	1. Subcooling for nucleation in solidification. Parameters in the cooling curve.
 	2. Microstructural characteristics in the solidification.
@@ -145,7 +136,7 @@ The main objective is to prevent failures such as deformation or fracture. To ac
 * Elastic Limit: Stress at which plastic deformation begins.
 * Proportional limit: Stress at which the stress-deformation relation is no longer linear.
 * Yield or creep stress: Stress just above the elastic limit where the yield region starts.
-* Compensated creep resistance: Describes a specific amount of plastic deformation (0.002 or 2%).
+* Compensated creep res: Describes a specific amount of plastic deformation (0.002 or 2%).
 * Resilience modulus: Amount of energy the material supports at the creep resistance point.
 * Ultimate tensile stress: Maximum stress that the material structure can oppose.
 * Resistance to fracture: Maximum stress before the material completely fractures.
@@ -256,6 +247,266 @@ $$
 	D_o = \sqrt{\frac{4(A_o)}{\pi}} = 2.7864\,\text{in}\\
 \end{gathered}
 $$
+
+***
+
+# Fracture Fatigue Creep #
+
+**Flexural**
+
+![Flexion Properties](/static/images/notes/FlexuralTestingOtherMaterials.png)
+
+If a material is brittle it is preferred to do a flexural test to know its resistance, this test consists of applying three or four loads to cause a bending force. We can use universal machines to perform tension tests as long as we have an additional device that adds two stationary load points.
+
+For this test we need to know the sample width $w$, height $h$, and length $l$, the distance between the stationary points $L$ and the midpoint $\frac{L}{2}$. After performing the test the linear displacement between the third load contact point and its final fracture point is called deflection.
+
+Flexion is a type of deformation on elongated elements that presents itself in a perpendicular direction to its longitudinal axis, deflection is therefore the degree to which an element deforms from a flexural load. Note that the upper part of the sample will experience compressive forces while the lower part will experience tension forces.
+
+The resulting graph from a flexural test is a stress and deflection curve, in this case the deflection is equivalent to deformation in a tension test since they are both linear displacements. In the three point test the maximum bending point is given by $\frac{FL}{4}$, while in the four point test is given by $\frac{FL}{2}$.
+
+$$
+\begin{gathered}
+	\sigma_{f} = \frac{3 F L}{2 w h^2}\\
+	E_{f} = \frac{L^3 F}{4 w h^3 \delta}\\
+	\text{Four Point Test:}\\
+	\sigma_{f} = \frac{3 F L_{1}}{4 w h^2}
+\end{gathered}
+$$
+
+**Exercise 1**
+
+Flexural strength of a composite material is 45000 psi, its flexural modulus is 18000000 psi, the sample width is 0.5 in, the sample height is 8 in and the distance between the supports is 5 in apart. Calculate the force required to break the material and its final deflection at the point of fracture. Assume no plastic deformation.
+
+$$
+\begin{gathered}
+	\sigma_{f} = 45000\\
+	E_f = 18\times 10^{6}\\
+	\sigma_{f} = \frac{3 F L}{2 w h^2}\\
+	F = \frac{45000(2)(0.5)(0.375)^2}{3(5)}\\
+	F = 421.875 \, \text{lb}\\\\
+	E_{f} = \frac{L^3 F}{4 w h^3 \delta}\\
+	\delta = \frac{(5)^2 (421.875)}{(18\times 10^{6})(4)(0.5)(0.375)^3}\\
+	\delta = 0.0277\,\text{inches}
+\end{gathered}
+$$
+
+**Exercise 2**
+
+A three point flexural test is made on a sample block of silicon carbide with width 0.6 cm, height 1.5 cm and length of 10 cm. The sample is over two stationary points with a distance of 7.5 between them and has a fracture point when reaching a 0.09 mm deflection. Its flexural modulus is 480 GPa. Calculate the force required to break the material and its flexural strength. Assume no plastic deformation.
+
+$$
+\begin{gathered}
+	E_{f} = \frac{L^3 F}{4 w h^3 \delta}\\
+	F = \frac{4800000(4)(0.015)(0.006)^3(0.00009)}{(0.075)^3}\\
+	F = 1327.104 \, \text{N}\\\\
+	\sigma_{f} = \frac{3 F L}{2 w h^2}\\
+	\sigma_{f} = \frac{3(1327.104)(0.075)}{2(0.015)(0.006)^2}\\
+	\sigma_{f} = 276.45 \, \text{MPa}
+\end{gathered}
+$$
+
+* [ASTM D790 Standard](https://www.astm.org/Standards/D790)
+
+**Fatigue**
+
+![Fatigue Testing](/static/images/notes/FatigueTestinInLabMaterials.png)
+
+Fatigue is a gradual reduction in load capacity and fracture due to a slow rupture by the infinitesimal advance of cracks in its interior. Fatigue is caused by cyclical and dynamic loads and its what determines the useful lifespan of a component. Fatigue generates permanent, progressive and localized structural damage.
+
+The loads that cause fatigue are variable in nature and will produce fracture after a sufficient number of fluctuations is reached. Note that 90% of parts used on any device will end up failing due to fatigue. 
+
+Fatigue life is the number of cycles that a part is able to withstand before reaching failure, if the stress applied on each cycle is low enough the average fatigue life of a component is exponentially increased until we reach an *infinite* fatigue life.
+
+Fatigue testing can use a modified universal machine with a spring that performs loading and unloading cycles by extending and contracting the spring using a motor, however the most common fatigue testing machine is called a rotating beam tester that performs flexural test cycles using a perpendicular weights.
+
+After testing we obtain a stress to number of cycles curve called Wöhler or S to N curve representing the number of cycles until fracture for a particular stress per cycle. We can see that if we use the device below a minimum stress per cycle value we end up extending the fatigue life to an *infinite* fatigue life.
+
+Cracks start at a stress concentration region (unusually resistant point), at the surface (higher stress fluctuations) or at a previous crack caused by structural imperfections or due to the tools and manufacturing process used. The cracks are fine and difficult to detect requiring powerful optical or ultrasonic instruments.
+
+**Hardness**
+
+![Hardness Testing](/static/images/notes/HardnessInTestingMatMaterials.png)
+
+Hardness is the ability of a material to resist penetration into its surface from another harder material. It represents the resistance to scratches, indentation and serves as a complementary qualitative measure of the material's general resistance. We classify hardness tests into macro or micro depending on the magnitude of the indentations generated.
+
+The two most common harness tests are the Brinell and Rockwell test. The Brinell uses a 10mm diameter $D$ hard steel sphere that is pressed against the surface of the sample to measure the diameter of the impression $D_i$, usually from 2mm to 6mm, this diameter is then used to calculate the corresponding Brinell Hardness number (HB). 
+
+$$
+\begin{gathered}
+	HB = \frac{2F}{\pi (D)(D - \sqrt{D^2 - D_i^2})} \, \text{Kg/mm}^2
+\end{gathered}
+$$
+
+The approximate qualitative relation between the HB number and the tension resistance in steel is given by:
+
+$$
+\begin{gathered}
+	\sigma_{psi} = 500 \text{HB}\\
+	\sigma_{kg/mm2} = 0.346 \text{HB}\\	
+\end{gathered}
+$$
+
+
+The Rockwell hardness test uses a hard sphere (Steel S, Tungsten Carbide W) for soft materials and a diamond cone (Brale) for harder materials. The penetration depth $h$ is measured and converted into its corresponding Rockwell Hardness number (HR) accompanied by the Rockwell scale used (A-Z). The relation between h and HR is given by:
+
+$$
+\begin{gathered}
+	\text{Diamond Cone}\\
+	HR =100 - \frac{h}{0.002}\\
+	\text{Hard Sphere}\\
+	HR =130 - \frac{h}{0.002}
+\end{gathered}
+$$
+
+One important difference between tension, flexural and fatigue tests compared to harness tests is that hardness tests are usually non destructive since the indentations remain superficial, this means that some parts can be tested directly. Apart from Brinell and Rockwell other hardness tests include:
+
+* Vickers: Using diamond pyramid indenters they can be used in macro and micro hardness tests.
+* Knoop: Using diamond pyramid indenters it specializes in micro harness tests for applied loads of less than 2N.
+* Shore: Determines hardness by the rebound suffered by a striker dropped at a certain height.
+* Leeb: A body, usually a 3 to 6 mm diameter Tungsten sphere is thrown at a given speed by a spring into the test surface.
+* Others: Ultrasonic and optical harness test methods.
+
+**Exercise 1**
+
+By doing a Brinell test we produce an indentation of 4.5mm using a 500kg load applied into an aluminum sample. Determine de Brinell hardness number.
+
+$$
+\begin{gathered}
+	HB = \frac{2F}{\pi (D)(D - \sqrt{D^2 - D_i^2})}\\
+	HB = \frac{2(500)}{\pi (10)(10 - \sqrt{10^2 - 4.5^2})}\\
+	HB = 29.75 \, \text{Kg/mm}^2
+\end{gathered}
+$$
+
+**Exercise 2**
+
+By doing a Brinell test we calculate a 59.66 HB number using a 10mm diameter sphere with an indentation of 4.5mm with a load applied into an aluminum sample. Determine the applied load.
+
+$$
+\begin{gathered}
+	HB = \frac{2F}{\pi (D)(D - \sqrt{D^2 - D_i^2})}\\
+	F = \frac{(HB)(\pi (D)(D - \sqrt{D^2 - D_i^2}))}{2}\\
+	F = \frac{(59.66)(\pi (10)(10 - \sqrt{10^2 - 4.5^2}))}{2}\\
+	F = 1002.46 \,\text{kgf}
+\end{gathered}
+$$
+
+**Exercise 3**
+
+By doing a Brinell test we calculate a 65 HB number using a 10mm diameter sphere with a 500 kg load applied into an aluminum sample. Determine the indentation generated.
+
+$$
+\begin{gathered}
+	HB = \frac{2F}{\pi (D)(D - \sqrt{D^2 - D_i^2})}\\
+	D_i = \sqrt{D^2 - (D - \frac{2F}{\pi D (HB)})^2}\\
+	D_i = 3.091 \,\text{mm}
+\end{gathered}
+$$
+
+**Exercise 4**
+
+By doing a Brinell test using a 10mm diameter sphere with a 3000 kg load applied into a steel sample we generate a 3.1mm indentation. Determine the approximate tension resistance of the material.
+
+$$
+\begin{gathered}
+	HB = 387.68\\
+	\sigma_{psi} = 500 \text{HB}\\
+	\sigma_{psi} = 500 (387.68) = 193840 \, \text{psi}\\
+	\sigma_{kg/mm2} = 0.346 \text{HB}\\
+	\sigma_{kg/mm2} = 0.346 (387.68) = 134.138 \, \text{Kg/mm}^2
+\end{gathered}
+$$
+
+**Exercise 5**
+
+We know the tension resistance of a material is 29829.5 psi. We do a Brinell test using a 10mm diameter sphere with a 1000 kg load applied into a steel sample. Determine the generated indentation.
+
+$$
+\begin{gathered}
+	\sigma_{psi} = 29829.5 = 500 (HB)\\
+	HB = \frac{29829.5}{500} = 59.659 \, \text{Kg/mm}^2\\
+	D_i = \sqrt{D^2 - (D - \frac{2F}{\pi D (HB)})^2}\\
+	D_i = 4.495 \,\text{mm}
+\end{gathered}
+$$
+
+**Exercise 6**
+
+By doing a Brinell test using a 10mm diameter sphere with a 500 kg load applied to a steel sample we generate a 2.5 mm indentation. Determine the HB number and the appropriate tension resistance using conversion tables.
+
+$$
+\begin{gathered}
+	HB = 100.242 \, \text{Kg/mm}^2\\
+	\sigma_{psi} = 100.242 (500) = 50121 \, \text{psi}\\
+	\sigma_{kg/mm2} = 100.242 (0.346) = 34.6837 \, \text{Kg/mm}^2\\
+	\sigma_{N/mm2} = 355 \, \text{N/mm}^2 = 355 \, \text{MPa}
+\end{gathered}
+$$
+
+* [ASTM E18-20 Standard](https://www.astm.org/Standards/E18.htm)
+
+**Impact Testing**
+
+![Impact Testing](/static/images/notes/DiagramForImactTestingMaterials.png)
+
+Impact testing measures impact resistance or the ability of a material to absorb the sudden application of a load until fracture. We call impact energy to the energy required to reach fracture and toughness to impact to the total energy absorbed as deformation up until reaching fracture. 
+
+The two main impact testing methods are the Charpy and Izod impact tests. The Charpy impact tests consists in dropping a pendulum from a certain initial height into an horizontal notched sample, then the difference in potential energy, meaning the energy absorbed by the sample from the impact, can be measured from the difference in heights.
+
+The Izod test is similar to the Charpy test with the difference that the sample has a greater total length and the impact is performed on a vertical sample, the Izod test is usually preferred when testing polymers. In both tests samples are notched to guide the fracture and also when simulating defects in the material due to manufacturing or fatigue.
+
+$$
+\begin{gathered}
+	\Delta E_p = (m)(g)(h_0) - (m)(g)(h_1)
+\end{gathered}
+$$
+
+Test units can be in J when ignoring the notch, in J/m when considering the reduced height from the notch or in J/m2 when considering the reduced area from the notch. Tests are usually carried at room temperature but we need to consider that impact test results can vary greatly at different temperatures.
+
+The transition temperature from ductile to brittle or TTDQ is the temperature at which the failure mode of the material changes from being a ductile fracture to a brittle fracture. This means that lowering the temperature will generally make a material more brittle so they will be able to absorb less impact energy, however for some materials like stainless steel there is no evident TTDQ value.
+
+The glass transition temperature is an equivalent measurement used for polymers since they not only turn more brittle but when lowering their temperature their internal structure also becomes glass like. Finally another property that defines the TTDQ curve is the unitary configuration of the material, for example FCC of stainless steel will absorb more energy than the BCC configuration of plain carbon steel.
+
+* [ASTM E23 Standard](https://www.astm.org/Standards/E23)
+
+***
+
+# Polymers #
+
+![Polymers First Diagram](/static/images/notes/PolymerDiagramImagesMaterials.png)
+
+Polymers are molecular compounds characterized by being composed of multiple simple units called monomers, for example the monomer of polyethylene is ethylene (ethene).
+
+* Thermoplastic: Flexible long linear chain of monomers that can be branched or unbranched. Can soften with head and harden with cold, can be continuously processed into other forms facilitating their recycling and their chains don't cross having a weak link between them. For example PE, PP, PVC, PS, Teflon, Nylon etc.
+* Thermoset: Rigid three dimensional chain of monomers that can be branched or unbranched. Once they acquire a shape it can't be modified or continuously processed, this is why they are considered more polluting than thermoplastics. Their chains cross having a strong covalent link between them. For example polyurethane.
+* Elastomer: Loosely bonded thermoplastic or various thermosets forming a spring like molecule. For example rubber.
+
+By varying the functional group of a polymer chain we obtain different polymeric structures and therefore different properties. Plastics are widespread because of their low cost, good mechanical properties, low weight, high durability, non-toxicity, inert to their contents and easy processing.
+
+There is a classification pyramid of polymers based on their biodegradability, also a recycling number has been added to many thermoplastic polymeric products to help facilitate their recycling classification using infrared sensors.
+
+![Polymers Second Diagram](/static/images/notes/PolymersProcessingSecondDiagramMaterials.png)
+
+When trying to do a tension test on a polymer sample we will see that the fracture doesn't happen after the bottleneck, instead the bottleneck diameter propagates along the sample in a uniform elongation, its after this elongation that the sample finally breaks. Other characterization methods include:
+
+* Differential Scanning Calorimetry (DSC): Measures thermal characteristics.
+* Infrared Spectroscopy (FT-IR): Measures the functional groups present in the polymer chain.
+* X-ray diffraction (XRD): Measures if there are crystalline structures present.
+* Scanning Electron Microscopy (SEM): Measures the structural imperfections on the surface.
+* Mechanical Properties (Instron Universal Testing Machine).
+* Transmission Electron Microscopy (TEM): Measures the atomic structures present.
+
+When working with polymers we can obtain them as raw material in the form of pellets, grinding or sheets for thermoforming. This raw materials can then be used in many of the manufacturing processes:
+
+* Extrusion machine.
+* Injection machine
+* Injection blow with compressed air.
+* Injection molding.
+* Thermoformed.
+* Film cutting or calendaring.
+* Spinning or fiber machine.
+
+Temperature plays an important role in the behavior of polymeric chains, at high temperature they act like liquids with the chains moving easily, at medium temperature they form solid amorphous structures (chains move only under pressure) or crystalline structures (chains form rigid crystal regions), at low temperature they act as glass where it is only possible to move local segments of the polymer chains.
 
 
 
