@@ -103,7 +103,7 @@ $$
 	\Phi = \frac{(N)(i)}{\Re_c + \Re_g} = \frac{(400)(1)}{88419+530516}\\
 	\therefore \Phi = = 0.00064627 \, \text{Wb}\\\\
 	B_g = \frac{\Phi}{A} = \frac{0.00064627}{0.0015}\\
-	\thereforeB_g = 0.43085 \, \text{T}\\\\
+	\therefore B_g = 0.43085 \, \text{T}\\\\
 	L = \frac{(N)^2}{\Re} = \frac{(400)^2}{88419+530516}\\
 	\therefore L = 0.25852 \, \text{H}
 \end{gathered}
@@ -921,5 +921,115 @@ $$
 \end{gathered} 
 $$
 
+***
+
+## Induction Machines ##
+
+**Exercise 1**
+
+A three phase four pole induction machine at 460V, 100HP, 60Hz, delivers its rated output power at a slip of 0.05. 
+
+1. Calculate the synchronous speed and the motor (rotor) speed.
+
+$$
+\begin{gathered}
+	n_s = \frac{120 f}{p} = \frac{120 (60)}{4}\\
+	n_s = 1800 rpm\\
+	s = \frac{n_s - n}{n_s}\\
+	\therefore n = (1 - 0.05)(1800) = 1710 \, \text{rpm}
+\end{gathered} 
+$$
+
+2. Calculate the rotating air gap field speed.
+
+$$
+\begin{gathered}
+	\therefore n_s = 1800 \, \text{rpm}
+\end{gathered} 
+$$
+
+3. Calculate the frequency of the rotor circuit.
+
+$$
+\begin{gathered}
+	f_2 = (s)(f_1) = (0.05)(60) \\
+	\therefore f_2 = 3 \, \text{Hz}\\
+\end{gathered} 
+$$
+
+4. Calculate the total slip in rpm.
+
+$$
+\begin{gathered}
+	n_2 = (s)(n_s) = (0.05)(1800)\\
+	\therefore n_2 = 90 \, \text{rpm}
+\end{gathered} 
+$$
 
 
+**Exercise 2**
+
+A three phase, four poles asynchonous motor with the rated values rotates at 1550 rpm, use the IEEE equivalent circuit.
+
+$$
+\begin{gathered}
+	V_L = 120 \land R_1 = 0.12\\
+	R_2' = 0.1 \land X_1 = 0.25\\
+	X_2' = 0.25 \land X_m = 10\\
+	P_{rot} = 250\\
+\end{gathered} 
+$$
+
+1. Calculate the input electrical power.
+
+$$
+\begin{gathered}
+	V_L = \sqrt{3} V_1 \implies V_1 = \frac{120}{\sqrt{3}}\\
+	V_1 = 69.28 \angle 0\\
+	n_s = \frac{120 f}{p} = \frac{120 (60)}{4}\\
+	n_s = 1800 \, \text{rpm}\\
+	s = \frac{n_s - n_m}{n_s} = \frac{1800 - 1550}{1800}\\
+	s = 0.138\\
+	Z_1 = R_1 + jX_1 + jX_m || (\frac{R_2}{s} + jX_2)\\
+	Z_1 = (0.12) + (j0.25) + \frac{j10(\frac{0.1}{0.138} + j0.25)}{\frac{0.1}{0.138} + j(10+0.25)}\\
+	Z_1 = 0.8017 + j0.5417 = 0.97 \angle 34.3\\\\
+	I_1 = \frac{V_1}{Z_1} = \frac{69.28 \angle 0}{0.97 \angle 34.3}\\
+	I_1 = 71.42 \angle -34.3\\
+	P_{in} = (3)(V_1)(I_1)\cos(\theta)\\
+	P_{in} = (3)(69.28)(71.42)\cos(0 + 34.3)\\
+	\therefore P_{in} = 12262.52 \, \text{W}
+\end{gathered} 
+$$
+
+2. Calculate the efficiency of the motor.
+
+$$
+\begin{gathered}
+	\eta = \frac{P_{out}}{P_{in}} = \frac{P_{mech} - P_{rot}}{P_{in}}\\
+	P_{mech} = I_2' \frac{R_2' (1-s)}{s}\\
+	I_2' = \frac{j X_m I_1}{jX_m + jX_2' + \frac{R_2'}{s}}\\
+	I_2' = \frac{j 10 (71.42 \angle -34.3)}{j 10 + j 0.25 + \frac{0.1}{0.138}}\\
+	I_2' = \frac{(10 \angle 90)(71.42 \angle -34.3)}{10.28 \angle 85.97}\\
+	I_2' = \frac{714.2 \angle 55.7}{10.28 \angle 85.98} = 69.47 \angle -30.2\\
+	P_{mech} = (3)(69.47)^2 (0.721)(1-0.138) = 8998.2\\
+	\eta = \frac{8998.2 - 250}{12262.52} = 0.71\\
+	\therefore \eta = 71\%
+\end{gathered} 
+$$
+
+3. Calculate the maximum torque.
+
+$$
+\begin{gathered}
+	T_{max} = \frac{(3)V_{th}^2}{2(\omega_s)(R_{th} + \sqrt{R_{th}^2 + (X_{th} + X_2')^2 })}\\
+	V_{th} = \frac{X_m V_1}{X_1 + X_m} = \frac{10 (69.28)}{0.25 + 10}\\
+	V_{th} = 67.59\\
+	R_{th} = \frac{X_m}{X_1 + X_m}^2 (R_1) = \frac{10}{0.25 + 10}^2 (0.12)\\
+	R_{th} = 0.114\\
+	X_{th} = X_1 = 0.25\\
+	\omega_s = (n_s)(\frac{2\pi}{60}) = (1800)(\frac{2\pi}{60})\\
+	\omega_s = 188.5\\
+	T_{max} = \frac{(3)(67.59)^2}{2(188.5)(0.119 + \sqrt{0.114^2 + (0.25 + 0.25)^2 })}\\
+	\therefore T_{max} = 58 \, \text{Nm}
+\end{gathered} 
+$$

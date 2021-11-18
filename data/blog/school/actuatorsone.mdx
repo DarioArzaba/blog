@@ -31,12 +31,12 @@ Selection and operation of actuators, theoretical foundations of actuators for d
 	8. [Compound Machines and Series Generator](#compound-machines)
 	9. [Motors, Shunt Motor, Series Motor](#direct-current-motors)
 5. [Induction Machines](#induction-machines)
-	1. Rotating Magnetic Field
-	2. Induced Voltages
-	3. Polyphase Induction Machine
-	4. Three Modes of Operation
-	5. Equivalent Circuit Models
-6. Hydraulic Actuators
+	1. [Three Phase Connections](#three-phase-connections)
+	2. [Rotating Magnetic Field](#rotating-magnetic-field)
+	3. [Polyphase Induction Machine](#polyphase-induction-machine)
+	4. [Equivalent Circuit Model](#equivalent-circuit-model)
+	5. [Performance Characteristics](#performance-characteristics)
+6. [Hydraulic Actuators](#hydraulic-actuators)
 	1. Fluid Basics
 	2. Flow in Orifices
 	3. Valves to Hydraulic Control
@@ -155,7 +155,7 @@ As H increases so does the magnetic flux density $B$. Permeability $\mu$ represe
 $$
 \begin{gathered}
 	\text{B H Relation}\\
-	B = (\mu)(H) \, \text{T}\\
+	\boxed{B = (\mu)(H) \, \text{T}}\\\\
 	\mu = (\mu_0)(\mu_r) \, \text{H/m}\\
 	\mu_0 = 1.256637062 \times 10^{-6}
 \end{gathered}
@@ -189,7 +189,7 @@ $$
 	(B)(l) = (\mu_0)((i_0)(n))\\
 	n = \text{ Turns per unit of length}\\\\
 	\text{Solenoid Field Equation}\\
-	B = (\mu_0)(i_0)(n)
+	\boxed{B = (\mu_0)(i_0)(n)}
 \end{gathered}
 $$
 
@@ -211,10 +211,10 @@ $$
 	\oint \vec{B} \, \vec{dl} = (\mu)(n)(i) \land n = \frac{N}{l}\\
 	B = (\mu)(H) \implies \oint \vec{H} \, \vec{dl} = (N)(i)\\\\
 	\text{Magnetomotive Force}\\
-	F = (H)(l) = (H)(2 \pi r) = (N)(i)\\
+	\boxed{F = (H)(l) = (H)(2 \pi r) = (N)(i)}\\
 	\text{Toroid Magnetic Circuit}\\
-	H = \frac{(N)(i)}{l}\\
-	B = (\mu)\frac{(N)(i)}{l}\\
+	\boxed{H = \frac{(N)(i)}{l}}\\
+	\boxed{B = (\mu)\frac{(N)(i)}{l}}\\
 \end{gathered}
 $$
 
@@ -229,7 +229,7 @@ $$
 	\Re = \text{ Magnetic Path Reluctance}\\
 	P = \text{ Magnetic Path Permeance}\\\\
 	\text{Magnetic Flux Inside the Core}\\
-	\Phi = (\mu)\frac{(N)(i)(A)}{l} = \frac{(N)(i)}{\Re}
+	\boxed{\Phi = (\mu)\frac{(N)(i)(A)}{l} = \frac{(N)(i)}{\Re}}
 \end{gathered}
 $$
 
@@ -274,8 +274,8 @@ $$
 	A_c = A_g = A\\
 	B_c = B_g = B = \frac{\Phi}{A}\\\\
 	\text{Magnetic Circuit Air Gap}\\
-	F = (N)(i) = (H_c)(l_c) + (H_g)(l_g)\\
-	B = \frac{\Phi}{A}
+	\boxed{F = (N)(i) = (H_c)(l_c) + (H_g)(l_g)}\\
+	\boxed{B = \frac{\Phi}{A}}
 \end{gathered}
 $$
 
@@ -291,8 +291,8 @@ $$
 	L = \frac{\lambda}{i} = \frac{(N)(\Phi)}{i} = \frac{(N)(B)(A)}{i} = \frac{(N)(\mu)(H)(A)}{i}\\
 	L = \frac{(N)(\mu)(H)(A)}{\frac{H(l)}{N}} = \frac{(\mu)(A)(N)^2}{l} = \frac{N^2}{\Re}\\\\
 	\text{Flux Linkage and Inductance}\\
-	\lambda = (N)(\Phi)\\
-	L = \frac{N^2}{\Re}
+	\boxed{\lambda = (N)(\Phi)}\\
+	\boxed{L = \frac{N^2}{\Re}}
 \end{gathered}
 $$
 
@@ -323,7 +323,7 @@ $$
 	e(t) = E_{max}(\cos(\omega (t)))\\
 	E_{rms} = \frac{E_{max}}{\sqrt{2}} = \frac{(N)(\Phi_{max})(\omega)}{\sqrt{2}}\\\\
 	\text{Voltage Flux Relation}\\
-	E_{rms} = (4.44)(N)(f)(\Phi_{max})
+	\boxed{E_{rms} = (4.44)(N)(f)(\Phi_{max})}
 \end{gathered}
 $$
 
@@ -345,9 +345,9 @@ $$
 	B_m = \frac{(A_g)(B_g)}{(A_m)}\\
 	B_g = (\mu_0)(H_g)\\\\
 	\text{Permanent Magnet with Air Gap}\\
-	(H_m)(l_m) + (H_g)(l_g) = 0
+	\boxed{(H_m)(l_m) + (H_g)(l_g) = 0}\\
 	\text{Shear Line Equation}\\
-	B_m = -\frac{(\mu_0)(A_g)(l_m)(H_m)}{(A_m)(l_g)}
+	\boxed{B_m = -\frac{(\mu_0)(A_g)(l_m)(H_m)}{(A_m)(l_g)}}
 \end{gathered}
 $$
 
@@ -358,8 +358,9 @@ The shear line equation represents the straight line that passes through the ori
 $$
 \begin{gathered}
 	V_m = (A_m)(l_m)\\
-	V_m = \frac{(B_g)(A_g)(H_g)(l_g)}{(B_m)(H_m)}\\
-	V_m = \frac{(B_g)^2(V_g)}{(\mu_0)(B_m)(H_m)}
+	V_m = \frac{(B_g)(A_g)(H_g)(l_g)}{(B_m)(H_m)}\\\\
+	\text{Hard Iron Volume and Shear Line}\\
+	\boxed{V_m = \frac{(B_g)^2(V_g)}{(\mu_0)(B_m)(H_m)}}
 \end{gathered}
 $$
 
@@ -382,7 +383,7 @@ Neglecting the small resistance loss we know that the changes in the electrical 
 $$
 \begin{gathered}
 	\text{Conservation of Energy}\\
-	dW_e = dW_f + dW_m 
+	\boxed{dW_e = dW_f + dW_m}
 \end{gathered}
 $$
 
@@ -402,7 +403,7 @@ $$
 	e(t) = \frac{N d\Phi}{dt}\\
 	\lambda = (N)(\Phi) \implies e(t) = \frac{d\lambda}{dt}\\\\
 	\text{Electrical and Field Energy Change}\\
-	dW_e = (e)(i)(dt) \land dW_f = (i)(d\lambda)
+	\boxed{dW_e = (e)(i)(dt) \land dW_f = (i)(d\lambda)}
 \end{gathered}
 $$
 
@@ -423,7 +424,7 @@ $$
 	V_c = \text{ Core's Volume}\\
 	W_{fc} = \text{ Energy In the Core}\\\\
 	\text{Field Energy Stored}\\
-	W_f = (w_{fc})(V_c) + (w_{fg})(V_g)
+	\boxed{W_f = (w_{fc})(V_c) + (w_{fg})(V_g)}
 \end{gathered}
 $$
 
@@ -434,7 +435,7 @@ $$
 	H_c = \frac{B_c}{\mu_c}\\
 	w_{fc} = \int \frac{(B_c)\,dB_c}{\mu_c} (B_c) = \frac{B_c^2}{2\mu_c}\\\\
 	\text{Field Energy Density Approximation}\\
-	w_{fc} = \frac{B_c^2}{2\mu_c}
+	\boxed{w_{fc} = \frac{B_c^2}{2\mu_c}}
 \end{gathered}
 $$
 
@@ -470,7 +471,7 @@ $$
 	dW_m = dW_e - dW_f\\
 	dW_m = A_{abcd} + A_{0bc} - A_{0ad}\\\\
 	\text{Mechanical Energy Output}\\
-	dW_m = A_{0ab}
+	\boxed{dW_m = A_{0ab}}
 \end{gathered}
 $$
 
@@ -481,7 +482,7 @@ $$
 	\text{Quasistatic Movement Force}\\
 	dW_m = A_{0ab} = dW_f'\\
 	(f_m)(dx) = dW_m = dW_f'\\
-	f_m = \frac{dW_f'(i,x)}{dx}
+	\boxed{f_m = \frac{dW_f'(i,x)}{dx}}
 \end{gathered}
 $$
 
@@ -492,7 +493,7 @@ $$
 	\text{NonQuasistatic Movement Force}\\
 	dW_m = A_{0ap} = dW_f\\
 	(f_m)(dx) = dW_m = -dW_f\\
-	f_m = -\frac{dW_f(\lambda , x)}{dx}
+	\boxed{f_m = -\frac{dW_f(\lambda , x)}{dx}}
 \end{gathered}
 $$
 
@@ -517,7 +518,7 @@ $$
 	\text{CoEnergy Method}\\
 	f_m = \frac{d}{dx}\left( \frac{i^2(L(x))}{2} \right) = \frac{i^2}{2} \frac{d(L(x))}{dx}\\\\
 	\text{Linear Mechanical Force}\\
-	f_m = \frac{i^2}{2} \frac{d(L(x))}{dx}
+	\boxed{f_m = \frac{i^2}{2} \frac{d(L(x))}{dx}}
 \end{gathered}
 $$
 
@@ -528,7 +529,7 @@ $$
 	(N)(i) = (H_g)(2)(g) = \frac{B_g}{\mu_0}(2)(g)\\
 	W_f = \frac{B_g^2}{(2)\mu_0}(2)(g)(A_g)\\
 	f_m = \frac{d}{dg}\left( \frac{B_g^2}{(2)\mu_0}(2)(g)(A_g) \right)\\
-	f_m = \frac{B_g^2}{(2)\mu_0}(2)(A_g)
+	\boxed{f_m = \frac{B_g^2}{(2)\mu_0}(2)(A_g)}
 \end{gathered}
 $$
 
@@ -536,7 +537,8 @@ Since the cross sectional area of the gap in this case is $(2)(A_g)$ then the fo
 
 $$
 \begin{gathered}
-	F_m = \frac{B_g^2}{(2)\mu_0} \, N/m^2
+	\text{Magnetic Pressure}\\
+	\boxed{F_m = \frac{B_g^2}{(2)\mu_0} \, N/m^2}
 \end{gathered}
 $$
 
@@ -567,7 +569,7 @@ $$
 	dW_f = L_{ss} i_s  d(i_s) + L_{rr} i_r  d(i_r) + L_{sr} d(i_s i_r)\\
 	W_f = L_{ss} \int_{0}^{i_s} (i_s)(di_s) + L_{rr} \int_{0}^{i_r} (i_r)(di_r) + L_{sr} \int_{0}^{i_s i_r} (di_s i_r)\\\\
 	\text{Linear System Rotating Field Energy}\\
-	W_f = W_f' = \frac{L_{ss} i_s^2 }{2} + \frac{L_{rr} i_r^2}{2} + L_{sr} i_s  i_r
+	\boxed{W_f = W_f' = \frac{L_{ss} i_s^2 }{2} + \frac{L_{rr} i_r^2}{2} + L_{sr} i_s  i_r}
 \end{gathered}
 $$
 
@@ -575,7 +577,8 @@ Just like the magnetic force we obtained from the stored field energy (with a co
 
 $$
 \begin{gathered}
-	T = \frac{dW_f'(i , \theta)}{d\theta}\\
+	\text{Linear System Torque}\\
+	\boxed{T = \frac{dW_f'(i , \theta)}{d\theta}}\\
 	T = \frac{i_s^2}{2} \frac{d(L_{ss}(\theta))}{d\theta}  + \frac{i_r^2}{2} \frac{d(L_{rr}(\theta))}{d\theta} + i_s i_r \frac{d(L_{sr}(\theta))}{d\theta}
 \end{gathered}
 $$
@@ -656,9 +659,9 @@ Considering that a single loop (a to b) is made up from two conductors we can ca
 $$
 \begin{gathered}
 	\text{Voltage in an Armature's Loop}\\
-	e_t = (2)(B(\theta))(l)(\omega_m)(r)\\\\
+	\boxed{e_t = (2)(B(\theta))(l)(\omega_m)(r)}\\\\
 	\text{Average Voltage in an Armature's Loop}\\
-	e_{t avg} = (2)(B(\theta)_{avg})(l)(\omega_m)(r)
+	\boxed{e_{t avg} = (2)(B(\theta)_{avg})(l)(\omega_m)(r)}
 \end{gathered}
 $$
 
@@ -668,7 +671,7 @@ $$
 \begin{gathered}
 	B(\theta)_{avg} = \frac{\Phi}{A} = \frac{(\Phi)(p)}{(2)(\pi)(r)(l)}\\\\
 	\text{Average Voltage in an Armature's Loop}\\
-	e_{t avg} = \frac{(\Phi)(p)(\omega_m)}{\pi}
+	\boxed{e_{t avg} = \frac{(\Phi)(p)(\omega_m)}{\pi}}
 \end{gathered}
 $$
 
@@ -677,10 +680,10 @@ $$
 \begin{gathered}
 	\text{Average Voltage in the Armature's Terminals}\\
 	E_a = \frac{(N)(e_{t avg})}{a} = \frac{(N)(p)(\Phi)(\omega_m)}{\pi (a)}\\
-	E_a = (K_a)(\Phi)(\omega_m)\\
+	\boxed{E_a = (K_a)(\Phi)(\omega_m)}\\
 	a = \text{ Parallel Conductors per Loop}\\\\
 	\text{Armature's Constant}\\
-	K_a = \frac{(N)(p)}{(\pi)(a)} = \frac{(Z)(p)}{(2)(\pi)(a)}\\
+	\boxed{K_a = \frac{(N)(p)}{(\pi)(a)} = \frac{(Z)(p)}{(2)(\pi)(a)}}\\
 	N = \text{ Loops in the Armature's winding}\\
 	Z = \text{ Conductors in the Armature's winding}
 \end{gathered}
@@ -691,7 +694,7 @@ If the rotating machine is a generator then the average voltage at the terminals
 $$
 \begin{gathered}
 	\text{Force in an Armature's Conductor}\\
-	f_c = B(\theta)(l)(I_c)\\
+	\boxed{f_c = B(\theta)(l)(I_c)}\\
 	I_c = \frac{I_a}{a}\\
 	I_c = \text{ Armature conductor's current}\\
 	I_a = \text{ Armature terminal's current}	
@@ -708,11 +711,11 @@ $$
 \begin{gathered}
 	\text{Armature conductor's torque}\\
 	T_c = B(\theta)(l)(\frac{I_a}{a})(r)\\
-	T_c = \frac{(\Phi)(p)(I_a)}{(2)(\pi)(a)}\\\\
+	\boxed{T_c = \frac{(\Phi)(p)(I_a)}{(2)(\pi)(a)}}\\\\
 	\text{Average Armature's Torque}\\
 	T = (T_c)(2)(N)\\
 	T = \frac{(N)(\Phi)(p)(I_a)}{(\pi)(a)}\\
-	T = (K_a)(\Phi)(I_a)
+	\boxed{T = (K_a)(\Phi)(I_a)}
 \end{gathered}
 $$
 
@@ -740,7 +743,7 @@ Usually the magnetic flux path consists of a pole, the air gap, the rotor teeth,
 $$
 \begin{gathered}
 	\text{Magnetic Flux Per Pole}\\
-	\Phi = \frac{F_p}{\Re_g}
+	\boxed{\Phi = \frac{F_p}{\Re_g}}
 \end{gathered}
 $$
 
@@ -918,7 +921,7 @@ Finally in motors there will be a total power loss from the series field winding
 $$
 \begin{gathered}
 	\text{Motor Efficiency}\\
-	E_{ff} = \frac{P_{Output}}{P_{Input}}
+	\boxed{E_{ff} = \frac{P_{Output}}{P_{Input}}}
 \end{gathered}
 $$
 
@@ -959,9 +962,9 @@ $$
 \begin{gathered}
 	K_a \Phi = K_f I_f\\
 	E_a = K_f I_f \omega_m\\
-	\omega_m = \frac{- R_a(T)}{(K_f I_f)^2} + \frac{V_t}{K_f I_f}\\
+	\omega_m = \frac{- R_a(T)}{(K_f I_f)^2} + \frac{V_t}{K_f I_f}\\\\
 	\text{Without load then:}\\
-	\omega_m \approx \frac{V_t}{K_f I_f}
+	\boxed{\omega_m \approx \frac{V_t}{K_f I_f}}
 \end{gathered}
 $$
 
@@ -973,7 +976,8 @@ Note that the constant $K_f$ depends on dimensions of the motor, the magnetic ma
 
 $$
 \begin{gathered}
-	\omega_m = \frac{- (R_a + R_{ae})}{(K_a\Phi)^2} (T) + \frac{V_t}{K_a \Phi}\\
+	\text{Armature Resistance Control}\\
+	\boxed{\omega_m = \frac{- (R_a + R_{ae})}{(K_a\Phi)^2} (T) + \frac{V_t}{K_a \Phi}}\\\\
 	\omega_m =  - K_2(T) + K_1(V_t)
 \end{gathered}
 $$
@@ -984,7 +988,7 @@ This method is also easy to implement but is less efficient due to a loss in $R_
 
 ![Series Motor Speed](/static/images/notes/SeriesMotorFieldControlSpeedActuators.png)
 
-In a series motor configuration, where the armature and field circuits are in series, if we try to control the speed of the motor using a rheostat then the field control and the armature resistance control methods will be the same. We use series configuration for large startup torques (subways, car gears, blenders) at low speeds and high speeds at low torques. assuming
+In a series motor configuration, where the armature and field circuits are in series, if we try to control the speed of the motor using a rheostat then the field control and the armature resistance control methods will be the same. We use series configuration for large startup torques (subways, car gears, blenders) at low speeds:
 
 $$
 \begin{gathered}
@@ -992,11 +996,488 @@ $$
 	E_a = K_{sr} I_a \omega_m\\
 	T = K_{sr} I_a^2\\
 	E_a = V_t - I_a (R_a + R_{ae} + R_{sr})\\
-	\omega_m = \frac{V_t}{K_{sr} I_a} - \frac{R_a + R_{sr} + R_{ae}}{K_{sr}}\\
-	\omega_m = \frac{V_t}{\sqrt{K_{sr}}\sqrt{T}} - \frac{R_a + R_{sr} + R_{ae}}{K_{sr}}
+	\omega_m = \frac{V_t}{K_{sr} I_a} - \frac{R_a + R_{sr} + R_{ae}}{K_{sr}}\\\\
+	\text{Series Motor Control}\\
+	\boxed{\omega_m = \frac{V_t}{\sqrt{K_{sr}}\sqrt{T}} - \frac{R_a + R_{sr} + R_{ae}}{K_{sr}}}
 \end{gathered}
 $$
 
 ***
 
 # Induction Machines # 
+
+![Induction Machines](/static/images/notes/ActuatorsThreePhaseConnections.png)
+
+Induction machines are widely used since they work with AC sources instead of DC sources. Like a DC machine it has a stator, a rotor and an air gap between them, however in this case both windings carry alternating current (the stator directly and the rotor by induction). Household appliances generally use single phase motors while industrial applications prefer three phase induction motors. 
+
+They usually have uniform air gaps, laminated steel sheet stators, laminated ferromagnetic rotors, three phase windings, slip rings connected to the rotor terminals and stationary slip ring brushes connected to an external source.
+
+***
+
+## Three Phase Connections ##
+
+The three phase distributed windings can be represented as three concentrated coils with their axis 120 electrical degrees apart, each with a unique pair of poles. The terminals of the three phase windings can be connected in a star ($Y$) or delta ($\Delta$) configuration. If *balanced* the three phase connection will produce a rotating magnetic field of constant amplitude and speed in the air gap.
+
+| Star Connection | Delta Connection |
+| :---: | :---: |
+| High voltage connection | Efficient conversion |
+| Common neutral point | High torque |
+| Neutral point can be grounded | Simpler design |
+| Single phase at low voltages | Construction is cheaper |
+| Separate circuit per phase | Used in conveyors |
+| Dual voltage applications | Lower current per winding needed |
+| Alternator needs fewer turns | Used in power applications |
+| Wye alternator with less insulation | - |
+| Low Torque | No neutral point |
+| Combines three phases into one | Difficult ground fault detection  |
+| Light duty cycle applications | Low voltage connection |
+| Construction is more expensive | - |
+
+When operating at a constant power output the star connection has high voltage and low amperage while the delta connection has a lower voltage but a higher amperage.
+
+***
+
+## Rotating Magnetic Field ##
+
+![Rotating Induced Field](/static/images/notes/ActuatorsDiagramBalancedCurrentThree.png)
+
+The polyphase windings in an AC machine produce a rotating magnetic field, each winding produces the same sinusoidal electromotive function but displaced by the 120 electrical degrees. Therefore in a balanced three phase machine we will have the following currents flowing through each winding:
+
+$$
+\begin{gathered}
+	i_a = I_m \cos(\omega t)\\
+	i_b = I_m \cos(\omega t - 120)\\
+	i_c = I_m \cos(\omega t + 120)
+\end{gathered}
+$$
+
+The resulting electromotive function is the sum of the three phase sinusoidal components. For a two pole, three phase winding machine, we have an instantaneous electromotive force of:
+
+$$
+\begin{gathered}
+	F(\theta) = F_a(\theta) + F_b(\theta) + F_c(\theta)\\\\
+	\text{Electromotive Function}\\
+	\boxed{F(\theta) = N i_a \cos(\theta) + N i_b \cos(\theta - 120) + N i_c \cos(\theta + 120)}
+\end{gathered}
+$$
+
+![As a function of time](/static/images/notes/ActuatorsDiagramMagneticThreePhaseTime.png)
+
+If we consider the currents of each winding as functions of time then:
+
+$$
+\begin{gathered}
+	F(\theta, t) = N I_m \cos(\omega t) \cos(\theta) +\\
+	N I_m \cos(\omega t - 120) \cos(\theta - 120) + \\
+	N I_m \cos(\omega t + 120) \cos(\theta + 120) \\
+	\cos(A) \cos(B) = (0.5)\cos(A - B) + (0.5) \cos(A + B)\\\\
+	\text{Electromotive Wave Considering Time}\\
+	\boxed{F(\theta, t) = \frac{3}{2} N I_m \cos(\omega t - \theta)}
+\end{gathered}
+$$
+
+The last equation is the resulting magnetomotive force generated in the air gap, that rotates at a constant angular velocity of $\omega= 2 \pi f \,\,\text{rad/s}$, this wave moves along around the air gap for any given time. In a machine of $p$ poles one cycle of current variation makes the electromotive force wave rotate by 2/p revolutions, therefore the the field's speed in RPM ($n$) for a specific frequency is:
+
+$$
+\begin{gathered}
+	\text{Speed of the Rotating Field}\\
+	\boxed{n = \frac{(2)(60)(f)}{p} = \frac{(120)(f)}{p}}
+\end{gathered}
+$$
+
+**Induced Rotor Voltage**
+
+![Rotor Voltage Induced](/static/images/notes/ActuatorsDiagramInducedThreePVoltageRot.png)
+
+The rotating magnetic field results in an induced rotator voltage, using Faraday's law we can calculate the induced voltage expression:
+
+$$
+\begin{gathered}
+	\text{Air gap flux Density}
+	B(\theta) = B_{max} \cos(\theta)\\
+	\text{Air gap Flux per Pole}\\
+	\Phi_p = \int_{-\pi / 2}^{\pi / 2} B(\theta) (l) (r) (d\theta) = 2 (B_{max}) (l) (r)\\
+	\text{Flux linkage variation for coil a}\\
+	\lambda_a (\omega t) = N \Phi_p \cos(\omega t)\\\\
+	\text{Induced Voltage}\\
+	e_a = - \frac{d\lambda_a}{dt} = \omega N \Phi_p \sin(\omega t)\\
+	\boxed{e_a = E_{max} \sin(\omega t)}\\
+	e_b = E_{max} \sin(\omega t - 120)\\
+	e_c = E_{max} \sin(\omega t + 120)\\
+\end{gathered}
+$$
+
+Lastly we can calculate the rms induced voltage value for ideal and real (winding reduction factor $K_w$) conditions:
+
+$$
+\begin{gathered}
+	\text{Induced Voltage in RMS}\\
+	E_{rms} = \frac{\omega N \Phi_p}{\sqrt{2}} = \frac{2 \pi f N \Phi}{\sqrt{2}} = 4.44 f N \Phi\\
+	\boxed{E_{rms} = 4.44 f N_{ph} \Phi_p K_w}
+\end{gathered}
+$$
+
+***
+
+## Polyphase Induction Machine ##
+
+There are multiple modes of operation for a polyphase induction machine, the two most important are the standstill and running conditions.
+
+**Standstill Condition**
+
+In a standstill condition (three phase wound rotor induction machine) the rotor circuit is left open therefore we have induced voltages in the stator and rotor at the same frequency (f1) given by:
+
+$$
+\begin{gathered}
+	E_1 = 4.44 f_1 N_1 \Phi_p K_{w1}\\
+	E_2 = 4.44 f_1 N_2 \Phi_p K_{w2}\\
+	\frac{E_1}{E_2} = \frac{N_1 K_{w1}}{N_2 K_{w2}}\\
+	\frac{E_1}{E_2} \approx \frac{N_1}{N_2} = \text{Turns Ratio}
+\end{gathered}
+$$
+
+**Running Condition**
+
+Given the same machine the rotor circuit is now closed and the induced voltages in the rotor windings produce a rotor current that interacts with the air gap field generating the final rotor torque. From Lenz's law we know that the relative speed between the field and the rotor winding decreases until the rotor reaches a steady state speed ($n$) that is less than the synchronous speed ($n_s$) of the stator field. The difference between the rotor and the field speed is called the slip ($s$):
+
+$$
+\begin{gathered}
+	\text{Rotor Speed Slip}\\
+	\boxed{s = \frac{n_s - n}{n_s}}
+\end{gathered}
+$$
+
+The second asynchonous frequency f2 (slip frequency) of the induced voltage and current in the rotor relates to this slip, because of the new slip frequency the rotor will have a new induced voltage $E_{2s}$ and rotating field speed ($n2$):
+
+$$
+\begin{gathered}
+	f_2 = \frac{p(n_s - n)}{120} = \frac{p(s n_s)}{120} = (s)(f_1)\\
+	E_2 = 4.44 f_2 N_2 \Phi_p K_{w2} = (s)(E_2)\\
+	n_2 = \frac{120 f_2}{p} = \frac{120 s f_1}{p} = (s)(n_s)
+\end{gathered}
+$$
+
+## Equivalent Circuit Model ##
+
+We can use an equivalent circuit to describe the stationary and running conditions of a three phase wound rotor induction machine. We take advantage of the fact that the windings produce a rotating field with synchronous speed at a certain frequency f1 and that the induced voltage in the rotor has an asynchonous speed at a certain frequency f2. This relation can be modeled like a transformer (for balanced symmetrical polyphase windings).
+
+**Stator Winding Circuit**
+
+![Equivalent Circuit Stator](/static/images/notes/ActuatorsDiagramStatorWindingCircuit.png)
+
+1. V1 = Stator Winding Terminal Voltage per Phase
+2. E1 = Stator winding Induced Voltage per Phase
+3. I1 = Stator Current
+4. R1 = Stator Winding Resistance per Phase
+5. X1 = Stator Leakage Reactance
+6. Lm = Stator magnetizing Inductance per Phase
+7. Rc = Stator Core Loss Resistance per Phase
+
+ The resulting air gap flux is a combination of the stator and rotor currents (electromotive forces). The stator current can be broken into a load component ($I_2$) from the rotor current and an excitation component ($I_\Phi$) from the additional stator current needed to maintain the required air gap flux. The driving current can be broken into a core loss component ($I_c$) and a magnetization component ($I_m$).
+
+**Rotor Circuit**
+
+![Equivalent Circuit Rotor](/static/images/notes/ActuatorsDiagramEquivalentCircuitRotor.png)
+
+From the stator point of view the rotor in displacement (s) can be represented by an impedance ($Z_2$) where:
+
+1. E2 = Induced voltage at standstill per Phase
+2. R2 = Rotor circuit resistance per Phase
+3. L2 = Rotor leakage inductance per Phase
+
+Since the rotor is at frequency f2 then the rotor current is:
+
+$$
+\begin{gathered}
+	I_{2s} = \frac{(s)(E_2)}{R_2 + j (s)(X_2)}\\
+	P_2 = I_{2s}^{2} (R_2)\\\\
+	\text{Rotor Current}\\
+	\boxed{I_2 = \frac{E_2}{(R_2/s)+(j)(X_2)}}
+\end{gathered}
+$$
+
+From the rotor circuit we can calculate the ideal power output per phase and the real power (considering the rotor copper loss) per phase. The real power relates to the final mechanical power output of the induction machine:
+
+$$
+\begin{gathered}
+	P = I_{2}^{2} \frac{R_2}{s} = \frac{P_2}{s}\\
+	P = P_{ag} = I_{2}^{2} \left( R_2 + \frac{R_2 (1-s)}{s} \right) = I_2^2 \frac{R_2}{s}\\
+	P_2 = I_2^2 (R_2) = (s)(P_{ag})\\\\
+	\text{Power Output}\\
+	\boxed{P_{mech} = I_2^2 \frac{R_2 (1-s)}{s} = P_{ag} (1-s) = \frac{1-s (P_2)}{s}}
+\end{gathered}
+$$
+
+In other words $P_{ag}$ is the generated power from the air gap field, $P_2$ is the power losses due to the rotor winding (copper loss) and $P_{mech}$ is the usable mechanical power taking into account the rotor winding losses. This means that efficient induction machines operate with low slip values in order for a greater fraction of the air gap field to be converted into mechanical energy (shaft power).
+
+**Complete Equivalent Circuit**
+
+![Equivalent Circuit Complete](/static/images/notes/ActuatorsDiagramEquivalentCompleteCirc.png)
+
+By combining the stator and rotor circuit we have a complete equivalent circuit that behaves like a transformer, this means that the turns ratio $a = N_1 / N_2$ between the windings is considered.
+
+![Equivalent Circuit Complete Simple](/static/images/notes/ActuatorsDiagramSimplifiedCompleteCircuitA.png)
+
+We can simplify the complete circuit by moving the magnetizing branch ($R_c \land X_m$) to the input terminals if their voltage drop is negligable, then we can also remove $R_c$ if the core, friction and winding losses remain constant (constant rotational losses) when the induction machine source is operating at a constant voltage and frequency. The simplifications allow us to more easily calculate the exitation and load currents ($I_\Phi \land I_2$).
+
+![Equivalent Complete Simplification](/static/images/notes/ActuatorsDiagramCircuitsSimpliThevenin.png)
+
+**IEEE Equivalent Circuit**
+
+Due to their air gap induction machines usually have a high excitation current $I_\Phi$ (30 to 50 percent) at full load, therefore their  leakage reactance is also high and their resistance $R_c$ can be ommitted. This equivalent circuit is preferable if the induced voltage $E_1$ differs considerably from the terminal voltage $V_1$.
+
+**Thevenin Equivalent Circuit**
+
+By using an equivalent thevenin circuit we just need to find $V_{th}$, $R_{th}$ and $X_{th}$, assuming $R_1^2 \ll (X_1 + X_m)^2$, then:
+
+$$
+\begin{gathered}
+	|V_{th}| = \frac{X_m}{\sqrt{R_1^2 + (X_1 + X_m)^2}} (V_1)\\
+	V_{th} \approx \frac{X_m}{X_1 + X_m} (V_1) = K_{th} V_1\\
+	Z_{th} = \frac{j X_m (R_1 + j X_1)}{R_1 + j(X_1 + X_m)} = R_{th} + j(X_{th})\\
+	R_{th} = \left( \frac{X_m}{X_1 + X_m} \right)^2 (R_1) = K_{th}^{2} (R_1)\\
+	X_{th} \approx X_1
+\end{gathered}
+$$
+
+***
+
+## Performance Characteristics ##
+
+From the equivalent circuit we can obtain the performance characteristics of the induction machine in a steady state, such as efficiency, power factor, current, starting torque and maximum torque. Note that the prime mark indicates that we are considering a turn ratio differential between the rotor and the stator windings (non-symmetrical transformer).
+
+$$
+\begin{gathered}
+	P_{mech} = (T_{mech})(\omega_{mech})\\
+	P_{mech} = I_2^2 \frac{R_2 (1-s)}{s} = I_2'\frac{R_2' (1-s)}{s}\\
+	\omega_{mech} = \frac{(2)(\pi)(n)}{60}\\
+	\omega_{mech} = (\omega_s)(1-s) = \frac{n_s (2) (\pi) (1-s)}{60}\\
+	P_{ag} = T_{mech} (\omega_s) = I_2^2\frac{R_2}{s}\\
+	T_{mach} = \frac{P_{ag}}{\omega_s} = \frac{I_2^2 R_2}{\omega_s (s)} = \frac{(I_2')^2 R_2'}{\omega_s (s)}\\\\
+	\text{Torque Function}\\
+	\boxed{T_{mech} =  \frac{V_{th}^2 R_2'}{\omega_s (R_{th} + R_2' / s)^2 + (X_{th} + X_2')^2 (s)}}
+\end{gathered}
+$$
+
+If we assume that $dT / ds = 0$ we will obtain rotor slip condition $s_T$ required to generate the maximum mechanical torque $T_{max}$:
+
+$$
+\begin{gathered}
+	\frac{R_2'}{(s_T)} = \sqrt{R_{th}^2 + (X_{th} + X_2')^2}\\
+	s_T = \frac{R_2'}{\sqrt{R_{th}^2 +(X_{th} + X_2')^2}}\\
+	T_{max} = \frac{V_{th}^2}{2(\omega_s)(R_{th} + \sqrt{R_{th}^2 + (X_{th} + X_2')^2 })}\\\\
+	\text{Maximum Torque}\\
+	\boxed{T_{max} = \frac{V_{th}^2}{2(\omega_s)(\sqrt{(X_{th} + X_2')^2 })} , \, R_{th} \ll X}
+\end{gathered}
+$$
+
+![Equivalent Rotor Res and Torque](/static/images/notes/ActuatorsDiagramRotorResandTorque.png)
+
+The maximum torque is independent of the rotor circuit resistance $R_2$, however it still plays a role in determining the rotor speed at which the maximum torque will occur, for every $R_2$ value we will have a different torque-speed curve. We can use this property to make the maximum torque coincide with the initial torque (standstill), this is how we achieve the highest possible starting torque.
+
+**Stator Current**
+
+We can obtain the stator current using the IEEE circuit and its input impedance:
+
+$$
+\begin{gathered}
+	Z_1 = R_1 + j(X_1) + X_m || \left( \frac{R_2'}{s} + jX_2' \right)\\
+	Z_1 = R_1 + j(X_1) + X_m || Z_2\\
+	Z_1 = R_1 + j(X_1) + \frac{j X_m (R_2' /s + j X_2')}{R_2'/s + j(X_2' + X_m)}\\
+	Z_1 = |Z_1| \angle \theta_1\\\\
+	\text{Stator Input Current}\\
+	\boxed{I_1 = \frac{V_1}{Z_1} = I_\Phi + I_2'}
+\end{gathered}
+$$
+
+At synchronous speed (no slip) $I_2' = 0$ so the stator current is equal to the excitation current $I_\Phi$. For high slip values $I_2'$ and $I_1$ are high (generally high to eight times the rated stator current). The input or supply power factor $PF$ can be calculated using the phase angle $\theta_1$ of the stator current $I_1$:
+
+$$
+\begin{gathered}
+	\text{Power Factor}\\
+	\boxed{PF = \cos(\theta_1)}
+\end{gathered}
+$$
+
+![Equivalent Efficiency](/static/images/notes/ActuatorsDiagramEfficiencyEquivCirc.png)
+
+**Efficiency**
+
+To determine the efficiency of an induction machine we need to take into account various losses, for a three phase induction machine we can calculate the stator energy input $P_{in}$, the stator winding power loss $P_1$ and the rotor winding power loss $P_2$:
+
+$$
+\begin{gathered}
+	P_{in} = (3)(V_1)(I_1)(\cos(\theta_1))\\
+	P_1 = (3)(I_1^{2})(R_1)\\
+	P_2 = (3)(I_2^2)(R_2)
+\end{gathered}
+$$
+
+![Equivalent Efficiency Slip](/static/images/notes/ActuatorsDiagramEfficiencyandSlip.png)
+
+The efficiency, just like in a DC machine, is the ratio between the output and input power. In the case of induction machines the efficiency will be highly dependent on the rotor slip and in most cases it is the only loss we can't neglect.
+
+$$
+\begin{gathered}
+	\text{Efficiency}\\
+	\boxed{\eta = \frac{P_{out}}{P_{in}} = \frac{P_{mech} - P_{rot}}{P_{in}}}\\
+	P_{ag} = P_{in}\\
+	P_2 = (s)(P_{ag})\\
+	P_{out} = P_{mech} = P_{ag}(1-s)\\
+	\eta_{ideal} = \frac{P_{out}}{P_{in}} = (1-s)
+\end{gathered}
+$$
+
+***
+
+# Hydraulic Actuators #  
+
+![Hydraulic Actuator](/static/images/notes/ActuatorsDiagramHydraulicValvesSolenoid.png)
+
+
+Linear actuators are widely used in hydraulic and pneumatic systems. For example electrohydraulic spool type valves can be found in automatic transmissions by regulating the pressure and flow of the clutch when making a gear change, they work by using a current controlled solenoid (Usually 0-1.2 Amps) to change the position of a piston or spool and with the use of multiple ports (holes) allow for the fluid to take different paths.
+
+We can model an electrohydraulic valve as a cylindrical solenoid with a vertically movin piston mass (M) with guiding bushings of thickness (g) and diameter (d). The permeability of the bushing (acting as the air gap) is of $\mu_0 = 4(\pi) \times 10^{-7} \,\, \text{H/M}$. Sometimes the piston is supported by a spring with a K constant and an applied force ($F_t$) (Mechanical Force). 
+
+The coil will have (N) turns, a resistance of (R), a terminal voltage of ($V_t$) and an applied current of (i). For now we will ignore magnetic losses and steel reluctance effects. Note that the superior air gap has a variable area therefore its reluctance will vary with respect to time. From the data we can calculate the dynamic differential equations of the system in terms of the dependent variables $i \land x \land V_t \land F_t$.
+
+**Force Of a Cylinder**
+
+Considering $k(x-l_0)$ as the mechanical spring constant and its compression, then we can use Newton laws to calculate the Motion Equation of the piston.
+
+$$
+\begin{gathered}
+	F = \frac{(\pi)(D)^2(P)}{4}\\
+	F = ma\\
+	F_{fld} + F_t - F_D - F_k = ma\\
+	\text{Motion Equation}\\
+	F_{fld} + F_t = m(\frac{d^2x}{dt^2}) + B(\frac{dx}{dt}) + k(x-l_0)\\
+	\text{Electric Equation}\\
+	V_t = (i)(R) + e = (i)(R) + \frac{d\lambda}{dt}\\
+	L(x) = \frac{N^2}{\Re}\\
+	\Re = \Re_1 + \Re_2 = \frac{g}{\mu_0 \pi d} \left(\frac{1}{x} + \frac{1}{a}\right)\\
+	\Re = \frac{g}{\mu_0 \pi a d} \left(\frac{a + x}{x}\right)\\
+	L(x) = \frac{\mu_0 \pi a d N^2}{g} \left(\frac{x}{a + x}\right)\\
+	L(x) = L'(\frac{x}{a + x})\\
+	F_{fld} = \frac{\delta W_{fld}' (i,x)}{\delta x}\\
+	F_{fld} = \frac{i^2}{2}\frac{\delta L(x)}{\delta x}\\
+	F_{fld} = \frac{i^2}{2} \frac{\mu_0 \pi a d N^2}{g} \left(\frac{a+x-x}{(a+x)^2} \right)\\
+	\text{Upward Piston Force}\\
+	F_{fld} = \frac{a L' i^2}{2(a+x)^2}\\
+	e = \frac{d\lambda}{dt} = \frac{d(Li)}{dt}\\
+	e = \frac{(L)di}{dt} + (i)\frac{dL}{dx} \frac{dx}{dt}\\
+	\text{Induced Coil Voltage}\\
+	e = L' \left(\frac{x}{a+x}\right)\frac{di}{dt} + (i)\frac{a L'}{(a+x)^2} \frac{dx}{dt}
+\end{gathered}
+$$
+
+By substituting the magnetic field strength and the induced voltage we obtain the final motion and electric equation (considering the calculated inductance):
+
+$$
+\begin{gathered}
+	\text{Motion Equation}\\
+	\boxed{F_t = m(\frac{d^2x}{dt^2}) + B(\frac{dx}{dt}) + k(x-l_0) - \frac{a L' i^2}{2(a+x)^2}}\\\\
+	\text{Electric Equation}\\
+	\boxed{V_t = (i)(R) + L' \left(\frac{x}{a+x}\right)\frac{di}{dt} + (i)\frac{a L'}{(a+x)^2} \frac{dx}{dt}}\\\\
+	\text{Considered Inductance}\\
+	\boxed{L' = \frac{\mu_0 \pi a d N^2}{g}}
+\end{gathered}
+$$
+
+***
+
+## Fluid Fundamentals ##
+
+![Fluid Properties](/static/images/notes/ActuatorsDiagramFluidProperties.png)
+
+Fluids are characterized by their relative incompressibility and continuous deformation after an applied shear force. Hydraulic systems use liquids and pneumatic gases as their power transmission mediums. Density (Mass Density) is the mass of a substance per unit of volume. Viscosity (given in poise) is the resistance of a fluid to deformation after shear force is applied and represents the internal friction of the substance.
+
+One way to measure absolute or dynamic viscosity ($\mu$) is to enclose the sample inside a cylinder with a radial space of ($C_r$) and apply shear force to it using a piston, the resistance of the fluid to the piston for a particular contact area and velocity (displacement derivative) will be proportional to the viscosity.
+$$
+\begin{gathered}
+	F = \mu (A) \frac{dx}{C_r}\\
+	F =  \frac{(\pi)(D)(L)(\mu)}{C_r} \frac{dx}{dt}
+\end{gathered}
+$$
+
+If we consider that the piston eccentricity and the radial space are very small then:
+
+$$
+\begin{gathered}
+	B = \frac{(3)(\pi)(L)}{(4)(f_{exc})} \left( \frac{D}{C_r} \right) 
+\end{gathered}
+$$
+
+The ratio between absolute viscosity and mass density is used in many fluid equations (Reynolds Number, Navier Stokes) known as kinematic viscosity (given in stokes). One way to measure kinematic viscosity is to measure the time that $60\text{cm}^3$ of a sample take to flow through a tube of $0.176\text{cm}$ of diameter and $1.225\text{cm}$ of length, the resulting time is called Saybolt Universal Seconds (SUS) and it can be used to approximate the kinematic viscosity (given in cSt):
+
+$$
+\begin{gathered}
+	v = \frac{\mu}{\rho} = 0.216(SUS) - \frac{166}{SUS}
+\end{gathered}
+$$
+
+![Hydraulic Cylinder](/static/images/notes/ActuatorsDiagramHydrailicCylinder.png)
+
+There is a spring effect of the liquid and the mechanical parts of the system, this spring effect therefore creates resonance in the hydraulic components and is proportional to the Bulk Modulus. We can observe the effect if we consider a cylinder with a starting total volume ($V_t$) that is then compressed, increasing in pressure finally decreasing its starting volume.
+
+$$
+\begin{gathered}
+	V_t = V_l + V_g\\
+	\Delta V_t = - \Delta V_g - \Delta V_l + \Delta V_c\\\\
+	\text{Effective Bulk Modulus}\\
+	\boxed{\frac{1}{\beta_e} = \frac{\Delta V_t}{V_t \Delta P}}
+\end{gathered}
+$$
+
+![Fluid Visc and Temp](/static/images/notes/ActuatorsDiagramFluidViscosityandTemp.png)
+
+The viscosity of liquids decreases as the temperature increases. The absolute viscosity-temperature curve can be approximated using the following relation (where $\lambda$ is a substance specific constant):
+
+$$
+\begin{gathered}
+	\text{Viscosity Temperature Curve}\\
+	\boxed{\mu = (\mu_0)(e^{-\lambda(T-T_0)})}
+\end{gathered}
+$$
+
+![Fluid Orifices](/static/images/notes/ActuatorsDiagramOrificesandFlow.png)
+
+There are many forces that affect fluid flow including gravity, buoyancy, inertia, surface tension, and electromagnetic fields. Usually the most relevant forces are the fluid viscosity and inertia and their ratio is called Reynold's number (where $\bar{u}$ is the average flow velocity):
+
+$$
+\begin{gathered}
+	\text{Reynold's Number}\\
+	\boxed{R = \frac{\rho (\bar{u})(a)}{\mu}}
+\end{gathered}
+$$
+
+Note that when viscosity forces dominate the flow of the fluid we will observe laminar flow (smooth, orderly parallel lines) and when inertia forces dominate we will observe turbulent flow (irregular, erratic spiral paths). Laminar flow in closed conduits with non circular cross sections considers an hydraulic diameter of $D_H = \frac{4A}{S}$, where A is the cross sectional area and S is the flow section perimeter.
+
+We use orifices (short length flow path restriction) in basic fluid control systems, to satisfy the continuity law the flow velocity must increase at the orifice. If the fluid has a relatively high Reynold number then the pressure drops from the acceleration of fluid particles to a higher jet velocity, at low Reynold numbers the pressure drops from the viscosity induced shear forces.
+
+The pressure differential required to accelerate the fluid particles to a higher jet velocity ($u_2 = Q$) can be found using Bernoulli's equation ($u_2^2 - u_1^2 = \frac{2(P_1 - P_2)}{\rho}$), combining it with the continuity equation ($A_1 u_1 = A_2 u_2$) and applying a viscous friction coefficient ($C_v \approx 0.98$) that decreases the final fluid jet velocity:
+
+$$
+\begin{gathered}
+	\text{Jet Velocity}\\
+	\boxed{Q = \left(\frac{C_v A_2}{\sqrt{1 - (\frac{A_2}{A_2})^2}}\right) \sqrt{\frac{2(P_1 - P_2)}{\rho}}}
+\end{gathered}
+$$
+
+We can obtain the jet velocity if we only consider the hole area, in this case $C_d$ is the discharge coefficient with a typical value between 0.6 and 0.8.
+
+$$
+\begin{gathered}
+	\text{Orifice Jet Velocity}\\
+	\boxed{Q = C_d A_0 \sqrt{\frac{2(P_1 - P_2)}{\rho}}}
+\end{gathered}
+$$
+
+We can obtain a similar equation if we know that the orifice will produce laminar flow, in this case $\delta$ is a geometry constant with a typical value of 0.2 for a circle with sharp edges.
+
+$$
+\begin{gathered}
+	\text{Laminar Flow Jet Velocity}\\
+	\boxed{Q = \frac{(2)(\delta)^2(D_H)(A_0)}{\mu}}
+\end{gathered}
+$$
