@@ -37,10 +37,10 @@ Selection and operation of actuators, theoretical foundations of actuators for d
 	4. [Equivalent Circuit Model](#equivalent-circuit-model)
 	5. [Performance Characteristics](#performance-characteristics)
 6. [Hydraulic Actuators](#hydraulic-actuators)
-	1. Fluid Basics
-	2. Flow in Orifices
-	3. Valves to Hydraulic Control
-	4. General Analysis of Valves
+	1. [Fluid Fundamentals](#fluid-fundamentals)
+	2. [Flow in Orifices](#flow-in-orifices)
+	3. [Valves and Hydraulic Control](#valves-and-hydraulic-control)
+	4. [General Analysis of Valves](#valve-analysis)
 	5. Pumps and Motors
 
 ***
@@ -1347,8 +1347,7 @@ Considering $k(x-l_0)$ as the mechanical spring constant and its compression, th
 
 $$
 \begin{gathered}
-	F = \frac{(\pi)(D)^2(P)}{4}\\
-	F = ma\\
+	F_t = \frac{(\pi)(D)^2(P)}{4}\\
 	F_{fld} + F_t - F_D - F_k = ma\\
 	\text{Motion Equation}\\
 	F_{fld} + F_t = m(\frac{d^2x}{dt^2}) + B(\frac{dx}{dt}) + k(x-l_0)\\
@@ -1440,6 +1439,10 @@ $$
 \end{gathered}
 $$
 
+***
+
+## Flow in Orifices ##
+
 ![Fluid Orifices](/static/images/notes/ActuatorsDiagramOrificesandFlow.png)
 
 There are many forces that affect fluid flow including gravity, buoyancy, inertia, surface tension, and electromagnetic fields. Usually the most relevant forces are the fluid viscosity and inertia and their ratio is called Reynold's number (where $\bar{u}$ is the average flow velocity):
@@ -1481,3 +1484,85 @@ $$
 	\boxed{Q = \frac{(2)(\delta)^2(D_H)(A_0)}{\mu}}
 \end{gathered}
 $$
+
+***
+
+## Valves and Hydraulic Control ##
+
+![Valves](/static/images/notes/ActuatorsValvesSpoolConfigurations.png)
+
+Valves can be divided into Sliding, Seating and Flow Dividers. Sliding valves with spools are the most common type, spool valves can be further subdivided into Flow Path Number, Piston Number or Center Type when neutral.  
+
+Types of CENTER
+
+***
+
+## Valve Analysis ##
+
+![Valves](/static/images/notes/ActuatorsGeneralAnalysisandAreaSpool.png)
+
+
+
+
+
+
+
+
+
+There are many forces in the spool known as fluid induced forces or hydraulic reaction forces and they are the result of flow passing through the valve chambers and ports, they are inherent to the nature of fluid acceleration as it travels through a hole.
+
+$$
+\begin{gathered}
+	F_j = \rho (V)\frac{Q_2^2}{A_2V} = \frac{\rho Q_2^2}{A_2} = \frac{\rho Q_2^2}{C_c A_2}  
+\end{gathered}
+$$
+
+The reaction to the fluid induced forces can be subdivided into an axial and a lateral component, the lateral component pushes the piston towards the sliding cylinder causing friction, this can be mitigated by locating the ports symmetrically, the axial component acts in the direction of the piston that closes the valve port. Since $Q_1 = Q_2$ then we can apply the orifice equation:
+
+$$
+\begin{gathered}
+	Q_1 = Q_2 = C_c C_v A_0 \sqrt{\frac{2(P_1 - P_2)}{\rho}}}\\
+	F_1 = (2)(C_d)(C_v)(A_0)(P_1-P_2)(\cos(\theta))\\
+\end{gathered}
+$$
+
+There is a clear relationship between the orifice opening or clearance and the jet angle of the fluid induced force. For small openings the jet angle becomes 21 degrees as we can see in the graph.
+
+$$
+\begin{gathered}
+	\text{Axial Component}\\
+	\boxed{F_1 = (2)(C_d)(C_v)(w)(P_1-P_2)(\sqrt{x_v^2 + C_r^2})(\cos(\theta))}
+\end{gathered}
+$$
+
+Another source of lateral forces is due to leakage through the pistons since it is very difficult to have a perfect cylinder there will always be an inclination that will causa a lateral force that decentralizes the piston. By making grooves in the piston plungers we can mitigate this effect, they need to be at least 10 times the clearance in size and perpendicular to the axis. One can reduce the effect to 40%, three to 6% and seven to 2.7%
+
+
+$$
+\begin{gathered}
+	\text{Lateral Component from Leakage}\\
+	\boxed{F = \frac{\pi l dt(P_1 - P_2)}{4b} \left (\frac{2C + t}{\sqrt{(2C + t)^2 - 4b^2}} - 1\right)}
+\end{gathered}
+$$
+
+
+
+
+
+Bleed type valves are used to control flow instead of pressure and come in many types like ball or poppet valves. Hydraulic Cylinders are linear actuators that use the energy of an hydraulic circuit to perform mechanical work, the flow under pressure sent by an actuator acts on the face of the piston moving it a certain distance (stroke). 
+
+Hydraulic Cylinders can be classified into single acting and double acting, in the first case hydraulic pressure extends the piston but a different force contracts it, in the second case the hydraulic pressure performs both actions. Rotating Cylinders are used to rotate work elements or operate process control valves, we can find them as Rotary vanes or Worm gear and pinion.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
