@@ -1,0 +1,611 @@
+---
+title: Manufacturing Tech Notes
+date: '2021-08-15'
+tags: ['school', 'manufacturing']
+---
+
+Lear about manufacturing technologies, sustainability with knowledge in material properties and technical.
+
+***
+
+**Manufacturing Introduction**
+
+* Technology: Application of science to produce the products that a society needs.
+* Manufacturing: From the words *hand* and *do*, it means creating something with your hands or tools. It's the fabrication of products from the transformation of raw materials. Most modern manufacturing is done with machines and digital automation, this is due to the technological advances of the industrial revolution.
+  * As a Technical Activity: Physical and chemical processes that alter the geometry, properties or appearance of a starting material. In other words raw material is transformed into a processed piece with some leftover waste with the help of a manufacturing process that includes machinery, tools, energy and human labor.
+  * As an Economical Activity: Transformation of an object, from a series of operations, into something with additional value. In other words raw material is transformed into a processed piece with the help of a manufacturing process that includes an additional value.
+* Green Manufacturing: Manufacturing done by using processes that minimize contamination, promote sustainability and protect public human health without sacrificing economic viability and efficiency. Engineers must find ways to benefit the economy, reduce waste, reduce energy consumption and develop safer alternatives to dangerous substances and products. 
+* Manufacturing Operation: Operation that uses energy to modify the geometry, physical properties or appearance of a piece to increase its added value.
+  * Processing
+    * Shaping: Solidification, Particulate, Deformation, Material Removal.
+    * Enhancing: Heat treatments.
+    * Surface: Cleaning-Treatments, Coating-Deposition.
+  * Assembly
+    * Permanent Joining: Welding, Brazing-Soldering, Adhesive Bonding.
+    * Mechanical Fastening: Threaded Fasteners, Permanent Fastening.
+* Final Goods: Can be classified into consumer goods (bought directly by end consumers) or capital goods (bought by other companies). In general the quantity of products that a company produces is decreased by the increase of product variety.
+* Manufacturing System: Integrated systems of machines and humans inside a fabric that perform processing and assembly operations over a material, work piece or group of pieces. They consist of production machines, material handling, material positioning and computational systems.
+  * Cellular Manufacturing (Cells)
+  * Flexible Manufacturing (Multiple Products)
+  * Lean Manufacturing (No Waste)
+  * Computer Integrated Manufacturing (CIM)
+
+***
+
+**Manufacturing Technologies**
+
+Some manufacturing technologies include:
+
+1. Casting
+2. Forming and Volumetric Deformation
+3. Machined
+4. Union
+5. Finish
+6. Nanofabrication
+
+A process under control is a process capability to produce defect-free products consistently. In every process there is some manufacturing variation:
+
+1. Random: Human variety with each cycle, raw material variations, machine vibrations, material aspect. By themselves they generally don't decrease quality.
+2. Assignable: Operator errors, defective materials or damaged machinery. They decrease the process capacity to produce high quality products.
+
+We can measure the process capacity with the use of sample measures such as the mean, median, mode, variance, standard deviation and range. In general we want the process capacity to be within 3 plus-minus standard deviations of the process distribution.
+
+* Variable Control Graph
+  * Average graph (x): Used to show the average value for a series of sample measurements. 
+  * $LCL = \bar{\bar{x}} - A_2(\bar{R})$ and $UCL = \bar{\bar{x}} - A_2(\bar{R})$
+  * Range graph (R): Used to show the range of each sample in the process.
+  * $LCL = D_3(\bar{R})$ and $UCL = D_4(\bar{R})$
+  * Standard Deviation from the Process Distribution $\sigma = \frac{\bar{R}}{d_2}$
+
+In relation to a lower specification limit (LSL) and an upper specification limit (USL), they can also be called the lower control limit (LCL) and upper control limit (UCL).
+
+$$
+\begin{gathered}
+	\text{Process Control Index}\\
+	C_p = \frac{ES - EI}{6\sigma}
+\end{gathered}
+$$
+
+| $C_p$ | Process Class | Process Description |
+| :---: | :---: | :---: |
+| $2 \le C_p$ | World Class | Six Sigma |
+| $1.33 \le C_p < 2$ | 1 (First Class) | Acceptable Process |
+| $1 \le C_p < 1.33$ | 2 (Second Class) | Requires a Strict Control |
+| $0.67 \le C_p < 1$ | 3 (Third Class) | Requires Serious Modifications |
+| $C_p < 0.67$ | 4 (Fourth Class) | Unacceptable Process |
+
+***
+
+**Casting and Solidification**
+
+* Casting Processes
+  * Model and mold disposable: Coating casting, lost foam casting, single crystal growth, rotary.
+  * Mold disposable and permanent model: Sand casting, shell mold, ceramic mold.
+  * Permanent Mold: Permanent mold, pressure, centrifugal, compression.
+* Solidification Process
+  * Primary Processing: Casting metals in order to obtain ingots, plates, sheets and semi-finished products.
+  * Secondary Processing: Additional processes such as rolling and extrusion applied to semi-finished products.
+* Solidification Steps
+  * Nucleation: Small solid portion forms within the liquid, the formation of the first crystallites or nuclei.
+  * Growth: The core grows as new atoms from the liquid join the crystallites.
+* Crystalline Materials: For example stainless steel (polycrystalline of ferrite and perlite) or a silicon monocrystalline solid.
+* Grain Boundary: Atoms near the boundaries of two distinct grains didn't achieve a uniform spacing equilibrium.
+
+$$
+\begin{gathered}
+	\text{Total Energy Change}\\
+	\Delta G = \frac{4\pi r^3}{3} \Delta G_v + 4\pi r^2 \sigma_{sl}
+\end{gathered}
+$$
+
+In relation to the spherical volume $\frac{4\pi r^3}{3}$, the change in free energy per volume unit $\Delta G_v$, the spherical area $4\pi r^2$ and the free surface energy of the solid-liquid interface $\sigma_{sl}$. 
+
+* Temperature Subcooling: Temperature differential between the equilibrium solidification temperature and the actual temperature of the liquid. It represents the point at which the liquid metal is cool enough (below the equilibrium solidification temperature) to start the nucleation process.
+* Overheating: Temperature differential between the pouring temperature and the solidification temperature.
+* Critical radius: Minimum size of a crystal needed to become stable and begin to grow.
+
+| Material | $T_m$ ℃ |  $\Delta H_f$ J/cm^3 | $\sigma_{sl}$ J/cm^2 | $\Delta T$ ℃ |
+| :---: | :---: | :---: | :---: | :---: |
+| Ga | 30 | 488| 56E-7 | 76 |
+| Bi |271 | 543| 54E-7 | 90 |
+| Pb |327 | 237| 33E-7 | 80 |
+| Ag |962 | 965| 126E-7 | 250 |
+| Cu |1085 | 1628| 177E-7 | 236 |
+| Ni |1453 | 2756| 255E-7 | 480 |
+| Fe |1538 | 1737| 204E-7 | 420 |
+| NaCl |801 | | | 169 |
+| CsCl |645 | | | 152 |
+| H2O |0 | | | 40 |
+
+**Homogeneous Nucleation**
+
+Nucleation that occurs when the subcooling becomes large enough to cause the formation of a stable core. It is considered an ideal nucleation that can be reproduced in laboratories.
+
+$$
+\begin{gathered}
+	\text{Homogeneous Critical Radius}\\
+	r^{*} = \frac{2\sigma_{sl}T_m}{\Delta H_f \Delta T}
+\end{gathered}
+$$
+
+In relation to the free surface energy of the solid-liquid interface $\sigma_{sl}$, the solidification equilibrium temperature *in Kelvins* $T_m$, the latent fusion heat per volume unit $\Delta H_f$ and the subcooling $\Delta T$ at the specific liquid temperature of the material.
+
+For example, knowing that the cubic lattice parameter for solid copper is $FCC = a_0 = 0.3615 nm$ then calculate the critical radius and number of atoms in the core for solid copper formed by a homogenous nucleation:
+
+$$
+\begin{gathered}
+	r^{*} = \frac{2(177\times 10^{-7})(1085 + 273.15)}{(1628) (236)}\\
+	r^{*} = 1.25\times 10^{-7} \, \text{cm} = 1.25 \, \text{nm} \\
+	V_r = \frac{4\pi (1.25)^3}{3} = 8.18 \, \text{nm}^3\\
+	FCC = a_0 = 0.3615 nm\\
+	V_{cu} = (0.3615)^3 = 0.047 \, \text{nm}^3 \\
+	n_{cu} = \frac{V_r}{V_{cu}} = \frac{8.18}{0.047} = 174.042\\
+	FCC = 4\\
+	n_{a} = (174.042)(4) = 696.168 \approx 696
+\end{gathered}
+$$
+
+The fourteen possible lattices (lattice frameworks) that can be created in three dimensions, using points of the network are:
+
+![Lattices](/static/images/notes/BravaisLatticesImageMaterialsTech.png)
+
+**Heterogeneous Nucleation**
+
+Also called inoculation, is the nucleation that occurs on preexisting surfaces (impurities), the impurity decreases the surface energy needed for the core to achieve its critical radius (smaller grains), meaning that this nucleation can happen with relatively low subcooling.
+
+* Unit Cell: Simple repeated unit that constitutes the entire crystal structure.
+* Crystal Structure: Arrangement of atoms in a regular repeatable lattice.
+* Crystallography: Formal study of atom arrangements in solids.
+* Crystal Systems: Set of geometric shapes of the units cells that define the material.
+* Cubic Crystal System: The atom centers in a FCC structure can be placed at the body, the vertices or at the faces of the cube.
+
+***
+
+**Machining**
+
+Machining is a manufacturing process that forms a piece by removing small pieces of the original material, usually through a cutting process. To determine the cutting force in a machining operation we can:
+
+1. ASME Criteria: Also known as tool reference number, all cutting parameters are related to the cutting force from experimental results. Cutting force measurements through experimentation often involve the use of strain gauges or special dynamometers.
+2. Kienzle Criterion: Model with few parameters based on experimental results and theoretical models. The theoretical model assumes that the cutting force is related to the chip section area and the shear strength properties of the material. $F_c = K_s (A_c) = K_s ((h)(b)) = K_{s11} ((h^{1-z})(b))$.
+3. Finite Element Modeling: Analysis of the cutting process using a numerical method.
+
+**Nucleation in Manufacturing**
+
+Casting steps include:
+
+1. Prepare the sand and use pattern making to construct a mold.
+2. Create an optional sand core if needed.
+3. Melt the raw material and pour it into the mold.
+4. Wait for the solidification and cooling.
+5. Remove the sand mold, clean and inspect the finished piece.
+
+* Nucleation Speed: Number of nuclei formed per unit of time as a function of the temperature. Above the solidification temperature the nucleation rate is zero and it reaches a maximum at some point below the subcooling temperature.
+* Controlled Nucleation (Heterogeneous)
+  * By grain size hardening: Intentionally introduced nucleating particles (inoculation).
+  * By second phase hardening: Hardening using ultrafine precipitates (dispersion hardening). It is used when we also want to improve the mechanical properties of some alloy.
+
+The nature of the grain growth depends on the heat dissipation of the molten material, there are two types of heat to be eliminated:
+
+1. Specific heat of the liquid: Heat required to change the temperature per unit of weight of the material by one degree. It happens from conduction or radiation.
+2. Latent heat of fusion: Energy required to completely change one unit of substance from solid into liquid. It determines the final structural integrity of the piece.
+
+One common way of determining the specific heat of the liquid and the latent heat of fusion is by using a differential calorimetry scanner. Gran growth classification based on head dissipation includes:
+
+1. Planar growth (inoculated liquid): The liquid temperature is higher than the solidification temperature, there won't be a bulge over the solid-liquid interface therefore keeping a flat interface.
+2. Dendritic growth (non-inoculated liquid): Same as the planar growth with the difference that you will need to achieve a subcooling temperature and the latent heat will be eliminated through the solid.
+
+![Metal growth](/static/images/notes/ManufacturaGrowthinMetals.png)
+
+**Solidification Time**
+
+Given by the Chvorinov Rule where $V$ is the volume of the cast piece (amount of heat that must be removed), $A$ is the surface area of the cast piece in contact with the mold, $n$ is a constant (normally 2) and $B$ is the specific mold constant:
+$$
+\begin{gathered}
+	t_s = B\left(\frac{V}{A}\right)^n
+\end{gathered}
+$$
+
+For example, assume that a 2 in cube solidifies in 4.6 minutes, calculate the mold constant and then the solidification time for a (0.5x0.5x6) plate cast and a sphere cast with the same volume as the plate:
+
+$$
+\begin{gathered}
+	t_s = B\left(\frac{V}{A}\right)^n\\
+	4.6 = B\left(\frac{(2)^3}{(6(2)(2))}\right)^2\\
+	B = \frac{4.6}{0.1111} = 41.4 \,\text{min/in}^2\\
+	V_p = (0.5)(0.5)(6) = 1.5 \,\text{in}^3\\
+	t_{s1} = (41.4)\left(\frac{1.5}{(2(0.5)(0.5))+(4(0.6)(0.5))}\right)^2\\
+	t_{s1} = 0.59 \,\text{min}\\
+	V = \frac{4\pi (r)^3}{3}\\
+	1.5^3 = \frac{4\pi (r)^3}{3}\\
+	r = \sqrt[3]{\tfrac{1.5}{4\pi/3}} \implies r = 0.71 \, \text{in}\\
+	A = 4\pi (r)^2 = 4\pi (0.71)^2 = 6.33  \, \text{in}^2\\
+	t_{s2} = (41.4)\left(\frac{1.5}{6.33}\right)^2\\
+	t_{s2} = 2.32 \,\text{min}
+\end{gathered}
+$$
+
+**Solidification Rate**
+
+We can describe the solidification rate in terms of how fast the thickness of a solidified crust grows from a particular casting, this is because solidification starts at the surface where the heat dissipates into the mold:
+
+$$
+\begin{gathered}
+	d = k_s \sqrt{t} - c_1\\
+	d = \text{Solidified Crust Thickness}\\
+	k_s = \text{Material and Mold Constant}\\
+	t = \text{Pouring Time}\\
+	t = \text{Pouring Temperature Constant}
+\end{gathered}
+$$
+
+***
+
+**Casting by Green Sand**
+
+For green sand casting the most important steps are:
+
+1. The flow of molten metal in the mold.
+2. The solidification and cooling of the metal.
+3. The influence of the types of material in the mold.
+
+Types of casting include:
+
+* Green sand molding: Clay sand is compacted around a pattern, optional cores produce cavities. It is called green because it of its high humidity, like in *green wood*.
+* Permanent mold: Metal is poured into a mold of iron or steel.
+* Matrix casting: Metal is injected under high pressure into a steel matrix.
+* Lost wax casting: A wax pattern is surrounded by a ceramic, then the wax is melted and drained before pouring the metal into the ceramic pattern.
+
+Green sand casting is a process characterized by the use of sand as the mold material, the sand is generally mixed with a bonding agent such as clay and water in order to achieve the correct plasticity. The mold is formed by compacting the sand into a mold box around the model, the model is removed and then the metal poured to obtain the final casting.
+
+The sand is mainly made up of grains of quartz and clay, depending on the casting specifications the sand must have properties such as:
+
+* Refractoriness: Property or resistance to high temperatures.
+* Cohesion: Property that facilitates molding (agglutinate) for the mold formation.
+* Permeability: Property that facilitates the escape of the molten metal gases when in contact with the sand.
+* Slippage: Property that facilitates the sliding of liquid metal into the mold.
+* Disintegration: Property that facilitates the removal of the mold after cooling.
+
+Binders or bonding agents reinforce the sand and allow the mold to keep its shape when the molten metal is poured, they are classified into:
+
+1. Inorganic Clay: Standard clay and Bentonite.
+2. Inorganic Cementitious: Cements and Silicates.
+3. Organic: Cereals, lignin, molasses, tar and vegetable oils.
+
+Casting blacks are an insulating layer put between the metal and the sand to compensate for the expansion of the sand at high temperatures, examples include coal, dust, graphite, charcoal and pure clay.
+
+Sand casting requires a model (pattern) that is slightly enlarged (considering contraction) when compared to the final piece. The model materials include metal, plastic and wood (depending on production quantity). Models can be classified into:
+
+1. Lost Models: Wax, expandable polystyrene, mercury and paraffin mixed with beeswax.
+1. Reusable models: Plastic, aluminum, plaster and silicones, which are themselves molded with an extremely fine granulometry ceramic paste.
+
+Hearts or cores are inserted into the mold cavity to form external and internal surfaces, they are usually created from compacted sand. Just like the model, the heart must consider the contraction and tolerances of the final piece. 
+
+In very complex castings with multiple cores and difficult placement of cores the best and most economical solution is to design and create 3D Printed sand molds and cores. They must have properties such as:
+
+1. High resistance to erosion
+2. Exceptionally high strength
+3. Good Permeability
+4. Good Refractoriness
+5. Adequate Collapsibility
+   
+Some typical mixtures for cores include:
+
+1. Green sand with angular grains for light castings with a mixture of clay.
+2. Green sand with angular grains for hard castings with a mixture of bentonites.
+3. Dry sand with rounded grains for greater strength.
+4. Sands with added resins like phenol, urea and formaldehyde.
+5. Silica sand and sodium silicate with added CO2 to make it harder.
+6. Sand with organic and inorganic binders.
+7. Sand with kaolin, iron oxide, aluminum oxide, graphite, zirconium fluoride, etc.
+8. Oily Sands.
+
+![Core Types](/static/images/notes/ManufacturaCoreTypesCommon.png)
+
+| Material | Fusion Temp ℃ | 
+| :---: | :---: | 
+| Fe | 1536 |
+| Ni | 1453 |
+| Cu | 1083 |
+| Al | 660 |
+| Mg | 649 |
+| Zn | 420 |
+| Pb | 327 |
+| Sn | 232 |
+
+| Material | Contraction Percentage | 
+| :---: | :---: | 
+| Fe | 3.4 |
+| Cu | 5.1 |
+| Al | 7 |
+| Mg | 4 |
+| Zn | 3.7 |
+| Pb | 2.7 |
+| Ga | -3.2 |
+| H2O | -8.3 |
+| Low Carbon Steel | 2.5-3 |
+| High Carbon Steel | 4 |
+| White Casting Fe | 4-4.5 |
+| Gray Casting Fe | -1.9 |
+
+The parts of a mold are: Cope, Drag, Board, Fasteners, Matching Studs, Vent, Overflow, Sprue, Pouring Basing, Runner, Slag Trap, Intake Gate, Casting Cavity, Core and Riser. The sprue (mazarota) is a deposit integrated into the model to prevent solidification defects like cavities or sinkholes due to contraction.
+
+A cavity forms internal holes with dendrite walls and are found in thickness changing zones or at the center of the casting piece. A sinkhole forms external or surface level holes where a surface of the casting piece took longer to solidify. Other solidification defects include discontinuities, defective surfaces, inclusions, incorrect dimensions and porosities.
+
+![Defects](/static/images/notes/ManufacturaDefectsTypes.png)
+
+Metal melting furnace types include:
+
+1. Cupola furnace for iron and iron alloys
+2. Electric furnaces for steel production
+3. Crucible furnaces for non-ferrous metals
+4. Air furnaces or reverberators to produce steel.
+
+For example, assume a copper sphere of 4 in of diameter solidifies producing a cavity in the center. Compare the volume and diameter of the cavity with a similar iron sphere of 4 in of diameter.
+
+$$
+\begin{gathered}
+	d_{cu} =  4 \, \text{in}\\
+	V_{cu} = \frac{4(\pi)(2)^3}{3} = 33.51 \, \text{in}^3\\
+	V_{fe} = \frac{4(\pi)(2)^3}{3} = 33.51 \, \text{in}^3\\
+	k_{cu} = 5.1\\
+	k_{fe} = 3.4\\
+	V_{ccu} = 33.51(0.051) = 1.71 \, \text{in}^3\\
+	V_{cfe} = 33.51(0.034) = 1.14 \, \text{in}^3\\
+	r_{ccu} = 0.74 \,\text{in}\\
+	r_{cfe} = 0.64 \,\text{in}
+\end{gathered}
+$$
+
+***
+
+**Evaporative Mold Casting**
+
+> Casting that uses a pattern made from a material that will evaporate when the molten metal is poured. 
+
+Can be divided into Lost foam casting (unbonded sand) and Full mold casting (bonded or green sand). Also known as consumable casting, it is similar to investment casting. Easier than other casting types, wide range of shapes and sizes, increases thermal and abrasion resistance, high dimensional accuracy, easier casting of lightweight parts, intricate shapes without the need of cores and low operational costs. One third of all aluminum casting is done with this process, it can be used for ferrous and non ferrous metals. Polystyrene Foam is used as pattern material. Manufacturing of cylinder heads, iron pipes and pump parts. Surface roughness of 9.4 to 12.5 with a cost of 7000 per unit.
+
+**Permanent Mold Casting**
+
+> Casting process that employs reusable molds or dies generally made from metal with a high resistance to thermal fatigue. Most common processes include gravity fill, low gas pressure, slush casting (hollow units) and vacuum casting. 
+
+Reusable mold, good surface finish, good dimensional accuracy, high production rates, directional solidification, fast cooling rate, increased strength, low porosity, low labor cost (compared to sand casting). Aluminum, magnesium and copper alloys, but also tin, zinc, lead, iron and steel, limited to relatively low melting metals. Graphite as mold material and gray cast iron as pattern material (high thermal fatigue resistance). High tooling costs, limited to low melting metals, expensive molds for a relatively low lifespan (specially steel and iron). Not viable for small production runs or big units. Manufacturing of gears, splines, wheels, gear housings, pipe fittings, fuel injection housings and engine pistons, manifolds. Surface roughness of 0.8 to 1.6 with a cost of 1000 per unit.
+
+**Plaster mold casting**
+
+> Casting process similar to sand casting but the molding material is Paris plaster instead of sand, considered an expendable mold process. The pattern is usually made from metal but rubber can be used for complex geometry. 
+
+Wide range of sizes, excellent surface finish, good dimensional accuracy, minimal scrap and slower solidification allowing for filling thin cross sections. It can only be used with non ferrous materials, mainly used with aluminum. Paris plaster with additives as molding material. Long cooling restricts production rates. Can only be used with lower melting non ferrous materials (aluminum, magnesium, zinc and copper). The plaster needs to have stricter properties than sand. Manufacturing of lock components, gears, valves, fittings, tooling, ornaments.
+
+**Shell Casting**
+
+> Casting or molding process that uses resin covered sand to form the mold, considered an expendable mold process. The pattern is usually made from a metal piece that can be reused.
+
+Better dimensional accuracy than sand, higher productivity rate, lower labor requirements, smooth surface finish, sand-resin mix is highly reusable, good for small to medium parts that require high precision. Can be used with ferrous and non ferrous metals, mainly iron, steel, aluminum and cooper. Thin thermosetting phenolic resin and liquid catalyst cover the silica sand. Resin is expensive, high equipment cost, high porosity is more probable. Manufacturing of gear housings, cylinder heads, connecting rods, engine blocks, manifolds, machine bases and lever arms.
+
+**Ceramic Mold Casting**
+
+> Casting or molding process that use ceramics as the mold material, considered an expendable process. Can be subdivided into Osborn-Shaw Casting or Unicast Casting. 
+
+Reusable pattern, excellent surface finish, good dimensional accuracy, intricate shapes and thin cross sections, high temperature steels and alloys, complex designs, low machining. Used mainly for ferrous and high temperature non ferrous materials, mainly aluminum, copper, magnesium, zinc and titanium. In the Shaw process a refractory aggregate, hydrolyzed ethyl silicate and alcohol are burned to obtain the ceramic grains. In the unicast process the ceramic, made from zinc and calcined high alumina mullite, isn't burned, instead it is simply cured at some temperature. Only cost effective for small to medium production volume since the ceramic is not reusable. Reusable cheap patterns made of wood, metals, plastics or rubber are used. Manufacturing of tooling, drop forging dies, injection dies, glass molds, stamping dies, extrusion dies, kitchenware and decorations. Surface roughness of 1.6 to 3.2 with a cost of 3500 per unit.
+
+**Investment Casting**
+
+> Casting process based on Lost wax casting, one of the oldest metal forming techniques, some type of wax is used to form the patterns needed in the process. 
+
+Evaporative Lost foam casting is a modern derivative of investment. Can be divided into water glass investment or silica sol investment (higher surface finish but more expensive). Most of the wax can be reused, exceptional surface quality, wide range of sizes and shapes, low machining, high dimensional accuracy, extremely intricate parts. No parting line since only one mold is used. Stainless steel alloys, brass, aluminum, carbon steel and glass. Almost all metals. Vacuum Pressure Casting is a derivative process used to minimize porosity with materials such as high nickel alloys and super alloys. Refractory waxes and alloys used as pattern material. 3D printing has been used recently to make larger, complex and cheaper molds. More expensive than die casting or sand casting but cost decreases heavily with a higher volume. One of the most expensive processes for low volume production. Manufacturing of  jet engine turbine blade, turbocharger rotor, guns, jewelry, satellites, cooling systems, golf clubs. Surface roughness of 1.6 to 3.6 with a cost of 5000 per unit.
+
+**Casting in C02/Silicate mold**
+
+> Carbon Dioxide Process for Mold hardening is a casting process based on the hardening of sand into silica gel using carbon dioxide pressure injection. Silica gel is a hard substance like cement that is an ideal sand grain binder. The pattern is usually made from metal or wood.
+
+Primarily used as a substitute for dry sand molding to eliminate baking operations for core and mold hardening. Used in the creation of large molds with wooden patterns and small repetition castings. High surface quality, good dimensional tolerance, high speed operations, long time storage, high permeability and sand flow, low skilled labor needed, reduced gases, no risk of sand flow. Can be used with ferrous and non ferrous metals, mainly iron, steel, aluminum and cooper. Mixing of silica sand (dry and clean) with 5 percent of sodium silicate liquid as a base binder. Optional additives such as coal, pitch, graphite and wood can be added to improve collapsibility. After packing carbon dioxide is forced into the mold by pressure. Tendency for air to harden if kept for a long time, sand mixture is expensive from binders and additives, collapsibility may be too low, low sand reusability.
+
+**Cosworth Casting**
+
+> Casting process with zircon sand designed for high integrity aluminum casting, extensively used in racing car engines. 
+
+The process start as regular sand casting but uses zircon as aggregate, no gating or feeder are used for pouring, therefore blow holes, cores and adhesives aren't needed. High integrity and dimensional accuracy, no porosity (pressure tight), improved material properties, reduced fettling time and machining, high strength and ductility for the final units. Low scrap rates. Non ferrous materials for medium to high volume production. Zircon sand is used instead of silicon as mold material. Expensive for low volume production, used mainly for the highest quality and lightest weight applications. Manufacturing of aerospace, sport cars and military equipment such as helicopter engines, high pressure refueling, gun cradles, aluminum structural parts, boat engines.
+
+**Centrifugal Casting**
+
+> Invented by Alfred Krupp to manufacture cast steel railway tyres in 1852. It is a casting technique used to form thin walled cylinders by rotating a preheated permanent mold at high speeds (300 to 3000 rpm) and 60 to 100 G of pressure as the molten metal is poured it spreads with a quick cooling.
+
+* Advantages: No cores needed, improved mechanical properties (tensile strength, flow resistance, elongation, uniformity) due to the uniform consolidation of fine grain microstructures on the outside and impurities on the inside, the impurities can be then eliminated from the interior via machining, directional solidification, low to none porosity, high quality, minimization of residual stress since nothing disturbs the shrinkage, centerline shrink is not an issue, thin walled cylinders are difficult to manufacture with other techniques, grain structure can withstand atmospheric corrosion.
+* Disadvantages: Small inner diameters are difficult to machine, limited to simple cylindrical shapes, cost effectiveness is reduced from the additional machining, grinding and sand blasting. Size limitations for vertical casting since gravity produces a parabola at the bottom when the height to diameter ratio is greater than 2 to 1.
+* Horizontal Casting: The rotational speed of the mold is high to offset gravitational forces. Just as in vertical casting the interior dimension of the mold determines the exterior dimension of the unit and the amount of molten metal determines the interior dimension size. This is the preferred way of creating long thin cylinders were their length is far greater than their diameter.
+* Vertical Casting: The die rotates around a vertical axis, the internal wall diameter will vary according to the amount of metal, this method saves floor space compared to horizontal casting. This is the preferred way of creating rings, bearings and short cylinders were their length is short compared to their diameter. Glass spinning is considered a variation of centrifugal casting to press the molten glass against the walls of the mold. Vacuum centrifugal casting is used for some oxygen sensitive alloys such as nickel-cobalt super alloys.
+* Materials: Iron, steel, magnesium, phosphor bronze, nickel alloys, aluminum alloys, copper alloys, cements, concretes, glass, Babbitt metal, lead and pottery materials. Two materials can be combined by introducing a second material for the interior coating during the process. The permanent mold is made of steel, cast iron or graphite with a coating of refractory ceramic.
+* Applications: Pipes, flywheels, jet engine compressor cases, hydro wear rings, petrochemical furnace tubes, tube sections, rings, flanges, cylinder liners, power transmissions, bushings, coils, nozzles, pressure vessels, pulleys, wheels, sleeve valves for piston engines, telescope mirrors, power generators, spherical glass objects, military equipment, brake drums, jewelry, dental casting, street lamp posts, gas pipes and most axially symmetric parts.
+
+![Casting Methods](/static/images/notes/ManufacturaCastingMethodsN.png)
+
+***
+
+## Notes ##
+
+* Learn software such as ABAQUS or Hyperworks
+
+***
+
+**Machining Principles**
+
+Machining and finishing operations are among other common industrial processes such as forming, casting, polymer and union. Machinig describes the removal of material and modification of the surface of a given workpiece, since they don't create the workpiece they are considered secondary or finishing manufacturing operations. Machining is done by various machine tools.
+
+1. Machining and Finishing Processes
+    1. Machining
+       6. Milling (Fresado) : Removal of material using rotating cutters on a fixed workpiece.
+       7. Slab Milling: Uses peripheral edges of the milling cutter to create planar cuts on the surface.
+       8. Face Milling: Similar to slab milling but uses the end of the milling cutter instead of the edges.
+       9. Gear Forming: Using a cutter that has the shape of the spaces between teeths.
+       10. Gear Generating: Using another gear with teeth cutters at different angles.
+       11. Planing (Planeado): Creation of large flat surfaces using a large horizontal moving cutter.
+       12. Shaping (Limadora): Single point cutting tool with a linear toolpath (smaller planing).
+       13. Broaching (Brochado): Milling process used to create square holes, spline holes, keyways, etc.
+       14. Sawing (Aserrado): Removal of a large piece of the material along a plane.
+       15. Turning (Torneado): In a lathe the workpiece spins with a cutting tool moving across it to remove a layer.
+       16. Parting (Tronzado): Cut a large piece of material, similar to sawing but in a turning process.
+       17. Grooving (Ranurado): Generation of cylindrical grooves in a turning process without parting the piece.
+       18. Threading (Roscado): Generation of threads or cylindrical helical paths along the surface.
+       19. Boring (Mandrinado): Turning after drilling on the interior of tubular features for a better surface.
+       20. Facing (Refrentado): Turning process done at the end of the workpiece fed radially towards the center.
+       21. Drilling (Taladrado): Creation of cylindrical holes using drilling tools.
+       22. Reaming (Escariado): Used after drilling to improve precision, tolerance and surface finish.
+    2. Advanced Machining (Nontraditional)
+       1. Electrical Discharge Machining (EDM)
+       2. Chemical Machining (CHM)
+       3. Electrochemical Machining (ECM)
+       4. Laser Beam Machining (LBM)
+       5. Water Jet Machining (WJM)
+       6. Abrasive Jet Machining (AJM)
+       7. Plasma Beam Machining (PBM)
+       8. Ultrasonic Machining (USM)
+    3. Finish
+       1. Lapping (Lapeado): Two surfaces are rubbed together with an abrasive between them.
+       2. Honing (Bruñido): Abrassive process for better geometrical and surface finish.
+       3. Surface Grinding: Lapping with removal of small amounts of material from flat surfaces.
+       4. Centerless Grinding: Lapping with removal of small amounts of material from cylindrical surfaces.
+       5. Electrochemical Grinding (ECG): Removal of conductive material using a negatively charged abrasive.
+
+
+![Machining Methods](/static/images/notes/ManufacturaMachiningMethods.png)
+
+Advantages of machining include:
+
+* Smooth and shiny surfaces.
+* Creation of small diameter holes.
+* Creation of sharp details, threaded sections and closed tolerances.
+* Threaded holes on different surfaces for assembly with other parts.
+* Surface finish with special textures.
+
+Disadvantages of machining include:
+
+* Production of waste material.
+* High time requirements compared to other processes.
+* Generally more energy required than forming or shaping operations.
+* May have adverse effects on surface quality and physical properties.
+
+There are three factors to determine a material's machinability:
+
+1. Classification of the workpiece material ISO and MC Codes.
+2. The cutting edge geometry to be used (micro and macro).
+3. The cutting tool material (grade) with coatings.
+
+Machinability has no objective measurements but can be defined as the ability of the workpiece material to be machined depending on the cutting edge wear (tool life) and chip formation (undisturbed cutting). Factors used in machinability standard test include microstructure, smearing tendency, machining variables, stability, noise, etc.
+
+**Materials and Cutting Tools**
+
+Each material has its own characteristics that influence the cutting tool geometry, grade and data. ISO divides workpiece materials into six groups:
+
+1. ISO P: Steels
+   1. Machinability depends on elements, heat treatment and manufacturing process.
+   2. Good, easy and smooth chip control. Chipping is long, continuous and uniform.
+   3. Low Carbon steels are sticky and need sharp cutting edges, cutting forces in a limited range.
+   4. Cutting Force = 1400 to 3100 N/mm^2
+2. ISO M: Stainless Steels (at least 12 percent chromium)
+   1. Machinability decreases with higher alloy content.
+   2. Good chip control in ferritic-martensitic. Bad chip control in austenitic and duplex.
+   3. Long, laminar and irregular chipping from high cutting forces.
+   4. High cutting forces with builtup edge, heat and mechanical hardening.
+   5. Sulfur increases machinability while nitrogen and carbon decreases it.
+   6. Cutting Force = 1800 to 2850 N/mm^2
+3. ISO K: Cast Iron
+   1. There are five cast iron types: CGI, MCI, NCI, CGI and ADI.
+   2. Good chip control in most conditions with short or pulverized chipping.
+   3. Abrasive wear when machining at higher speeds from Si content. Low cutting forces.
+   4. Machined with negative inserts with strong edges and safe applications.
+   5. Use hard carbide substrates with thick aluminum oxide coatings for the tools.
+   6. Cutting Force = 750 to 1350 N/mm^2
+4. ISO N: Non Ferrous Metals
+   1. Aluminum alloys are the majority but copper, bronze and brass are included. 
+   2. Good, easy chip control if alloyed. Sticky materials require sharp edges.
+   3. Low cutting forces and power but high Si is very abrasive to cutting tool.
+   4. Low cutting power from the extremely high chipping speeds. Chipping is long.
+   5. Fine uncoated carbide grades for Si below 7 percent. PCD tipped for higher Si content.
+   6. Cutting Force = 350 - 700 N/mm^2
+5. ISO S: Super Alloys and Titanium
+   1. Heat Resistant Super Alloys (HRSA) and Titanium variants.
+   2. Annealing and Aging influence the machining properties.
+   3. Bad chip control due to segmented and long chips. 
+   4. High cutting forces and power. Sticky materials with built up edges.
+   5. Similar to M materials but with poor tool life, hardening and heat.
+   6. Cutting Force = 1300 to 1400 (Titanium) and 2400 to 3100 (HRSA) N/mm^2
+6. ISO H: Hard Materials
+   1. Hardened and Tempered Steels with more than 45 - 68 HRC.
+   2. Moderate chip control for finishing operations. Negative chipping angle required.
+   3. Long and continuos chips that reach incandecent temperatures.
+   4. Highest cutting forces and power. Poor Machinability.
+   5. High heat generation and very abrasive to the cutting edge.
+   6. Tool with high resistance to deformation, stability, strength and wear (CBN).
+   7. Whisker reinforced ceramic can be used when the hardness is to high for carbide tools
+   8. Cutting Force = 2550 to 4870 N/mm^2
+7. O: Other Materials not included are thermoplastics, thermosets, GFRP, CFRP, carbon fiber composites and other composites.
+
+Cutting tools can be a simple solid tool shank, a tool shank with a brazed insert or a mechanically clamped insert with a supported seat (greater force and cutting speed). 
+
+
+![Material Workpiece](/static/images/notes/ManufacturaIsoMaterialsGroups.png)
+
+Good cutting tool materials should be:
+
+* Hard to resist flank wear and deformation.
+* Tough to resist bulk breakage.
+* Chemically stable to resist oxidation and diffusion.
+* Non reactive with the workpiece material.
+* Resistant to sudden thermal changes.
+
+Cemented Carbide is a powdery composite of mostly hard Tungsten Carbide WC and a metallic Cobalt Co binder, additional carbonitrides can be added. Formed from pressing or injection processes in a carbide capsule with the WC grain size being the most influential variable (finer equals harder material). Once synthesized the material is cut into segments that are welded into a cemented carbide base and a rectified cutting edge finish. Uncoated Cemented Carbide is used mostly for ISO S and ISO H machining as a disposable material.
+
+Coated Cemented Carbide represents most of all cutting tool inserts due to its universal wear resistance and toughness, it combines a Cemented Carbide with a coating that is customized for its application:
+
+* Chemical Vapor Deposition Coating (CVD) is generated by chemical reactions at temperatures of 700 to 1050 degrees. 
+  * High wear resistance and excellent adhesion to cemented carbide.
+  * First was TiC, then Al203 and TiN. Recently titanium carbonitride MT-TiCN and MT-CVD or a combination.
+  * MT-TiCN has abrasive wear resistance with low flank wear. TiN has improved wear resistance.
+  * Al203 is chemically inert with low thermal conductivity, resistance to crater wear.
+  * CVD is prefered for its wear resistance when working with ISO P, ISO M and ISO K.
+* Physical Vapor Deposition Coating (PVD) is generated at low temperatures 400 to 600 degrees by evaporating a metal with nitrogen.
+  * Can form a hard nitride coating on the cutting tool surface.
+  * High hardness, wear resistance, comb crack resistance and edge toughness.
+  * Modern PVD coatings use nanometer layers of diverse constituent combinations.
+  * First was TiC with golden color, then TiCN for flank wear resistance.
+  * TiAlN or titanium aluminum nitride has high hardness, wear and oxidation resistance.
+  * Oxide is used for its chemical inertness and enhanced crater wear reistance.
+  * PVD is prefered for tough and sharp cutting edges when milling and drilling most materials.
+
+![Cutting Tool Materials](/static/images/notes/ManufacturaCuttingToolMaterialsFeed.png)
+
+Cermet Cutting Tool Material is a cemented carbide with titanium particles, originally a composite of TiC and Nickel, modern cermets have TiCN, TiNbWCN, and WC particles instead of Nickel. Cermet has a higher wear resistance and reduced smearing tendency than Cemented Carbide but lower compressive strength and thermal resistance. Used mainly for materials with a builtup edge problem since they have a self sharpening wear pattern (long tool life and shiny surfaces).
+
+Ceramic Cuttingh Tool Material is a oxide ceramic material (Al203, Zr02) with wear resistance, high cutting speeds and chemically stable but with low thernal shock resistance. Modern materials are reinforced with TiC, TiCN, SiCw, Si3N4 and SiAlON. Used mainly for high speed operations in grooving and milling. Their main disadvantages are their lack of thermal shock resistance and fracture toughness.
+
+Polycrystalline Cubic Boron Nitride (CBN) cutting tool material has an excellent hot hardness at extremely high cutting speeds with good toughness and thermal shock resistance. They are made from a ceramic composite binder and CBN particles, this material must be brazed into the cemented carbide carrier. Used largely for finish operations on hard materials with low to moderate ferrite content.
+
+Polycristalline Diamond (PCD) cutting tool material is a composite of a metalic binder and diamond dust particles sintered together. Diamond greatly increases hardness, abrasion resistance and wear resistance but lacks chemical stability at high temperatures or when working with iron (diffusion). Limited to non-ferrous materials such as MMC, CFRP or high Si Aluminum. 
+
+Cutting fluids lower production cost because they increase tool life, decrease wear and increase machine capacity. A higher rate of material removal is also obtained since the cycle time, processing time and delivery time are reduced also there is a greater return on the machinery investment and an increase in the the reliability and stability of the process.
+
+1. Cutting Fluid
+   1. Non Water Miscible Cutting Fluid
+   2. Water Miscible Cutting Fluid
+      1. Emusifiable Curring Fluid
+      2. Water Soluble Cutting Fluid
+   3. Water Based Cutting Fluid
+      1. Coolant Emulsion
+      2. Coolant Solution
+
+On the production cost of a product we have:
+
+* Material: 50 percent of cost, 20 percent of influence.
+* Overhead: 30 percent of cost, 5 percent of influence.
+* Labor: 15 percent of cost, 5 percent of influence.
+* Design: 5 percent of cost, 70 percent of influence.
+
+***
+
+
+
+
+
+
+
+
