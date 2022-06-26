@@ -2,7 +2,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 	enabled: process.env.ANALYZE === 'true',
 })
 
-// You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
 	default-src 'self';
 	style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
