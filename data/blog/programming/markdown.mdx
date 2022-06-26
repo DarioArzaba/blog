@@ -2,9 +2,14 @@
 title: Markdown
 date: '2021-03-02'
 tags: ['programming', 'markdown', 'example']
+bibliography: references-data.bib
 ---
 
 This blog uses Markdown, with GitHub's flavor[^1]. To parse the markdown it uses some remark and rehype ([unified](https://github.com/unifiedjs/unified)) packages like `next-mdx-remote`and `next-prism`.
+
+***
+
+<TOCInline toc={props.toc} exclude="Title 2" toHeading={2} />
 
 ***
 
@@ -174,13 +179,15 @@ $$
 **Finally**:  
 
 $$
+
 \begin{aligned}
 	\min Q           & = \min_{\beta} \mathbf{Y}'\mathbf{Y} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
-	                 & = \min_{\beta} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
+					& = \min_{\beta} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
 	\text{[FOC]}~~~0 & =  - 2\mathbf{X}'\mathbf{Y} + 2\mathbf{X}'\mathbf{X}\hat{\beta}                  \\
 	\hat{\beta}      & = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}                              \\
-	                 & = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
+					& = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
 \end{aligned}
+
 $$
 
 

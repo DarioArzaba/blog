@@ -1,0 +1,130 @@
+/**
+ * CSS Styles for code highlighting.
+ * Feel free to customize token styles 
+ * by copying from a prismjs compatible theme:
+ * https://github.com/PrismJS/prism-themes
+ */
+
+/* Code title styles */
+.remark-code-title {
+  @apply rounded-t bg-gray-700 px-5 py-3 font-mono text-sm font-bold text-gray-200;
+}
+
+.remark-code-title + div > pre {
+  @apply mt-0 rounded-t-none;
+}
+
+/* Code block styles */
+.code-highlight {
+  @apply float-left min-w-full;
+}
+
+.code-line {
+  @apply -mx-4 block border-l-4 border-transparent pl-4 pr-4;
+}
+
+.code-line.inserted {
+  @apply bg-green-500 bg-opacity-20;
+}
+
+.code-line.deleted {
+  @apply bg-red-500 bg-opacity-20;
+}
+
+.highlight-line {
+  @apply -mx-4 border-l-4 border-primary-500  bg-gray-700 bg-opacity-50;
+}
+
+.line-number::before {
+  @apply mr-4 -ml-2 inline-block w-4 text-right text-gray-400;
+  content: attr(line);
+}
+
+.token.keyword { color: #54c56f; }
+
+.namespace { color: #b3d2f8; }
+.token.symbol { color: #C3E88D; }
+.token.constant { color: #FFCB6B; }
+.token.variable { color: #f0ae9b }
+.token.unit { color: #F78C6C }
+.token.boolean { color: #F78C6C !important }
+.token.number { color: #F78C6C }
+.token.char { color: #F78C6C }
+.token.entity { color: #ea4a5a }
+.token.attr-value.value, .token.url, .style.token.string, .token.string { color: #b9ec6d }
+.token.key.attr-name { color: #F78C6C }
+.token.pseudo-element { color: #fa5ced; }
+.token.selector { color: #fac35c; }
+.token.class { color: #FFCB6B; }
+.token.atrule { color: #89DDFF }
+.token.attr-value { color: #f0c49b; }
+.token.deleted { color: #f05e65; }
+.token.changed { color: #fde5b9;	}
+.token.unchanged { color: #fde5b9;	}
+.token.inserted { color: #C3E88D; }
+.token.comment { color: #464B5D;}
+.token.attr-name { color: #C792EA;}
+.token.property { color: #46d3bb; }
+.token.builtin { color: #3386eb; }
+.token.tag { color: #ea4a5a }
+.token.doctype, .token.prolog, .token.cdata { color: #e65ead; font-style: italic; }
+.token.punctuation { color: #3386eb; font-weight: bold; }
+.token.operator { color: #EA4A5A; }
+.token.function { color: #3386eb; }
+.token.regex { color: #00d9e8; }
+.token.important { font-weight: bold; color: #D5CED9; }
+.token.bold { font-weight: bold; }
+.token.italic { font-style: italic; }
+.token.hexcode { color: #FFFFFF; }
+.token.table { display: inline; }
+
+
+.token.hexcode { color: #e95a61; }
+.token.hexcode { color: #ea4a5a; }
+.token.hexcode { color: #f5689b; }
+.token.hexcode { color: #f692ce; }
+.token.hexcode { color: #a360cf; }
+.token.hexcode { color: #b3d2f8; }
+.token.hexcode { color: #D5CED9; }
+.token.hexcode { color: #00e8c6; }
+.token.hexcode { color: #89c5c4; }
+.token.hexcode { color: #5995da; }
+.token.hexcode { color: #3386eb; }
+.token.hexcode { color: #33ac50; }
+.token.hexcode { color: #c8f08c; }
+.token.hexcode { color: #FFE66D; }
+
+
+/* Consolas font familly  and setting for tab-size 4*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

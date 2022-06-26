@@ -137,7 +137,7 @@ We have been setting (S) and resetting (R) bits to control the input and output 
 2. CTD: Descending counter.
 3. CTUD: Ascending and Descending counter.
 
-The CU or CD pulse input increments or decrements the counter by one, the R input resets the counter, the LOAD input sets a new PV input, the PV input is the value needed to activate the counter output, the QU output is true if CV>=PV, the QD output is true if CV<=0 and the CV output is the current counter value. Note that PV and CV can input and output values different than boolean.
+The CU or CD pulse input increments or decrements the counter by one, the R input resets the counter, the LOAD input sets a new PV input, the PV input is the value needed to activate the counter output, the QU output is true if CVmore than=PV, the QD output is true if CVless than=0 and the CV output is the current counter value. Note that PV and CV can input and output values different than boolean.
 
 **Comparators**
 
@@ -145,4 +145,4 @@ We can use comparators to compare two values as long as they have the same data 
 
 **Scale and Standardize**
 
-The `SCALE_X` instruction scales the real normalized VALUE parameter (0.0 <= VALUE <= 1.0) to the data type and range of values specified in the MIN and MAX parameters, therefore OUT = VALUE(MAX-MIN)+MIN. The `NORM_X` instruction normalizes the VALUE parameter (0.0 <= OUT <= 1.0), therefore OUT = (VALUE-MIN)/(MAX-MIN). Note that every parameter (MIN, MAX, OUT, VALUE) must be of the same data type.
+The `SCALE_X` instruction scales the real normalized VALUE parameter (0.0 less than= VALUE less than= 1.0) to the data type and range of values specified in the MIN and MAX parameters, therefore OUT = VALUE(MAX-MIN)+MIN. The `NORM_X` instruction normalizes the VALUE parameter (0.0 less than= OUT less than= 1.0), therefore OUT = (VALUE-MIN)/(MAX-MIN). Note that every parameter (MIN, MAX, OUT, VALUE) must be of the same data type.

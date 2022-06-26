@@ -1,40 +1,211 @@
+/*
+
+sans: ['InterVariable', ...defaultTheme.fontFamily.sans], 
+title: 'Turret Road', 
+tags: 'IBM Plex Mono',
+titles: 'Anonymous Pro'
+tracking-tight	letter-spacing: -0.025em;
+tracking-normal	letter-spacing: 0em;
+tracking-wide	letter-spacing: 0.025em;
+tracking-wider	letter-spacing: 0.05em;
+tracking-widest	letter-spacing: 0.1em;
+*/
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.remark-code-title {
-  @apply px-5 py-3 font-mono text-sm font-bold text-gray-200 bg-gray-700 rounded-t;
+.italic {
+	@apply text-left py-6 not-italic font-poetry text-xl md:text-2xl tracking-wide	
 }
 
-.remark-code-title + pre {
-  @apply mt-0 rounded-t-none;
+.prose :where(blockquote):not(:where([class~="not-prose"] *)) {
+    border-left-width: 0.5rem;
+    quotes: none;
+    margin-top: 4em;
+	font-family: 'IBM Plex Mono';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 1em;
+    margin-bottom: 1em;
+    padding-left: 2em;
+	border-left-color: #7da8fd !important
 }
 
-.task-list-item:before {
+@media (min-width: 640px) { 
+
+	.prose :where(blockquote):not(:where([class~="not-prose"] *)) {
+		border-left-width: 0.5rem;
+		quotes: none;
+		margin-top: 4em;
+		font-family: 'IBM Plex Mono';
+		font-weight: normal;
+		font-style: normal;
+		font-size: 1.25em;
+		margin-bottom: 1em;
+		padding-left: 2em;
+		border-left-color: #7da8fd !important
+	}
+
+}
+
+
+.prose :where(blockquote):not(:where([class~="not-prose"] *)) {
+	@apply sm:text-xl;
+}
+
+.task-list-item::before {
   @apply hidden;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 .task-list-item {
-	margin: -10px !important
+  @apply list-none;
 }
 
-.p-2 {
-	padding: 0.5rem;
+.footnotes {
+  @apply pt-8 mt-12 border-t border-gray-200 dark:border-gray-700;
 }
 
-.prose blockquote {
-    border-left-color: #86aeff !important
+.csl-entry {
+  @apply my-5;
 }
 
-.dark .dark\:prose-dark strong {
-    color: #ec91ff !important;
-	font-weight: 700 !important;
+[type='checkbox'] {
+	margin-right: 1em;
 }
 
-.prose strong {
-    font-weight: 700 !important;
+
+.prose a {
+	@apply no-underline font-normal break-words;
 }
+
+.dark .dark\:prose-dark :where(ol li):not(:where([class~="not-prose"] *))::marker {
+    font-weight: 600 !important; 
+    color: #79a8ff !important;
+}
+.prose :where(ol li):not(:where([class~="not-prose"] *))::marker {
+    font-weight: 600 !important;
+    color: #364a70 !important;
+}
+
+.dark .dark\:prose-dark :where(ul li):not(:where([class~="not-prose"] *))::marker {
+    font-weight: 600 !important;
+    color: #79a8ff !important;
+}
+.prose :where(ul li):not(:where([class~="not-prose"] *))::marker {
+    font-weight: 600 !important;
+    color: #364a70 !important;
+}
+
+
+/* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.dark .dark\:prose-dark :where(code):not(:where([class~="not-prose"] *)) {
+	color: #c9b457;
+    font-weight: 400;
+    font-size: 1.05em;
+	background-color: #2A2E46 !important;
+	overflow-wrap: break-word;
+}
+
+.prose :where(code):not(:where([class~="not-prose"] *)) {
+	color: #000000;
+    font-weight: 400;
+    font-size: 1.05em;
+    background-color: #b3b3b3af;
+	overflow-wrap: break-word;
+}
+
+.dark .dark\:prose-dark :where(pre):not(:where([class~="not-prose"] *)) {
+	color: #fffbf0;
+	background-color: #000000 !important
+}
+
+.dark .dark\:prose-dark :where(pre code):not(:where([class~="not-prose"] *)) {
+	color: #fffbf0;
+	background-color: #000000 !important
+}
+
+.prose :where(pre):not(:where([class~="not-prose"] *)) {
+    background-color: #1e293b;
+	color: #fffbf0;
+}
+
+.prose :where(pre code):not(:where([class~="not-prose"] *)) {
+    background-color: #1e293b;
+	color: #fffbf0;
+}
+
+.dark .dark\:prose-dark h1 {
+	color: #ff86ebcb;
+}
+.dark .dark\:prose-dark h2 {
+	color: #ff86ebcb;
+}
+.dark .dark\:prose-dark h3 {
+	color: #ff86ebcb;
+}
+.dark .dark\:prose-dark h4 {
+	color: #ff86ebcb;
+}
+.dark .dark\:prose-dark h5 {
+	color: #ff86ebcb;
+}
+
+
+.prose :where(h1):not(:where([class~="not-prose"] *)) {
+    font-size: 2.6em;
+	font-weight: bold;
+	padding-top: 0.6em;
+	padding-bottom: 0.55em;
+	font-family: 'IBM Plex Mono';
+	overflow-wrap: break-word;
+}
+
+.prose :where(h2):not(:where([class~="not-prose"] *)) {
+    font-size: 2em;
+	font-weight: bold;
+	padding-top: 0.55em;
+	padding-bottom: 0.4em;
+	font-family: 'IBM Plex Mono';
+	overflow-wrap: break-word;
+}
+
+.prose :where(h3):not(:where([class~="not-prose"] *)) {
+    font-size: 1.8em;
+	font-weight: bold;
+	padding-top: 0.4em;
+	padding-bottom: 0.35em;
+	font-family: 'IBM Plex Mono';
+	overflow-wrap: break-word;
+}
+
+.prose :where(h4):not(:where([class~="not-prose"] *)) {
+    font-size: 1.4em;
+	font-weight: bold;
+	padding-top: 0.35em;
+	padding-bottom: 0.15em;
+	font-family: 'IBM Plex Mono';
+	overflow-wrap: break-word;
+}
+
+.prose :where(h5):not(:where([class~="not-prose"] *)) {
+    font-size: 1.2em;
+	font-weight: bold;
+	padding-top: 0.15em;
+	padding-bottom: 0.1em;
+	font-family: 'IBM Plex Mono';
+	overflow-wrap: break-word;
+}
+
+.katex-display > .katex { white-space: normal !important }
+
+.katex-display > .base { margin: 0.25em 0 !important}
+
+.katex-display { margin: 0.5em 0 !important; }
+
+.katex-display { overflow: auto hidden !important }

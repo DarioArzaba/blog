@@ -8,23 +8,13 @@ import ImageGallery from 'react-image-gallery'
 import React from 'react'
 
 
-
-export default function Dam() {
+export default function DamGallery() {
   return (
     <>
-      <PageSeo
-        title={`Projects - ${siteMetadata.author}`}
-        description={siteMetadata.description}
-        url={`${siteMetadata.siteUrl}/projects`}
-      />
+
 
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="pt-6 pb-8 space-y-2 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 text-center sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Dario Arzaba Mosqueda
-          </h1>
-        </div>
-        
+
 		<div className="container py-12">
 			
 			<div className="pt-4 pb-4 space-y-2 md:space-y-5"><h1 className="pt-4 pb-2 text-3xl font-bold leading-8 tracking-tight">Lapiz y Carbon</h1></div>
