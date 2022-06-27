@@ -1,22 +1,9 @@
-/*
-
-sans: ['InterVariable', ...defaultTheme.fontFamily.sans], 
-title: 'Turret Road', 
-tags: 'IBM Plex Mono',
-titles: 'Anonymous Pro'
-tracking-tight	letter-spacing: -0.025em;
-tracking-normal	letter-spacing: 0em;
-tracking-wide	letter-spacing: 0.025em;
-tracking-wider	letter-spacing: 0.05em;
-tracking-widest	letter-spacing: 0.1em;
-*/
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .italic {
-	@apply text-left py-6 not-italic font-poetry text-xl md:text-2xl tracking-wide	
+	@apply text-left tracking-wide py-6 not-italic font-poetry text-xl md:text-2xl ;
 }
 
 .prose :where(blockquote):not(:where([class~="not-prose"] *)) {
@@ -98,7 +85,6 @@ tracking-widest	letter-spacing: 0.1em;
 }
 
 
-/* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
