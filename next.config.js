@@ -10,7 +10,7 @@ const ContentSecurityPolicy = `
 	img-src * blob: data:;
 	media-src 'none';
 	connect-src *;
-	frame-src giscus.app youtube.com www.youtube.com
+	frame-src giscus.app youtube.com www.youtube.com https://www.youtube-nocookie.com/
 `
 const securityHeaders = [
 	{

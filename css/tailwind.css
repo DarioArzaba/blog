@@ -195,3 +195,16 @@ input:-webkit-autofill:focus {
 .katex-display { margin: 0.5em 0 !important; }
 
 .katex-display { overflow: auto hidden !important }
+
+.ytvideo {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 2em;
+    margin-bottom: 6em;
+}
+
+.ytvideo iframe {
+	position: absolute;
+	width: 100%!important;
+	height: 100%!important;
+}
