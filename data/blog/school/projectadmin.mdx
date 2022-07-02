@@ -4,53 +4,269 @@ date: '2010-01-20'
 tags: ['school', 'finance', 'management']
 ---
 
+# Economics Engineering #
 
+## Introduction ##
 
+Discipline that integrates engineering and economy in order to **make decisions** based on the reasonable formulation, comparison, estimation and evaluation of multiple investment alternatives. It provides tools to assess their technical and economical feasibility as well as their opportunity costs in order to measure, determine and recommend the best course of action that generates the greatest added value keeping the company profitable and competitive.
+
+### Decision Making Process ###
+
+1. Identify the problem to solve e.g. the need for a new car.
+2. Clearly define the objectives e.g. the desire for safety and low cost.
+3. Gather the relevant information e.g. technical and financial data related to buying a car.
+4. Identify the relevant alternatives e.g. choosing between 3 specific models. 
+5. Select a decision criteria e.g. additional desire for low maintenance cost.
+6. Choose the best alternative e.g. choosing 1 of the models.
+
+We can apply the decision making process when making decisions about investments such as quality improvements, new product development, expansion of existing products, equipment purchasing, equipment replacement, selecting a manufacturing process or cost reduction strategies.
+
+### Economics Engineering Concepts ###
+
+* Money: Medium of exchange in legal tender.
+* Cash: Coins or bills that represent a specific quantity of money.
+* Period: Specific interval of time.
+* Company: Autonomous production unit that generates goods for profit.
+* Cash flow: Inflow (positive or income) and outflow (negative or expenses) of money.
+* Investment: Disbursement of financial resources to acquire instruments of production (capital goods).
+
+### Financial Statements ###
+
+1. Balance Sheet or Statement of Financial Situation: Contains information about what the company has (assets and rights) and what it owes (debts and capital).
+2. Income Statement: Compares the income and expenditures by describing the profits or utilities (income greater than expenses) and losses (income less than expenses) in a period of time. 
+3. Cash Flows Statement: Generation or reduction of cash resources by describing the balance between the money that enters and the money invested.
+
+In general the use of other people's goods, including money, implies a payment called interest. This payment incentives you to circulate your own goods, for example by saving your money in a bank instead of saving yourself with the objective of collecting interest.
+
+### Economics Engineering Principles ###
+
+1. Money's value varies through time: This means that a sum of money will have different values depending on where it stands in time with relation to the present and in general the value of the same quantity of money will be worth more the closer it's to the present.
+2. You must consider the opportunity cost: Good economic decisions take into account the differences between alternative courses of action including the cost of choosing one alternative instead of another. This is done to use the limited resources in the most effective way possible.
+3. Marginal revenue must exceed marginal cost: This means that the marginal revenue (additional revenue from increased activity) must be greater than the costs related to the same increase in activity. In other words, since resources (natural, human, capital) are limited you must choose the increases in revenue that correspond to the lowest increases in costs.
+4. Increasing risk must also increase revenue: This means that for any additional risk taken you must guarantee to investors that the increase in revenue at minimum will be able to offset any anticipated or expected risks such as the rate of inflation.
+
+## Time Value of Money TVM (VDT) ##
+
+When evaluating a project as an investment we must consider the value of money over time, a sum of money is worth more now than the same sum in the future due to its earnings potential in the interim, that's why we must consider the following concepts:
+
+* Interest: Monetary charge for the privilege of using the resources of another financial entity, for investments it is the magnitude that represents the cost of money as an expression of TVM.
+* Interest Rate: Percentage applied periodically to a sum of money to determine the amount of interest that it will accumulate.
+* Simple Interest: Charges the interest rate to a constant initial amount.
+* Compound Interest: Charges the interest rate to an initial sum and to any previously considered interest. Unless stated otherwise we will always assume to be working with compound interest.
+
+### Simple and Compound Interest ###
+
+For unitary cash flows:
+
+$$
+\begin{gathered}
+	\text{Simple Interest Is given PV, N, i}\\
+	Is = (PV)(N)(i)\\
+	\text{Simple FV given PV, N, i}\\
+	FV = PV + (Is)\\
+	\text{Simple N given Is, PV, i}\\
+	N = \frac{Is}{((PV)(i))}\\
+	\text{Compound FV given PV, N, i, n}\\
+	FV = PV\left(1+(\frac{i}{n})\right)^{((n)(N))}\\
+	\text{Compound Interest I given PV, N, i, n}\\
+	I = (FV) - PV\\
+	\text{Compound PV given FV, N, i, n}\\
+	PV = FV\left(1+(\frac{i}{n})\right)^{(-(n)(N))}\\
+	\text{Compound N given FV, PV, i, n}\\
+	N = \frac{\ln(\frac{FV}{PV})}{N(\ln(1+(\frac{i}{n})))} \\
+	\text{Compound i given FV, PV, N, n}\\
+	i = N\left(\left(\frac{FV}{PV}\right)^{\frac{1}{(n)(N)}}-1\right)
+\end{gathered}
+$$
+
+In Excel this would correspond to:
+
+```bash
+Simple Interest Is given PV, N, i
+=(PV*N*i)
+
+Simple FV given PV, N, i
+=(PV)*(PV*N*i)
+
+Simple N given Is, PV, i
+=(VF-VP)/(VP*i)
+
+Compound FV given PV, N, i, n
+=FV(i/n, N*n, , -PV)
+
+Compound Interest I given PV, N, i, n
+=FV(i/n, N*n, , -PV) - PV
+
+Compound PV given FV, N, i, n
+=PV(i/n, N*n, , -FV)
+
+Compound N given FV, PV, i, n
+=NPER(i/n, , PV, -FV)
+
+Compound i given FV, PV, N, n
+=RATE(N*n, , PV, -FV)
+```
+
+## Uniform and Geometric Series ##
+
+### Annuities and Perpetuities ###
+
+* Annuities: Periodic series of cash flows affected by the same interest rate (constant) where the quantities are equal in magnitude and equidistant through time (n periods). 
+	* Prepaid Annuities: This are annuities that are paid at the start of their periods e.g. rent and college tuition.
+	* Ordinary (Expired) Annuities: This are annuities that are paid at the end of their periods e.g. electricity (services) and cellular data. Unless stated otherwise we will always assume to be working with Ordinary Annuities.
+* If there is a combination of unitary payments and annuities we can calculate the equivalent value of every cash flow and combine them into a single annuity, this process generally involves obtaining the total present or future value and then obtaining the equivalent annuity for that particular value.
+* Perpetuity: Annuity expected to obtain a constant flow without a limit of time (more than 20 or 30 years). For economic evaluation this value is useful as tool to decide if we want to accept an annuity or it would be more convenient to have a single cash flow payment (as long as we have the money available).
+
+$$
+\begin{gathered}
+	\text{Annuity A given PV, N, i, n}\\
+	A = PV\left(\frac{i}{1-(1+i)^{N}}\right)\\
+	A = PV\left(\frac{\frac{i}{n}(1+\frac{i}{n})^{Nn}}{(1+\frac{i}{n})^{Nn}-1}\right)\\
+	\text{Annuity A given FV, N, i, n}\\
+	A = FV\left(\frac{i}{(1+i)^{N}-1}\right)\\
+	A = FV\left(\frac{\frac{i}{n}}{(1+\frac{i}{n})^{Nn}-1}\right)\\
+	\text{PV given A, N, i, n}\\
+	PV = A\left(\frac{1-(1+i)^{N}}{i}\right)\\
+	PV = A\left((\frac{1}{i/n})-\frac{1}{\frac{i}{n}(1+\frac{i}{n})^{Nn}}\right)\\
+	\text{FV given A, N, i, n}\\
+	FV = A\left(\frac{(1+i)^{N}-1}{i}\right)\\
+	FV = A\left(\frac{(1+\frac{i}{n})^{Nn}-1}{\frac{i}{n}}\right)
+	\text{PV given Perpetuity A and i}\\
+	PV = A\left(\frac{1-(1+i)^{\infty}}{i}\right) = \frac{A}{i}
+\end{gathered}
+$$
+
+```bash
+Annuity given PV, N, i, n
+=PMT(i/n, N*n, -PV)
+
+Annuity given FV, N, i, n
+=PMT(i/n, N*n, , -PV)
+
+PV given A, N, i, n
+=PV(i/n, N*n, A)
+
+FV given A, N, i, n
+=FV(i/n, N*n, A)
+
+PV given A, i
+=A/i
+```
+
+* Amortization Tables
+	* Equal (Leveled) Payments (L): Amortization scheme used when there is stability in the interest rates.
+	* Equal Payments to Capital (C): Amortization scheme used when rates are variable, making the calculations easier.
+
+```bash
+C Starting Balance SB
+=PreviousFB
+C Payment P
+=I+CP
+C Interest I
+=i*SB
+C Capital Payment CP
+=-VP/(Nn)
+C Final Balance FB
+=PreviousFB+CP
+
+L Starting Balance SB
+=PreviousFB
+L Payment P
+=PMT(i/n, N*n, PV)
+L Interest I
+=IPMT(i/n, NN, N*n, PV)
+L Capital Payment CP
+=PPMT(i/n, NN, N*n, PV)
+L Final Balance FB
+=PreviousFB+CP
+```
+
+### Linear Gradient ###
+
+* Series where the cash flows increase or decrease by a uniform value (constantly). It can increase if a client wants to increase orders incrementally to test the flexibility of the market or it can decrease for maintenance costs that increase over time from spare parts that become more expensive.
+	* From the second period to the last a constant quantity (gradient) identified as (G) is added to every cash flow. This creates a rectangular shape (annuity A1) with a triangular shape (gradient A2) on top.
+
+$$
+\begin{gathered}
+	\text{A1 LG given A, i, N, n}\\
+	A_1 = PV\left(\frac{i}{1-(1+i)^{N}}\right)\\
+	\text{A2 LG given A, G, i, N, n}\\
+	A_2 = G\left(\frac{1}{i} - \frac{n}{(1+i)^n -1}\right)\\
+	\text{A given A1, A2}\\
+	A = A_1 + A_2
+\end{gathered}
+$$
+
+```bash
+A2 LG given A, G, i, n, N
+=PV*((1/(i/n))-((N*n)/((1+(i/n))^(N*n)-1)))
+
+A given A1, A2
+=A1+A2
+```
+
+### Geometric Gradient ###
+
+* Series where the cash flows increase or decrease by a constant percentage (rate of change or growing annuity G) in a geometric shape that can be calculated using a geometric gradient.
+	* Geometric gradient formulas always give the result in terms of the present value, therefore you must calculate the future value as a single payment after calculating the present value.
+
+$$
+\begin{gathered}
+	\text{GG given i is not equal to g}\\
+	P_g = A_1\left[\frac{1-\left(\frac{1+g}{1+i}\right)^n}{i-g}\right]\\
+	\text{GG given i is equal to g}\\
+	P_g = A_1\left[\frac{n}{1+i}\right]\\
+\end{gathered}
+$$
+
+```bash
+PV of GG given i is not equal to g
+=A1*((1-(((1+g)^n)/(1+i)))/(i-g))
+
+PV of GG given i is equal to g
+=A1*(n/(1+
+i))
+```
+
+## Nominal and Effective Interest Rates ##
+
+### Discreet Capitalization ###
+
+* Discreet capitalization is the compounded interest rate applied to a capital at discreet time intervals. In contrast, continuous capitalization is used mostly for financial forecasting. Unless stated otherwise we will always assume to be working with Discreet Capitalization.
+	* Nominal interest rates are usually expressed as an annual percentage rate (APR) quantity of informative value to the consumer, however they don't take into account further capitalization periods (semester, bimester, monthly, daily, etc)
+	* Effective interest rates take into account capitalization periods that compound the nominal interest rates. Effective rates are the annual yield obtained at the end of the period when the nominal rate (i) is capitalized (n) times in a period (N).
+
+$$
+\begin{gathered}
+	\text{Effective Rate given i, n, N}\\
+	TAE = \left(1+(\frac{i}{n})\right)^{N}-1
+\end{gathered}
+$$
+
+***
 
 YO NO PRESENTO EXAMEN PARCIAL Y MI FINAL VALE EL 30 PORCIENTO.
 
+Diana Hinojosa T
 diana.hinojosa@tec.mx
 55 7985 8678 -WA
 
 PROJECT LIBRE CLOUD FOR PROJECT MANAGEMENT
 https://www.projectlibre.com/
+
 COORDINATE YOUR TEAM
 https://www.new.coordinate.si/signin
 
-
-Diana Hinojosa T
 https://itesm.zoom.us/j/7812124716?pwd=ei9UYmt0aWJJZVNWQzVYSGdUVHB4dz09
 https://experiencia21.tec.mx/courses/275346/modules
 https://experiencia21.tec.mx/courses/275346/pages/clases-zoom
 https://experiencia21.tec.mx/courses/275346/assignments
-https://tecmx-my.sharepoint.com/personal/diana_hinojosa_tec_mx/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdiana%5Fhinojosa%5Ftec%5Fmx%2FDocuments%2FIN2025%20VERANO%2022%2FClase%201%2Emp4&parent=%2Fpersonal%2Fdiana%5Fhinojosa%5Ftec%5Fmx%2FDocuments%2FIN2025%20VERANO%2022&ga=1
-
-Evaluacion Proyectos = 50
-
-Promedio Quizzes Control Lectura = 25
-Tarea = 15
-Proyecto Fase 1 = 25
-Examen Modulo 1 = 30
-Participacio = 5
 
 
-Administracion Proyectos = 30
-
-Promedio Quizzes Control Lectura = 20
-Actividades = 20
-Proyecto Fase 2 = 30
-Presentacion Final  = 25
-Participacion = 5
-
-Examen Final = 20
 
 
-HORARIO OFICIAL A LAS 9
 
 
-https://support.microsoft.com/en-us/office/financial-functions-reference-5658d81e-6035-4f24-89c1-fbf124c2b1d8
-
-https://www.calculatorsoup.com/calculators/financial/compound-interest-calculator.php
 
 
 
