@@ -6,6 +6,14 @@
 	@apply text-left tracking-wide py-6 not-italic font-poetry text-xl md:text-2xl ;
 }
 
+.caption {
+	text-align: center;
+	margin: 0;
+	margin-top: -2em;
+	font-size: 0.9em;
+	font-family: monospace;
+}
+
 .prose :where(blockquote):not(:where([class~="not-prose"] *)) {
     border-left-width: 0.5rem;
     quotes: none;
