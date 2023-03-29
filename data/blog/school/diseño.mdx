@@ -1,0 +1,296 @@
+---
+title: Design Notes
+date: '2021-08-15'
+tags: ['school', 'Design']
+---
+
+# Proyecto Escultura Sonora #
+
+* Debe contener luz, movimiento y un generador eléctrico.
+* Se instalara en un rio de una comunidad rural.
+* Hablar por Zoom con la esposa del profesor para detalles adicionales.
+
+TAREAS
+
+PREGUNTAR A MI EQUIPO EL LUNES SOBRE QUE HEMOS VISTO EN CLASE Y SOBRE ESTA ACTIVIDAD.
+
+IDENTIFICAR NECESIDADES DEL CLIENTE (PARA VIERNES 26 Agosto 12PM)
+https://experiencia21.tec.mx/courses/290240/assignments/10130547
+
+
+
+
+
+***
+
+# Proceso de Diseño #
+
+Diseñar desde el punto de vista ingenieril es plasmar el pensamiento de *soluciones* mediante formulas o modelos físicos o digitales con el objetivo de *resolver un problema* concreto con el uso de un producto, proceso o sistema que pueda satisfacer una *necesidad* particular. El diseño es un *proceso* creativo, una *secuencia organizada* de acciones para construir *eficazmente* ideas abstractas en el espacio físico. 
+
+Una metodología de diseño es toda herramienta que facilite la fabricación de un producto aumentando su calidad a la vez que se disminuye su costo en dinero y tiempo de desarrollo, una necesidad fundamental de todo producto y servicio competitivo en la globalización del mercado actual. Por lo general el costo final de manufactura recae principalmente en la elección de los materiales a utilizar y en menor medida en la logística y la mano de obra, sin embargo no debemos ignorar que el diseño previo es el principal factor que determinara el costo de manufactura. 
+
+Las metodologías de diseño evitan cambios tardios en el diseño los cuales son mucho mas costosos de implementar que una serie de cambios en las primeras etapas del producto además de que es extremadamente difícil compensar aquellos defectos de calidad cuando se han introducido directamente desde la fase de diseño a los procesos de manufactura.
+
+## Enfoque de Diseño ##
+
+Primero se debe elegir un enfoque de diseño el cual depende del diseñador y en forma general del problema que se busca resolver:
+
+1. Diseño Ingenieril (ING): Lo principal es el correcto funcionamiento y desempeño del producto.
+2. Design Thinking (DT): Lo principal es empatizar con las necesidades particulares del cliente.
+3. User Experience (UX): Lo principal es que el usuario perciba una experiencia satisfactoria al interactuar con el producto.
+4. Emotional Design (ED): Lo principal son las emociones y el sentido de identidad personal que la marca otorga.
+5. Lean Design (LD): Lo principal es incremental el valor del producto al eliminar todo elemento innecesario del proceso que lo genera.
+6. Diseño Manufactura (MAN): Lo principal es considerar los procesos de manufactura que el producto requiere.
+7. Diseño Ambientalmente Responsable (DAR): Lo principal es el impacto ambiental y la sustentabilidad del producto.
+
+## Diseño Ingenieril Clásico ##
+
+1. Idea
+1. Definir especificaciones (Etapa 1)
+	1. Funciones del producto
+	1. Requisitos del diseño (Necesidades de Cliente)
+	1. Criterios de evaluación (Lista Métricas, QFD, Árbol Objetivos)
+1. Creación de conceptos de diseño (Etapa 2)
+	1. Proponer diseños alternativos (Lluvia ideas, Descomposición Funcional, Análisis Morfológico, Triz)
+	1. Evaluar si cumplen con criterios 
+1. Toma de Decisiones (Etapa 3)
+	1. Seleccionar el diseño optimo (Cuadro de Pugh, Objetivos Ponderados)
+1. Diseño Detallado (Etapa 4)
+	1. Completar el diseño detallado (Dibujos CAD, Ensamblaje, BOM)
+1. Fabricación
+
+## Diseño Ingenieril Concurrente ##
+
+El éxito de toda empresa depende de identificar la necesidad de sus clientes e iterar su producto para satisfacer dicha necesidad de la mejor manera, este problema fundamental solo se puede resolver mediante un proceso de *desarrollo de producto* integral el cual comprende múltiples disciplinas: Diseño, manufactura, mercadotecnia, proveedores, industrial, adquisiciones, electrónica, mecánica, finanzas, ventas, legal etc. El diseño ingenieril concurrente es una versión moderna del enfoque clásico siendo un proceso horizontal y multidisciplinario:
+
+1. Idea
+1. Definir Especificaciones (Diseño Conceptual - Multidisciplinario)
+	1. Definir el problema: Surge la necesidad de desarrollar un producto (Consumidores, Empresas, Gobiernos), la necesidad puede ser creada artificialmente (marketing), sin embargo una vez que existe es fundamental identificarla con claridad dado que para los clientes resulta difícil expresar explícitamente sus expectativas.
+	1. Recopilar Información: Las funciones del producto así como las requisitos del diseño se obtienen de los deseos y necesidades del cliente. La lista de requerimientos deben estar expresados en términos técnicos que comprendan métricas y valores. Ejemplos de requerimientos, métricas y valores son:
+		1. Fácil Instalación - Tiempo de instalación - Menor a 2 h
+		1. Duradero - Soporta - 1500 ciclos
+		1. Fácil de Abrir - Mínima Fuerza de apertura - 150 N
+		1. Resiste Impactos - Resistencia caídas mínimo de - 10 m
+		1. Baja Temperatura - Sin variaciones en temperaturas de - 0 C
+		1. Seguro - Numero elementos móviles con operadores - Menor a 2
+		1. Repetibilidad - D.E. de 10 pruebas - Menor al 10 porciento
+		1. Poco Mantenimiento - Reemplazo sugerido de elementos críticos - Menor a 1 vez por año
+	1. Idear Conceptos: Se generan ideas o conceptos en base a los requerimientos establecidos, la colaboración del equipo multidisciplinario criticara distintas características de las ideas que se propongan, no existe un limite en el numero de ideas pero se debe considerar que solo unas cuantas serán desarrolladas.
+	1. Evaluar y seleccionar Conceptos: La evaluación de las ideas busca continuar únicamente con el desarrollo de aquellas propuestas que son técnicamente y económicamente sensibles (viables). Debemos notar que el conocimiento sobre el problema de diseño aumenta con el desarrollo de un producto sin embargo el mismo desarrollo disminuira la libertad con la que se pueden realizar cambios.
+1. Validar Alternativas (Embodiment Design)
+	1. Arquitectura del producto: Descomponer el producto en varios subsistemas simplificando sus objetivos y estableciendo las relaciones que existen entre ellos. (Mango, Baterías, Circuito, LED, Tela, Brazo Mecánico, etc).
+	1. Diseño de Configuración: En esta fase se selecciona un elemento para cada función de debe cumplir cada subsistema. (Forma, Relacion, Piezas).
+	1. Diseño Paramétrico: Selecciona calibre, nomenclatura y dimensiones de cada elemento elegido. La selección se sustenta en una memoria de calculo. Las tres fases se retroalimentan constantemente hasta obtener el diseño adecuado.
+1. Diseño de Detalle
+	1. Fabricación
+
+## Diseño Ingenieril Positivo y Negativo ##
+
+Positivo:
+
+* Escucha nuevas ideas sin prejuicios.
+* Nunca establece parámetros de diseño mediante prueba y error.
+* Intenta entender el porque y considera todas las posibilidades.
+* Producto funciona durante un intervalo de tiempo definido.
+* Producto logra todos los requerimientos técnicos y económicos.
+* Producto requiere de bajo mantenimiento y es seguro.
+
+Negativo:
+
+* No considera nuevas ideas, cree tener la respuesta correcta.
+* Establece parámetros mediante prueba y error sin considerar su funcionamiento.
+* Desarrolla únicamente la primer idea, se conforma con una calidad mediocre.
+* Producto falla antes de lo esperado.
+* Producto cumple parcialmente con los requerimientos técnicos y económicos.
+* Producto requiere alto mantenimiento y no es seguro.
+
+***
+
+# Necesidades del Cliente #
+
+La calidad de un producto es el cumplimiento de todas las funciones y propiedades que impactan en su capacidad por satisfacer las expectativas de los clientes, por lo tanto la identificación de las necesidades de los usuarios es fundamental para el éxito de todo producto. Las técnicas de evaluación de necesidades nos aseguran que nuestros diseños se enfoquen en características prioritarias, justifiquen elementos en la lista de requerimientos de diseño, identifiquen necesidades ocultas y nos permitan establecer requerimientos de funcionamiento mínimos.
+
+1. Recabar Información de Clientes Potenciales
+1. Organizar Necesidades de forma Jerarquizada
+1. Interpretar la Información
+1. Establecer una Importancia Relativa
+1. Discutir los Resultados del Estudio
+
+## Técnicas Recopilar Necesidades ##
+
+1. Entrevistas: Uno o varios miembros entrevistan clientes individuales, actividades largas realizadas en un ambiente controlado. En las entrevistas debemos ser flexibles (no interrumpir tangentes), dar estímulos visuales (mostrar productos de la competencia), no influir (evitar dar ideas propias) y observar lenguaje no verbal. Son el metodo mas efectivo y económico, se recomienda entrevistar a cierto tipo de usuarios:
+	1. Usuarios lideres: Llevan mucho tiempo utilizando el producto y han identificado por si solos sus defectos y áreas de mejora.
+	1. Usuarios extremos: Se les ha dificultado el uso del producto enfocándose en un problema particular. 
+1. Focus Group: 8 a 12 clientes participan con un moderador en una sala especial que permita observar la interacción.
+1. Observación de Uso: Se revelan necesidades al permitir que los clientes utilicen el producto.
+1. Cuestionarios: Serie de preguntas contestadas por clientes o usuarios potenciales, realizada en un ambiente no controlado.
+1. Recursos Adicionales: El análisis de quejas y reclamos de garantías son fuentes importantes para la mejora de productos.
+
+Una vez recopilada la información esta debe ser interpretada y expresada de forma correcta:
+
+* Expresar la necesidad con la misma especificidad que la información recopilada, no simplificar.
+* Expresar en términos de lo que el producto debe de realizar en vez del cliente. Por ejemplo, necesito meter tornillos rápido se traduce (introduce tornillos con mayor velocidad que a mano).
+* Expresar en la medida de lo posible en enunciados positivos. Por ejemplo, a veces se barren tornillos difíciles de meter (no barre cabezas de los tornillos).
+* Expresar necesidades como atributos. Por ejemplo, me gusta el agarre y se siente bien (es cómodo al sujetarlo).
+
+Una vez expresadas de forma correcta se organizan las necesidades, se agrupan en relacionadas, eliminan las equivalentes y se eligen un nombre representativo. Se procede a clasificarlas en:
+
+* Directas: Interés o preocupaciones explicitas. Se resuelven con una nueva línea de productos, variantes, mejoras, actualizaciones o en la reducción del costo.
+* Latentes: Intereses implícitos. Se resuelven al incrementar la conveniencia (reducir esfuerzo), la productividad (reducir tiempo), la usabilidad (fáciles), entre otros.
+* Primarias: Necesidades generales, al ser cumplidas se cumplen automáticamente varias de las necesidades secundarias.
+* Secundarias: Relacionadas entre si y asociadas directamente a una necesidad primaria. Pueden ser agrupadas mediante su necesidad primaria.
+
+Para establecer la importancia relativa de una necesidad podemos dividir el numero de veces que fue mencionada entre el numero de usuarios entrevistados, sin embargo esto solo determina que tan evidente y no que tan importante es. Una solución es asignar un valor numérico a la importancia que le dio cada entrevistado de forma implícita, es decir si incluyo frases como: Tiene que tener, Seria excelente, Debería, Estaría bien si, Creo que debe, No sobraría si, etc.
+
+## Metodología Árbol de Objetivos ##
+
+Este metodo se utiliza para clarificar los objetivos esenciales y secundarias así como la relación que existe entre ellos. Para crearlos se genera una lista con todos los objetivos de diseño. Para cada objetivo se responde a las preguntas de que se quiere lograr, porque se quiere lograr y como se va a lograr. Después de obtener la lista inicial de objetivos estos se ordenan jerárquicamente como primarios o secundarios, algunos de los objetivos se consideran intermedios ya que solo son un puente para un objetivo de mayor nivel.
+
+Como regla general los objetivos primarios responden a la pregunta de porque se quiere lograr y los secundarios responden a como se va a lograr. El árbol de objetivos se puede realizar en conjunto con una escala ordinal y de intervalos (comparación sistemática de pares) para determinar de forma numérica la importancia de cada objetivo. Para determinar la matriz se responde a la pregunta de si es mas importante el objetivo A en comparación al objetivo B y se asigna un valor de importancia de 0 (No), 1 (Si) o 0.5 (Igual). Una vez que se obtiene el total de votos por fila se asigna a cada objetivo su lugar correspondiente en una escala del 1 al 10.
+
+Por ejemplo, si A = 1 voto, B = 3 votos, C = 0 votos y D = 2 votos entonces C = 1, A = 4, D = 7 y B = 10. La suma de todos los valores en el intervalo son (10+7+4+1=22), finalmente el valor relativo de cada objetivo se calcula como su lugar en el intervalo entre 22: C = 0.05, A = 0.18, D = 0.32 y B = 0.45. Se puede realizar el mismo ejercicio a los siguientes niveles adoptando un Peso Global para cada nueva comparación de pares que considera únicamente al nivel actual y un Peso Ponderado que considera a todo el árbol.
+
+
+## Metodología KANO ##
+
+El método Kano, desarrollado por Noriaki Kano en 1970 en sus estudios sobre calidad, es una herramienta de gestión de calidad para tomar decisiones de marketing relacionadas al desarrollo de productos y servicios. El metodo divide a la calidad de un producto en su rendimiento (grado en el que cumple con sus objetivos útiles) y en el grado de satisfacción que produce (grado con el que se cumplen las expectativas de los clientes). Consiste en clasificar las necesidades del cliente o atributos del producto en:
+
+1. Atractivo: El cliente valora la característica aunque no siempre sea evidente su ausencia. Por debajo de cierto punto de funcionalidad producen satisfacción baja y constante pero después de dicho umbral existe un incremento significativo de satisfacción.
+2. Obligatorio: Su ausencia provoca insatisfacción debido a las expectativas sin cumplir. Por debajo de cierto punto de funcionalidad producen un incremento de satisfacción considerable pero después de dicho umbral la satisfacción se mantiene constante.
+3. Unidimensional: Aumenta la satisfacción del cliente linealmente al aumento de funcionalidad que ocasiona. Son los atributos que tradicionalmente se relacionan con la mejora en la calidad de un producto. 
+
+El cuestionario siempre tiene un numero par de preguntas relacionadas a los atributos, para cada atributo existe una pregunta funcional (Sentimiento si el producto tiene el atributo) y otra disfuncional Sentimiento si el producto no tiene el atributo. Las preguntas duales permiten establecer gráficamente una relacion entre la funcionalidad del producto con la satisfacción del cliente, simplificando el eje de funcionalidad en dos posibles valores (funcional o disfuncional) y el eje de satisfacción en cinco posibles valores que corresponden a las respuestas de las preguntas. 
+
+La tabla de evaluación de Kano es una forma rápida de convertir el cuestionario en una clasificación de atributos sin la necesidad de dibujar sus curvas, la tabla añade la categoría de repuesta dudosa (D) cuando la respuesta funcional es positiva y la disfuncional es negativa y la respuesta inversa (Inv) cuando la respuesta funcional es percibida como disfuncional y viceversa:
+
+| Funcionales / Disfuncionales | 1 | 2 | 3 | 4 | 5 |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 | D   | A | A | A | U |
+| 2 | Inv | I | I | I | O |
+| 3 | Inv | I | I | I | O |
+| 4 | Inv | I | I | I | O |
+| 5 | Inv | Inv | Inv | Inv | D |
+
+Algunos cálculos que mejoran la significancia estadística de los resultados son la distancia promedio al centro de masa de las observaciones (K) y el test estadístico de significancia Q (diferencia absoluta entre dos frecuencias A y B más votadas).
+
+$$
+\begin{gathered}
+	K = 1 - \frac{1}{2\sqrt{2}}\sqrt{d_x^2 + d_y^2}\\
+	Q = 1.65 \times \sqrt{(a+b)(2n-a-b)/2n}
+\end{gathered}
+$$
+
+El metodo busca clasificar los atributos en atractivos (A), obligatorios (O), unidimensionales (U) e indiferentes (I) con el objetivo de influir en la toma de decisiones: Todos los atributos obligatorios se deben incorporar (producto básico), una cantidad razonable de requerimientos unidimensionales (producto esperado o competitivo), algunos requerimientos atractivos (producto ampliado o valor agregado) y ninguno indiferente. 
+
+Las expectativas y exigencias del mercado hacia un producto consiste de un ciclo dinámico y se debe trabajar continuamente para generar productos con nuevos atributos diferenciadores, incluso hoy en dia se recomienda incluir atributos atractivos lentamente para continuar dando la apariencia de ser una empresa innovadora (producto potencial). Si ordenamos las preguntas por el tipo de atributo y la frecuencia con la que se realizo (Primera, Segunda, Tercera) podemos construir la siguiente tabla:
+
+| Numero y Pregunta | P | S | T | Med. EI |
+| :---: |  :---: |  :---: |  :---: |  :---: | 
+| 3 La droga no tiene efectos colaterales | O | A | I | 8 |
+| 24 El laboratorio cuida al medio ambiente | U | O | A | 9 |
+| 1 La droga es de ultima generacion | A | I | O | 7 |
+| 19 El laboratorio es nacional | A | I | U | 5 |
+| 12 Tiene varias presentaciones | A | I | Inv | 4 |
+| 17 El laboratorio es extranjero | I | A | Inv | 5 |
+| 9 Se puede adquirir en transporte publico | I | U | O | 1 |
+
+En una aplicacion industrial del metodo Kano el tamaño y composicion de la muestra debe ser calculado con detenimiento. Es una metodologia simple y de bajo costo que puede ser repetida para descubrir los requerimientos del mercado o ver la evolucion de los requerimientos existentes a lo largo del tiempo, por ejemplo un requerimiento atractivo despues puede pasar a obligatorio cuando todos los competidores lo ofrecen obligando a reconsiderar la estrategia de publicidad. 
+
+### Ejemplo ###
+
+Diseño de un Analgésico de Venta Libre
+
+Cuestionario de Investigación 
+
+Estamos realizando un estudio académico sobre las características que debería tener un analgésico de venta libre en Mexico y sobre las actitudes del mercado hacia el laboratorio elaborador. Las preguntas se dividen en dos partes: en la primera le preguntamos sobre sus actitudes si el producto ofrece la característica mencionada; en la segunda, le preguntamos sobre sus actitudes si el producto no ofrece la característica mencionada. A modo de ejempló y antes de pasar al cuestionario de este estudio, considere las preguntas siguientes, extraídos de un cuestionario para el diseño de un servicio farmacéutico.
+
+Cuestionario Ejemplo
+
+Para cada pregunta indique el numero de la alternativa que mejor describa su actitud ante la pregunta. (Respuestas: Me gusta, Es algo básico, Me da igual, No me gusta pero lo tolero, No me gusta y no lo tolero).
+
+1. Si la farmacia esta abierta las 24 horas del día, ¿Cómo se siente? Me gusta
+1. Si la farmacia esta abierta las 24 horas del día, ¿Cómo se siente? Me da igual.
+1. Si la farmacia entrega a domicilio pedidos telefónicos ¿Cómo se siente? Es algo básico.
+1. Si la farmacia no entrega a domicilio pedidos telefónicos ¿Cómo se siente? No me gusta y no lo tolero.
+
+Un cliente potencial ha indicado que le gusta que el servicio farmacéutico se preste las 24 horas, se manifiesta indiferente si el servicio atiende por menos de 24 horas, considera que el servicio de entrega a domicilio es algo básico y no tolera cuando no es una característica disponible de la farmacia.
+
+***
+
+Es necesario que las preguntas logren obtener información del mercado de futuros clientes, algunos posibles problemas son el tipo de información deseada (actitudes-deseos, creencias-valores, comportamiento-tendencias y atributos-perfil), en el caso del metodo Kano se buscan actitudes es decir el sentimiento ante la presencia y ausencia de ciertas características, el numero de las preguntas (se recomiendan alrededor de 30), su orden (agrupadas por similitud de contenido), las instrucciones de llenado y la presentación general. 
+
+La carta de presentación es fundamental para maximizar el interés y la probabilidad de que las preguntas sean contestadas correctamente. La estructura de la pregunta se refiere a preguntas abiertas, semiabiertas o cerradas, en la metodología Kano se les reduce a preguntas duales de selección multiple, en donde no debe haber más de un concepto por pregunta. Se deben seleccionar y utilizar palabras simples, si se requiere incluir un términos técnicos o literarios este debe ser aclarado en una nota. Mantener a las preguntas cortas, utilizando vocablos concretos y claros en vez de términos vagos o genéricos. 
+
+Dada la naturaleza dual (funcional y disfuncional) de las preguntas el metodo Kano suele duplicar el tamaño del cuestionario limitando el numero de atributos, es por ello que es importante la aplicación de un cuestionario de asignación de importancia de los atributos (ranking). Evitar en lo posible que exista un contraste demasiado grande (si-no, blanco-negro) entre la pregunta funcional y la disfuncional, es decir que la pregunta invite a la reflexión y no meramente al instinto. 
+
+Antes de aplicar el cuestionario es necesario que sea revisado por expertos en metodologías de investigación, en el producto y por los mismos clientes, se busca que contesten el cuestionario, indiquen la dificultad de las preguntas, den su impresión sobre la estructura del cuestionario, evalúen el posible sesgo de las preguntas y si es que consideran que falta una pregunta relevante. Para obtener la muestra es necesario seleccionar una población objetivo pensando en las características demográficas del mercado potencial como nivel socioeconómico, grupo etáreo (edad), etc. 
+
+El tamaño de la muestra debe ser adecuado, recomendamos alrededor de 35 casos para poder determinar la calidad de la información. Para obtener una significatividad estadística (minimizar el sesgo) es necesario verificar la aleatoriedad de la muestra, sin embargo para proyectos de bajo presupuesto lo mejor es simplemente utilizar la muestra más grande que sea posible. El vehículo del cuestionario puede ser por teléfono, correo, internet o personal. Recomendamos siempre que sea posible la entrevista personal.
+
+## Declaracion de Diseño ##
+
+La declaracion de diseño (Design Statement) es un informe en el que se ilustran y justifican los objetivos de un proyecto de diseño al identificar y jerarquizar las necesidades del cliente.
+
+1. Descripcion del Producto: Incluye una breve descripcion con las necesidades clave que resolvera el producto.
+1. Objetivos de Negocios: Objetivos y el periodo de tiempo de desarrollo general.
+1. Segmento de mercado: Se indica el segmento del mercado al que se dirige el producto.
+1. Asunciones y Restricciones: Elementos que damos por hecho y limitantes en cuanto a tiempo, presupuesto, normas y permisos.
+1. Stakeholders: Lista de interesados en el proyecto o producto en donde se defina como y cuando reportar resultados y problemas.
+
+## Exposición Arte Daris Rubio ##
+
+Se mostraran los proyectos de donde provienen el vehículo autónomo (Earth Machine) y botón de pánico (Huipil Defense).
+
+* [Exposicion Daris Rubio](https://www.instagram.com/p/ChZ-J14uZYz/?utm_source=ig_web_copy_link)
+* [Daris Rubio IG](https://www.darisrubio.art/biograf%C3%ADa-y-cv)
+* [Daris Rubio Site](https://www.instagram.com/daris.rubio/)
+* [Casa Baanal (Centro Cultural en CDMX y Yucatan) IG](https://www.instagram.com/casabaanal/)
+* [Casa Baanal (Centro Cultural en CDMX y Yucatan) FB](https://www.facebook.com/casabaanal/?ref=page_internal)
+* [Espacio Limitrofe](https://www.instagram.com/elimitrofe/)
+* [Taller Transversal MX (Difusion Arte Contemporaneo)](https://www.instagram.com/tallertransversalmx/)
+* [Sistema de Apoyo a Proyectos Culturales MX](https://www.instagram.com/sistemacreacion/)
+* [Mezcal Artesanal de Oaxaca](https://www.instagram.com/mezcalaperlado48/)
+
+***
+
+# Requerimientos Diseño #
+
+
+
+## Cada de la Calidad QFD #
+
+CASA DE LA CALIDAD
+
+
+
+***
+
+# Selección de Conceptos #
+
+
+
+
+## Matriz de Pugh ##
+
+Cada concepto se compara contra un concepto de referencia (DATUM) para determinar un concepto es mejor, peor o igual al de referencia con respecto a cada requerimiento del cliente. Este metodo es una técnica de comparación relativa. Por lo general se toma como referencia el concepto mas prometedor.
+
+1. Elegir criterios de evaluación: Utilizar resultados del QFD como referencia.
+2. Construir matriz de decision: Los criterios se escriben y se colocan las columnas para cada concepto a evaluar.
+3. Clarificar conceptos: Todo el equipo debe entender el funcionamiento y estructura de los conceptos.
+4. Elegir el concepto DATUM: Se propone un concepto de referencia, se intenga que sea aparentemente superior a los demas.
+5. Comenzar comparativa: Cada concepto se compara contra el DATUM como Mejor, Peor o Igual con respecto al DATUM.
+6. Evaluar resultados: Se suma todos los puntos de Mejor, Peor e Igual para obtener un resultado por Concepto.
+7. Se propone un nuevo DATUM (Ganador de la Evaluación) y se repite el procedimiento.
+
+
+
+
+
+***
+
+# Diseño a Detalle #
+
+
+***
+
+

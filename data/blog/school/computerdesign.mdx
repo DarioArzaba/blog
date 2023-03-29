@@ -1,0 +1,123 @@
+---
+title: Design Notes
+date: '2021-08-15'
+tags: ['school', 'Design']
+---
+
+# Introduction #
+
+Technical drawing or drafting is the creation of drawings that visually communicate the function or construction of a machine through a series of standard views, symbols, units, measurements, styles, and locations, a method used in mechanical, industrial and construction applications. CAD or computer-aided design facilitate the creation of technical drawings using 2D or 3D models with software often classified into Parametric or Non-Parametric (Surfacing). Parametric uses mathematical values in space and a history of operations with great flexibility and precision (NX, Cathia, AutoCAD, Inventor, SOLIDWORKS) while Non-Parametric uses styling surfaces methods such as NURBS to create flow surfaces (Alias, Rhino, Evolve). NX is a parametric software developed by Siemens PLM Software divided into multiple environments or applications each one with a specialized selection of tools:
+
+1. Modeling: Parametric environment used to create solid models. Solids are mainly created through sketches, which can be inserted directly into the model (Curve Tab) or with the general Sketch tool (Home Tab). Using the modeling environment tools we can convert a sketch into a Feature.
+2. Assembly: Assemble components using constraints on multiple parts (prt). You can create parts independently and then assemble them (Bottom Up) or create the assembly first and then each one of the parts inside the assembly (Top Down). In this environment we can also perform an analysis to determine interference and clearance between components.
+3. Shape Studio: Parametric environment to create surface models, in many ways it is similar to the modeling environment but with tools that work with surfaces instead of solid objects.
+4. NX Sheet Metal: Design of sheet metal parts for machinery, enclosures, brackets and other objects generally manufactured in a brake press. Used to create the flat pattern of a sheet, study the dies, punches and their cylindrical bend regions.
+5. Drafting: Used for documentation of parts or assemblies. You can create the documents through generative drafting (associative) or interactive drafting (manually). In this environment you can also create the Bill of Materials (BOM).
+6. PMI (Product and Manufacturing Information): Used to annotate the model directly in the 3D environment.
+7. Manufacturing: Creation of Numerical Control Paths for CNC machines and molds.
+8. Design Simulation: Analyze the application of forces.
+
+# Modeling #
+
+When you open the modeling environment you will see multiple self-explanatory sections such as the Quick Access Toolbar, Ribbon Bar, Tabs, Groups, Command Finder, Menu, Top Border Bar, Resource Bar and the Status Line. In the center of the Graphic Area the Datum Coordinate System is displayed. Aside from the Fixed coordinate system there is the WCS or Work Coordinate System, a local triad that can be repositioned while working with a model (Use `W` to display or hide the WCS). 
+
+A feature is the basic unit of the modeling process, ideally features will adjust their values to any change in their surroundings and can be sketch based (Sketch Required) or placed (No Sketch Required). Sketches and Features are parametric since their shape and size is defined using parameters without considering their original dimension, if multiple applications are working on the same file their operations will have bidirectional associativity. The history of operations carried out on a model is shown in the part navigator along with any geometric, dimensional or assembly constraints. Note that the QuickPick menu appears after waiting in a point with multiple objects (plus sign).
+
+* Constraints
+* Sketch Tools
+* Modeling Tools
+* Datum Planes
+* Surfaces
+
+# Assemblies #
+
+# Drafting #
+
+* Drawing or Drafting
+* PMI
+
+# Rendering #
+
+* Rendering
+* Pictures Animations
+* Measuring
+
+# Sheet Metal #
+
+# Synchronous Modeling #
+
+***
+
+DE LOS DOCS GEOMETRY CONSTRAINTS FALTO DE SKETCHES
+
+https://docs.plm.automation.siemens.com/tdoc/nx/1899/nx_help#uid:xid1128417:index_sketcher:id969617
+https://docs.plm.automation.siemens.com/tdoc/nx/1899/nx_help#uid:xid1128417:index_sketcher:id187966
+https://docs.plm.automation.siemens.com/tdoc/nx/1899/nx_help#uid:xid1128417:index_sketcher:id188016:sketcher_sk_constraint_manage
+https://docs.plm.automation.siemens.com/tdoc/nx/1899/nx_help#uid:xid1128417:index_sketcher:id187541:sketcher_sk_intersect
+https://docs.plm.automation.siemens.com/tdoc/nx/1899/nx_help#uid:xid1128417:index_sketcher:id187541:sketcher_sk_addextrct_curve
+
+
+* PONER INFO LIBRO SOBRE SKETCH, CONSTRAINTS, EXTRUDING, DATUM PLANES, 
+* PONER SOBRE MODELING (Include Surfaces) DE DOCS Y ASSEMBLIES
+* EN EL ARCHIVO HACER TODAS LAS OPERACIONES DE MODELING
+
+DEL LIBRO
+
+ADVANCED MODELING TOOLS 6 y 7 
+ASSEMBLY 8 y 9 
+SURFACE 10 y 11
+DRAWING VIEWS 12
+SYNCHRONOUS MODELING 13
+SHEET METAL 14
+
+Sheet Body or surfaces have zero thickness and mass but are better suited to create complex shapes, a common practice is to create the shape with surfaces and later on add a thickness parameter to convert it into a solid. 
+
+***
+
+Fundamentals
+
+Rendering
+Pictures and Animations
+Measuring and Entering Values
+
+Design (CAD)
+
+Drafting
+PMI
+Sheet Metal
+
+Realize Shape
+Digital Mockup
+Animation Designer
+Visual Reporting
+Layout
+Data Reuse
+P and ID
+Routing Systems
+Ship Structure
+NX Analysis
+PCB Exchange
+Printed Circuit Design
+Optimization
+Fabric Flat Pattern
+Vehicle Design
+Human Models
+4th Gen Design
+
+
+Manufacturing (CAM)
+Simcenter 3D
+Design Simulation
+Validation
+Tooling Design
+Data Translation
+System Administration
+
+
+
+
+
+
+
+
+https://docs.plm.automation.siemens.com/tdoc/nx/1899/nx_help/#uid:index

@@ -1,0 +1,230 @@
+---
+title: Control Lab Notes
+date: '2021-08-15'
+tags: ['school', 'Design']
+---
+
+# Introduccion #
+
+* El control automatico es parte integral de vehiculos espaciales, sistemas roboticos y procesos industriales para controlar temperatura, presion, humedad, flujo etc.
+* El principal metodo de control se basa en la respuesta en frecuencia y sus raices (teorica clasica) para estabilizar el sistema dentro de sus requerimientos de control.
+* Todo sistema de control se compone de:
+	* Señal de referencia (input): Especificacion
+	* Planta: Horno electrico
+	* Señal de compensacion: Rele
+	* Lazo de retroalimentacion: Convertidor AD, interfaz, amplificador
+	* Controlador: Entrada programada
+	* Señal de error (diferencia): Temperatura de un termometro
+	* Salida: Calefactor
+* Sistema Control Lazo Abierto: Salida no tiene efecto sobre la entrada, no hay retroalimentacion ni comparacion. Son mas baratos y mas estables pero no tan flexibles o precisos.
+* Sistema Control Lazo Cerrado: Salida afectada por la entrada mediante una señal de error de actuacion, el sistema controla la salida para disminuir el error. Es mas caro y menos estable (oscilaciones) pero son mas flexibles.
+
+Considerando un sistema:
+
+* Referencia o Entrada R
+* Señal del sensor B
+* Señal de Error (Comparacion) E
+* Funcion de Transferencia de la Planta G
+* Funcion de Transferencia del Sensor H
+* Salida del proceso C
+* Funcion de Transferencia del Sistema P
+
+$$
+\begin{gathered}
+	\text{Lazo Abierto}\\
+	\frac{B}{E} = (G)(H)\\
+	\text{Lazo Cerrado}\\
+	G = \frac{C}{E}\\
+	C = (G)(E)\\
+	\text{Funcion de Transferencia}\\
+	P = \frac{C}{R}\\
+	B = (H)(C)\\
+	E = R - B \implies E = R - (H)(C)\\
+	C = (G)(E) \implies C = (G)(R-((H)(C)))\\
+	C = ((G)(R)) - ((G)(H)(C))\\
+	(G)(R) = (C)(1+((G)(H)))\\
+	P = \frac{C}{R} = \frac{G}{1 + ((G)(H))}
+\end{gathered}
+$$
+
+Un controlador automatico compara el valor de la salida con la entrada de referencia, determina la desviacion y produce una señal de control que reducira la desviacion a cero.
+
+1. Controlador On Off, de dos posiciones
+1. Controladores proporcionales
+1. Controladores integrales
+1. Controlador Proporcional Integral
+1. Controlador Proporcional Derivativo
+1. Controlador Proporcional Integral Derivativo (PID)
+
+# Motores DC #
+
+* El modelado de los sistemas se realiza mediante leyes fisicas como la suma de tensiones o la suma de fuerzas.
+* Las expresiones matematicas que describen a un sistema son su modelo matematico y son usadas para estudiar su respuesta en diferentes situaciones.
+* Los modelos matematicos nos permiten estudiar la respuesta de los sistemas en condiciones extremas.
+
+Considere un sistema de segundo orden (ecuaciones diferenciales):
+
+* Coeficientes a1, a2
+* Ganancia b
+* Salida y
+* Entrada u
+
+$$
+\begin{gathered}
+	\text{Modelo Segundo Orden}\\
+	\ddot{y} + a_1 \dot{y} + a_2 y = bu\\
+	\ddot{y} = bu - a_1 \dot{y} . a_2 y\\
+	\text{Aplicando Laplace}\\
+	\text{(Funcion de Transferencia)}\\
+	s^2 y(s) + a_1 s y(s) + a_2 y(s) = b u(s)\\
+	\frac{y(s)}{u(s)} = \frac{b}{s^2 + a_1 s + a_2}
+\end{gathered}
+$$
+
+## Ejemplo Pendulo ##
+
+Se tiene una masa (m) de peso (W) suspendida de una varilla de longitud constante (l) con un movimiento cuya posicion se determina mediante un angulo de desplazamiento ($\theta$) en funcion del tiempo (t). El pendulo se mueve sobre un arco (s) de radio (l) relacionado con el angulo mediante $s = l\theta$ (Perimetro $\pi r$). Con aceleracion angular ($a=\frac{d^2s}{dt^2}$=($(l)\frac{d^2\theta}{dt^2}$).
+
+Podemos analizar el sistema mediante suma de fuerzas o ecuaciones de euler-lagrange. Mediante fuerzas tenemos que $F = ma = m(l)\frac{d^2\theta}{dt^2}$ y si consideramos que el componente en y del peso de la masa no afecta al movimiento (varilla constante) entonces $m(l)\ddot{\theta} = -mg\sin(\theta)$, una ecuacion no lineal debido al seno. Es decir que para analizar el cambio de la posicion determinado por el angulo es necesario linealizar la ecuacion, considerando un angulo pequeño tenemos que $m(l)\ddot{\theta} = -mg(\theta)$, el cual seria nuestro modelo de segundo orden.
+
+## Ejemplo Motor DC ##
+
+Se tiene un motor electrico de corriente directa compuesto internamente por una resistencia (R), una inductancia (L), un voltaje de entrada (V), un voltaje contra electromotriz (Vc), una inercia (J) y una velocidad angular (w). Cuando consideramos a la inercia se toma en cuenta una constante de friccion viscosa (Kf) ademas de un torque (tm) y un torque adicional con carga (tl). Todas las variables se pueden separar en dos relaciones, una electrica y otra mecanica dadas por:
+
+$$
+\begin{gathered}
+	\text{Modelo Electrico}\\
+	L\dot{i} + Ri + V_c = V\\
+	\text{Modelo Mecanico}\\
+	J\dot{\omega}+K_f \omega = \tau_m + \tau_l\\
+	\text{Torque depende de Corriente}\\
+	\tau_m = K_\tau i\\
+	\text{Voltaje C depende de Velocidad}\\
+	V_c = K_C \omega\\
+	\text{Modelos}\\
+	L\dot{i} + Ri + K_C \omega = V\\
+	J\dot{\omega}+K_f \omega = K_\tau i + \tau_l\\
+	\text{Laplace Considerando Sin Carga}\\
+	LsI(s)+ RI(s) + K_C s \theta(s) = V(s)\\
+	Js^2\theta(s) + K_F s \theta(s) = K_\tau I(s)\\
+	I(s)(Ls+R) = V(s)-K_C s \theta(s)\\
+	I(s) = \frac{V(s) - K_C s \theta(s)}{Ls + R}\\
+	Js^2\theta(s) + K_F s \theta(s) = K_\tau \frac{V(s) - K_C s \theta(s)}{Ls + R}\\
+	\theta(s) \left( Js^2 + K_F s + \frac{K_\tau K_C s}{Ls + R} \right) = \frac{K_\tau V(s)}{Ls + R}\\
+	\theta(s) \left(\frac{(Js^2 + K_F s)(Ls+R) + K_\tau K_C s}{Ls + R} \right) = K_\tau V(s)\\
+	\theta(s) = \frac{K_\tau}{(Js^2 + K_F s)(Ls+R) + K_\tau K_C s} V(s)\\
+	\frac{\theta(s)}{V(s)} = \frac{K_\tau}{(Js^2 + K_F s)(Ls+R) + K_\tau K_C s}\\
+	\text{Separar Integral para s de Seg Orden}\\
+	\frac{\theta(s)}{V(s)} = \frac{K_\tau}{(Js + K_F s)(Ls+R) + K_\tau K_C} \frac{1}{s}\\
+	\text{Laplace Considerando Carga}\\
+	\frac{\theta(s)}{V(s)} = \frac{K_\tau V(s) + ((Ls + R)(\tau_l)(s))}{V(s)((Js^2 + K_F s)(Ls+R) + K_\tau K_C s)}\\
+	\text{Funcion Transferencia Electrica}\\
+	\frac{1}{Ls + R}\\
+	\text{Funcion Transferencia Mecanica}\\
+	\frac{1}{Js + K_F}\\
+	\text{Relacion Torque}\\
+	K_\tau\\
+	\text{Relacion Voltaje C (Retroalimentacion)}\\
+	K_C\\
+	\text{Considerando que R >> L}\\
+	\frac{\theta(s)}{V(s)} = \frac{\frac{K_\tau}{R}}{(Js + K_F) + K_\tau K_C} \frac{1}{s}\\
+	\text{Laplace Asignando Constantes}\\
+	a = \frac{K_F + K_C K_\tau}{J}\\
+	b = \frac{K_\tau}{RJ}\\
+	\frac{\theta(s)}{V(s)} = \frac{b}{s^2 + as}\\
+	\ddot{y} + a_1 \dot{y} + a_2 y = bu\\
+	\ddot{\theta}(t) + a\dot{\theta}(t) = bV(t)
+\end{gathered}
+$$
+
+***
+
+Considere un coeficiente de amortiguamiento relativo $\zeta$ y una frecuencia natural no amortiguada $\omega_n$. Si el coeficiente de amortiguamiento relativo es 0 entonces tenemos una función oscilatoria, por ejemplo $\sin(x)$. Podemos amortiguar la función oscilatoria mediante la suma de una curva exponencial, por ejemplo $1-((e^{-\zeta \omega_n t})/(\sqrt{1-\zeta^2}))$ en donde $(\zeta \omega_n)$ es el coeficiente de amortiguamiento. 
+
+La frecuencia del sistema (cuando hay amortiguamiento) va a estar dada por $\omega_n \sqrt{1-\zeta^2}$, tambien denominada frecuencia de amortiguamiento. Notamos que entre mayor sea el coeficiente de amortiguamiento relativo menor sera la amplitud de las oscilaciones. Finalmente el poder determinar las raices de $\zeta$ nos permitira controlar el comportamiento del sistema.
+
+Podemos obtener los polos de un sistema de segundo orden de la siguiente forma, notar que entre mas lejos este la parte real del eje imaginario mayor sera el amortiguamiento. Tambien notar que la magnitud de los polos corresponden a la frecuencia natural y la magnitud de los angulos corresponden al coeficiente de amortiguamiento.
+
+$$
+\begin{gathered}
+	\frac{y(s)}{R(s)} = \frac{\omega_n^2}{s^2 + 2\zeta \omega_n s + \omega_n^2}\\
+	\text{Polos, magnitud y angulo}\\
+	-\zeta\omega_n \pm \sqrt{(\zeta^2 \omega_n^2 - \omega_n^2)}\\
+	-\zeta\omega_n \pm \omega_n \sqrt{(\zeta^2 -1 )}\\
+	P = \zeta \omega_n \pm \omega_n \sqrt{1 - \zeta^2} i\\
+	|P| = \sqrt{\zeta \omega_n^2 + \omega_n^2 (1-\zeta^2)} = \sqrt{\omega_n^2} = \omega_n\\
+	<P = \cos{\theta} = \frac{\zeta \omega_n}{\omega_n} = \zeta
+\end{gathered}
+$$
+
+El error de estado estacionario depende del tipo de sistema (ess). 
+
+$$
+\begin{gathered}
+	e_{ss} = \lim_{s \to 0} \frac{s \frac{1}{s}}{1 + G(s)} = \lim_{s \to 0} \frac{1}{1 + G(s)}\\
+	e_{ss} = \frac{1}{1 + \lim_{s \to 0} G(s) } =  \frac{1}{1 + (K_P) }\\
+	\text{Si el sistema es de tipo 0 entonces}\\
+	e_{ss} = \frac{1}{1 + \lim_{s \to 0} \frac{b}{s+a} } = \frac{1}{1 + \frac{b}{s+a}}\\
+	G(s) = \frac{b}{s+a}
+	\text{Si el sistema es de tipo 1 entonces}\\
+	e_{ss} = \frac{1}{1 + \lim_{s \to 0}} \frac{b}{(s+a)s}\\
+	G(s) = \frac{b}{(s+a)s} = \frac{1}{1+a} = 0
+	\text{Error estacionario entrada rampa }\\
+	\text{(integrar escalon unitario)}\\
+	e_{ss} = \lim_{s \to 0} \frac{\frac{1}{s}}{1 + G(s) } = \frac{1}{s + sG(s)}\\
+	e_{ss} = \frac{1}{\lim_{s \to 0} s G(s) }\\
+\end{gathered}
+$$
+
+Del error estacionario para entrada rampa observamos que termina siendo 1 sobre 0 o infinito, por lo que para Tipo 0 se genera un error de estado estacionario que incrementa, para Tipo 1 se genera un error minimo constante y para el Tipo 2 se genera un error estacionario alto al principio pero despues de un tiempo determinado se estabiliza el sistema.
+
+
+Controlador Proporcional
+
+$$
+\begin{gathered}
+	G_C(s) = K_P\\
+\end{gathered}
+$$
+
+Cambiar el tipo de sistema o añadir polos elimina el error, simplemente agregar un control proporcional no arregla el eeror. Aumentar la ganancia aumenta la frecuencia (oscilaciones) y  aumenta el sobretiro maximo pero disminuye la amplitud de las oscilaciones.
+
+Control Proporcional Derivativo
+
+$$
+\begin{gathered}
+	G_C(s) = K_P + (s)(K_D)\\
+\end{gathered}
+$$
+
+La KD no modifica el tipo de sistema (G(s)) sin embargo si reduce el sobretiro, aumenta la amortiguacion (frecuencia amortiguada), el tiempo de respuesta aumenta y no modifica el error estacionario. Decimos que aumenta la friccion del sistema a cambios extremos.
+
+Control Proporcional Integral
+
+$$
+\begin{gathered}
+	G_C(s) = K_P + (s)(K_D) + \frac{K_I}{s} = (1+K_{D1}s) (K_{P2} + \frac{K_{I2}}{s})\\
+	K_P = K_{P2} + K_{D1} K_{I2}\\
+	K_{D} = K_{D1} K_{P2}\\
+	K_{I} = K_{I2}
+\end{gathered}
+$$
+
+Si modifica el tipo de sistema (G(s)) mediante una respuesta al escalon unitario.
+
+
+***
+
+Practica 1 y 2
+
+* Feedback es el pot con valor de 0 a 1023 (0 a 5V) con error que oscila de -512 a 511, la distancia con respecto a la referencia 511.
+* Cuando el error es 0 el potenciometro se encuentra en 511. PWM es la variacion en la velocidad del motor de 0 a 255.
+* La direccion del motor depende del signo de la señal de control, la cual tambien determina wl PWM (entre mas cercano a 0 menor el PWM).
+
+Variables de control
+
+* KP modifica que tan rapido se sigue la curva exponencial (estabiliza): Extremadamente bajo y no hay retroalimentacion, bajo y el motor reaccionara demasiado lento a los cambios de la funcion de control, alto y se estabilizara pronto pero el overshoot sera excesivo, demasiado alto y desestabilizamos el sistema (oscilaciones incrementan).
+* KD velocidad de todos los cambios, KP es el principal estabilizador pero cuando reacciona al cambio lo hace con su velocidad mas alta, KD hace que el cambio sea gradual dependiendo de su acercamiento a la referencia, esto elimina o disminuye el overshoot: Muy bajo y no lograra producir ningun efecto, demasiado alto y el rango alrededor de 0 sera demaciado grande por lo que todos los movimientos del motor seran lentos.
+* KI es un ajuste a largo plazo, elimina el error residual o acomulado. Variable sensible, valores ligeramente altos desestabilizan el sistema.
+
+***

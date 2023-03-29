@@ -1,0 +1,99 @@
+---
+title: Experiment Design Notes
+date: '2021-08-15'
+tags: ['school', 'Design']
+---
+
+# Conceptos Estadisticos Basicos #
+
+Importancia de tomar decisiones bajo incertidumbre
+Medidas de Tendencia Central (Tambien llamadas medidas de posicion)
+
+* Media: Valor hacia el cual todos los demas valores tienden a estar.
+* Mediana: Dato central de la distribucion de los datos, util en distribuciones normales.
+* Moda: Dato que mas se repite, util en las distribuciones no normales.
+
+Medidas de Variabilidad
+
+* Rango: Primera indication de variabilidad de los datos. Facilmente sesgado por los extremos.
+* Desviacion Absoluta Media (MAD): Similar al rango pero considera los datos entre los extremos.
+* Varianza: Similar a MAD pero al cuadrado para amplificar la diferencia entre los datos ademas de que infiere datos desconocidos mediante la correcion de Bersel.
+* Desviacion Estandar: Raiz de la varianza, unidad de distribucion estandar.
+
+Conceptos Basicos
+
+* Probabilidad: Medida de la posibilidad de que un evento ocurra.
+* Evento: Serie de sucesos de un experimento para el cual una probabilidad de suceder se asigna.
+* Experimento: Subconjunto del espacio muestral.
+* Distribucion de Probabilidad: Modelo matematico de un fenomeno aleatorio en funcion de la probabilidad de sus eventos.
+* Aleatoriedad: Carencia de predictibilidad de los eventos, individualmente son impredecibles por definicion pero generalmente existen variables que bajo un gran numero de eventos producen diferente frecuencias volviendolos predecibles.
+* Variable aleatoria (Estocastica): Variable cuyo valor esta sujeto a variaciones debidas a la casualidad.
+
+Distribucion de Probabilidad normal como modelo de fenomenos nautrales
+
+Distribucion normal estandar
+
+La distribucion normal depende de $\mu$ o media para su desplazamiento sobre el eje X y de $\sigma$ o desviacion estandar para su densidad sobre el eje Y.
+A partir de un sigma de distancia se encuentran 68.26 porciento de las muestras, a partir de 2 sigma se encuentran 95.45% de las muestras y a partir de 3 sigma se encuentra el 99.73% de las muestras.
+
+***
+
+# Distribucion de Probabilidad Muestral #
+
+* Una distribucion muestral es la distribucion de probabilidad de un estadistico.
+* Los estadisticos o datos que representan una muestra se calculan y son la media muestrial $\bar{y}$, la varianza muestral $s^2$, el tamaño muestral $n$, en donde la media muestral es una variable aleatoria que siempre es normal. Los parametros o datos que representan a la poblacion como la media total $\mu$ o la varianza poblacional $\sigma^2$ no se calculan, unicamente se estiman. La desviacion estandar muestral a diferencia de la poblacional depende del tamaño de la muestra, es decir a mayor tamaño de muestra nuestra distribucion de probabilidad de acerca mas a la media
+* Teorema del limite central: La distribucion muestral de $\bar{Y}$ es una distribucion normal con media $\mu$ y desviacion estandar $\sigma/\sqrt{n}$. Si $\bar{Y}$ es la media de una muestra aleatoria de tamaño n y varianza $\sigma^2$ entonces su distribucion de probabilidad es $Z = \frac{\bar{Y}-\mu}{\sigma/\sqrt{n}}$, es decir una distribucion normal de 0 a 1 cuando n se aproxima al infinito.
+* En resumen, podemos aproximar la media de una poblacion usando el promedio de la media de varias muestras dado que dicho promedio tendra una distribucion normal y entre mas grande sea la muestra la media de la distribucion normal coincidira mejor con la media de la poblacion.
+
+***
+
+# Pruebas de Hipotesis #
+
+* Una prueba de hipotesis es el proceso estadistico para comprender un experimento y decidir si en base a los resultados obtenidos (datos muestrales) por dicho experimento se rechaza o no la hipotesis "status quo". Las pruebas de hipotesis por su naturaleza estadistica siempre tienen un cierto margen de riesgo dado que la unica forma de estar seguros es mediante la medicion de toda la poblacion.
+	* Hipotesis Nula (Ho): Hipotesis estadistica que se refiere al status quo o primer creencia, es decir el valor que yo supongo que la poblacion tiene, esta hipotesis se asume verdadera hasta que se pruebe su falsesdad y asume que todas las poblaciones son iguales es por ello que siempre se define en terminos de igualdad.
+	* Hipotesis Alternativa (Ha o H1): Hipotesis estadistica que se refiere al contrario del status quo, es decir aquellos valores que supongo que la poblacion tiene si no se cumploera la hipotesis nula, esta hipotesis se asume falsa hasta que se pruebe la falsedad de Ho, representa la existencia de diferencias entre poblaciones.
+
+Pasos para realizar una prueba de hipotesis:
+
+1. Definir el problema, como es y como deberia ser.
+1. Establecer hipotesis nula y alterna.
+1. Decidir que prueba estadistica describe al problema.
+1. Definir el nivel de confianza (riesgo de la prueba)
+1. Recolectar datos
+1. Calcular estadistico de prueba.
+1. Calcular probabilidad de que ocurra el estadistico calculado.
+1. Decidir si se rechaza Ho o se acepta Ha.
+
+Existen diferentes estadisticos con distribuciones muestrales para rechazar o aceptar las hipotesis (Todos pueden ser por un lado o ambos de su curva):
+
+1. Estadistico Z sin muestra cuando se conoce media poblacional, desviacion estandar poblacional, tamaño de la muestra: Se calcula desviacion estandar muestral y finalmente el valor de Z que se requiere para establecer el valor P.
+2. Estadistico Z con una muestra cuando se conoce la varianza (o desviacion estandar) poblacional: Se usa la muestra para calcular la media muestral y el tamaño de muestra, despues el valor de Z y P que se requiera.
+3. Estadistico Z con dos muestras cuando se conocen las varianzas poblacionales: Se usa la diferencia entre el promedio de las muestras y busca Z y P para representar su diferencia de 0
+4. Estadistico T con una muestra cuando NO se conoce la varianza poblacional: Se usa la media muestral para obtener T y P.
+5. Estadistico T con dos muestras sin conocer las varianzas poblacionales pero asumiendolas iguales: Se usa la varianza muestral ponderada para calcular T y P
+6. Estadistico T con dos muestras sin conocer las varianzas poblacionales pero asumiendolas diferentes: No lo hemos utilizado en clase pero mitiga errores significativos si las varianzas verdaderamente son diferentes. No se usa la varianza muestral ponderada sino ambas de forma independiente, calculo de grados de libertad complejo. Se obtienen T y P.
+7. Estadistico F compara las varianzas poblacionales desconocidas: La distribucion no es normal ya que va de 0 al infinito con un maximo valor en 1 cuando ambas varianzas son iguales.
+
+***
+
+# ANOVA #
+
+La prueba T es insuficiente para comparar mas de dos muestras, se desarrolla una metodología de analisis de varianza para una mayor cantidad de muestras mediante la descomposición de la suma de los cuadrados.
+
+* Conforme aumenta la cantidad de muestras el riesgo alfa de llegar a una conclusion incorrecta aumenta dado que se tienen que considerar las tres pruebas a la vez y el riesgo de cada una se acomula, para 3 pruebas el riesgo de un error con alfa de 0.05 aumenta a 0.1426.
+* ANOVA es un análisis de varianza que nos permite comparar varias muestras con una mayor precision que utilizando pruebas T. El metodo determina si la Variacion entre el promedio de las muestras es mayor al que se espera de la variacion que ocurre dentro del nivel, es decir que busca saber si la señal entre los promedios es mayor al ruido que existe dentro de sus niveles.
+* Utiliza el radio entre la suma de cuadrados (medicion de variabilidad) de la variacion entre grupos (Delta) con respecto a la variacion dentro del grupo para calcular la variación total ANOVA.
+* Este analisis se basa en asumir que las muestras son muy similares sin embargo si una de sus medias es significativamente diferente esto se vera reflejado en una varianza lo suficientemente grande a pesar de que la media total sea muy similar entre ellas. El objetivo del metodo es analizar la suma de cuadrados para saber si es significativamente grande la distribucion para considerar que las medias NO son iguales.
+
+***
+
+# Comparación Pareada #
+
+Puede ser que se tengan dos muestras pero no podamos utilizar la prueba T debido a que existe un ruido interno (dentro de cada muestra) demaciado grande, por ejemplo si lo que se mide dentro de cada muestra es demaciado diferente, entonces seria incorrecto realizar un promedio de la muestra dado que los datos no son homogeneos.
+
+* La comparacion pareada sirve para mejorar la precision de experimentos simples mediante el aislamiento del ruido cocacionado por factore externos conocidos pero no controlables.
+* Esta prueba es un caso particular de la experimentacion por bloques.
+
+***
+
+
