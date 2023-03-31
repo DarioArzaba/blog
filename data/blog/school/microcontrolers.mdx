@@ -1591,7 +1591,7 @@ Where TTL means TTL Input and ST means Schmitt Trigger input.
 | 89h | EECON2 | EEPROM Control Register 2 (Not Physical Reg) | ---- ---- |
 | 0Ah | PCLATH | Write Buffer for the PC using upper 5 bits  | ---- ---- |
 
-1. PCLATH is a slave of PC<12:8>, its contents can be transferred to the PC but they can't be transferred from the PC to PCLATH. Note that in STATUS the bits TO and PD aren't affected by a MCLR Reset. Other non Power Up Resets include MCLR and WDT, also PORTA will be set as inputs and PORTB will be transferred to the Port Output Latch on Reset.
+1. PCLATH is a slave of PC 12:8 , its contents can be transferred to the PC but they can't be transferred from the PC to PCLATH. Note that in STATUS the bits TO and PD aren't affected by a MCLR Reset. Other non Power Up Resets include MCLR and WDT, also PORTA will be set as inputs and PORTB will be transferred to the Port Output Latch on Reset.
 
 For direct addressing select the Bank with RP1 and RP0 and then 7 bits (from 6 to 0) of the OPCODE as the location. For indirect addressing select the Bank with IRP and then 8 bits (from 7 to 0) of the FSR as the location.
 
