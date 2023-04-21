@@ -41,8 +41,6 @@ Stages by themselves can be considered purely combinational but by interacting t
 
 ![Example Program](/static/images/notes/CADESIMUSimulationOne.png)
 
-[Download the Example](/static/images/files/GRAFCETSimulation1.cad)
-
 ***
 
 **GRAFCET Design**
@@ -65,8 +63,6 @@ To achieve complex structures like loops, decision making and simultaneous tasks
 
 ![Example Program](/static/images/notes/CADESIMUSimulationTwo.png)
 
-[Download the Example](/static/images/files/GRAFCETSimulation2.cad)
-
 A linear sequence is simplest structure, consisting of a succession of stages interconnected by transitions. Within a linear sequence only one stage should be active at a given time (simultaneous actions must be done as Y branches). A stage is activated when the previous one is active and the transition condition has been met. Activation of a stage implies the deactivation of the previous one.
 
 ![OR Bifurcation](/static/images/notes/ORBifurcationNetworksLab.png)
@@ -74,8 +70,6 @@ A linear sequence is simplest structure, consisting of a succession of stages in
 The OR bifurcation is a structure representing a divergence in OR followed by several possible paths or threads that in the end must converge back to the original macrostructure. This structure is intended as alternative processes that can be executed depending on a logical condition. They are analogous to the if, then, else structure, and therefore must be exclusive of each other when nested.
 
 ![Example Program](/static/images/notes/CADESIMUSimulationThree.png)
-
-[Download the Example](/static/images/files/GRAFCETSimulation3.cad)
 
 ![AND Bifurcation](/static/images/notes/ANDBifurcationNetworksLab.png)
 
@@ -90,11 +84,6 @@ Using AND and OR bifurcations we can create complex relations.
 # Sorting Line #
 
 Virtual model of a sorting line. Composed from a storage tower with conveyor chain, a transport band or conveyor belt (both with unidirectional gear motors), three pistons (bidirectional motors) and four discharging tables. This control system has 17 digital inputs and 8 digital outputs. The virtual model can be emulated using a virtual machine within the LabVIEW environment and PLCSim. 
-
-* [CADESIMU Pistons](/static/images/files/CADESIMUPistonsSimuPOne.cad)
-* [CADESIMU SortingLine](/static/images/files/CADESIMUSortingLine.7z)
-* [Sorting Line Without Color](/static/images/files/TIASortingLineNoColor.zip)
-* [Sorting Line With Color](/static/images/files/TIASortingLineColor.zip)
 
 ***
 
