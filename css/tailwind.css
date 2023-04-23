@@ -135,10 +135,10 @@ input:-webkit-autofill:focus {
 }
 
 .dark .dark\:prose-dark h1 {
-	color: #ff86ebcb;
+	color: #86ffbccb;
 }
 .dark .dark\:prose-dark h2 {
-	color: #ff86ebcb;
+	color: #86d8ffcb;
 }
 .dark .dark\:prose-dark h3 {
 	color: #ff86ebcb;
@@ -155,27 +155,30 @@ input:-webkit-autofill:focus {
     font-size: 2.6em;
 	font-weight: bold;
 	padding-top: 0.6em;
-	padding-bottom: 0.55em;
+	padding-bottom: 0.4em;
 	font-family: 'IBM Plex Mono';
 	overflow-wrap: break-word;
+	border-bottom: 1px solid #86ffb48f;
 }
 
 .prose :where(h2):not(:where([class~="not-prose"] *)) {
     font-size: 2em;
 	font-weight: bold;
 	padding-top: 0.55em;
-	padding-bottom: 0.4em;
+	padding-bottom: 0.2em;
 	font-family: 'IBM Plex Mono';
 	overflow-wrap: break-word;
+	border-bottom: 1px solid #86edff8f;
 }
 
 .prose :where(h3):not(:where([class~="not-prose"] *)) {
-    font-size: 1.8em;
+    font-size: 1.4em;
 	font-weight: bold;
 	padding-top: 0.4em;
-	padding-bottom: 0.35em;
+	padding-bottom: 0.1em;
 	font-family: 'IBM Plex Mono';
 	overflow-wrap: break-word;
+	border-bottom: 1px solid #b586ff8f;
 }
 
 .prose :where(h4):not(:where([class~="not-prose"] *)) {
