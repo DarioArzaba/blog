@@ -132,6 +132,7 @@ FALTA TERMINAR DE LAS PRESENTACIONES
 	2. Use `amdconfig --adapter=all --initial -f` to generate a `xorg.conf` file in AMD with Linux systems.
 	3. Note that in WSL the interface to `fglrx` is not yet supported! CPU only in that case.
 6. Make sure to install the [correct GPU driver](https://hashcat.net/wiki/doku.php?id=frequently_asked_questions#i_may_have_the_wrong_driver_installed_what_should_i_do) for your system.
+7. To save storage you can delete unused GPU kernel files (`sm_xx.xx.ptx` for NVidia or `VLIWx.ptx` for AMD).
 
 ### Common Errors ###
 
@@ -147,6 +148,122 @@ FALTA TERMINAR DE LAS PRESENTACIONES
 9. Error `clGetPlatformIDs() -1` means that no GPUs were found, there are multiple fixes. 
 10. Error `clEnqueueNDRangeKernel() -4` means that the AMD GPU package driver `deb` has changed unexpectedly.
 	1. Fix ``libOpenCL.so.1` by purging `fglrx` and reinstalling `ocl-icd-libopencl1`.
+11. Error `Line-length exception` means that the hash file couldn't be parsed or that it couldn't be found.
+	1. Check that the hashfile doesn't contain whitespace or add `--username` if it contains `user:hash` format.
+
+### Basic Cracking ###
+
+* If hashcat finishes an attack and doesn't crack the hashes provided it outputs `Status: Exhausted`
+* Hashcat mask files `hcmask` are files with custom charsets and masks definitions per line
+	* Mask attacks are targeted brute force attacks where you assume certain patterns (last digits are numeric)
+	* Most effective when we know the password length, the mask configures the keyspace using placeholders
+	* Placeholders can be custom charset variables, [standard charsets](https://hashcat.net/wiki/doku.php?id=mask_attack) or static letters.
+	* The syntax is the static letter or `?` followed by a standard charset `l,u,d,s,a` or custom `1,2,3,4`
+* Weak hash detection is a feature that notices if there are hashes with empty plaintext (0 Length Passwords)
+	* If your hashlist contains millions of salts for this feature to work we have to run a kernel for each one.
+	* This increases the startup of hashcat before starting to crack the real passwords.
+	* The parameter `--weak-hash-threshold` sets the max unique salt number before deactivating the feature, by default 100.
+* Potfile `potfile` are databases that store hashes after they are successfully cracked.
+	* This is done to prevent duplicate hashes from being cracked again, specially if you are trying multiple attack types.
+	* Also disables guesses for a specific salt if it detects that all hashes bound to that salt are already on the potfile.
+	* Save to append data from one potfile into another, they are stored in `profile` directory as `hashcat.potfile`.
+* There is no concrete method for identifying a hash algorithm.
+	* Some include hash signatures, for example 1 for `md5crypt`, without it algorithms are basically undistinguishable.
+	* The best way to identify hashes is to understand their origin and context and make an educated guess.
+* The output `Status: Cracked` empty means that the hash is already in the potfile and can be displayed with `--show`
+	* To disable crack storage use `--potfile-disable`. To create a custom potfile use `--potfile-path`
+	* You can modify how cracked passwords are displayed using `--show` and arguments such as `--username`
+* Generally the keyspace is the total number of possible combinations for a specific attack.
+	* In hashcat its a special value `--keyspace` used to optimize distributed node cracking.
+	* The value is divided into chunks (delimited by `-s` and `-l`) that are tracked by a host base loop and a candidate modifier loop.
+	* It calculates the base loop value using the relations between the number of words in dict, rules and masks.
+* Various languages use different character encodings, however most hash algorithms are encoding independent.
+	* Use `--hex-charset`, `--hex-salt` and `hcchr` files to use a specific encoding for a specific hash list.
+	* Another easier solution is to simply convert the wordlists with `iconv`
+* You should always try to use a mask attack instead of a brute force attack.
+	* Add `--increment` to increase the mask size char by char, `--increment-min` and `--increment-max` define the range of chars.
+	* Add `--custom-charset1 MASK` to define a custom charset and use them within the mask.
+	* For example: `hashcat -m 0 -a 3 --increment --increment-min 4 --increment-max 6 hash.txt ?a?a?a?a?a?a?a?a`
+	* Note that the size of the mask itself takes precedence over the value in `--increment-max`
+* To use custom charsets for special ordering you need to disable the markov-chain optimizations `--markov-disable`
+* For rule usage generally use `-r rulefile`, used in a straight attack to manipulate a dictionary.
+	* Use `-j` or `-k` when manipulating the left or the right side of the input in hybrid attacks.
+	* In general you can stack rules (combine them) and they will be applied at the same time. `-r rule1 -r rule2`
+	* For example to append and prepend a single numerical digit to every dictionary word we can do this:
+	* `hashcat hash.txt wordlist.txt -r rules/hybrid/append_d.rule -r rules/hybrid/prepend_d.rule`
+* To use multiple dictionary in a dict attack `-a 0` you can specify them as a space separated list.
+	* You can also specify multiple files using globbing `../wordlists/*.dict` or a directory itself `wordlists`.
+	* If you have wordlists with duplicates please sort them first `sort -u -o sorted.txt wordlists/*`
+* One common password pattern is to simply toggle characters from lower to upper case, we use `rules/toggle1.rule`.
+	* Hashcat includes rules for a toggle-case attack if you suspect the password has 1 to 5 characters toggled.
+* You can find the performance of your setup using a benchmark `--benchmark`.
+	* This generates a single hash and tries to brute force it with a big enough mask for your GPU.
+	* Performance varies depending on attack type, number of hashes, salts, keyspace and cracking frequency.
+	* You can specify a particular hash algorithm for the benchmark using `--hash-type`
+* Hashcat comes with 3 workload profiles that can be changed with `--workload-profile=NUM`
+	* Reduced GPU resource usage `1`, default performance `2`, or tuned-high GPU resource usage `3`.
+* GPU Power is the amount of base-words per GPU computed in parallel per kernel invocation.
+	* GPUP= S (GPU shader value) * T (64 for AMD and 256 for NV) * N (256 default for -w 3) * V (Vector size 1, 2 or 4)
+* GPU hardware acceleration needs an appropriate amount of work (amplification) to achieve full speed.
+	* For fast hash algorithms the appropriate amount of work is approximately 1000 rules and 10 million words.
+	* For slow hash algorithms you won't need amplifiers to keep the GPU busy at the risk of having small wordlist.
+	* For slow hash feed hashcat base words directly `hashcat --stdout wordlist.txt -r rules/best64.rule | hashcat -m 2500 test.hccapx`
+* If your attack is slow there are many possible reasons:
+	* The system hardware is slow, you didn't create enough work for hashcat hardware acceleration.
+	* Using reduced performance workload profile, GPUs are overheating, hashlist is to big.
+	* Some hashing algorithms are specifically designed to be slow such as `bcrypt`, `scrypt` or `bitcoin wallet`.
+* If you get the error `bitmap table overflowed` it means that the hashlist size is to big.
+	* For optimization hashcat creates a memory structure (bitmap table) that becomes less efficient with large hashlists.
+	* This happens with millions of hashes, you can fix it by increasing the bitmap size or splitting your hashlist.
+* You can restore you hashcat session using `--restore` with the appropriate `.restore` file.
+* You can interact with hashcat while its running using `outfiles`, `induction` or `loopback`
+	* Outfile Check: Use `--outfile-check-dir=FOLDER` and `--outfile-check-timer=NUM` to check continuously at the `session.outfiles` directory for a `hash[:salt]:plain` combinations file generated for example with another hashcat instance using the `--outfile` option into the `*.outfiles` directory. This makes the running process increase the guessing speed by optimizing the current plain. 
+	* Induction: Use `--induction-dir` to add new plains that the running instance should use after the current dict has finished.
+	* Loopback: Use `--loopback` to reuse plains that cracked a hash to the modified and matching plains (only works if no more plains match).
+* You can extract hashes from TrueCrypt and VeraCrypt volumes but you need to extract the correct binary data file.
+	* For TrueCrypt Boot Loader v7+ you extract 512 bytes from offset 31744 (Offset may vary for older versions).
+	* If TrueCrypt uses a hidden partition you skip the first 64K bytes and extract the next 512 bytes, for example:
+	* `dd if=hashcat_ripemd160_AES_hidden.raw of=hashcat_ripemd160_AES_hidden.tc bs=1 skip=65536 count=512`
+	* For every other case (simple files, non-booting partitions) simply extract the first 512 bytes.
+* The maximum supported password and salt length is 256 characters (pure kernels), for optimized the length is lower.
+* You can use most of the Jack the Ripper generated rule files with hashcat, preprocessor being a notable exception.
+	* Use the [rule syntax documentation](https://hashcat.net/wiki/doku.php?id=rule_based_attack) to know if they are compatible.
+* A typical error is to try to use specific wordlist for specific hash-type targets. Hashcat adapts wordlists automatically.
+* Use `echo -n test | md5sum` to create a test hash for hashcat. We add `-n` to delete the newline character.
+* For Apache servers with `htpasswd` files use `--username` and the correct hash type `-m`.
+	* There are several hashing algorithms including Apache MD5 `apr1`, raw SHA1 `SHA`, DEScrypt, etc.
+* You can crack multiple WPA handshakes at once using a single `.hccapx` file.
+	* To get the individual networks into a single file use `cat multiple/*.hccapx > allinone/multi.hccapx `
+	* It is recommended to use tools such as `cap2hccapx`, `analyze_hccap`, `craft_hccap`, `hccap2cap` to edit the file.
+
+
+
+* LM hashes are divided into two parts to optimize hashcat process, you should use `--show` to combine them after cracking.
+
+```sh
+cat hash
+ec97b64dce94d891299bd128c1101fd6
+
+hashcat -m 3000 -a 3 -w 3 -o cracked.txt --quiet hash ?u?u?u?u?u?u?u
+ec97b64dce94d891:AMAZING
+299bd128c1101fd6:HASHCAT
+
+hashcat -m 3000 --show --quiet hash
+ec97b64dce94d891299bd128c1101fd6:AMAZINGHASHCAT
+```
+
+* Hashcat can't and [will not crack SL3](https://hashcat.net/forum/thread-1887.html) Phone (Nokia) hashes.
+
+
+
+
+### Team Hashcat ###
+
+Team of password cracking enthusiast that participate in mayor contests including Korelogic's "Crack Me If You Can" or [CMIYC](https://twitter.com/crackmeifyoucan) that takes place at Defcon, "Hashrunner" at Positive Hack Days and CracktheCon at Cyphercon.
+
+
+
+
 
 ### Install ###
 
@@ -176,8 +293,13 @@ gpg --verify hashcat-VERSION.7z.asc hashcat-VERSION.7z
 
 ### Tools
 
+* To extract the hashes from OFFICE or PDF files into a hashlist use [office2hashcat.py](https://raw.githubusercontent.com/stricture/hashstack-server-plugin-oclhashcat/master/scrapers/office2hashcat.py) and [pdf2hashcat.py](https://raw.githubusercontent.com/stricture/hashstack-server-plugin-oclhashcat/master/scrapers/pdf2hashcat.py)
+* Upload and extract WPA handshakes from `pcap` capture file using [cap2hashcat](https://hashcat.net/cap2hashcat/)
+	* You can get capture files using [aircrack-ng](https://aircrack-ng.org/) and wireshark as long as you don't apply filters
 * To convert 7z password protected archives to hashes you can use [7z2hashcat](https://github.com/philsmd/7z2hashcat)
 * Friendly Chrome based GUI interface with [Hashcat.Launcher](https://github.com/s77rt/hashcat.launcher)
+
+
 
 ### More Info ###
 
@@ -187,34 +309,63 @@ gpg --verify hashcat-VERSION.7z.asc hashcat-VERSION.7z
 * [Hashcat Discord](https://discord.gg/HFS523HGBT)
 * [Hashcat Twitter](https://twitter.com/hashcat)
 * [Hashcat Repository](https://github.com/hashcat/hashcat)
+* [HashKiller Lists](https://hashkiller.io/listmanager)
+* [Example Hashes](https://hashcat.net/wiki/doku.php?id=example_hashes)
 
 
+### Steps to crack PDF ###
 
+Used [pdf2hashcat](https://github.com/sighook/pdf2hashcat)
 
+1. Extracted the hash from the pdf file
 
+```sh
+python3 pdf2hashcat.py y.pdf | tee hash.txt
 
+$pdf$5*6*256*-1028*1*16*351dc1db314bd985c038ab533c89eeac*127*...447c16
+```
 
+2. Used the [example hashes](https://hashcat.net/wiki/doku.php?id=example_hashes) to find the mode 10700
+3. Tried using a rule-based dict attack (failed).
 
+```sh
+hashcat -m 10700 -a 0 -r best64.rule hash.txt rockyou.txt -O
+```
 
-CHECAR LA SEGURIDAD LA RED DE SU CASA WIFI
+4. Tried using a [mask attack](https://hashcat.net/wiki/doku.php?id=mask_attack) approach with different masks.
+5. Left for 30 min trying 6 number password `?d?d?d?d?d?d` mask.
 
-CHECAR FIREWALL Y CAMBIAR TODOS TUS PASSWORDS PARA GENERAR CONTRASEÑAS SEGURAS
+```sh
+hashcat -m 10700 -a 3 hash.txt ?d?d?d?d?d?d -O
+```
 
-USE IDA PRO TO DISASABLE A FILE AND SEE THE CODE IN ASSEMBLY TO START LOOKING WHAT THE SOFTWARE DOES
+## seclists ##
 
-PACKET TRACER 
+## Wordlists ##
 
-WIRESHARK
+```sh
+sudo updatedb.plocate
+locate wordlist
+```
 
-MIGRAR TODO A LA NUBE COMO DROPBOX ES LA MEJOR OPCION, LIMITANDO A RANSOMEWARE LOS POSIBLES PELIGROS.
+## fcrackzip ##
 
-En un peritaje forense colocar todos los pasos realizados en una cadena de custodia Autosicforensics como software
+```sh
+fcrackzup -u -D -p /usr/share/wordlists/rockyou.txt secret.zip
+```
 
+## zip2john ##
 
+```sh
+zip2john secret.zip > hash.txt
+```
 
+## john ##
 
-
-
+```sh
+sudo gunzip rockyou.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+```
 
 
 
