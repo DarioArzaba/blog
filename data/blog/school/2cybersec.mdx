@@ -34,7 +34,6 @@ Human, organizational and regulatory aspects include risk management and governa
 * Software Security: Software security, lifecycle, updates and web security.
 * Infrastructure Security: Cyberphysical security, physical layer, telecomms security, hardware security and network security.
 
-
 ### Assets ###
 
 Assets are something of value to a person, business or organization. IT assets are any element used in to add value to the organization such as:
@@ -134,15 +133,3879 @@ Types of common security risks or cybersecurity threats
 * Zero Day Explot
 * DNS Attack
 
+
+
+
+
 ***
 
-# Cryptography #
+## MALWARE ##
+
+Termino para referirse al software malicioso.
+Agrupa los diferentes tipos de programas que afectan la seguridad de una computadora.
+
+
+Anatomía del malware
+Rutina de infección: Cómo se instala dentro de una computadora.
+Payload: Efectos que tiene en la computadora
+Rutina de Propagación: Como salta a otras victimas. 
+
+Infección: Programa solo
+Una pieza de malware puede ser un programa que se ejecuta sin ayuda de otros. 
+Puede instalarse de la siguiente forma:
+En memoria
+Proceso del sistema
+Proceso de inicio
+MBR
+
+Infección: Otros programas
+Existe malware que requiere del código de otros programas.
+Existen las siguientes formas:
+Prepending
+Appending
+Cavidades
+Inserción
+Destrucción
+Compañia
+
+Propagación: Medios Fisicos
+Uno de los primeros vectores, ya que las computadoras necesitaban un disco para arrancar.
+Actualmente hay muchos virus que aprovechan el autorun de las usb.
+
+
+Propagación: Instalación y descargas
+Mucho software, en especial piratería, contiene malware.
+La instalación y descarga de programas no verificados pone en riesgo a una computadora.
+Muchas veces existen botones falsos de descargas que contienen malware.
+
+Propagación:Documentos
+Muchos visores y editores de documentos (office, acrobat) traen lenguajes insertados.
+Los documentos pueden ser usados como un vector de transmisión de malware
+
+Acceso a sitios web
+Al acceder a sitios web, si estos fueron vulnerados, pueden ejecutarse scripts que aprovechan exploits.
+Es necesario revisar el trafico web y los sitios a los que nos conectamos.
+
+Propagación: Correo
+Un vector muy común es el uso de correos desde direcciones infectadas. 
+Al inicio del boom del correo electrónico, era de las maneras más usadas para infecciones
+
+Propagación: Red
+Existen ciertos tipos de malware que tienen integradas capacidades de escaneo de puertos.
+Cuando encuentran una aplicación vulnerable, utilizan exploits para copiarse a la computadora victima.
+
+Payloads: Información
+Uno de los payloads mas comunes es modificar la informacion o destruirla.
+ Actualmente, es más util para los atacantes robarla.
+Se pueden instalar rutinas que se dedican a monitorear paginas visitadas, contraseñas usadas, teclas, etc.
+
+Payloads: Encubrimiento
+Existen rutinas que se dedican a evitar que el malware sea descubierto.
+Puede ser utilizando encripción, polimorfismo, empaquetadores. 
+También se pueden modificar las rutinas del sistema operativo para que no muestren la actividad viral. 
+
+Payloads: Persistencia
+Otro payload común es el instalar programas que permitan a un atacante acceder a la computadora afectada.
+
+Ejemplos:
+Meterpreter
+Reverse Shell
+SSH
+Clientes de C&C
+
+Payloads: Control
+
+El malware puede instalar algún cliente que le permita estar escuchando instrucciones.
+Generalmente se conectan a salas de chat como las creadas con IRC para esperar las acciones a ejecutar.
+
+Payloads: Cifrado
+Un payload muy común actualmente es el cifrado de la información para pedir rescate por la llave de cifrado.
+Tristemente, muchas veces aun pagando, no se libera realmente la información
+
+Tipos de malware
+
+Virus
+Troyano
+Gusano
+Rootkit
+Dropper
+Botnet
+Ransomware
+Spyware
+
+Defensas
+
+Antivirus/Antimalware
+Firmas
+Heurísticas
+Suites de seguridad
+Sandbox
+Inteligencia de amenazas
+Configuración de activos
+Higiene digital
+Antivirus de correo/red
+Proxy firewalls
+
+
+
+
+
+
+
+***
+
+## Attacks ##
+
+
+Un-targeted cyber attacks
+phishing - sending emails to large numbers of people asking for sensitive information (such as bank details) or encouraging them to visit a fake website
+water holing - setting up a fake website or compromising a legitimate one in order to exploit visiting users
+ransomware - which could include disseminating disk encrypting extortion malware
+scanning - attacking wide swathes of the Internet at random
+
+Targeted cyber attacks
+spear-phishing - sending emails to targeted individuals that could contain an attachment with malicious software, or a link that downloads malicious software
+deploying a botnet - to deliver a DDOS (Distributed Denial of Service) attack
+subverting the supply chain - to attack equipment or software being delivered to the organisation
+
+Stages of an Attack
+
+STAGES
+Regardless of whether an attack is targeted or un-targeted, or the attacker is using commodity or bespoke tools, cyber attacks have a number of stages in common.
+
+ An attack, particularly if it is carried out by a persistent adversary, may consist of repeated stages. The attacker is effectively probing your defenses for weaknesses that, if exploitable, will take them closer to their ultimate goal. Understanding these stages will help you to better defend yourself.
+
+
+Survey - investigating and analysing available information about the target in order to identify potential vulnerabilities
+Delivery - getting to the point in a system where a vulnerability can be exploited
+Breach - exploiting the vulnerability/vulnerabilities to gain some form of unauthorised access
+Affect - carrying out activities within a system that achieve the attacker’s goal
+
+
+Survey Stage
+Attackers will use any means available to find technical, procedural or physical vulnerabilities which they can attempt to exploit.
+
+They will use open source information such as LinkedIn and Facebook, domain name management/search services, and social media. They will employ commodity toolkits and techniques, and standard network scanning tools to collect and assess any information about your organisation’s computers, security systems and personnel.
+
+Delivery Stage
+During the delivery stage, the attacker will look to get into a position where they can exploit a vulnerability that they have identified, or they think could potentially exist. Examples include:
+
+attempting to access an organization's online services
+sending an email containing a link to a malicious website or an attachment which contains malicious code
+giving an infected USB stick away at a trade fair
+creating a false website in the hope that a user will visit
+
+Breach Stage
+The harm to your business will depend on the nature of the vulnerability and the exploitation method. It may allow them to:
+
+make changes that affect the system’s operation
+gain access to online accounts
+achieve full control of a user’s computer, tablet or smartphone
+
+Affect Stage
+The attacker may seek to explore your systems, expand their access and establish a persistent presence (a process sometimes called ‘consolidation’). Taking over a user’s account usually guarantees a persistent presence. 
+
+With administration access to just one system, they can try to install automated scanning tools to discover more about your networks and take control of more systems. When doing this they will take great care not to trigger the system’s monitoring processes and they may even disable them for a time.
+
+Affect Stage
+Determined and undetected attackers continue until they have achieved their end goals, which may can include
+
+retrieving information they would otherwise not be able to access, such as intellectual property or commercially sensitive information
+
+making changes for their own benefit, such as creating payments into a bank account they control
+
+disrupting normal business operation, such as overloading the organisation’s internet connection so they cannot communicate externally, or deleting the whole operating system from users’ computers
+
+
+***
+
+## Cryptography ##
 
 * Symmetric Cryptography: Also known as private-key, single-key or secret-key. One to one communication can be intercepted by a middle man from an unsecure channel, the objective is to encrypt the information so that only the authorized parties are able to understand the information. It works by passing the message in plaintext (x) through an encryption function (e) to generate ciphertext (y), the function (e) uses a random Key Generator (K) through a secure channel that is shared with a decryption function (d), using this the attacker would need to intercept the ciphertext (y) and the more much difficult to obtain Key (K).
 
 FALTA TERMINAR DE LAS PRESENTACIONES
 
+
+
 ***
+
+## CRYPTOGRAPHY BOOK ##
+
+BASED ON CRYPTO TEXTBOOK IMAGES
+
+  Understanding Cryptography – A Textbook for Students and Practitioners
+  by Christof Paar and Jan Pelzlwww.crypto-textbook.com
+  Chapter 1 – Introduction to Cryptographyer. October 28, 2010
+
+Overview on the field of cryptology
+Basics of symmetric cryptography
+Cryptanalysis
+Substitution Cipher
+Modular arithmetic
+Shift (or Caesar) Cipher and Affine Cipher
+
+CLASSIFICATION OF CRYPTOLOGY
+
+Cryptology is divided into cryptanalysis and cryptogrraphy
+Cryptography is divided into protocols, asymmetric ciphers and symmetric ciphers
+Symmetric Ciphers are divided into block and stream ciphers.
+
+
+Ancient Crypto: Early signs of encryption in Eqypt in ca. 2000 B.C. Letter-based encryption schemes (e.g., Caesar cipher) popular ever since.
+
+Symmetric ciphers: All encryption schemes from ancient times until 1976 were symmetric ones.
+
+Asymmetric ciphers: In 1976 public-key (or asymmetric) cryptography was openly proposed by Diffie, Hellman and Merkle.
+
+Hybrid Schemes: The majority of today‘s protocols are hybrid schemes, i.e., the use both
+symmteric ciphers (e.g., for encryption and message authentication) and
+asymmetric ciphers (e.g., for key exchange and digital signature).
+
+### Symmetric Cryptography ###
+
+Alternative names: private-key, single-key or secret-key cryptography.
+
+Problem Statement:
+Alice and Bob would like to communicate via an unsecure channel (e.g., WLAN or Internet). 
+A malicious third party Oscar (the bad guy) has channel access but should not be able to understand the communication.
+
+
+Solution: Encryption with symmetric cipher. Oscar obtains only ciphertext y, that looks like random bits
+
+x is the. plaintext
+y is the ciphertext
+K is the key
+Set of all keys {K1, K2, ...,Kn} is the key space
+
+Encryption equation	y = eK(x)
+Decryption equation	x = dK(y)
+
+
+Encryption and decryption are inverse operations if the same key K is used on both sides:
+dK(y) = dK(eK(x)) = x
+
+Important: The key must be transmitted via a secure channel between Alice and Bob.
+The secure channel can be realized, e.g., by manually installing the key for the Wi-Fi Protected Access (WPA) protocol or a human courier.
+However, the system is only secure if an attacker does not learn the key K!
+ The problem of secure communication is reduced to secure transmission and storage of the key K.
+
+
+
+CRYPTANALYSIS
+
+There is no mathematical proof of security for any practial cipher
+The only way to have assurance that a cipher is secure is to try to break it (and fail) !
+
+Kerckhoff‘s Principle is paramount in modern cryptography:
+
+A cryptosystem should be secure even if the attacker (Oscar) knows all details about the system, with the exception of the secret key. 
+
+In order to achieve Kerckhoff‘s Principle in practice:
+Only use widely known ciphers that have been cryptanalyzed for several years by good cryptographers! (Understanding Cryptography only treats such ciphers)
+Remark: It is tempting to assume that a cipher is „more secure“ if its details are kept secret. However, history has shown time and again that secret ciphers can almost always been broken once they have been reversed engineered. (Example: Content Scrambling System (CSS) for DVD content protection.)
+
+Cryptanalysis: Attacking Cryptosystems
+
+
+Classical Attacks
+Mathematical Analysis
+Brute-Force Attack
+Implementation Attack: Try to extract key through reverese engineering or power measurement, e.g., for a banking smart card.
+Social Engineering: E.g., trick a user into giving up her password
+
+cryptanalysis 
+DIVIDED INTO IMPLEMENTATION ATTACKS, SOCIAL ENGINEERING AND CLASSICAL CR4YPTANALYSIS
+CLASSICAL CRYPTANALYSIS DIVIDED INTO MATHEMATICAL ANALYSIS AND BRUTE FORCE ATTACKS
+
+Brute-Force Attack (or Exhaustive Key Search) against Symmetric Ciphers
+
+Treats the cipher as a black box
+Requires (at least) 1 plaintext-ciphertext pair (x0, y0)
+Check all possible keys until condition is fulfilled: dK(y0)  = x0
+How many keys to we need ? 
+
+KEY LENGHT IN BIT 64 WITH KEYSPACE 2 TO THE 64 HAS A SECURITY LIFE TIME (BRUTE FORCE BEST POSSIBLE ATTACK)
+Short term (few days or less)
+
+KEY LENGHT IN BIT 128 WITH KEYSPACE 2 TO THE 128 HAS A SECURITY LIFE TIME (BRUTE FORCE BEST POSSIBLE ATTACK)
+Long-term (several decades in the absence of quantum computers)
+
+KEY LENGHT IN BIT 256 WITH KEYSPACE 2 TO THE 256 HAS A SECURITY LIFE TIME (BRUTE FORCE BEST POSSIBLE ATTACK)
+Long-term (also resistant against quantum computers – note that QC do not exist at the moment and might never exist)
+
+Important: An adversary only needs to succeed with one attack. Thus, a long key space does not help if other attacks (e.g., social engineering) are possible..
+
+Substitution Cipher
+Historical cipher 
+Great tool for understanding brute-force vs. analytical attacks
+Encrypts letters rather than bits (like all ciphers until after WW II)
+
+Idea: replace each plaintext letter by a fixed other letter.
+  				Plaintext             Ciphertext
+ 			  A            k
+			  B            d
+ 			  C            w
+             			   ....
+for instance, ABBA would be encrypted as kddk
+
+Example (ciphertext): 
+           iq ifcc vqqr fb rdq vfllcq na rdq cfjwhwz hr bnnb  hcc 				hwwhbsqvqbre hwq vhlq
+How secure is the Substitution Cipher? Let‘s look at attacks…
+
+
+Attacks against the Substitution Cipher
+
+Attack: Exhaustive Key Search (Brute-Force Attack)
+Simply try every possible subsititution table until an intelligent plaintext appears (note that each substitution table is a key)..
+How many substitution tables (= keys) are there?
+26 x 25 x … x 3 x 2 x 1 = 26!    288
+	Search through 288 keys is completely infeasible with today‘s computers! (cf.  earlier table on key lengths)
+Q: Can we now conclude that the substitution cipher is secure since a brute-forece attack is not feasible?
+A: No! We have to protect against all possible attacks…
+
+2. Attack: Letter Frequency Analysis (Brute-Force Attack)
+
+
+Letters have very different frequencies in the English language
+Moreover: the frequency of plaintext letters is preserved in the ciphertext.
+For instanc, „e“  is the most common letter in English; almost 13% of all letters in a typical English text are „e“.
+The next most common one is „t“ with about 9%. 
+
+Breaking the Substitution Cipher with Letter Frequency Attack
+
+
+Let‘s retun to our example and identify the most frequent letter: 
+           iq ifcc vqqr fb rdq vfllcq na rdq cfjwhwz hr bnnb hcc hwwhbsqvqbre hwq vhlq
+
+We replace the ciphertext letter q by E and obtain: 
+           iE ifcc vEEr fb rdE vfllcE na rdE cfjwhwz hr bnnb  hcc hwwhbsEvEbre hwE vhlE
+
+By further guessing based on the frequency of the remaining letters we obtain the plaintext:
+           WE WILL MEET IN THE MIDDLE OF THE LIBRARY AT NOON ALL ARRANGEMENTS ARE MADE
+
+Breaking the Substitution Cipher with Letter Frequency Attack
+
+In practice, not only frequencies of individual letters can be used for an attack, but also the frequency of letter pairs (i.e., „th“ is very common in English), letter triples, etc.
+cf. Problem 1.1 in Understanding Cryptography for a longer ciphertext you can try to break!
+
+Important lesson: Even though the substitution cipher has a sufficiently large key space of appr. 288, it can easily be defeated with analytical methods. This is an excellent example that an encryption scheme must withstand all types of attacks.
+
+Short Introduction to Modular Arithmetic
+
+Why do we need to study modular arithmetic? 
+Extremely important for asymmetric cryptography (RSA, elliptic curves etc.)
+Some historical ciphers can be elegantly described with modular arithmetic (cf. Caesar and affine cipher later on).
+
+Generally speaking, most cryptosytems are based on sets of numbers that are
+discrete (sets with integers are particularly useful)
+finite (i.e., if we only compute with a finiely many numbers)
+
+Seems too abstract?  ---  Let‘s look at a finite set with discrete numbers we are quite familiar with: a clock.
+Interestingly, even though the numbers are incremented every hour we never leave the set of integers:
+	1, 2, 3,  … 11, 12, 1, 2, 3,  … 11, 12, 1, 2, 3,  …:
+
+We develop now an arithmetic system which allows us to compute in finite sets of integers like the 12 integers we find on a clock (1,2,3,  … ,12).
+It is crucial to have an operation which „keeps the numbers within limits“, i.e., after addition and multiplication they should never leave the set (i.e., never larger than 12).
+
+ Definition: Modulus Operation
+	Let a, r, m be integers and m > 0. We write 
+			a ≡ r mod m
+	if (r-a) is divisable by m.
+“m” is called the modulus
+“r” is called the remainder
+
+Examples for modular reduction.
+Let a= 12 and  m= 9 :	12 ≡ 3 mod 9
+Let a= 34 and m= 9:	34 ≡ 7 mod 9
+Let a= -7 and m= 9: 	-7 ≡ 2 mod 9
+(you should check whether the condition „m divides (r-a)“holds in each of the 3 cases) 
+
+Properties of Modular Arithmetic (1)
+
+   The remainder is not unique
+It is somewhat surprising that for every given modulus m and number a, there are (infinitely) many valid remainders.Example: 
+12 ≡ 3 mod 9	→ 3 is a valid remainder since 9 divides (3-12)
+12 ≡ 21 mod 9	→ 21 is a valid remainder since 9 divides (21-12)
+12 ≡ -6 mod 9 	→ -6 is a valid remainder since 9 divides (-6-12)
+
+Which remainder do we choose?
+By convention, we usually agree on the smallest positive integer r as remainder. This integer can be computed as
+
+ a = q  m + r  	where 0 ≤ r ≤ m-1
+Example: a=12 and  m= 9 
+ 		          12 = 1 x 9 + 3 	→  r = 3
+
+Remark: This is just a convention. Algorithmically we are free to choose any other valid remainder to compute our crypto functions.
+
+Properties of Modular Arithmetic (3)
+
+How do we perform modular division?
+First, note that rather than performing a division, we prefer to multiply by the inverse. Ex:
+b / a≡ b x a-1 mod m
+The inverse a-1 of a number a is defined such that:
+a a-1 ≡ 1 mod m
+Ex:	What is 5 / 7 mod 9 ?
+	The inverse of 7 mod 9 is 4 since 7 x 4 ≡ 28 ≡ 1 mod 9, hence:
+5 / 7 ≡ 5 x 4 = 20 ≡ 2 mod 9
+
+   How is the inverse compute?
+The inverse of a number a mod m only exists if and only if:
+gcd (a, m) = 1
+(note that in the example above gcd(5, 9) = 1, so that the inverse of 5 exists modulo 9)
+For now, the best way of computing the inverse is to use exhaustive search. In Chapter 6 of Understanding Cryptography we will learn the powerful Euclidean Algorithm which actually computes an inverse for a given number and modulus.
+
+Properties of Modular Arithmetic (4)
+
+Modular reduction can be performed at any point during a calculation
+Let’s look first at an example. We want to compute 38 mod 7 (note that exponentiation is extremely important in public-key cryptography).
+1. Approach: Exponentiation followed by modular reduction
+38 = 6561≡ 2 mod 7
+Note that we have the intermediate result 6561 even though we know that the final result can’t be larger than 6.
+2. Approach: Exponentiation with intermediate modular reduction
+38 = 34 34 = 81 x 81
+At this point we reduce the intermediate results 81 modulo 7:
+38 = 81 x 81 ≡ 4 x 4 mod 7
+4 x 4 = 16 ≡ 2 mod 7
+Note that we can perform all these multiplications without pocket calculator, whereas mentally computing 38 = 6561 is a bit challenging for most of us.
+
+General rule: For most algorithms it is advantageous to reduce intermediate results as soon as possible. 
+
+An Algebraic View on Modulo Arithmetic: The Ring Zm (1) 
+
+We can view modular arithmetic in terms of sets and operations in the set. By doing arithmetic modulo m  we obtain the integer ring Zm .with the following properties:
+
+Closure: We can add and multiply any two numbers and the result is always in the ring. 
+Addition and multiplication are associative, i.e., for all  a,b,c  Zm  
+	a + (b + c) = (a + b) + c
+	a  (b  c) = (a  b)  c
+and addition is commutative: a + b = b + a 
+The distributive law holds: a×(b+c) = (a×b)+(a×c) for all  a,b,c  Zm 
+There is the neutral element 0 with respect to addition, i.e., for all a  Zm 
+	a + 0  a mod m
+For all a  Zm, there is always an additive inverse element –a such that
+	a + (-a)  0 mod m 
+There is the neutral element 1 with respect to multiplication, i.e., for all a  Zm 
+		a  1  a mod m
+The multiplicative inverse a-1 
+a  a-1  1 mod m 
+	exists only for some, but not for all, elements in Zm.
+
+	Roughly speaking, a ring is a structure in which we can always add, subtract and multiply, but we can only divide by certain elements (namely by those for which a multiplicative inverse exists).
+
+We recall from above that an element a  Zm  has a multiplicative inverse only if:
+	gcd (a, m) = 1
+ We say that a is coprime or relatively prime to m.
+ 
+
+Ex: We consider the ring Z9 = {0,1,2,3,4,5,6,7,8}
+The elements 0, 3, and 6 do not have inverses since they are not coprime to 9.
+The inverses of the other elements 1, 2, 4, 5, 7, and 8 are:
+	1-1  1 mod 9		2-1  5 mod 9 		 4-1  7 mod 9
+	5-1  2 mod 9		7-1  4 mod 9 		 8-1  8 mod 9 
+
+Shift (or Caesar) Cipher (1)
+
+Ancient cipher, allegedly used by Julius Caesar
+Replaces each plaintext letter by another one.
+Replacement rule is very simple: Take letter that follows after k positions in the alphabet
+Needs mapping from letters → numbers:
+
+Example for k = 7
+Plaintext = ATTACK =  0, 19, 19, 0, 2, 10
+Ciphertext = haahjr = 7, 0, 0, 7, 9, 17
+Note that the letters ”wrap around” at the end of the alphabet, which can be mathematically be expressed as reduction modulo 26, e.g., 19 + 7 = 26 ≡ 0 mod 26
+
+Elegant mathematical description of the cipher.
+
+Let k, x, y ε {0,1, …, 25}
+Encryption: 	y = ek(x) ≡ x + k mod 26
+Decryption: 	x = dk(x) ≡ y - k mod 26
+
+Q; Is the shift cipher secure?
+A: No! several attacks are possible, including:
+Exhaustive key search (key space is only 26!)
+Letter frequency analysis, similar to attack against substitution cipher
+
+Affine Cipher (1)
+
+Extension of the shift cipher: rather than just adding the key to the plaintext, we also multiply by the key
+We use for this a key consisting of two parts: k = (a, b)
+
+Let k, x, y ε {0,1, …, 25}
+Encryption: 	y = ek(x) ≡ a x + b mod 26
+Decryption: 	x = dk(x) ≡ a-1( y – b) mod 26
+
+Since the inverse of a is needed for inversion, we can only use values for a for which:
+gcd(a, 26) = 1
+	There are 12 values for a that fulfill this condition.
+From this follows that the key space is only 12 x 26 = 312 (cf. Sec 1.4 in Understanding Cryptography)
+Again, several attacks are possible, including:
+Exhaustive key search and letter frequency analysis, similar to the attack against the substitution cipher
+
+Lessons Learned
+
+Never ever develop your own crypto algorithm unless you have a team of experienced cryptanalysts checking your design.
+Do not use unproven crypto algorithms or unproven protocols.
+Attackers always look for the weakest point of a cryptosystem. For instance, a large key space by itself is no guarantee for a cipher being secure; the cipher might still be vulnerable against analytical attacks.
+Key lengths for symmetric algorithms in order to thwart exhaustive key-search attacks:
+64 bit: insecure except for data with extremely short-term value
+128 bit: long-term security of several decades, unless quantum computers become available (quantum computers do not  exist and perhaps never will)
+256 bit: as above, but probably secure against attacks by  quantum computers.
+Modular arithmetic is a tool for expressing historical encryption schemes, such as the affine cipher, in a mathematically elegant way.
+
+CHAPERT 2 OF THE BOOK
+CONTENTS
+
+Intro to stream ciphers
+Random number generators (RNGs)
+One-Time Pad (OTP)
+Linear feedback shift registers (LFSRs)
+Trivium: a modern stream cipher
+Intro to Stream Ciphers
+
+Stream Ciphers
+
+Encrypt bits individually  Usually small and fast
+Common in embedded devices (e.g., A5/1 for  GSM phones)
+
+
+Block Ciphers:
+Always encrypt a full block (several bits)  Are common for Internet applications
+
+Encryption and Decryption with Stream Ciphers
+Plaintext xi, ciphertext yi and key stream si consist of individual bits
+Encryption and decryption are simple additions modulo 2 (aka XOR)
+Encryption and decryption are the same functions
+Encryption: yi = esi(xi ) = xi + si mod  2
+Decryption: xi = esi(yi ) = yi + si mod	2
+
+xi , yi , si  {0,1}
+
+Synchronous vs. Asynchronous Stream Cipher
+Security of stream cipher depends entirely on the key stream si :
+Should be random , i.e., Pr(si = 0) = Pr(si = 1) = 0.5  Must be reproducible by sender and receiver
+Synchronous Stream Cipher
+Key stream depend only on the key (and possibly an initialization vector IV)
+Asynchronous Stream Ciphers
+Key stream depends also on the ciphertext (dotted feedback enabled)
+
+Why is Modulo 2 Addition a Good Encryption Function?
+Modulo 2 addition is equivalent to XOR operation
+
+For perfectly random key stream si , each ciphertext output bit  has a 50% chance to be 0 or 1
+Good statistic property for ciphertext
+
+Inverting XOR is simple, since it is the same XOR operation
+
+
+Stream Cipher: Throughput
+Performance comparison of symmetric ciphers (Pentium4):
+
+Random Number Generators (RNGs)
+DIVIDED INTO TRUE RNG, PSEUDORANDOM NG, AND CRYPTOGRAPHICALLY SECURE RNG
+
+True Random Number Generators (TRNGs)
+Based on physical random processes: coin flipping, dice rolling, semiconductor  noise, radioactive decay, mouse movement, clock jitter of digital circuits
+Output stream si should have good statistical properties:
+Pr(si = 0) = Pr(si = 1) = 50% (often achieved by post-processing)
+Output can neither be predicted nor be reproduced
+Typically used for generation of keys, nonces (used only-once values) and for  many other purposes
+
+
+Pseudorandom Number Generator (PRNG)
+Generate sequences from initial seed value
+Typically, output stream has good statistical properties
+Output can be reproduced and can be predicted
+Often computed in a recursive way:
+
+s0 = seed
+si +1 = f(si), i = 0,1,2,3...
+
+Example: rand() function in ANSI C:
+
+s0 = 12345
+si+1 = 1103515245 si + 12345 mod 2 to the 31, i = 0,1,2,3
+
+Most PRNGs have bad cryptographic properties!
+
+Cryptanalyzing a Simple PRNG
+
+s0 = seed
+si+1 = A Si + B mod m, i = 0,1,2,3...
+
+Assume
+unknown A, B and S0 as key
+Size of A, B and Si to be 100 bit
+300 bits of output are known, i.e. S1, S2 and S3
+Solving
+
+S2 = A S1 + B mod m
+S3 = A S2 + B mod m
+
+…directly reveals A and B. All Si can be computed easily!
+
+Bad cryptographic properties due to the linearity of most PRNGs
+
+Cryptographically Secure  Pseudorandom Number	Generator  (CSPRNG)
+Special PRNG with additional property:
+Output must be unpredictable
+
+More precisely: Given n consecutive bits of output si , the  following output	bits sn+1
+cannot be predicted (in polynomial time).
+
+Needed in cryptography, in particular for stream ciphers
+Remark: There are almost no other applications that need  unpredictability, whereas many, many (technical) systems  need PRNGs.
+
+
+
+One-Time Pad (OTP)
+Unconditionally secure cryptosystem:
+A cryptosystem is unconditionally secure if it cannot be broken even with
+infinite computational resources
+
+One-Time Pad
+A cryptosystem developed by Mauborgne that is based on Vernam’s stream  cipher:
+Properties:
+Let the plaintext, ciphertext and key consist of individual bits
+xi, yi, ki  {0,1}.
+ENCRYPTION eki((xi))=xi modulus ki
+DECYRPTION dki (yi) = yi modulus ki
+
+
+
+OTP is unconditionally secure if and only if the key ki. is used once!
+Unconditionally secure cryptosystem:
+
+y0= x0+s0 mod 2
+y1 = x1+s1 mod 2
+
+
+Every equation is a linear equation with two unknowns  for every yi are xi = 0 and xi = 1 equiprobable!
+This is true iff k0, k1, ... are independent, i.e., all ki have to be  generated truly random
+It can be shown that this systems can provably not be solved.
+
+Disadvantage: For almost all applications the OTP is impractical  since the key must be as long as the message! (Imagine you  have to encrypt a 1GByte email attachment.)
+
+
+***
+
+## HASHES BOOK PRESENTATION ##
+
+Why we need hash functions
+How does it work
+Security properties
+Algorithms
+Example: The Secure Hash Algorithm SHA-1
+
+
+Motivation
+Problem:
+Naive signing of long messages generates a signature of same length.
+Three Problems
+Computational overhead
+Message overhead
+Security limitations
+For more info see Section 11.1 in “Understanding Cryptography”.
+Solution:
+Instead of signing the whole message, sign only a digest (=hash)
+Also secure, but much faster
+Needed:
+Hash Functions
+
+ Digital Signature with a Hash Function
+Notes:
+x has fixed length
+z, y have fixed length
+z, x do not have equal length in general
+h(x) does not require a key.
+h(x) is public.
+
+ Basic Protocol for Digital Signatures with a Hash Function:
+z = h(x)
+(z)
+s = sigKpr
+(x, s)
+z' = h(x)
+verKpu (s,z')=true/false
+
+	Principal input–output behavior of hash functions
+
+ Hash Funktionen: Security Properties
+Preimage resistance: For a given output z, it is impossible to find any  input x such that h(x) = z, i.e., h(x) is one-way.
+Second preimage resistance: Given x1, and thus h(x1), it is computa-  tionally infeasible to find any x2 such that h(x1) = h(x2).
+Collision resistance: It is computationally infeasible to find any pairs  x1 ≠ x2 such that h(x1) = h(x2).
+
+It turns out that collison resistance causes most problems
+
+How hard is it to find a collision with a probability of 0.5 ?
+Related Problem: How many people are needed such that two  of them have the same birthday with a probability of 0.5 
+No! Not 365/2=183. 23 are enough ! This is called the birthday paradoxon (Search takes ≈√2n steps) .
+For more info see Chapter 11.2.3 in Understanding  Cryptography.
+To deal with this paradox, hash functions need a output size of  at least 160 bits.
+
+Special Algorithms,
+e.g. MD5 - family
+
+based on  block ciphers
+
+ Hash Funktionen: Algorithms
+MD5 - family
+SHA-1: output - 160 Bit; input - 512 bit chunks of message x;
+operations - bitwise AND, OR, XOR, complement und cyclic shifts.
+RIPE-MD 160: output - 160 Bit; input - 512 bit chunks of message x;  operations – like in SHA-1, but two in parallel and combinations of them  after each round.
+
+SHA-1
+Part of the MD-4 family.
+Based on a Merkle-Dåmgard construction.
+160-bit output from a message of maximum length  264 bit.
+Widely used ( even tough some weaknesses are  known)
+
+ SHA-1 High Level Diagramm
+Compression Function consists of 80 rounds which are divided  into four stages of 20 rounds each
+ SHA-1: Padding
+Message x has to be padded to fit a size of a multiple of 512 bit.
+k ≡ 512 − 64 − 1 − l = 448 − (l + 1) mod 512.
+
+ SHA-1: Hash Computation
+Each message block xi is processed in four stages with 20 rounds each
+
+SHA-1 uses:
+	A message schedule which computes a 32-bit word W0,W1,...,W79 for each  of the 80 rounds
+Five working registers of size of 32 bits A,B,C,D,E
+A hash value Hi consisting of five 32-bit words Hi(0), Hi(1), Hi(2) , Hi(3), Hi(4)
+In the beginning, the hash value holds the initial value H0, which is replaced by  a new hash value after the processing of each single message block.
+The final hash value Hn is equal to the output h(x) of SHA-1.
+
+ SHA-1: All four stages
+
+ SHA-1: Internals of a Round
+
+ Lessons Learned: Hash-Funktionen
+
+Hash functions are keyless. The two most important applications of hash  functions are their use in digital signatures and in message authentication  codes such as HMAC.
+The three security requirements for hash functions are one-wayness,  second preimage resistance and collision resistance.
+Hash functions should have at least 160-bit output length in order to  withstand collision attacks; 256 bit or more is desirable for long-term  security.
+MD5, which was widely used, is insecure. Serious security weaknesses  have been found in SHA-1, and the hash function should be phased out.  The SHA-2 algorithms all appear to be secure.
+The ongoing SHA-3 competition will result in new standardized hash  functions in a few years.
+
+
+
+***
+
+## SURFACE WEB, DEEP WEB, DARK WEB ##
+
+La Normal Web o World Wide Web (WWW) es la parte pública y accesible
+del Internet que actualmente se encuentra indexada y puede ser navegada
+mediante buscadores como Google, todos los sitios diseñados para el
+público general, incluyendo redes sociales, son parte de la web normal.
+● La Deep Web es cualquier segmento del Internet que no ha sido indexada
+por los motores de búsqueda, está compuesta por bases de datos, sitios web
+protegidos con contraseña y cualquier recurso que no ha sido diseñado para
+ser de acceso público, en términos de cantidad de información se estima que
+la Deep Web es mayor a la Normal Web.
+● La Dark Web es una parte de la Deep Web denominada de esta forma dado
+que se le asocia a actividades delictivas, se ha diseñado para salvaguardar el
+anonimato de sus usuarios, en ella se han creado mercados negros para el
+trafico de drogas, armas y pornografia. La Dark Web también tiene usos
+legítimos como una plataforma de denuncia anónima y distribución de
+información de interés público que tiene el riesgo de ser censurada cuando
+es distribuida por otros medios.
+
+
+Surface Web
+The Surface Web has been part of the World  Wide  Web  since  the  first browser was first invented in 1990 by Tim Berner-Lee and is the part of the web you will be most familiar with, as it anything that can be discovered through your internet browser using any  of  the  main  search  engines (Google, Bing, Yahoo etc.).
+
+This is what you use when you read the news, buy something on Amazon, or visit any of your usual daily websites, and is also the area of the web that is under constant surveillance by governments across the world.
+Making up under 5 percent of the total World Wide Web content that is known to exist is a figure that is already miniscule but estimates suggest that the Deep Web could be anywhere from 500 to 5000 times larger.
+
+Accessible
+Indexed for Search Engines
+Little illegal activity
+Relatively small
+
+
+
+Deep Web
+
+The Deep Web was also part of the web at its conception, and in basic terms it is the opposite of the surface as it anything that search engines cannot find.
+This is the key difference between the two in real data terms; sites on the surface internet are indexed for search engines to find, but the deep web is not indexed.
+However, both are also accessible by the public, they just require different methods to access them - usually a specific password encrypted browser or a set of log in details.
+
+Deep Web contains all our medical records, financial records, social media files, and plenty other important information we want and need to keep secure.
+It is this need to keep secure files that gave rise to the need to keep a portion of the web secured away from being "Googled" at the whim of anybody at any time.
+Accessible by password, encryption, or through gateway software
+Not indexed for Search Engines
+Little illegal activity outside of Dark Web
+Huge in size and growing exponentially
+
+
+
+
+
+
+Dark Web
+
+The Dark Web IS part of the Deep Web, but it has one major difference in that it has been interionally hidden and is inaccessible to normal web browsers
+
+funded) by US Military Researchers in the mid-1990s to allow spies and intelligence agencies to anonymously send and receive messages.
+Web	• Named "The Onion Router", it was quickly coined with the shorter "Tor"
+with	its	name	coming	from	application	layer	encryption	within	a
+communication protocol stack; many layers representing the layers of an onion.
+ 
+Restricted to special browsers
+Not indexed for Search Engines
+Large scale illegal activity
+Unmeasurable due to nature
+
+The Dark Web, also known as Darknet websites, are accessible only through networks such as Tor ("The Onion Routing" project) that are created specifically for the Dark Web,
+Tor browser and Tor-accessible sites are widely used among the darknet users and can be identified by the domain ".onion".
+Tor browsers create encrypted entry points and pathways for the user, allowing their Dark Web searches and actions to be anonymous.
+Identities and locations of darknet users stay anonymous and cannot be tracked due to the layered encryption system.
+This anonymity also creates a forum for illegal activity which is what the Dark Web is most associated with.
+Authorities have reported the trade of child pornography, drug related crime, illegal financing of pornography relating to children, violence, and animals; as terrorism.
+A Dark Web market-place, also known as a crypto-market, operates by selling illegal goods such as drugs, weapons, and financial fraud related products and information
+
+Silk Road was an online black market and the first modern darknet market, best known as a platform for selling illegal drugs.
+The website was launched in February 2011; development had begun six months prior
+
+In October 2013, the FBI shut down the website and arrested Ross Ulbricht under charges of being the site's pseudonymous founder "Dread Pirate Roberts".
+On 6 November 2013, Silk Road 2.0 came online, run by former administrators of Silk Road.
+It was also shut down, and the alleged operator was arrested on 6
+November 2014 as part of the so-called "Operation Onymous".
+Ulbricht was convicted of seven charges related to Silk Road in the U.S. Federal Court in Manhattan and was sentenced to life in prison without possibility of parole.
+In November 2020, the United States government seized more than $1
+billion worth of bitcoin connected to Silk Road
+
+The Tor Browser is a web broswer that anonymizes your web traffic using the Tor network, making it easy to protect your identity online.
+Tor Browser is available for Linux, Mac,	Windows, and Android.
+If you're iOS users can grab OnionBrowser from the Apple App Store.
+
+
+Tor  consists  of  a  three-layer proxy (like layers of an onion).
+Tor Browser connects at random to  one  of  the  publicly  listed entry nodes, bounces that traffic through  a  randomly  selected middle relay, and finally spits out your  traffic  through  the  third and final exit node.
+Onion  Routing  is  a  distributed  overlay  network  designed  to anonymize TCP-based applications like web browsing, secure shell and instant messaging.
+Clients choose a path through the network and build a circuit where each onion router in the path knows the predecessor and the successor, but no other nodes in the circuit. Paths and circuits are synonyms.
+The original author (the question mark on the far left) remains anonymous, unless you’re the first path in the node as you know who sent you the packet.
+No one knows what data is being sent until it reaches the last node in the path; who knows the data but doesn’t know who sent it. The second to last node in the path doesn’t know what the data is, only the last node in the path does.
+
+This has led to attacks whereby large organizations with expansive resources create Tor servers which aim to be the first and last onion routers in a path. If the organization can do this, they get to know who sent the data and what data was sent, effectively breaking Tor.
+It’s incredibly hard to do this without being physically close to the location of the organization's servers, we’ll explore this more later.
+
+TOR is 
+End to end encryption protocol designe dto keep communication secure, open source and maintianed, hard to hide malware or hacks, prives some level of anonymty, anonymity scales with the number of people using the network
+The service isn't 100 percent anonymous or decentralised.
+
+A TOR CIRCUIT CREATION
+Each machine, when it wants to create a circuit, chooses the exit node first, followed by the other nodes in the circuit.
+Tor circuits are always 3 nodes.
+Increasing the length of the circuit does not create better anonymity. If an attacker owns the first and last nodes in the network, you can have 1500 nodes in the circuit, and it still wouldn’t make you more secure.
+
+
+Selection of Exit Node
+Does the client’s torrc (the configuration file of Tor) have settings about which exit nodes not to choose?
+Tor only chooses an exit relay which allows you to exit the Tor network. Some exit nodes only allow web traffic (HTTP/S port 80) which is not useful when someone wants to send email (SMTP port 25).
+The exit node must have the available capacity to support you. Tor tries to choose an exit node which has enough resources available.
+We do not choose the same router twice for the same path: If you choose the same node twice, it’s guaranteed that the node will either be the guard node (the node you enter at) or the exit node, both dangerous positions. There is a 2/3 chance of it being both the guard and exit nodes, which is even more dangerous.
+We do not choose any router in the same family as another in the same path: Two routers are in the same family if each
+one	lists	the	other	in	the family entries of their descrioptr
+
+We  do  not  choose more than one router in a given /16 subnet.
+The first node must be a Guard node: A guard node is a privileged node because it sees the real IP of the user. It’s ‘expensive’ to become a guard node (maintain a high uptime for weeks and have good bandwidth).
+
+TOR IS SLOW, ENCRYOPTS TRAFFIC, PROTECTS YOU FROM EVERYTHING, REQUIRES LITTLE TRUST, INCREDIBLY HARD TO BLOCK
+VPN IS FAST, NORMALLY ENCRYPTS SOME TRAFFIC, PROTEXTS YOU FROM LOCAL ADVERSARIES OR ISPS, REQUIRES A LOT OF TRUST, CAN BE BLOQUED EASILY.
+
+
+TOR HIDDEN SERVICES
+Tor hidden services work within the Tor network and allow you to register an internal, Tor-only service that gets its own .onion hostname.
+Unlike with other services though, hidden services provide two-way anonymity:
+The server doesn't know the IP of the client, like with any service you access over Tor,
+The client also doesn't know the IP of the server.
+This provides the ultimate in privacy since it's being protected on both sides.
+
+ZIP USES A SYMMETRIC PASSWORD HASH
+
+
+
+
+
+***
+
+## COMPLIANCE STANDARDS AND LAWS ##
+
+What is Compliance?
+
+Compliance
+In general, compliance means conforming to a rule, such as a specification, policy, standard or law.	-- Wikipedia
+
+Cybersecurity Compliance involves meeting various controls (usually enacted by a regulatory authority, law, or industry group) to protect the confidentiality, integrity, and availability of data. 
+
+Controls come from a variety of sources including CIS, the NIST Cybersecurity Framework, and ISO 27001
+
+How to start a Cybersecurity Compliance Program?
+
+IDENTIFY WHAT TYPE OF DATA YOU WORK WITH AND WHAT REQUIREMENTS MAY APPLY
+Regulation and Laws:  figure out which ones you have to comply with.
+Requirements by state, country, etc.
+Understand which data you are storing and processing.
+
+APPOINT A CISO
+(Chief Information Security Officer)
+Have at least someone part time responsible.
+
+CONDUCT RISK AND VULNERABILITY ASSESSMENTS
+Critical in determining security flaws.
+Well defined guidelines (HERE)
+
+IMPLEMENT TECHNICAL CONTROLS BASED ON REQUIREMENTS AND TOLERANCE
+You can use a cybersecurity framework as a guideline.
+Add additional technical controls to meet specific requirements
+
+Standardized Anti-Virus across all endpoints
+Implementing a Firewall
+Implementing Network Monitoring Software
+Implementing Log Aggregation Software
+Encrypting Sensitive Data
+
+IMPLEMENT POLICIES, PROCEDURES, AND PROCESS CONTROLS
+Cybersecurity isn’t just about technology.
+No technical safeguard in the world can stop an employee who is determined to download malware onto corporate computers or visit risky websites.
+Some examples of non-technical controls include:
+
+Mandatory Employee Cybersecurity Training
+Fully Documented policies and procedures 
+Audit and Accountability Proccesses
+Appointing a CISO
+Conducting Risk and Vulnerability Assessments 
+
+REVIEW AND TEST
+
+Why not, Some Standards
+
+ISO 27000
+Family of standards that deal with the implementation of a information security management system
+
+Important ones:
+
+27001: Indicates the requirements of the ISMS
+27002: Guidance for control implementation
+27004: Metrics for measuring the ISMS
+27005: Risk analysis guidelines
+
+ISO 27005
+
+
+“This International Standard provides guidelines for information security risk management. This International Standard supports the general concepts specified in ISO/IEC 27001 and is designed to assist the satisfactory implementation of information security based on a risk management approach.”
+
+NIST SP 800-30/39
+
+
+
+Framework for managing risk.
+
+Mandatory for USA government agencies.
+
+Aligned with ISO 27000
+
+Contains four steps:
+
+Prepare
+Evaluate
+Comunicate
+Monitor
+
+
+ENISA NIS
+
+
+EU framework for critical infrastructure.
+
+
+Indicates what the government and private industry need to do in order to preserve the critical infrastructure
+
+
+Has rules for cooperation between countries
+
+
+Payment Card Industry Data Security Standard (PCI DSS)
+
+Industry standard for processing card information from Visa, Mastercard,  American Express, JCB and Discover.
+
+Requires 12 controls and constant Audit.
+
+The requirements include:
+
+Install and maintain firewall and antivirus solutions.
+Protect the card information
+Have Identity Access and control management
+Restrict physical Access to card information
+Encrypt all information that is being transferred
+
+COBIT
+
+Framework for governance management
+
+Helps to describe the goals of governance in an organization
+
+Can help as a guide to determine how to establish IT governance
+
+Common Sense?
+
+Ley Federal de Protección de Datos Personales en Posesión de los Particulares
+Defender a los usuarios y personas del mal uso de los datos por parte de las personas que los manejan.
+Datos personales: Información que permita identificar a la persona. (Nombre, edad, teléfono)
+Datos personales sensibles: Aquellos que de ser divulgados podrían poner en riesgo a la persona o permitir que sea discriminada. (Orientación sexual, datos de salud, religión)
+Partes importantes:
+Medidas de seguridad administrativas: Conjunto de acciones y mecanismos para establecer la gestión, soporte y revisión de la seguridad de la información a nivel organizacional, la identificación y clasificación de la información, así como la concienciación, formación y capacitación del personal, en materia de protección de datos personales. 
+Se consideran medidas también físicas y técnicas.
+Garantizar la eliminación de datos de forma segura.
+
+
+Articulo 211 Bis Código Penal Federal
+Defiende los sistemas informáticos de ataques. 
+Articulo 211 bis 1
+Al que sin autorización modifique, destruya o provoque perdida de información contenida en sistemas o equipos de informática protegidos por algún mecanismo de seguridad, se le impondrán de seis meses a dos años de prisión y de cien a trescientos días multa.
+Al que sin autorización conozca o copie información contenida en sistemas o equipos de informática protegidos por algún mecanismo de seguridad, se le impondrán de tres meses a un año de prisión y de cincuenta a ciento cincuenta días multa.
+Articulo 211 bis 2
+Al que sin autorización modifique, destruya o provoque perdida de información contenida en sistemas o equipos de informática del estado, protegidos por algún mecanismo de seguridad, se le impondrán de uno a cuatro años de prisión y de doscientos a seiscientos días multa.
+Al que sin autorización conozca o copie información contenida en sistemas o equipos de informática del estado, protegidos por algún mecanismo de seguridad, se le impondrán de seis meses a dos años de prisión y de cien a trescientos días multa.
+Articulo 211 bis 4
+Al que sin autorización modifique, destruya o provoque perdida de información contenida en sistemas o equipos de informática de las instituciones que integran el sistema financiero, protegidos por algún mecanismo de seguridad, se le impondrán de seis meses a cuatro años de prisión y de cien a seiscientos días multa.
+
+Algunas otras leyes mexicanas
+Es ilegal observar el contenido de comunicaciones privadas (Art. 167 y 173 CPF)
+
+Denegaciones de servicio (Art. 167 CPF).
+
+Almacenar contenido ilegal, como pornografía infantil/Corrupción de menores (Art. 201 CPF)
+
+Ciberacoso, amenaza y/o divulgación de contenido sexual en internet sin consentimiento (Ley Olimpia/28 estados).
+
+	United States Laws
+Computer Fraud and Abuse Act: Makes ilegal attacking government or comercial systems. Prohibits blackmail and extortion via cyber methods.
+
+Electronic Communications Protection Act/Patriot Act: Regulates security of data in transit/being stored.
+
+Sabarnes-Oxley: Anti stocks fraud, has restrictions for information in IT, data, and security.
+
+Health Insurance Portability and Accountability Act: Regulates the collection and management of health data.
+
+Gramm-Leach-Bliley Act: Regulates the treatment of financial data.
+
+Federal Information Security Managment Act: Regulates how the government treats data.
+
+
+***
+
+## Organizacion de ciberseguridad ##
+
+
+El equipo de seguridad se debe ir hasta directivos y managers.
+
+CEO, junto con CIO, CLevel y CISO en espeficio diseñal planes de operacion, arquitectura y governanza
+
+
+Gobernanza
+Establece el manejo de la seguridad en la empresa
+Encargados de desarrollar las políticas
+Hacer análisis de riesgos
+Verificar requerimientos de auditoria, legales y cumplimiento.
+
+
+Arquitectura
+Encargados de desarrollar los requerimientos de seguridad en la empresa
+Probar nueva tecnología
+Implementación de nueva tecnología de seguridad
+Implementación segura de requerimientos
+Configuraciones
+Análisis de Vulnerabilidades
+Análisis de penetración
+Soporte en seguridad de aplicaciones
+
+Operación
+Monitoreo de la seguridad en la empresa
+Monitoreo de sensores y logs
+Identificación de incidentes
+Monitoreo de control de acceso
+Threat hunting
+Forense
+
+El ciclo de la seguridad
+
+* Monitoreo y evaluacion para analisis de riesgoe y planeacion que de lugar a una implementacion de seguridad que se monitorea y evalua
+* Operacion da lugar a gobernanza y luego a una mezcla de gobnernanza y arquitectura para finlamente una arquitectura que define la operaion.
+
+MARCOS DE REFERENCIA y normas
+
+ISO 27001
+Establece un marco normativo para la gestión de la seguridad informática.
+Compuesto de diferentes dominios:
+Liderazgo
+Controles a implementar
+Análisis de riesgo
+Evaluación de desempeño
+
+ISO 27001: Contenido
+Alcance
+Documentos requeridos
+Términos y vocabulario
+Contexto organizacional
+Liderazgo y management
+Análisis de riesgos
+Sistema de manejo de la seguridad de la información
+Revisar desempeño del sistema
+Correcciones del sistemas
+
+ISO 27005
+Framework de manejo de riesgos
+Orientado al negocio
+No establece una metodología de evaluación
+Orientado a componentes
+
+NIST SP 800-30/39
+Framework de manejo de riesgos de Estados Unidos
+Establece pasos y guías para el análisis de riesgos y controles sugeridos
+Gratis y alineado a ISO.
+Incluye 4 etapas:
+Preparar
+Evaluar
+Comunicar
+Monitorear
+
+NIST SP 800-30/39
+
+NIST 800-30/39
+
+ENISA NIS
+Directiva Europea para redes y sistemas de información
+Establece estrategias nacionales y de infraestructura critica que tienen que cumplir los miembros de la unión europea.
+Provee guías y frameworks para cumplir la regulación. 
+
+Payment Card Industry Data Security Standard (PCI DSS)
+Estándar para todos aquellos que guarden o procesen información de tarjetas de crédito
+Basada en 12 requerimientos:
+Instalar y mantener un firewall
+No usar passwords por defecto
+Proteger la información de las tarjetas
+Cifrar la información de las tarjetas al transferirla
+Tener protección anti malware
+Desarrollar programas seguros
+Restringir el control al acceso de los datos en las tarjetas
+Tener identificación y autenticación
+Restringir el acceso físico a los datos
+Monitorear todos los accesos a la red
+Hacer pruebas a los sistemas de seguridad sus procesos
+Mantener una política de seguridad para todo el personal
+
+Otros Marcos
+Existen marcos de referencia para análisis de riesgo y manejo de amenazas que pueden ser útiles al gobierno corporativo.
+	OpenFAIR
+	STRIDE
+	Octave
+Por otro lado, cada empresa tiene que cumplir con la legislación y regulaciones pertinentes dentro de su industria:
+	HIPAA
+	Sabarnes-Oxley
+	FISMA
+	LFPDPPP
+
+
+
+Estándares para productos
+
+Common criteria
+Originalmente había 3 estándares para certificar la seguridad de un producto
+Trusted Computer Systems Evaluation Criteria (TCSEC) (Orange Book)
+Desarrollado por el DoD para evaluar que tan confiable era un producto que manejara información clasificada
+Information Technology Security Evaluation Criteria (ITSEC)
+Versión europea del TCSEC
+Canadian Trusted Computer Product Evaluation Criteria (CTCPEC)
+Versión Canadiense del TCSEC
+Al final, la ISO creo el Common criteria a partir de las 3 en el estándar 15408
+
+Common Criteria
+Permite a usuarios y comunidades determinar perfiles de protección (PP), que corresponden a las necesidades que tienen. Así mismo, los fabricantes definen objetivos de seguridad (ST), que indican que PP cubren.
+
+Common criteria indica que se puede tener una evaluación independiente que indica que ST se cumplen (Evaluation Assurance Level).
+
+Niveles de EAL
+1. Funcionalmente probado
+2. Estructuralmente probado
+3. Metodologicamente probado
+4. Metodologicamente diseñado, probado y revisado.
+5. Semiformalmente probado
+6. Semiformalmente verificado y probado
+7. Formalmente diseñado y probado 
+
+Certificaciones de individuos
+
+Certificaciones Individuales
+Sirven para “garantizar” que un profesional en seguridad tiene ciertos conocimientos/habilidades.
+Muy útiles para recursos humanos
+No necesariamente certifican el saber hacer
+Todas requieren pasar un examen.
+
+Certificaciones
+International Information Systems Security Certification Consortium ((ISC)2): Tiene varias certificaciones acerca de conocimiento de seguridad, entre ellas una de las más buscadas: Certified Information Security Systems Professional (CISSP).
+Information Systems Audit and Control Association & Foundation (ISACA): Ofrece certificaciones para auditorias, y mas orientados al proceso que a la tecnologia, como el Certificed Information Security Auditor (CISA)
+SysAdmin Audit, Networking and Security Institute (SANS): Ofrece certificaciones de varias habilidades de seguridad, como forense, analista de malware y una línea de certificaciones generales como el Global Information Assurance Certification (GIAC)
+
+Certificaciones
+Electronic Commerce Council (EC Council): Da varias certificaciones de seguridad, siendo la más conocida la certificación en hacking ético.
+Offensive Security: Empresa que creo Kali, ofrece certificaciones en hacking ético y análisis de penetraciones
+Certificaciones en productos:
+Cisco 
+Symantec
+Palo Alto
+HP
+IBM
+Etc..
+
+
+Legislación
+
+Articulo 211 Bis Código Penal Federal
+Defiende los sistemas informáticos de ataques. 
+Articulo 211 bis 1
+Al que sin autorización modifique, destruya o provoque perdida de información contenida en sistemas o equipos de informática protegidos por algún mecanismo de seguridad, se le impondrán de seis meses a dos años de prisión y de cien a trescientos días multa.
+Al que sin autorización conozca o copie información contenida en sistemas o equipos de informática protegidos por algún mecanismo de seguridad, se le impondrán de tres meses a un año de prisión y de cincuenta a ciento cincuenta días multa.
+Articulo 211 bis 2
+Al que sin autorización modifique, destruya o provoque perdida de información contenida en sistemas o equipos de informática del estado, protegidos por algún mecanismo de seguridad, se le impondrán de uno a cuatro años de prisión y de doscientos a seiscientos días multa.
+Al que sin autorización conozca o copie información contenida en sistemas o equipos de informática del estado, protegidos por algún mecanismo de seguridad, se le impondrán de seis meses a dos años de prisión y de cien a trescientos días multa.
+Articulo 211 bis 4
+Al que sin autorización modifique, destruya o provoque perdida de información contenida en sistemas o equipos de informática de las instituciones que integran el sistema financiero, protegidos por algún mecanismo de seguridad, se le impondrán de seis meses a cuatro años de prisión y de cien a seiscientos días multa.
+
+Digital Forensics
+Uso de técnicas y métodos científicos para obtener evidencia de un ataque computacional que pueda resultar en acciones legales (o al menos una explicación).
+Se requiere mantener una cadena de custodia para verificar que los datos no han sido modificados
+Consta en general de las siguientes etapas:
+Preparación
+Obtención de evidencia
+Análisis
+Presentación de resultados.
+
+Ley Federal de Protección de Datos Personales en Posesión de los Particulares
+Defender a los usuarios y personas del mal uso de los datos por parte de las personas que los manejan.
+Datos personales: Información que permita identificar a la persona. (Nombre, edad, teléfono)
+Datos personales sensibles: Aquellos que de ser divulgados podrían poner en riesgo a la persona o permitir que sea discriminada. (Orientación sexual, datos de salud, religión)
+Partes importantes:
+Medidas de seguridad administrativas: Conjunto de acciones y mecanismos para establecer la gestión, soporte y revisión de la seguridad de la información a nivel organizacional, la identificación y clasificación de la información, así como la concienciación, formación y capacitación del personal, en materia de protección de datos personales. 
+Se consideran medidas también físicas y técnicas.
+Garantizar la eliminación de datos de forma segura.
+
+LFPDP(PP/SO): ARCO	
+
+Acceso: La persona que da sus datos tiene el derecho de conocer que datos se tienen, el aviso de privacidad y el uso que se le da a sus datos.
+Rectificación: La persona puede solicitar la corrección de sus datos cuando sean inexactos, erróneos o incompletos.
+Cancelación: La persona puede solicitar que se dejen de tener sus datos al particular/sujeto obligado si considera que el uso que se le da es mayor al necesario.
+Oposición: La persona se opone al tratamiento de los datos, por ejemplo, cuando fueron recabados sin su permiso.
+
+Todos estos derechos son mientras no se opongan a ninguna ley. 
+
+Algunas otras leyes mexicanas
+Es ilegal observar el contenido de comunicaciones privadas. 
+México (Art. 167 y 173 CPF)
+Denegaciones de servicio (Art. 167 CPF).
+Almacenar contenido ilegal, como pornografía infantil/Corrupción de menores (Art. 201 CPF).
+
+Computer Fraud and Abuse Act
+Prohíbe el acceso no autorizado a computadoras con información de seguridad nacional, comercio y gobierno.
+Prohíbe dañar una computadora y su contenido por negligencia o dolosamente.
+Prohíbe traficar passwords
+Prohíbe transmitir amenazas, extorciones y demandar dinero por medios cibernéticos.
+
+Otras leyes de Estados Unidos
+Electronic Communications Protection Act: determina la protección de los datos en almacenamiento, transito y uso. Actualizada en la Patriot Act para ser mas leniente con las peticiones de la fuerza del orden.
+Health Insurance Portability and Accountability Act (HIPAA): Indica requerimientos específicos de tratamiento de datos para el sector salud.
+Gramm-Leach-Bliley Act (GLBA): Indica requerimientos específicos de tratamiento de datos para el sector financiero.
+Federal Information Security Managment Act (FISMA): Indica requerimientos de seguridad informática para el sector gobierno. 
+Sabarnes-Oxley: Ley para compañías que cotizan en bolsa, donde se indica que deben tener tecnología para evitar fraudes, así como indicar cuando hubo una brecha. 
+
+
+Ley 1237 Colombiana
+Crea un marco jurídico acerca del derecho cibernético, el cual tipifica los siguientes delitos
+Acceso abusivo a sistemas informáticos
+Obstaculización de sistemas informáticos
+Intercepción de datos informáticos
+Uso de software malicioso
+Robo por medios informáticos
+Violación de datos personales
+Suplantación de sitios web para robo de datos personales.
+
+Convenio de Budapest
+Marco legal de ciberseguridad de la unión europea al cual los países pueden unirse.
+Permite el intercambio de información para ciberseguridad, así como un marco común.
+Sin embargo, carece de crímenes definidos, así como de penas máximas y mínimas, lo cual requiere de adaptarse para el caso Mexicano.
+
+Elementos del convenio de Budapest
+Acceso Ilícito
+Intercepción Ilícita
+Ataques a la integridad de los datos y los sistemas
+Falsificación informática
+Pornografía Infantil
+Derechos de autor
+Complicidad
+Manejo de datos
+Extradiciones
+
+
+
+***
+
+## NETWORKS ##
+
+
+Networks Review
+Review of Network Architectures
+IP Protocol
+ICMP
+ARP / RARP
+Transport Protocol (TCP/UDP)
+
+TYPES OF NETWORKS
+YOU HAVE PERSONAL AREA NETWORK OR PAN, LOCAL AREA NETWORK OR LAN, METROPOLITAN AREA NETWORK OR MAN AND WIDE AREA NETWORN OR WAN
+
+OSI MODEL
+OSI or Open System Interconnection model was developed by International Standards Organization (ISO).
+ It gives a layered networking framework that conceptualizes how communications should be done between heterogeneous systems.
+The main focus of the model was to provide interoperability between providers.
+
+
+TCP/IP Flow Control
+
+Flow Control = Sender  does not flood the  receiver, but maximizes  throughput
+
+Sender throttled until  receiver grants permission
+
+Methods:
+
+Stop and wait
+Sliding window
+
+
+
+TCP/IP Error Control
+
+Error Control: Deliver frames  without error, in the proper  order to network layer
+
+Error Detection: CRC,  Sequence Numbers,  Ack/Nak, Time-out
+
+Error Recovery: Automatic  Repeat Request (ARQ) Stop  and Wait, Go back n  Selective Reject
+
+TCP vs UDP
+
+Connection-Oriented: Telephone System
+Path setup before data is sent
+Data need not have address. Circuit number is sufficient.
+
+
+
+Connectionless: Postal System.
+Complete address on each packet
+The address decides the next hop at each router
+
+
+Internet Protocol
+
+Internet Layer
+
+
+Internet Protocol (IP)
+The Internet Protocol is the heart of TCP/IP.
+
+IP provides the basic packet delivery service on which TCP/IP  networks are built.
+
+Main Functions:
+
+Defining the datagram, which is the basic unit of transmission on the  Internet
+Defining the Internet addressing scheme
+Moving data between the Network Access Layer and the Transport Layer
+Routing datagrams to remote hosts
+Performing fragmentation and re-assembly of datagrams
+Internet Protocol (IP)
+Internet Header Length (IHL): Specifies the length of the IP header, in 32-bit words. This includes the length of any options fields and padding. The normal value of this field when no options are used is 5 (5 32-bit words = 5*4 = 20 bytes).
+
+Type Of Service (TOS): A field designed to carry information to provide quality of service features (unused).
+
+ Total Length (TL): Length of header + data.
+
+Identification: This field contains a  16-bit value that is a unique number  for the original datagram.
+
+Internet Protocol (IP): Flags
+Time To Live (TTL): Specifies how long the datagram is allowed to “live” on the network, in terms of router hops.
+Each router decrements the value of the TTL field (reduces it by one) prior to transmitting it.
+If the TTL field drops to zero, the datagram is assumed to have taken too long a route and is discarded.
+
+Header Checksum
+Source and Destination Address
+Options: One or more of several types of options may be included after the standard headers in certain IP datagrams.
+Padding: If one or more options are included, and the number of bits used for them is not a multiple of 32, enough zero bits are added to “pad out” the header to a multiple of 32 bits (4 bytes).
+
+Fragment Offset: When fragmentation of a message occurs, this field specifies the offset, or position, in the overall message where the data in this fragment goes.
+It is specified in units of 8 bytes (64 bits). The first fragment has an offset of 0.
+
+LAB WIRESHARK IP
+
+***
+
+## GOVERNANCE AND CERTIFICATIONS ##
+
+
+Governance
+Governance is an important topic in cybersecurity, as it describes the policies and processes which determine how organizations detect, prevent, and respond to cyber incidents. In many organizations, there is a division between governance and management. 
+
+Those who work in governance tend to emphasize strategic planning, whereas management deals with the day-to-day operationalized approach to security. Sometimes this results in different leadership perspectives..
+
+SIX CYBERSECURITY GOVERNANCE STEPS CYCLE
+
+1. Measurement and reporting
+1. Vision and strategy alignment
+1. Roles and responsabilities
+1. Risk management
+1. Cyber Security Steering Group
+1. Cyber Security Programme
+
+Outcomes
+
+
+A cyber security vision that guides the decision-making process across the entire organization, in line with the overall strategy.
+
+Well-defined and assigned cyber security roles and responsibilities that are integrated within the organization.
+
+A holistic approach to risk management that incorporates cyber security risk, and an improved understanding of the cyber threats faced by the organization.
+
+Oversight and allocation of resources through a cyber security forum and cyber security program.
+
+A robust system for measuring and reporting compliance and continuous improvement.
+
+Steps for a Cybersecurity Governance
+
+Building a Culture of Cyber Security
+Development of a cybersecurity strategy to promote cultural change.
+
+Establishing Roles and Responsibilities
+Cybersecurity should follow the company’s hierarchy from top to bottom.
+
+Holistic Risk Management
+Create a framework to identify, analyze, evaluate and manage cybersecurity risks.
+
+
+Cyber Security Collaboration
+Translating strategy and vision into real action.
+
+Create a Cyber Security Program
+The Cybersecurity program should be measurable and tracked.
+Measuring Resilience
+Effectiveness should be measured, assessed and reported constantly.
+
+Security Areas
+
+Architecture
+Develop the organization security requirements and objectives
+Test new technology
+Implement process and technology
+Security configuration
+Asset management
+Vulnerability assessment programs
+Penetration Testing
+Secure Software support
+
+https://www.nist.gov/cyberframework
+
+NIST MENTIONS IDENTIFY, PROTECT, DETECT, RESPOND AND RECOVER AS THE ARCQUITECTURE CYCLE
+
+Operation
+Monitoring the security in the organization
+Logs and correlation
+Incident response
+Digital Forensics
+Threat intelligence
+Security Operation Center
+
+Certifications
+The value of IT Certifications has been  gaining importance due to growing  competition.
+As technolog spreads its dynamism, the  need for IT workforce to adapt with the  change is equally important.
+Not only this, but the following attributes  count on as a result of attaining  certifications:
+Increasing Employee Performance
+Reduce Skills-Gap
+Hiring & Promotion Eligibility
+Reducing Costs
+
+Industry Recognized Certifications
+
+ISACA = CISA CERTIFIED INFORMATION SYSTEM AUDITOR AND CISM CERTIFIED INFORMATION SECURITY MANAGER
+ISC2 = CISSP CERTIFIED INFORMATION SYSTEM SECURITY PROFESSIONAL
+EC COUNCIL = CEH ECSA CHFI
+COMPTIA = NETWORK PLUS, SECURITY PLS AND A PLUS (STARTER)
+
+GIAC GSEC (GIAC Security Essentials Certification)
+Entry Point Certification in the Area
+The GIAC Security Essentials (GSEC) certification validates a practitioner's knowledge of information security beyond simple terminology and concepts. GSEC certification holders are demonstrating that they are qualified for hands-on IT systems roles with respect to security tasks.
+
+CERTIFIED INFORMATION SYSTEMS AUDITOR  (CISA)
+CISA (Certified Information Systems Auditor) is  ranked among the top paying IT certifications in  2016. A product by ISACA, which carries  international standard of performance, it is of the  most in-demand certification opted by cyber  security professionals in order to advance their  career in this domain.
+
+
+The CISA credential validates a professional with  proven ability to identify, assess, evaluate,  monitor and control the enterprise systems.  Considering the increasing risks and  vulnerabilities in the digital era, it has become  necessary to employ professionals with proven  knowledge and skill set to audit and control  business systems.
+
+
+CERTIFIED INFORMATION SECURITY MANAGER  (CISM)
+The Certified Information Security Manager  (CISM) certification provides a higher  earning potential as it is an advanced  learning course.
+Also a product by ISACA, this course will  training individuals in international security  practices, also equipping them to design,  manage and control the information security  of an enterprise.
+Likewise, this training demonstrates proven  ability of an individual in to develop and  manage an entire information security  program, on understanding the business  goals and objectives.
+
+THE CERTIFIED INFORMATION SYSTEMS SECURITY PROFESSIONAL  (CISSP)
+
+The Certified Information Systems Security  Professional (CISSP) is the most essential  credential for a security professional to validate  his competencies and skill set to deploy a diverse  information security infrastructure for protecting  the organization from potential cyber security  hazards.
+The course has been sponsored by International  Information Systems Security Certification  Consortium (ISC)2, one of world’s leading non-  profit organization for providing healthy aids to  the field of information security
+The certification qualifies a candidate to  effectively create, implement and evaluate the  cyber security tools and technologies used to  facilitate healthy transfer of information across a  diverse work environment.
+
+CERTIFIED ETHICAL HACKING
+Certified Ethical Hacking (CEH v9) is the most  desired certification program being favored by  security professionals and has become an  indispensable asset of their portfolios. Ethical  hacking has today become a self-regulating  profession where students, as well as  professionals, are gaining the necessary expertise  to scan, test, hack and secure their own systems.
+The CEH training and certification programs are  designed for network administrators for  developing the potent to discover vulnerable  target systems and use white-hat hacking, a  legitimate means to access the information  assets.
+
+EC-COUNCIL CERTIFIED SECURITY ANALYST
+
+EC-COUNCIL Certified Security Analyst Training &  Certification is an amplified version of the domain  that complements the CEH (Certified Ethical  Hacking) certification.
+CEH Program has today become a baseline  description and pre-requisite of a security  professional, and in the event of exploring their  real-time knowledge, EC-COUNCIL devised this  course.
+This course offers pen test methodology through  the deployment of its striking component – the  online cyber range, to challenge their skill set in a  real time scenario. The ECSA certification  validates your skills on the penetration testing  methodologies through real-time set-ups.
+
+COMPUTER HACKING FORENSIC INVESTIGATOR
+The CHFI is the world’s most comprehensive  computer hacking forensic program that delivers  essential knowledge of digital forensic  techniques and standard forensic tools  accompanied by hands-on labs to identify  intruder footprints and gather necessary  evidence for its prosecution
+This training presents a methodological  approach to digital forensics including searching  and seizing, chain-of-custody, acquisition,  preservation, analysis and reporting of digital  evidence.
+The CHFI sets global standards for computer  forensic best practices having set a recognition  amongst Fortune 500 enterprises globally.
+
+COMPTIA NETWORK+
+CompTIA Network+ is a vendor-neutral,  globally recognized networking certification  that demonstrates proven ability of an  individual to design, configure, manage and  troubleshoot hardware and software networks.
+CompTIA Network+ provides the right platform  of training and certification in increasing the company’s productivity by equipping  professionals with the ability to configure,  manage and troubleshoot networking systems  in their organizations.
+
+COMPTIA SECURITY+
+
+CompTIA Security+ is a vendor-neutral, globally  recognized certifications that introduce  participants to the concepts of security and  equip them in dealing with all the vulnerabilities  of network security and risk management.
+This course is intended for students as well as  professionals, whether planning to understand  security concepts or even aiming to increase  their knowledge of network security.
+This certification will build solid foundations of  knowledge and applications of network security  that will help aspirants in addressing their job  roles and move towards a more rewarding  career in their domain.
+
+COMPTIA A+
+CompTIA A+ is one of the most comprehensive  and extensive Level 1 certification that provides  foundational knowledge and understanding of  hardware and software technologies that are  essential in building a career in cyber security.
+The curriculum of this course provides help and  support in various activities such as cyber  investigations, forensics, and cyber law  enforcement.
+This course will prepare candidates in handling the  most challenging technological problems with  supreme efficiency of knowledge and application.  Also this course will teach best practices of  troubleshooting networking and security across a  diverse platform of devices and systems.
+
+***
+
+## COMPUTO FORENSE ##
+
+Definición de Cibercrimen
+Definición de Cómputo Forense (Forensia Digital)
+Tipos de Incidentes
+Tipos de Forensia Digital
+
+Diagrama de transición
+Cadena de custodia
+¿Qué es posible recuperar?
+
+Cibercrimen
+Acción ilícita o tipificada como delictiva, utilizando las tecnologías de información como medio o fin.
+
+Mitos
+ES UNA PERSONA COMO LA MOSTRADA EN LA IMAGEN.
+ES EXTERNO A UNA COMPAÑIA U ORGANIZACIÓN
+SON EL CLIENTE FINAL.
+
+Cómputo Forense
+La aplicación de técnicas científicas y analíticas especializadas a infraestructura tecnológica que permiten identificar, preservar, analizar y presentar datos que sean válidos dentro de un proceso legal.
+
+Forensia Digital
+Lo que involucra preservar, identificar, recolectar, extraer, documentar e interpretar las evidencias computacionales de diferentes medios y encontrar las causas durante el análisis de datos.
+
+
+El análisis forense digital, también llamado informática forense, es la aplicación de técnicas de investigación científica a los delitos y ataques digitales. Es un aspecto fundamental de la ley y de los negocios en la era de Internet y puede ser una carrera profesional gratificante y de prestigio.
+
+Mitos
+ES LLAMATIVO (CSI)
+ES RÁPIDO
+SE ENCUENTRAN COSAS FÁCILMENTE
+
+Tipos de incidentes
+ROBO DE PROPIEDAD INTELECTUIAL, EXTORSION, PRONOGRAFIA, ESTAFA, ACCESSO NO AUTORIZADO, ROBO DE SERVICIOS, ABUSO DE PRIVILEGIOS, DENEGACION DE SERVICIOS.
+
+TIPOS DE FORENSIA DIGITAL
+FORENSIA DE BASES DE DATOS, MOVIL, LIVE, REDES, COMPUTACIONAL
+
+Proceso
+El análisis forense informático se aplica una vez que tenemos un incidente o ataque y queremos investigar:
+
+Responder a las preguntas
+QUIEN, QUE, CUANDO, DONDE, PORQUE
+
+Digrama de Transición ESCENA A LABORATORIO FORENSE
+
+1. ASEGURAR LA ESENA Consiste en proteger la escena  para evitar la modificación  o destrucción de las evidencias digitales. Definición de los protocoloes de actuación que deben seguirse en caso de tener que abordar una investigación de fraude
+1. IDENTIFICAR EVIDENCIAS Identificar, de entre los sistemas de información de la compañía los que pueden contener información relevante. Experiencia en investigaciones y sistemas infomráticos para identificar las fuentes de información adecuadas.
+1. CAPTURAR EVIDENCIAS Realizar copias exactas de las evidencias identificadas minimizando el impacto en la evidencia original Empleo de las herramientas másrápidas y fiables del mercado que garantizan la no intruisión y la minima alteración de la evidencia original.
+1. PRESERVAR EVIDENCIASDocumentar detalladamente todos los procedimientos realizados sobre las evidencias. Adecuado tratamiento y documentación de las evidencias de forma que se garantiza la "Cadena de custodia"
+1. ANALIZAR EVIDENCIASAnalizar las evidencias siguiendo una metodología forense especializada y empleaso las herramientas adecuadas para cada caso. Equipo formado por ingenieros en informática con experiencia en la utilización de herramientas de análisis forense.
+1. PRESENTAR REPORTE RESULTADOS Los resultados obtenidos deben de presentarse de forma clara y con un formato adecuado al tipo de informe requerido. Redacción de informes que ilustran los hechos de forma clara y concisa.
+
+Cadena de Custodia
+Es uno de los protocolos a seguir cuando los peritos informáticos forenses trabajan con una prueba. 
+Ella de llenarse durante el período de vida y validez de la prueba, cuando se consigue localizar o realizar, hasta el punto en que deja de ser necesaria o se destruya.
+
+Objetivo General
+Garantizar la mismidad y autenticidad de los indicios o elementos materiales probatorios, mediante actividades de control y elaboración de registros, que demuestren la continuidad y trazabilidad de la Cadena de Custodia, con el fin de incorporarlos como medio de prueba en el proceso penal.
+Si no se toman las medidas adecuadas para la manipulación de la evidencia esta puede perderse o resultar inaceptable como prueba.
+
+Marco Legal
+¿ES ADMISIBLE EN UNA CORTE?
+Generalmente si pero suele haber pocos precedentes
+Si hay evidencia y se siguen los procedimientos correctos y se mantiene la cadena de custodia
+¿ES LEGAL JUNTAR LA EVIDENCIA?
+Si con la autorización del cliente y/o orden legal y bajo ciertas circumstancias (equipo de la empresa).
+Cuando el equipo es propio se necesita autorización del dueño.
+El escaneo de red (network sniffing) se condiera como un “wire tap”.
+
+¿Qué se puede recuperar?
+informacion borrada, fechas de creacion modificacion y acceso archivos, dispositivos de alamcenamiento conectados acomputadora, sitios web visitados, aplicaciones instaladas, conversaciones y correos.
+
+Bloqueadores
+Dispositivo especializado para acceder en “read-only” a un dispositivo sin arriesgar el modificar o alterar los contenidos del mismo.
+HW y SW (Write Blocker) se prefiere para unidades HDD y SDD el HW.
+
+
+Logicube Falcon
+“The Forensic Falcon-NEO, our premier forensic imaging solution, achieves imaging speeds surpassing 50GB/min. The Falcon-NEO can image from up to 5 source drives to up to 9 destinations simultaneously to provide efficient and secure digital evidence collection. The solution can image to/from a network repository with two 10GbE ports. The future-focused Falcon-NEO is designed to streamline the evidence collection process.”
+
+
+Herramientas Libres
+FTK IMAGER, KALI PARROT, AUTOPSY AND DD
+
+Herramientas de Paga
+MAGNET, CELLEBRITE, REGISTRY RECON, ENCASE, MACQUISITION
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***
+
+## Security Planning ##
+
+### Security Strategy ###
+
+Security is often seen as an unnecessary expense until an attack damages the organization, it is important to include directors and managers in safety planning since all encompassing strategies must be put in place. The security plan indicates how security will be implemented in the company, the response to incidents and who is responsable at each step. To create one you must research:
+
+1. Security regulatory compliance
+2. Vulnerabilities discovered
+3. Attacks covered by the media
+4. Current risk indicator metrics
+5. Business strategy and communication channels
+
+### Security Strategy Contents ###
+
+1. Introduction: Security needs and intentions
+2. Current status: Security status at the start of the plan, usually using risk analysis.
+3. Requirements: What actions you want to take to bring the current state to comply with the security policy
+4. Recommended controls
+5. Accounting: Who will be in charge of which parts of the safety, monitoring and measurement plan
+6. Time table: indicates when the security plan will be implemented.
+7. Maintenance: The validity of the security plan and when it will be reviewed. 
+
+***
+
+## Internet of Things Security ##
+
+IoT security gains relevance each year as more devices are installed globally the main security concerns are:
+
+1. IoT devices usually come with a default password.
+2. IoT devices have lower computing power therefore lack advanced encryption.
+3. IoT devices usually can't receive security updates or be easily replaced (obsolescence).
+
+Connecting physical objects is dangerous in general, for example cars connected to the internet can present a risk to drivers and pedestrians, while industrial machines can be a risk to employees after a successful attack. 
+
+### Improving IoT security ###
+
+1. Improve the security in the network as well as in the device with firewalls, router virtual networks, etc.
+2. Know the type of security the IoT has by default, for example the authentication scheme.
+3. Research the maximum security that the device can obtain, for example its credential encryption capabilities.
+4. Activate policies to change the default passwords and information as soon as you start using it.
+5. Know if there are ways to install patches or security updates. If not schedule periodic security checks on the device.
+	1. Have a record of the IoT devices with the OS versions and security update status.
+
+Another way of improving IoT is to buy devices that support installing a Virtual Private Network (VPN) since it can be a mechanism to update certificates, restrict open ports and restrict IP addresses as an additional form of authentication.
+
+***
+
+## Public Key Infrastructure ##
+
+
+Quis custodiet ipsos custodes?
+We know that thanks to private keys, we can authenticate communications.
+But, who assures us that the owner of the public key is who he claims to be?
+Both private key and public key cryptography are susceptible to man-in-the-middle attacks.
+A trusted third party is needed to certify identities.
+
+TO PREVENT MAN IN THE MIDDLE ATTACKS WHEN IT CREASED THE LINK BETWEEN A USER AND A WEB APPLICATION
+
+Certifying Authorities
+
+Internal or external body (third party) that is responsible for issuing identity certificates.
+A reliable third party is assumed, in which what he says is considered true.
+There are public CAs, which generally issue certificates for SSL (HTTPS)
+The top 5, with 97.6% of the market are:
+IdenTrust
+Comfortable
+DigiCert
+GoDaddy
+GlobalSign
+
+Digital Certificates
+
+Functions as owner identifier
+Contains your public key associated with your identity.
+Digitally signed by the certifying authority, to guarantee who issued it.
+They have an expiration date and can be revoked in case an error is found or they are violated.
+Usually given in X.509 format
+
+USING THE WINDOWS CERTIFICATE VIEWER ADDTRUST EXTERNAL ROOT FIELD VALUE
+
+Public Key Infrastructure (PKI)
+
+Roles, policies and procedures to manage, distribute, assign and revoke public key certificates.
+Although it is based on cryptography, PKI is primarily the policies for the distribution of certificates and keys.
+User: In charge of generating the private and public keys, and installing the certificate on the site.
+Certification Authority: In charge of signing the certificates
+
+Registration Authority: In charge of receiving the signature requests, verifying that the users are real and making the request to the CA
+Certificate Signing Request: Includes the client's public key, the site that will receive the certificate, the organization, place of organization and a contact email
+Verifying Authority: It is in charge of generating certificate revocation lists (CRL), and responding to certificate validation requests (Online Certificate Status Protocol).
+
+
+***
+
+## Public Key Infrastructure ##
+
+Criptology
+
+Protegiendo los datos e información
+En uso: se están accediendo y modificando. Es importante garantizar la confidencialidad e integridad.
+En movimiento: Los datos se están transmitiendo. Peligra la confidencialidad y la integridad.
+En Descanso: nadie los accede, simplemente se están guardando. Es importante garantizar la integridad y disponibilidad.
+
+Criptología
+
+Ciencia que estudia los aspectos de la información en secrecía.
+Criptografía: Formas y procedimientos de escribir información en secreto
+Criptoanálisis: Formas y procedimientos para descifrar información cifrada.
+Útil para proteger con “llave” los datos para que no se puedan accede fácilmente.
+
+PLAIN TEXT KEY TO CYPHERED TEXT KEY TO PLAIN TEXT 
+
+
+Niveles de seguridad criptográfica
+Incondicional: El atacante no puede romper la seguridad con tiempo y recursos ilimitados.
+Computacional: El atacante no puede romper la llave con tiempo y recursos limitados
+Probable: No se demuestra que es seguro, pero nadie lo ha roto.
+Condicional: Seguro mientras el atacante no posea los recursos.
+Inseguro: El atacante puede encontrar la llave en un periodo no muy grande de tiempo
+
+
+Sin embargo…. no impots qur tan buena sea la encriptacion siempre sera mas facil obtener la contraseña mediante ingenieria social.
+
+Transposición
+Consiste en ordenar las letras del mensaje de forma diferente.
+La llave permite conocer como se ordenaron las palabras.
+En la computadora puede darse a nivel de bits en vez de letras.
+
+
+Substitución
+Establecer correspondencia entre letra de un alfabeto con otro para intercambiarlas. 
+La llave indica que letras se utilizan. 
+Existen 2 algoritmos clásicos de substitución:
+Cifrado del cesar
+Vigenere
+
+Cifrado del cesar
+Texto plano:   ataque al amanecer
+Llave:               ggggg gg gggggggg
+Texto cifrado: gzgwak gr gsgtkikx
+
+
+Rompiendo llaves
+La forma más fácil, pero mas tardada es por fuerza bruta (probar todas las combinaciones).
+La forma más rápida es conociendo alguna vulnerabilidad del algoritmo de cifrado.
+Si no hay vulnerabilidades, es muy útil buscar pares de texto cifrado y descifrado, para intentar obtener la llave.
+
+Rompiendo el algoritmo del cesar
+Para una computadora, es fácil hacer un ataque de fuerza bruta y comparar si las palabras resultantes aparecen en un diccionario.
+Una mejor técnica es intentar hacer un análisis de frecuencia de palabras.
+
+Vigenere
+Texto plano:   ataque al amanecer
+Llave:               gkoygk oy gkoygkoy
+Texto cifrado: gdooao oj gwolkmsp
+
+One Time Pad 
+Por cada letra se utiliza una letra aleatoria como llave de sustitución.
+Se hacen 2 copias de la llave. Solo sirve para un mensaje. El siguiente mensaje tiene una llave diferente 
+
+
+Texto plano:   ataque al amanecer
+Llave:               gkoylr eh kasolfkam
+
+Cifrado en computadora
+Se hace a nivel de números o bits.
+La trasposición y substitución debe de dejar poco clara la relación entre el texto plano y el texto cifrado.
+Requiere de una tabla que indique como se van a realizar los cambios (Substitution Box)
+También se puede hacer a partir de una función matemática que tenga un inverso.
+
+Ejemplo de función reversible: XOR
+
+***
+
+## Risk Analysis ##
+
+Una primera aproximación
+
+1. Determinar los activos
+2. Identificar amenazas y vulnerabilidades
+3. Estimar probabilidad de ocurrencia e impacto
+4. Estimar costos del impacto
+5. Analizar controles y costos
+6. Realizar un análisis de costo-beneficio
+
+Determinar los activos y los riesgos
+
+Dependiendo del análisis, la evaluación se puede llevar a cabo orientada a las amenazas, a las vulnerabilidades, o a los activos.
+Una tabla de activos y los riesgos asociados a cada activo pueden ser un buen punto de partida. 
+
+Activo Servidor Aplicacion Web
+Confidencialidad Intruccion, explotacion confianza
+Integridad Ransomware defacement
+Disponibilidad DDos
+
+Activo DataBase
+Confidencialidad Robode informacion de base de datos
+Integridad Ransomware
+Disponibilidad cambio de contraseñas
+
+Activo Imagen de empresa
+Confidencialidad divulgacion de registros medicos de pacientes
+Disponibilidad falta de servicio por errores en la red interna
+
+Probabilidad de ocurrencia
+
+Análisis cuantitativo: Da un valor entre 0 y 1 basado en la probabilidad de la ocurrencia. Tiene como ventaja que puede servir para ajustar mejor los posibles costos de perdidas. Sin embargo, no hay un consenso en cuanto a la probabilidad de cada amenaza/vulnerabilidad y los cálculos pueden ser complejos debido a que se requiere un análisis de frecuencias.
+Análisis cualitativo: Asigna descripciones como probabilidad alta, media y baja. Tiene como ventaja que es sencillo de realizar, pero puede que los resultados sean subjetivos y dependan de la persona que realiza el análisis. 
+
+Análisis de impacto
+Se requiere definir niveles de impacto, dependiendo de los costos y afectaciones a la operación. 
+Impacto alto: degradación severa que impida en su totalidad el cumplimiento del objetivo de negocio. Perdidas monetarias que lleven a banca rota a la empresa. Daños severos a los individuos que pueden resultar en perdidas de vida.
+Impacto medio: Degradación que impida parcialmente cumplir el objetivo de negocio. Perdidas monetarias equivalentes a un año de operaciones. Daños severos a individuos sin riesgo de perdida de vidas.
+Impacto bajo: Degradación que no impide cumplir los objetivos de negocios. Perdidas monetarias equivalente a un mes de operaciones. Daños menores a individuos sin afectar su integridad física. 
+Conociendo la probabilidad y el impacto, se pueden decidir que afectaciones son las mas importantes
+
+Matriz de nivel de riesgo
+Alto: Acción correctiva necesaria
+Moderado Alto: Acción correctiva necesaria
+Moderado Bajo: Acción de monitoreo necesaria
+Bajo: Ninguna acción necesaria
+
+MATRIX 
+Probabilidad Alto Medio Bajo
+Impacto Alto Medio Bajo
+
+| No | Alto | Medio | Bajo|
+|Alto | Alto | Alto | Moderado Medio|
+|Medio | Alto | Moderado Alto | Moderado Bajo|
+|Bajo | Moderado Alto | Moderado Bajo | Bajo|
+
+Estimación de costos
+
+Por cada tupla de activo/riesgo es importante estimar los costos que esto representa a la organización.
+Se tienen que tomar los costos de reponer los activos, así como cualquier otra acción necesaria para que la operación continúe. (No es solo comprar un nuevo server, también el tiempo de instalación y las ventas perdidas por que no se opere.
+Para determinar el costo de impacto, multiplicar la probabilidad (en caso de análisis cuantitativo) por el costo de que se materialice una amenaza en un activo.
+
+
+Ejemplo
+
+| Riesgo | Probabilidad | Impacto | Nivel | Control | Costo |
+| Ransomware en servidor de base de datos | Media | Alto | Alto | Servidor de base de datos en hot stand by con respaldo diario | 3 millones por incidente |
+| Falla en lector de tarjeta de autenticacion | Baja | Baja | Baja | Lector extra en cold stand by | Guardia extra por 24 horas |
+| Datos incorrectos en app | Alto | Bajo | Moderado Medio | Validacion extra en todas las entradas de la app | Demandas por negligencia |
+
+***
+
+## Authorization y Accountability ##
+
+### Authorization ### 
+
+An authenticated subject is able to perform a series of actions, the available actions depend on:
+
+* Asset classification (confidential, secret, top secret).
+* Asset marking
+* Policies implementation
+* Access control
+
+### Discretionary Access Control (DAC) ###
+
+The owner of the data tends to be the one who tags the information and gives out permissions. 
+
+* This system is permissive and the default way that most operating systems operate.
+
+### Access Control List ###
+
+Object oriented way to set users a series of permissions (r,w,x) for each one.
+
+* Easily review permissions of all users per object.
+* Easily revoke permissions from every other user.
+* Hard to get the objects that a user has a particular set of permissions associated to it.
+
+
+
+
+
+Lista de capacidades
+
+Enfocada en decir todos los permisos de cada usuario.
+Permite determinara rápidamente todos los permisos asociados a un usuario.
+Dificulta saber por objeto los permisos de cada usuario.
+
+
+
+Control de Acceso Mandatorio
+
+EL sistema operativo o el encargado de administrar las políticas son los que dan el acceso a la información.
+Un sujeto puede tener acceso a un objeto si tiene el nivel adecuado.
+Requiere de un correcto etiquetado de los activos.
+Ejemplo: SELinux
+
+It works as a level os secrecey from level 0 (Top secret information), level 1 (confidential) and level 2 (public).
+
+Control de Acceso Basado en Roles (RBAC)
+
+A cada sujeto del sistema se le tienen que asignar uno o varios roles. 
+Los objetos tienen permisos dependiendo del rol, reforzando el mínimo privilegio.
+Los permisos se dan dependiendo del rol que se tenga y es más fácil de administrar.
+Puede dar problemas de granularidad, además de necesitar muchos roles.
+
+Es mas facil dar permisos a una serie de personas dinamicamente 
+La complejidad y cantidad de roles aumenta exponencialmente, sobretodo si las personas realizan multiples roles.
+
+Control de Acceso Basado en Atributos (ABAC)
+Considera atributos del sujeto, objeto y el ambiente. 
+Deben de existir políticas claras que regulan las condiciones para asignar permisos dependiendo de los tres tipos de atributos. 
+Generalmente implementado con XACML(eXtensible Acces Control Markup Language).
+
+Se assignan atributos al sujeto, al ambiente y a los objetos y luego se asignan condicionalmente los permisos
+basandose en un motor de autenticacion que funciona mediannte policy rules.
+
+Contabilidad
+
+Permite guardar, analizar y revisar las acciones realizadas por los sujetos sobre los objetos.
+Originalmente pensado para cobrar las acciones en sistemas.
+Muy útil ya que se puede encontrar información a través del tiempo, además de para análisis forenses.
+Permite guardar información mas allá de autenticación y autorización.
+Hay que tener cuidado con la cantidad de información.
+
+SON LOS LOGS Y SYSLOGS de la maquina
+
+***
+
+## Hash y firma digital ##
+
+Integridad: Funciones hash
+Una función hash convierte un mensaje en texto plano m de longitud arbitraria, a un mensaje de longitud.
+En teoría son funciones de un solo sentido, es decir, no se puede regresar al texto plano.
+Con un bit que cambie en el texto plano, el hash es totalmente diferente.
+Sirve para verificar la integridad de un mensaje, aunque no protege la confidencialidad.
+
+Propiedades
+
+1. Debe ser posible calcular eficientemente el hash x de un mensaje m (x=H(m))
+2. Dado x, debe ser imposible computacionalmente regresar a m.
+3. La salida x es única para cada m, cualquier cambio por muy minúsculo a m, cambia aleatoriamente x.
+4. Dados un mensaje m1, es imposible encontrar un mensaje m2 donde H(m1)=H(m2)
+5. Dado cualquier par de mensajes diferentes m1 y m2, es imposible encontrar un par donde se cumpla H(m1)=H(m2)
+
+Formas de calcular un hash
+
+List of hash functions from WIKIPEDIA
+
+Contraseñas
+En ningún Sistema desarrollado, las contraseñas se deben de guardar en texto plano.
+Guardar las contraseñas hasheadas ayuda a que si las roban, no se puedan obtener en texto plano.
+Generalmente van saladas (salted), donde se agrega un valor aleatorio para prevenir ataques de diccionario.
+La ventaja es que se puede autenticar con el hash y no con la contraseña en texto plano. (Susceptible a pass-the-hash).
+
+
+Linux
+$1 = MD5 hashing algorithm.
+ $2 =Blowfish Algorithm
+ $2a=eksblowfish Algorithm
+ $5 =SHA-256 Algorithm
+ $6 =SHA-512 Algorithm
+Windows
+LanManager (DES)
+NTHash (MD4)
+NTLMv1 (DES)
+NTLMv2 (MD5)
+
+Firmas digitales
+La criptografía de llave privada y publica nos permite obtener confidencialidad, y los hashes verificar la integridad.
+
+Autenticidad: prueba de que un mensaje, comunicación o cualquier intercambio de información proviene de quien dice provenir. Es una verificación de la identidad del remitente. 
+No repudiación: Propiedad que indica que la fuente de un mensaje o acción no puede ser disputada. 
+
+Cifrar con una llave privada permite obtener autenticidad, pero no integridad del mensaje
+
+Para garantizar la autenticidad se puede usar una firma digital.
+
+
+Proceso firma digital
+
+Documento a firmar
+1. Obtener hash del documento
+2. Cifrar hash con llave privada
+3. Agregar hash cifrado al documento.
+
+
+Proceso firma digital
+
+1. Separar mensaje y firma
+2. Descifrar hash con llave pública
+3. Calcular hash documento
+4. Verificar que los hashes coincidan.
+
+
+
+
+
+
+
+OBTENER GRAFICAS PARA CADA UNO DE ESTOS
+GRAFICAS HASHES
+
+Message Authentication Code (MAC)
+Mismo objetivo que las firmas digitales: proveer autenticación e integridad al mensaje.
+Tiene como diferencia que la firma se hace con una llave simétrica.
+Sin garantizar la no repudiación. 
+Si el MAC es el mismo en el mensaje enviado y recibido se considera como autenticado.
+Puede ser construido de dos formas: HMAC (basado en hashes) y CMAC (basado en algoritmos de cifrado).
+
+HMAC
+MAC generado utilizando algoritmos de hasheo
+Nombrados como HMAC-x, (e.g. HMAC-SHA256)
+Realiza dos pasos de hasheo para proteger el MAC
+Ayuda contra ataques que permiten agregar paddings que crean una colisión, aun sin saber la llave.
+Usado por protocolos como TLS e IPSec
+
+CMAC (CBC-MAC)
+Utiliza algoritmos de cifrado simétrico (e.g. AES) en modo CBC.
+Utiliza un vector de inicialización con valor 0. Cualquier cambio en el mensaje daría un texto cifrado diferente.
+Menos común que HMAC
+
+Encripción Autenticada con Datos Asociados (AEAD)
+Preservar la confidencialidad y dar autenticación de formas separadas resultaba en problemas de implementación.
+AEAD intenta autenticar y dar confidencialidad al mismo tiempo.
+Auxiliar para prevenir ataques de chosen ciphertext.
+Generalmente funciona en tres modos: 
+Encrypt-then-MAC
+Encrypt-and-MAC
+MAC-then-Encrypt
+
+Encrypt then MAC
+Calcula el texto cifrado y saca el MAC de este.
+Utiliza la misma llave.
+Utilizado en IPSEC
+El MAC no va cifrado. 
+
+Encrypt and MAC
+Genera el MAC del texto plano.
+Encripta el texto plano 
+Al texto cifrado, agrega la MAC del texto plano.
+Utilizado en SSH
+
+
+MAC then Encrypt
+Calcula la MAC del texto plano
+Agrega MAC al texto plano
+Cifra todo el mensaje.
+Modo que envía la MAC cifrada
+Usado en SSL/TLS
+
+
+***
+
+## Seguridad aplicaciones web ##
+
+
+
+Aplicaciones Web
+Generalmente accesibles desde internet
+Pueden ser parte de la infraestructura de una empresa, o almacenadas por una entidad externa.
+Dada su naturaleza interactiva y pública, necesitan tomar en cuenta ciertos aspectos de seguridad.
+
+IMAGEN DE 
+Client messages server for SSL TLS Comms
+Server sends back encryupted public key or certificate
+Client checks certificate and creates an encrypted key that sends back to the server
+Server decyrpts key and delivers the contentent with key to the cliente.
+Client decypts the content completing a SSL TLS handshake
+
+Objetivos del atacante
+Acceso inicial a la infraestructura de la victima.
+Ejecución de código arbitrario en el servidor.
+Persistencia
+Utilizar el servidor web para atacar a otros (watering hole attack).
+
+Open Web Application Security Project
+Grupo de voluntarios que da manuales de buenas practicas y vulnerabilidades comunes para paginas web y aplicaciones.
+Definen la lista de vulnerabilidades web que más afectan a los servicios.
+Además proveen una lista de analizadores de vulnerabilidades que verifican el top 10.
+
+Fuente: https://www.ptsecurity.com/upload/corporate/ww-en/analytics/Web-application-attacks-2018-eng.pdf
+
+Inyección de código
+
+Ejecutar código arbitrario en una entrada de usuario
+El más común es ‘ OR 1=1 para hacer bypass de los controles de acceso.
+Se requiere sanitizar las entradas para prevenir este tipo de ataques.
+También sirve para ejecutar comandos de otras aplicaciones o sistema operativo.
+Puede terminar en un ataque de
+
+XML External Entities
+
+Los procesadores de XML pueden utilizarse para referenciar a un elemento externo.
+
+Pueden servir para escanear computadoras donde se ejecute el procesador, o para obtener información. 
+
+Se recomienda usar otros tipos de documentos como JSON.
+
+```
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<!DOCTYPE foo [ <!ELEMENT foo ANY > <!ENTITY xxe SYSTEM "file:///etc/passwd" >]> 
+<foo>&xxe;</foo> 
+```
+
+Cross-Site Scripting (XSS)
+Cross-site scripting permite inyectar código del lado del cliente.
+Puede explotar una relación de confianza.
+Puede ser persistente o reflejado.
+Se puede eliminar sanitizando las entradas de los campos input, además de que se pueden implementar Content Security Policies para evitar la ejecución de código de fuentes maliciosas.
+
+1. Perpetrator discorvers a website with a vulnerability that enables script injection.
+1. Perpetrator injkects webstei with malicious scripts that steals visitor cookies
+1. For each visit to the website the malicious script is activated
+1. Vissitor session cookie is sent to the perpetrator through the secure site.
+
+
+Insecure Deserialization
+Los datos no funcionan en raw, hay que trabajar con ellos. 
+Muchos lenguajes web tienen elementos que permiten realizar socialización y deserialización para guardar y leer datos ya procesados.
+Los procesos de deserialización automáticos podrían ser explotados para ejecutar código en los datos.
+Es importante usar deserialización segura o formatos que no permitan ejecutar datos al momento de leerlos. 
+
+USE DVWA to CHECK FOR INJKECTION VULNERABILITES SUYCH AS FILE INCLUSION
+
+
+Defensas
+1. Revisión de código.
+2. Revisión de vulnerabilidades
+Vulnerabilidades conocidas
+Escaners
+Nikto
+W3af
+SQLMap
+3. WAF
+	Modsecurity
+	NAXSI
+	Imperva
+4. Servicios de Nube
+	CloudFlare
+	Amazon AWS Shield
+
+Por ejemplo bots, crawlers and malicious traffic, safe traffic, visitors and approved bots, and malicius traffic of hackers and attackers.
+Stopped with cloudflare edge, optimizing content delivery and routing requests thoruygh global network.
+
+
+***
+
+## Llave simetrica ##
+
+Métodos criptográficos
+
+Simétricos: se cifra y descifra con la misma llave.
+Se garantiza la confidencialidad siempre y cuando la llave sea confidencial
+También conocida como criptografía de llave privada
+Asimétricos: Se cifra con una llave y se descifra con otra llave relacionada.
+Se usa para garantizar confidencialidad y autenticar la fuente de quien viene el mensaje
+
+Cifrado con algoritmos simétricos
+Encripcion en flujo (Stream cipher)
+Estos algoritmos cifran cada bit o byte por separado, aplicando una función o S-box. 
+Para que fueran seguros, tendrían que usar algo parecido al one time pad, con llaves de igual tamaño del mensaje.
+El mas usado era RC4, que cifraba el trafico WEP. 
+Encripcion en bloque
+Electronic Code Block
+Cipher Block Chaining
+
+
+Electronic Code Block
+Se cifra cada grupo de bits o bytes por separado. 
+Tiene la ventaja de que se pueden usar diferentes llaves.
+Sin embargo, si la llave o el bloque son pequeños, puede llegar a ser posible un ataque de análisis de frecuencias.
+
+Cipher Block Chaining
+En este caso se cifra cada bloque utilizando la información del bloque anterior.
+Se requiere un vector de inicialización, que hace que incluso para los mismos bits y bytes, el texto cifrado sea distinto.
+Se necesita guardar el vector de inicialización para descifrar. 
+
+Criptosistemas de Feistel
+Modo muy común donde se pasa el mismo texto por una función varias veces.
+Varias funciones débiles pueden hacer que el cifrado sea fuerte.
+Es un cifrado de bloque donde cada bloque se pasa por la misma función. Puede ser usado en ECB y CBC.
+
+Data Encription Estandar (DES)
+En 1973 el “National Bureau for Standards” saca una convocatoria para un estándar de algoritmo de cifrado.
+En 1974, IBM propone el algoritmo LUCIFER.
+Después de ser revisado y modificado por el NBS y la NSA, DES es liberado como el estándar en 1977 y usado en varias industrias como telefónica y farmacéutica.
+DES es un algoritmo de cifrado de llave privada (simétrica), de bloques y criptosistema de Feistel. Existen versiones de ECB y CBC. 
+Trabaja con bloques de 64 bits y llaves de 56 bits. 
+
+DES: Llaves
+1. Toma una llave de 64 bits y crea permutaciones (transposiciones) para crear una llave de 56 bits.
+2. Separa la llave de 56 bits en 2 de 28 bits. 
+3. Realiza corrimientos de las dos partes para crear 16 pares de subllaves.
+4. Por cada par de llaves, se realiza una concatenación y después se permuta para crear 16 llaves de 48 bits cada una. 
+
+DES: Bloques
+1. Por cada bloque de 64 bits, se realiza una permutación inicial
+2. Se separan los datos en dos bloques de 32 bits, llamados L0 y R0.
+3. Por cada ronda n, se realiza lo siguiente
+𝐾_𝑛="llave" (48 bits)
+𝐿_𝑛=𝑅_(𝑛−1)
+𝑅_𝑛=𝐿_(𝑛−1) ⨁▒〖𝑓(𝑅_(𝑛−1) 〗, 𝐾_𝑛)
+Donde f es una función donde se expande 𝑅_(𝑛−1) de 32 a 48 bits, repitiendo algunos, se hace XOR con la llave y luego por cada 6 bits se usa una S-box diferente, cada una con una salida de 4 bits (32 bits de salida)
+4. Se repite el proceso 16 veces invirtiendo el lado derecho e izquierdo.
+4. Al final se aplica una ultima permutación y el resultado es el texto.
+
+
+Y qué le paso?
+Whit Diffie y Martin Hellman, los padres de la criptografía asimétrica, dijeron desde 1975 que 56 bits eran muy pocos para una llave. 
+En 1998 la Electronic Frontier Foundation logra encontrar una llave en 4.5, probando todas las combinaciones.
+Ese mismo año, la llave se logra “crackear” en 56 horas, y usando una computadora con 1728 procesadores, se logran probar 90 millardos de llaves por segundo. 
+Aunque el FBI decía que ellos no podían abrir mensajes cifrados, Bruce Scheider los llamo incompetentes o mentirosos, e invito a usar llaves de mayor tamaño.
+
+
+
+Doble y Triple DES
+
+Una solución propuesta fue aplicar DES y sobre el texto cifrado, volver a aplicar DES con otra llave. 
+Debido a un ataque de meet-in-the-middle, solo provee 2^57posibles combinaciones
+Triple DES aplica DES 3 veces, sin embargo, solo provee 2^112 combinaciones, no 2^168 combinaciones, por lo que generalmente se utiliza la misma llave en la parte 1 y 3. 
+Estos algoritmos son lentos. 
+
+
+Advanced Encryption Standard
+AES fue aceptado como el Nuevo estándar de encripcion en 2001 por Instituto Nacional de Estantares y Tecnologia (NIST).
+Estuvo en revisión desde 1997 y se evaluaron mas de 15 algoritmos, incluyendo algunos propuestos por la RSA e IBM.
+Los algoritmos tenían que ser de llave privada, trabajar con bloques de 128 bits y llaves de 128, 192 y 256 bits.
+El ganador fue el algoritmo RINJDAEL.
+AES puede usarse para proteger información clasificada y secreta si la llave es de 128 bits. Para información considerada “top secret”, se tienen que usar llaves de 192 o 256 bits.
+Nadie ha roto AES hasta el momento.
+
+
+Funcionamiento Rinjdael
+No es un criptosistema de feistel
+Solamente utiliza substituciones y trasposiciones.
+Las rondas varían dependiendo de la cantidad de bits en la llave.
+
+https://www.youtube.com/watch?v=gP4PqVGudtg
+
+Cifrado de flujo
+Se trata de utilizar una llave y generar un flujo de bits del mismo tamaño que el mensaje.
+El flujo es “aleatorio” y se usa para cifrar el mensaje aplicando un xor. 
+Esto hace que el cifrado sea muy rápido y que se pueda aplicar a datos que van a estar en movimiento.
+Generalmente también se cifran bloques y se pueden utilizar métodos para CBC
+
+
+Cipher Feedback (CFB)
+En este modo se toma la salida de la función de cifrado (generador de números) y se aplica con un xor al texto plano, arrojando el texto cifrado, asi como lo que se va a utilizar para el siguiente bloque.
+Difiere de CBC en que el XOR se realiza después de obtener el cifrado y no antes.  
+Si se pierde o corrompe un bloque es más difícil repararlo.  
+
+Output feedback
+En este modo se usa para cada bloque la salida de generador de números anterior. 
+Los errores en el cifrado no afectan los siguientes bloques, solo errores en la generación de números.
+
+Counter mode encryption
+En este modo se tiene un numero y un contador que se va incrementando y sirve para generar números diferentes al inicio del bloque.
+Permite accesos a bloques “aleatorios” si se sabe que número de contador sigue. 
+
+Registros de corrimiento con retroalimentación (FSR)
+Implementados en hardware (conjunto de flipflops) y software (arreglo de bits).
+Cuando se necesita un nuevo bit se saca de un lado y todos los bits en el arreglo se recorren.
+Generalmente el bit que sale es el de la derecha y todos se recorren en esa dirección.
+El nuevo bit de la izquierda se calcula utilizando una función de retroalimentación.
+El mas común es la retroalimentación lineal (LFSR)
+
+A5/1
+Diseñado en Europa en 1987 para redes celulares con la tecnología GSM.
+Originalmente propuesto con una llave de 128 bits, la versión final usa 56 bits. 
+Utiliza 3 registros de LSFR, de 19, 22 y 23 bits cada uno.
+Se propuso una versión menos segura (A5/2) para exportarla a otros países. 
+3G utiliza la versión A5/3 (KASUMI/MISTY).
+Todas estas versiones tienen vulnerabilidades que permiten descifrar el contenido de voz y datos.
+4G utiliza SNOW que es mas seguro que los anteriores
+
+RC4
+Algoritmo creado en la RSA en 1987. 
+Es rápido ya que no requiere de registros de corrimiento, solo usa cajas de substitución y un generador de números aleatorios.
+Usado en protocolos como WEP y SSL/TLS hasta el 2015.
+Considerado roto ya que existen varios ataques que permiten encontrar las llaves y descifrar el texto (implementados en aircrack-ng).
+
+
+***
+
+## Manejo de incidentes ##
+
+La clave de un correcto manejo de incidentes esta en la planeación. 
+Existen 5 etapas recomendadas del manejo de incidentes, además de múltiples pasos de preparación
+Identificación
+Contención
+Erradicación
+Recuperación
+Lecciones aprendidas
+
+Mesa de ayuda
+Primer contacto con el usuario
+Deben de estar entrenados para detectar indicadores sospechosos
+Archivos nuevos
+Elementos que se instalan/desinstalan solos
+Mucho uso de CPU
+Mensajes anómalos
+Pueden solicitor apoyo del equipo de seguridad.
+
+Centro de Operaciones de Seguridad (SOC)
+Encargados del monitoreo, detección y respuesta a incidentes.
+Verifican reportes de:
+SIEM
+SOAR (Security Orquestration, Automation and Response
+IPS/IDS
+Threat hunting
+
+Personal
+	Nivel 1 (Triage)
+	Nivel 2 (Incidentes)
+	Nivel 3 (Threat hunting)
+	Manager
+
+
+Red/Blue Team
+Se considera equipo rojo al personal encargado de realizar pentesting y diversos ataques a la organización.
+Se pueden organizar ejercicios donde el equipo rojo realiza acciones y el equipo azul se encarga de detectarlos.
+Estos ejercicios ayudan a la preparación ante un incidente
+
+
+Playbooks
+
+Existen incidentes que requieren trabajar bajo presión.
+Es mejor tener una guía que sirva al equipo de respuestas acerca de como debe actuar.
+Las guias tienen que desarrollarse antes de los incidentes y probarse con simulaciones de ataques. 
+
+https://www.incidentresponse.com/playbooks/
+
+
+Equipo de Respuesta a Incidentes Computacionales
+
+Requiere de personas de toda la organización que puedan ayudar en un incidente
+Management
+IT y Seguridad
+Relaciones Publicas/Comunicación
+Seguridad Física
+Legal
+Es necesario tener responsables que tengan checklists a seguir, así como un kit de respuesta a incidentes. 
+
+Contención y Erradicación
+
+La contención se refiere a limitar el daño que causa el incidente.
+Aislar segmentos de red
+Apagar computadoras
+Desconectarse de internet
+Mandar a todos a descansar un día.
+Deshabilitar servicios.
+La erradicación tiene que ver con eliminar la amenaza del sistema.
+Agregar reglas de firewall
+Actualizar el antivirus
+Agregar controles
+Eliminar un servicio
+
+Recuperación y lecciones aprendidas
+Retorno a la normalidad.
+Indica que acciones se tienen que realizar para regresar a la operación.
+Cambio de sitio
+Carga de respaldos
+Cambio de configuraciones
+Borrar y recargar
+Se tiene que verificar que la erradicación haya sido exitosa.
+En esta etapa se puede realizar el análisis forense de los elementos obtenidos durante la contención.
+Se tiene que establecer un proceso de salida, donde se determine que se aprendió, e incluir esto en los ciclos de inteligencia. 
+
+Plan de Recuperación de Desastres
+
+El DRP es necesario para la parte tecnológica para permitir la recuperación de la operación.
+Va de la mano con el análisis de los activos para determinar en que tareas se debe de enfocar primero.
+Un DRP exitoso requiere la definición de:
+Tiempo Objetivo de Recuperación (RTO)
+Punto Objetivo de Recuperación (RPO)
+Periodo máximo tolerable de inactividad y no disponibilidad (MTD, MTO). 
+
+Respaldos
+Copias de la información importante, generalmente guardadas en almacenamiento terciario y lejos del sitio primario.
+Respaldo Completo: Copia toda la información de los sistemas
+Respaldo Incremental. Copia todos los archivos cambiados desde el ultimo respaldo.
+Respaldo Diferencial: Copia todos los archivos cambiados desde el ultimo respaldo completo
+
+Sitios Alternos
+En caso de desastre, a veces es necesario tener un sitio alterno donde operar. 
+Se recomienda que no estén en la misma zona geográfica que los sitios primarios.
+Existen 3 tipos: frio, caliente y tibio. 
+
+* Cold Site: Secondary location without equopment, connectivity, not active when failover occured
+	* Used whenn outage has reached weeks
+* Warm Site: Secondary location with equipment and connectivity but not active when failover occured
+	* Outage has reached days or hours
+* Hot Site: Secondary location with equipment, connectivity and activity when the failover occured
+	* Used when Outage has reached hours or minutes.
+
+Otros elementos útiles para el DRP
+UPS
+Redundancia en equipos/computadoras
+Generadores
+Replicación de equipos.
+Sitio alterno para operaciones (no solo datacenter).
+
+Plan de Continuidad de Negocios
+Aunque la infraestructura tecnológica es crucial, no es lo único que se necesita para seguir operando. 
+Requiere de un análisis de prioridades de que se necesita para seguir operando
+Se debe realizar un Análisis de Impacto al Negocio para revisar que áreas son cruciales y como el impacto de cada amenaza se refleja en un costo.
+
+Digital Forensics and Incident Response
+Uso de técnicas y métodos científicos para obtener evidencia de un ataque computacional que pueda resultar en acciones legales (o al menos una explicación).
+Se requiere mantener una cadena de custodia para verificar que los datos no han sido modificados
+Consta en general de las siguientes etapas:
+Preparación
+Obtención de evidencia
+Análisis
+Presentación de resultados.
+
+* User Comms: Web based email, email, calendar, chat, webmail memory artifacts, chat, IM, web based chats, social networks.
+* Files: Open Save MRU, email files, apps history, index.dat or places.sqlite, downloads.sqlite
+* Program Execution: UserAssist, LastVisited MRU, runMRU Start Run, MUI Cache, Jump Lists, prefetch, services EVT
+* File Creation: Recent files, office recent, shell bags, link files, jump lists, prefetch, index.dat
+* Deleted files: Search ACMRU, WordWheelQuery, Last Visited MRU, Thumbs.db, Thumbnails, RecycleBin, browser artifacts
+* Location: Timezone, Wireless SSID, Network history, cookies, browser search terms
+* USB Key: Key identification, first last times, user, volume, drive, link files, PandP Event Log
+* Account Usage SAM: Last login, last failed, last password change, group member
+* Account Usage EVT: success logons, logon types, RDP use, authentication, rogue local accounts
+* Browser usage: History, cookies, cache, session restore, flash, suggested sites, memory frafments of private browsing.
+
+***
+
+## Llave publica ##
+
+Desventajas de criptografía de llave privada
+Manejo de llaves
+Distribución de llaves
+No se garantiza la autenticidad de los mensajes (firma digital)
+
+Cifrado de llave publica
+Equivalente a que alguien te de un candado abierto, del que no tienes la llave. 
+Resuelve el problema del manejo de llaves.
+Al existir una llave privada y otra publica, se puede compartir sin problema.
+Se puede utilizar para garantizar quien cifro el mensaje.
+Los algoritmos más comunes son:
+Diffie-Hellman
+RSA
+ElGamal
+Curvas elípticas
+
+
+Conceptos: aritmética modular
+Basada en los residuos de la división de un número entre otro.
+X mod n, solo puede dar valores entre 0 y (n-1).
+Dos números son congruentes (equivalentes) si dan el mismo residuo mod n (1525 mod 2 y 3 mod 2 dan 1).
+
+
+Suma modular como cifrado
+Llave 5
+Cifrado
+7+5 mod 10=12 mod 10=2
+8+5 mod 10=13 mod 10=3
+3+5 mod 10=8 mod 10=8
+Descifrado
+2+5 mod 10=7 mod 10=7
+2+5 mod 10=8 mod 10=8
+8+5 mod 10=13 mod 10=3
+
+Inversa aditiva como cifrado
+Inversa aditiva: numero que se tiene que sumar para obtener 0
+4+6 mod 10=0
+Cifrando con 4
+7+4 mod 10=11 mod 10=1
+3+4 mod 10=7 mod 10=7
+9+4 mod 10=13 mod 10=3
+Descifrando con 6
+1+6 mod 10=7 mod 10=7
+7+6 mod 10=13 mod 10=3
+3+6 mod 10=9 mod 10=3
+
+Diffie-hellman
+Primer acercamiento a la criptografía de llave publica.
+Permite a 2 partes obtener la llave secreta a partir de información compartida por un canal inseguro. 
+Este algoritmo sirve para intercambio de llaves, no para cifrar.
+Dado 𝑦=𝑔^𝑥 "mod" 𝑝, es fácil obtener 𝑦, pero muy tardado obtener 𝑥.
+
+
+Algoritmo Diffie-Hellman
+1. Los dos algoritmos se ponen de acuerdo en un numero p (primo) y un número g (g<p).
+2. Entidad1 calcula un número aleatorio a, y genera A= 𝑔^𝑎 "mod" 𝑝, el cual envía a la Entidad2.
+3. Entidad 2 calcula un número aleatorio b, y genera B= 𝑔^𝑏 "mod" 𝑝, el cual envía a la Entidad1
+4. La llave compartida para la Entidad1 es 𝐵^𝑎 "mod" 𝑝, mientras que para la Entidad2, es 𝐴^𝑏 "mod" 𝑝
+
+
+Cifrando con multiplicación modular
+El inverso multiplicativo modular de un número x, es aquel valor de y, donde x*y mod p, resulte en 1. 
+7*3 mod 10= 21 mod 10=1
+Cifrando con 7
+7*5 mod 10=35 mod 10=5
+7*9 mod 10=63 mod 10 =3
+7*2 mod 10=14 mod 10=4
+Descifrando con 3
+5*3 mod 10=15 mod 10=5
+3*3 mod 10 =9 mod 10=9
+4*3 mod 10=12 mod 10=2
+Detalles del inverso.
+Encontrar un inverso multiplicativo modular no es una operación sencilla.
+Si el número es muy grande (100 dígitos o mas), no es viable buscar por fuerza bruta.
+Solo los números  primos relativos a n (la n de mod n) tiene inverso multiplicativo.
+Un numero x es primo relativo a n si se cumple que mcd(x,n)=1
+La cantidad de números primos relativos a n es Φ(𝑛)=𝑛−1 si n es primo.
+
+RSA
+Primer algoritmo de cifrado de llave publica (DH era para intercambio de llaves).
+Creado por Rivest, Shamir y Adleman en 1977.
+La privacidad se basa en la dificultad de calcular el inverso multiplicativo modular.
+Es un criptosistema de bloque, aunque los bloques son números de tamaño hasta n-1
+Tiene dos etapas
+1. Creación de llaves
+2. Cifrado
+
+
+RSA algoritmo: llaves
+1. Elegir dos números primos p y q, generar n=p*q
+2. Φ(𝑛)=Φ(p*q) =(p-1)(q-1)
+3. Seleccionar llave publica e, donde mcd(e, Φ(𝑛))=1
+4. Seleccionar llave privada d, donde d=inverso(e, Φ(𝑛))
+5. Hacer publico (e,n) y reservar (d,n)
+
+Ejemplo generación de llaves
+1. n=7*13=91
+2. Φ(91)=Φ(7∗13)=(6)(12)=72
+3. Elegimos e=5, donde 5<91, y mcd(5, 72)=1
+4. Calculamos inverso(5,72)=29
+5. Hacemos publico  (5,91) y guardamos (29,91).
+
+Pasos para cifrar/descifrar
+El mensaje M, tiene que ser menor que n.
+Para cifrar usamos 〖𝐶=𝑀〗^𝑒 𝑚𝑜𝑑 𝑛
+Para descifrar usamos 𝑀=𝐶^𝑑  𝑚𝑜𝑑 𝑛
+Ejemplo: e=5, d=29, n=91, M=65 (A mayúscula en ascii).
+𝐶=65^5  𝑚𝑜𝑑 91=39
+M=39^29  𝑚𝑜𝑑 91=65
+
+Si queremos hacer cifrado por bloques, estos dependen del tamaño de n. (n=64, se pueden tomar hasta 7 bits, es decir, números del 0 al 63).
+
+Curvas Elipticas
+
+Desventajas de algoritmos de llave publica.
+El cifrado puede ser más lento que el usado en criptografía simétrica.
+Si la llave privada se pierde, se tiene que cambiar también la llave publica.
+Cifrar con la llave privada puede dar autenticidad al mensaje, pero no confidencialidad.
+Cifrar con la llave publica da confidencialidad, pero no autenticidad al mensaje. 
+
+Métodos híbridos
+1. Crear un mensaje y una llave simétrica aleatoria.
+2. Cifrar mensaje con llave simétrica
+3. Cifrar llave simétrica con llave publica del receptor
+4. Enviar mensaje cifrado con llave simétrica y llave cifrada con llave publica
+
+Métodos híbridos
+1. Abrir mensaje con mensaje y llave cifrados
+2. Descifrar llave simétrica usando llave privada
+3. Usar llave simétrica para abrir el mensaje
+
+Aunque esto garantiza la confidencialidad en llaves simétricas sobre canales inseguros, aun no podemos garantizar la autenticidad del mensaje ni la integridad. 
+
+***
+
+## Ataques en redes ##
+
+Elementos a considerar
+
+Lo que sabemos que sabemos
+Análisis de riesgos
+Gestión de activos, vulnerabilidades y configuraciones
+Lo que sabemos que no sabemos
+Vulnerabilidades no descubiertas en nuestro software
+Lo que no sabemos que sabemos
+Capacidades no realizadas (tecnología, procesos y personas).
+Lo que no sabemos que no sabemos
+Amenazas 
+
+
+Ciclo de vida del atacante
+Initial recon, initial compromise, establish foothold, escalate privileges, internal recon, move laterally, maintainpresence and finally achieve mission
+
+Importancia de la red
+Permite transmitir datos entre las computadoras y el internet.
+Si las defensas perimetrales son rotas, en la red se puede detectar al atacante.
+Pero también le permite moverse entre las computadoras.
+Tipos de ataques:
+Denegación
+Reconocimiento/Enumeración
+Acceso inicial/Robo y modificación de Información
+
+
+Ataques en capa 1
+Denegación: 
+Obstrucción o destrucción de equipo y conexiones.
+Reconocimiento/Enumeración: 
+Buscar redes abiertas. (Inssider)
+Localizar nodos de red.
+Robo/Modificación de datos: 
+Conexiones ilegales
+Taps (Lan Turtle)
+
+Capa 2
+Información del enlace punto a punto. 
+Direcciones físicas
+Información de vlan
+Información de spanning tree
+Ethernet/Wifi para LAN
+
+00 40 33 d9 7c fd 00 00 39 cf d9 cd 08 00 45 00
+01 13 9c 5d 40 00 f6 11 44 ca 97 a4 01 08 0a 00
+00 06 00 35 04 0b 00 ff 3c 87 00 00 00 00 00 00
+
+MAC destino: 6 bytes
+MAC fuente: 6 bytes
+VLAN(Opcional): 4 bytes
+Tipo o longitud: 2 bytes
+
+
+
+
+Trama Ethernet
+MAC destino: 6 bytes
+MAC fuente: 6 bytes
+VLAN(Opcional): 4 bytes
+Tipo o longitud: 2 bytes
+
+00 40 33 d9 7c fd 00 00 39 cf d9 cd 08 00 45 00
+01 13 9c 5d 40 00 f6 11 44 ca 97 a4 01 08 0a 00
+00 06 00 35 04 0b 00 ff 3c 87 00 00 00 00 00 00 
+
+Tipo o longitud: 2 bytes
+(08 00)=IPv4
+(08 06)=ARP
+(86 DD)=IPv6
+
+Ataques y defensas
+
+Denegación de servicios
+DeAuthentication attack (aircrack-ng)
+CAM Overflow (macof)
+Robo/Modificación de datos:
+CAM overflow (macof)
+VLAN hopping (yersinia)
+Spanning Tree attacks (yersinia)
+ARP Spoofing (ettercap/bettercap)
+Enumeración:
+ARP Scan (nmap)
+
+Autenticación y Autorización fuerte
+802.1X
+802.11i
+Verificación de direcciones MAC
+Seguridad en protocolos de spanning-tree
+Configurar puertos correctamente. 
+
+Capa 3
+Direcciones físicas
+Información de ruteo
+Tiempo de vida del paquete
+
+Paquete IP
+Versión: 4 
+Longitud de cabecera (palabras de 32 bits): 20 bytes (160 bits)
+Tipo de servicio: 0
+Longitud: 275
+Identificador: 40029
+Banderas: 3 bits
+4000 no fragmentar
+2000 hay mas fragmentos
+Offset: 13 bits
+0000 fragment offset
+
+XX XX XX XX XX XX XX XX XX XX XX XX XX XX 45 00
+01 13 9c 5d 40 00 f6 11 44 ca 97 a4 01 08 0a 00
+00 06 00 35 04 0b 00 ff 3c 87 00 00 00 00 00 00 
+
+
+Paquete IP
+Tiempo de vida: 8 bits
+Protocolo: 8 bits
+Checksum: 16 bits
+Dirección fuente: 32 bits
+Dirección destino 32 bytes
+
+
+Tiempo de vida: 246
+Protocolo: 
+11 UDP
+06 TCP
+Checksum: 16 bits
+Dirección fuente: 151.164.1.8
+Dirección destino: 10.0.0.6
+
+XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX
+XX XX XX XX XX XX f6 11 44 ca 97 a4 01 08 0a 00
+00 06 00 35 04 0b 00 ff 3c 87 00 00 00 00 00 00 
+
+Ataques y defensas en capa 3
+
+Denegación de Servicio:
+Ping flood (hping3)
+Escaneo/Enumeración
+Ping Sweep (nmap)
+Robo/Modificación:
+Alterar rutas de protocolos de ruteo.
+IP spoofing (ettercap/bettercap)
+
+Listas de control de acceso (Firewall)
+NAT/PAT
+IDS/IPS
+Agregar seguridad en los ruteadores
+Autenticación y autorización de acceso a los ruteadores
+TACACS o RADIUS
+Verificar que las rutas sean las correctas.
+
+Capa 4
+
+Información de los puertos
+Da control de flujo
+Permite saber con cierta certeza que servicio opera en cada puerto. 
+
+XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX
+XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX
+XX XX 00 35 04 0b 00 ff 3c 87 00 00 00 00 00 00 
+
+Puerto fuente: 16 bits
+Puerto destino: 16 bits
+Longitud: 16 bits
+Checksum: 16 bits
+
+Segmento UDP
+Puerto fuente: 53
+Puerto destino: 1035
+Longitud: 255
+Checksum: 3c87
+
+XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX
+XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX
+XX XX 00 35 04 0b 00 ff 3c 87 00 00 00 00 00 00 
+
+Ataques y defensas en capa 4
+
+Denegación de Servicio:
+SYN flood (hping3)
+UDP flood
+Enumeración/Reconocimiento
+Port scanning (nmap)
+
+Firewall de estado
+Concentrador de VPN
+IDS/IPS para verificar ataques de escaneos.
+Servicios en nube para que peticiones mal formadas SYN attack no lleguen hasta los servidores que pueden ser afectadas.
+
+Ataques y defensas capas 5-7
+
+Denegación de servicio:
+DHCP Starvation (yersinia)
+DNS redirection 
+Escaneo/Enumeración
+Detección de Sistema operativo
+Banner grabbing
+Robo/Modificación de información
+SSL Striping (sslstrip)
+DNS Redirection
+
+Autenticación y autorización a los servicios
+Kerberos
+Firewall de siguiente generación
+Proxies
+Firewalls de aplicación (WAF)
+Programación correcta de los servicios. 
+
+***
+
+## Autenticacion Autorizacion y Contabilidad ##
+
+Gestión de Identidad y Accesos
+
+Sirven para determinar quién, qué y dónde puede interactuar un usuario con un sistema.
+Generalmente pensados para niveles de seguridad permisiva, prudente o paranoico.
+Proveen varios servicios:
+Identificación
+Autenticación
+Autorización
+Contabilidad.
+
+Identidad
+
+En psicología/filosofía, es responder a la pregunta de ¿Quién soy?
+En seguridad se trata de determinar/afirmar (assert) quién es una entidad/parte/persona, llamado de ahora en adelante sujeto.
+Generalmente es pública, predecible y fácil de obtener
+
+
+Autenticación
+
+Se refiere a la acción de confirmar la identidad del sujeto.
+Tiene que ser un proceso seguro para que podamos confiar en las identidades de los sujetos con los que interactuamos.
+Separada en tres tipos
+Algo que se tiene
+Algo que se es
+Algo que se sabe
+
+
+Algo que se tiene
+Objetos físicos que sirven para comprobar la identidad.
+Mientras se porte o presente, se puede autenticar a la persona.
+Sin embargo, permite autorizar a cualquier persona que tenga el objeto, sin necesariamente verificar si le pertenece.
+Pueden ser fáciles de falsificar (los muertos que votan).
+
+Algo que soy
+Biometría: análisis de mediciones biológicas.
+Se compara una medida de la persona a autenticar (query) con una existente (template).
+Existen dos modos:
+Verificación: La persona indica su identidad y se comparan las medidas de esa identidad.
+Identificación: Se compara la medida tomada contra todas las medidas existentes en la base de datos para determinar la identidad.
+
+Características deseables de un sistema biométrico
+Universales: Todo el mundo debe tenerlos.
+Únicas: Cada persona tiene uno diferente.
+Permanentes: No cambian a través de la vida de la persona.
+Medibles: Debe ser posible observarlo/medirlo.
+Eficiencia: Se debe poder medir/autenticar con cierta facilidad.
+Aceptabilidad: Que tanto las personas aceptan estas mediciones.
+Robusta: Que tan fácil es romperlo/hacerse pasar por alguien mas.
+
+
+Características usadas
+
+Huellas dactilares
+Huellas palmares
+Geometría palmar
+Iris
+Cara
+Voz
+Gait
+Comportamiento.
+Firma
+https://www.youtube.com/watch?v=wr4rx0Spihs
+https://www.youtube.com/watch?v=cIT70UyjQdU
+
+Medidas importantes a considerar
+FAR: False Acceptance Rate, un usuario ilegitimo es aceptado
+
+FRR: False Rejection Rate, un usuario legitimo es rechazado.
+
+
+Algo que conozco
+Primeros sistemas de autenticación. 
+Son fáciles de usar y no requieren hardware especializado como los otros tipos.
+Basados en contraseñas, información confidencial, o nip.
+Tienen que considerar los siguientes casos:
+Uso
+Revelación
+Revocación
+Recuperación.
+
+Passwords
+Esquema de autenticación mas extendido.
+Se basa en una palabra o serie de palabras que sea difícil de adivinar por alguien mas.
+La cantidad de passwords que un atacante usando fuerza bruta tendría que probar esta dada por 𝐴^𝑀
+A=Longitud del alfabeto
+M=Longitud del password
+Longitud de alfabetos:
+	números: 10
+	minúsculas: 26
+	mayúsculas 26
+	simbolos ascii: 32
+
+¿Qué tan bueno es mi password?
+La probabilidad de descifrar un password esta dada por 𝑃=(𝐿∗𝑅)/𝐴^𝑀 
+L=tiempo de vida del password
+R=intentos por unidad de tiempo
+Un password más corto es más difícil de adivinar. Así como uno de un alfabeto más reducido.
+El mismo password usado por más tiempo hace más factible que alguien lo haya adivinado.
+
+Entropía del password
+Dada en bits, proviene de la formula 2^𝑥=𝐴^𝑀
+La entropia se calcula como 〖𝑙𝑜𝑔〗_2 (𝐴^𝑀). 
+Se pueden usar las siguientes reglas:
+<28: Muy debil
+28-35: Debil
+36-59: Regular
+60-127: Fuerte
+>128: Muy fuerte
+
+
+Sin embargo….
+Si el atacante conoce información acerca de los passwords, podría reducirse la entropía.
+Palabras de diccionario: 171000 aprox=17 bits
+Palabras más comunes: 3000 aprox=11 bits. 
+Diceware: 7767 aprox=13 bits.
+En promedio, un atacante necesita 2^(𝑒𝑛𝑡𝑟𝑜𝑝𝑖𝑎 −1) intentos para encontrar el password.
+
+Ataques a autenticación
+Algo que se tiene:
+Robo
+Falsificación
+Daño de lector
+Algo que se es:
+Suplantación de identidad
+Explotar fallas de “liveness”
+Algo que se sabe:
+Ataques de diccionario
+Fuerza bruta
+Ataques en línea/fuera de línea
+Robo de contraseñas
+
+
+Contramedidas
+1. Autenticación de varios factores
+Combinar 2 o más tipos de autenticación para garantizar la identidad.
+2. Autenticación continua
+Medir constantemente características del usuario, por ejemplo biométricos de comportamiento.
+
+***
+
+## Seguridad en hosts y aplicaciones ##
+
+Hosts
+Sistemas encargados de interactuar con el usuario o proveer servicios.
+Generalmente dan la ultima línea de defensa.
+Útiles para el atacante por los datos o como puntos de entrada.
+
+Bastion host
+Los equipos de la DMZ y ciertos equipos de red (firewalls, guardias, etc) son accesibles desde internet.
+Es necesario que estén en computadoras con defensas correctas.
+Un bastion host no tiene servicios ni programas innecesarios.
+La configuración debe ser más segura que otros equipos.
+
+Ataques y defensas por hardware
+Existen diferentes fallos que se han ido descubriendo en el hardware de los dispositivos.
+Pueden ser introducidos por fabricantes o distribuidores
+Ejemplos:
+Spectre 
+Meltdown
+
+Muchas veces las vulnerabilidades no se pueden parchar y requieren un cambio de arquitectura, o aceptar los riesgos derivados
+
+Sistema Operativo
+
+Da la interacción entre el software y hardware.
+Provee servicios de seguridad como:
+Control de acceso
+Permisos
+Modos de aplicaciones
+Protección de memoria
+
+Pero también puede ser atacado
+Escalada de privilegios.
+Vulnerar métodos de AAA
+Explotación de vulnerabilidades
+https://cve.mitre.org/
+Parches
+
+Maquinas virtuales
+Actualmente, muchos servicios se dan con virtualización (incluyendo cloud computing).
+Las maquinas virtuales son igual de vulnerables que las maquinas físicas. 
+Hay que evitar que por ser maquinas virtuales se apliquen políticas más laxas.
+No hay que confiar que por ser una maquina virtual, esta completamente aislada. 
+
+Contenedores
+Los contenedores no trabajan de manera aislada!
+Hay que verificar que vulnerabilidades tienen los códigos y aplicaciones que se cargan en el contenedor.
+Es importante pensar en una estrategia de DevSecOps, donde parte de la integración continua incluya pruebas de seguridad. 
+
+
+Seguridad en aplicaciones
+El SO no provee todas las aplicaciones que se requieren.
+Aunque se evite el malware, las aplicaciones instaladas pueden ser una fuente de vulnerabilidades.
+Recae en el programador evitar errores comunes.
+Off-by-one
+Buffer Overflows
+Entradas no sanitizadas
+Software mal desarrollado puede poner en riesgo la seguridad de la computadora.
+
+Buffer Overflow
+Buffer: Espacio de almacenamiento temporal de datos:
+Lectura de strings desde consola
+Introducción de datos
+Escritura de archivos.
+Los buffer son de tamaño limitado y muchas veces los programadores no verifican que los datos sean del tamaño correcto.
+Pueden permitir la ejecución de código arbitrario (smashing the stack) o crear problemas con las aplicaciones.
+
+Protecciones ante buffer overflow
+Canarios/Stack Guard
+Modificaciones por compilador (GCC Stack protector)
+Prevención a nivel SO
+Data Execution Prevention
+Address Space Layout Randomization.
+
+Frameworks para desarrollo seguro
+Microsoft Security Development Lifecycle
+https://www.microsoft.com/en-us/securityengineering/sdl/practices
+SAFECode
+https://safecode.org/wp-content/uploads/2018/03/SAFECode_Fundamental_Practices_for_Secure_Software_Development_March_2018.pdf
+NIST Secure Software Development Framework
+https://csrc.nist.gov/CSRC/media/Publications/white-paper/2019/06/07/mitigating-risk-of-software-vulnerabilities-with-ssdf/draft/documents/ssdf-for-mitigating-risk-of-software-vulns-draft.pdf
+OWASP Software Assurance Maturity Model
+https://owaspsamm.org/model/
+Building Software In Maturity Model
+https://www.bsimm.com/framework.html
+
+
+***
+
+## Manejo de vulnerabilidades y amenzas ##
+
+
+Gestión de vulnerabilidades
+Proceso iterativo que permite ir cerrando vulnerabilidades.
+Requiere descubrirlas y determinar las mejores acciones para remediarlas. 
+Corresponde al área de arquitectura. 
+
+* Vulnerability management lifecycle is to discover, prioritize assets, assess, report, remediate and verify
+
+
+Descubrimiento
+
+Fuentes externas/Reactivo
+Noticias
+Vendors
+Exploits públicos
+
+Fuentes Internas/Proactivo
+Escaneo de vulnerabilidades
+Pruebas de penetración 
+
+Escaneo de vulnerabilidades
+
+Herramientas automáticas que hacen pruebas con diferentes computadoras. 
+Dependen de vulnerabilidades conocidas.
+Dan una primera idea de que vulnerabilidades tenemos.
+Ejemplos:
+Nessus
+OpenVAS
+Greenbone
+
+Prueba de penetración
+Servicio interno o externo que encuentra vulnerabilidades, las explota y determina como se realizo el ataque.
+Requiere que se establezca el alcance para evitar problemas legales.
+Hay 3 tipos principales:
+Caja Negra
+Caja Gris
+Caja Blanca
+
+Pasos:
+Reconocimiento
+Escaneo
+Primer ingreso
+Persistencia
+Obtención de privilegios
+Movimientos laterales
+Reportes
+
+Prioridades y Evaluación
+Dependen de nuestro análisis de riesgo y gestión de activos.
+Es necesario parchar las vulnerabilidades que más impacto tengan.
+Para saber donde tenemos que trabajar, necesitamos saber que equipos son los afectados.
+GLPI SYSTEM
+
+Remediación y verificación.
+Remediación incluye quitar la vulnerabilidad, poner un control o aceptarla.
+	Agregar una regla al firewall
+	Aplicar un parche
+Se requiere un proceso de control de cambios.
+	Normal
+	Estándar
+	Emergencia.
+
+Amenazas
+
+Cyber kill chain
+Inspirada en terminología militar, indica los pasos que sigue una atacante para lograr su cometido. 
+Permite analizar los diferentes puntos y detener a un atacante.
+Entre más tarde se detenga, mas daños se tienen a la organización.
+
+Inteligencia de amenazas
+Permite obtener información (no datos) acerca de las amenazas, sus tácticas, técnicas y procedimientos.
+La información sirve para tomar decisiones e incrementar nuestras capacidades de defensa y detección.
+OPSWAT THREAT INTEL FEED USED TO CHECK AND APPROVE WITH A SECURITY APPLICATION FOR UNKOWN FILES TO BLACKLIST OR PASS INTO THE NETWORLK
+
+
+Ciclo de inteligencia
+Dirección: ¿Qué queremos resolver?
+Colección: Obtener datos que nos sirvan para resolver la pregunta.
+Procesamiento: Formato de datos y correlación.
+Análisis: Utilizar los datos para obtener información.
+Diseminación: Reporte
+Feedback: Determinar si se respondió la pregunta.
+
+Resultados de inteligencia
+Información de adversarios.
+Tácticas, técnicas y procedimientos.
+Capacidades
+Objetivos
+Indicadores de Compromiso
+Indicadores de ataque
+
+Compartir y obtener
+Feeds de inteligencia
+Kaspersky
+IBM X-force
+Cisco Talos
+ProofPoint
+FireEye
+Protocolos para compartir
+Structured Threat Information eXpression (STIX)
+Trusted Automated eXchange of indicator information (TAXII)
+
+Modelo de Madurez de Manejo de Vulnerabilidades
+
+
+***
+
+## Seguridad Perimetral ##
+
+Ruteador de borde
+
+Separa en zona interna y externa.
+Permite la interacción de dentro hacia afuera y viceversa.
+Es conveniente parar el trafico no deseado desde aquí.
+Verificaciones:
+NAT/PAT
+Trafico legitimo(direcciones internas vs externas).
+Dirección.
+
+Zona Demilitarizada (DMZ)
+
+Existen servicios que debemos/queremos permitir que sean accedidos desde internet.
+Conexiones remotas
+Servidores
+Servidores Web
+Estos servicios se ponen en una zona que es accesible desde internet. 
+Todas las conexiones desde y hacia la DMZ tienen que ser reguladas para evitar que sirvan de punto de ataque. 
+
+Network Address Translation
+Generalmente las redes internas usan direcciones privadas (10.X.X.X, 172.16-32.X.X, 192.168.X.0)
+Estas direcciones no son ruteables en internet (en teoría).
+El ruteador de borde se encarga de traducir de una dirección privada a pública 1-a-1.
+Existen versiones
+Estática
+Dinámica
+Sobrecargado
+
+Port Address Translation
+Si solo se tiene una dirección, no se puede traducir 1-a-1.
+Se pueden asignar puertos por cada conexión.
+El ruteador de frontera tiene que mantener una tabla con que puertos fueron asignados a cada cliente de la red.
+Muy usado en conexiones caseras.
+
+Firewalls
+Sirven para monitorear el trafico y detenerlo si es sospechoso/malicioso/no autorizado. 
+Se pueden poner antes o después del ruteador de borde. 
+Los firewalls actuales ofrecen ventajas como poder crear túneles privados y detección de intrusiones.
+Pueden ser implementados en computadoras de propósito general o dispositivos específicos para ello
+
+
+Listas de Acceso/IP Tables
+Primera tecnología usada como firewall.
+Indica las ips, puertos y dirección (entrada o salida), con los que se puede establecer o no la comunicación. 
+Aunque son primitivos, son muy útiles para bloquear trafico rápidamente. 
+Requieren de un diseño apropiado por la forma en que se evalúan.
+Pueden ser evitadas con fragmentación de paquetes.
+
+Firewalls de estado
+Siguiente generación de firewalls que revisa el estado de la conexión.
+Solo deja pasar los paquetes que son partes de una conexión previamente establecida y autorizada.
+Funcionan en capa 4. 
+Los protocolos como UDP se revisa el estado a partir de los paquetes ya recibidos.
+
+NextGen Firewalls
+Integrados por diferentes elementos, tales como:
+Chequeo de paquetes (stateless/stateful)
+Modo transparente
+Sistemas de detección/prevención de intrusos
+Concentrador de VPN
+Análisis de aplicaciones y protocolos
+Análisis basado en identidades
+
+Proxies
+Equipos que sirven de intermediarios en las conexiones.
+
+Pueden analizar el trafico, ya que terminan túneles de cifrado.
+
+Permiten incorporar reglas de detección.
+
+Firewalls de aplicación
+Específicos de cada aplicación para checar ataques dirigidos hacia ellos.
+Los firewalls de aplicación pueden establecer un proxy, que sirve como punto intermedio de la comunicación permitiendo analizarla.
+Se tiene que instalar un proxy de aplicación por servicio que se quiera checar (HTTP, FTP, etc). 
+El más común es un WAF (Web Application Firewall) que checa contra ataques específicos a aplicaciones web y puede abrir conexiones HTTPS.
+
+
+Sistemas de Detección de Intrusiones
+Permiten detectar elementos que indiquen que existe una intrusión en la red. 
+Funcionan generalmente en dos modos
+Basado en Firmas
+Basado en Comportamiento
+Los sistemas más avanzados integran conocimiento de fuente de ciberinteligencia. 
+Generalmente se ponen en interfaces donde no afecten el trafico, dado el volumen que tienen que analizar.
+SYSTEMS LIKE SNOT IDS CONSOLE WITH ALERTS BY SIGNATURE
+
+
+Sistemas de protección de intrusiones
+Mismos modos de funcionamiento que un IDS, sin embargo, puede reaccionar para proteger.
+Generalmente se comunican con el firewall para agregar o quitar reglas.
+Tienen que ir en línea, para que puedan lograr bloquear los paquetes maliciosos.
+
+Otras tecnologías importantes a considerar
+
+Honeypot
+
+Sirve para darle a un atacante una computadora atractiva con “vulnerabilidades”
+
+Permite distraer a los atacantes y observar como realizan los ataques
+Data Leak/Loss Prevention
+Herramientas y procesos que evitan que la información importante/confidencia/PII(Personal identificable information) se fugue.
+Incluye procesos de marcado de información.
+Tecnológicamente, son sensores que verifican los documentos a enviar para evitar que la información salga.
+
+
+Redes virtuales privadas
+Montan un túnel entre dos dispositivos donde todo el trafico que va entre estos está cifrado.
+El túnel puede pasar por internet.
+
+Existen dos modos generales de funcionamiento:
+Site-to-Site
+Remote access
+
+Cifrado/Túnel de enlace
+
+Protocolos de VPN capa 2
+Point-to-point Tunneling Protocol (RC4/MS-Chap)
+Layer 2 Tunneling protocol (Sin cifrado, establece túnel, Usa PAP/CHAP)
+
+Cifrado/Túnel de red
+
+Internet Protocol Security 
+El protocolo IP no fue diseñado con seguridad en mente (ni para la cantidad de usuarios).
+IPSec es un agregado de la IETF para proveer confidencialidad y autenticación.
+Contempla el uso de cifrado en capa 3, protegiendo así las capas de arriba.
+Agrega varios elementos al protocolo:
+Encapsulated Security Protocol (Confidencialidad)
+Authentication Header (Autenticación e Integridad)
+
+IPSec modo túnel
+Para proteger comunicaciones en canales inseguros.
+AH solo protege integridad, mientras que ESP protege la confidencialidad.
+Sirve para conectar dos redes de forma segura a través de un canal inseguro.  
+
+IPSec Modo Transporte
+Para comunicaciones punto a punto.
+Útil cuando se tiene algún otro protocolo de túnel, pero que no provee protección.
+El encabezado de IP se copia tal como esta.
+
+IPSec Security Association
+La conexión de cada lado se negocia para lograr una Asociación de Seguridad (SA)
+Llaves
+Tiempo de vida de llaves
+Protocolos criptográficos (HMAC-SHA1 para AH, 3DES/AES para ESP)
+Modo a usar
+Direcciones de los involucrados.
+Internet Security Association Key Management Protocol (ISAKMP): Indica como se van a manejar las llaves y los parámetros de la SA.
+ISAKMP Key Exchange (IKE): Intercambio de llaves y establecimiento de la sesión
+
+Protocolos de VPN capa 3
+VPN Connect (IKEv2)
+IPSEC
+L2TP/IPSEC
+
+Cifrado de capas superiores
+
+Secure Socket Layer/Transport Layer Security
+Originalmente creado por Netscape para agregar seguridad al protocolo HTTP en 1996
+Después fue adoptado como RFC en SSL, pero se encontró que tenía vulnerabilidades.
+TLS fue creado basado en SSL 3.0.
+Utiliza certificados para autenticación y cifrado.
+Permite usar diferentes algoritmos como RSA y SHA256 para MAC. 
+El cliente y el servidor se ponen de acuerdo para usar la seguridad más alta que puedan.
+
+
+Protocolos de cifrado de capas superiores
+Secure Socket Tunneling Protocol
+Open VPN
+
+***
+
+## REDES AAA ##
+
+Defendiendo un castillo
+
+Defensa en profundidad
+Establece el uso de diferentes capas
+Pensado como un castillo, donde un atacante debe pasar diferentes capas para llegar a las “joyas de la corona”
+Da una separación y abstracción de funciones.
+Modelo algo viejo, pero que todavía se utiliza 
+
+La red como activo
+Repaso de redes
+
+
+Repaso redes
+
+Una red conecta equipos y sistemas.
+El objetivo es transmitir información de manera eficiente y que llegue al lugar correcto.
+
+Modelo OSI
+Modelo de referencia para arquitecturas de red.
+Permite separar las funciones, lo que hace mas fácil el desarrollo y el análisis de errores.
+Cada capa realiza encapsulamiento.
+
+Capa Física
+Controla el medio, las señales, y como se va a transmitir la información.
+Los ataques en esta capa pueden ser para escuchar, o impedir que los datos lleguen bien. 
+Los hub son dispositivos que funcionan en esta capa, para retransmitir las señales. Generalmente ya no se usan.
+
+Capa de enlace
+Se ocupa de las direcciones físicas y el acceso al medio. 
+Cada equipo tiene una dirección MAC, la cual es en teoría única para cada dispositivo.
+La unidad en esta capa se conoce como trama.
+Las tramas mas comunes  en esta capa son 802.1 (Ethernet) y 802.11 (WLAN).
+También se verifica como acceder al medio para evitar colisiones.
+El dispositivo más común de esta capa es el switch, que separa los dominios de colisiones.
+
+Capa de red
+Utiliza direcciones lógicas para hacer llegar los datos a su destino. 
+El protocolo mas común es IPv4, IPv6 sigue en adopción.
+Aquí también se encuentran los protocolos de enrutamiento (RIP, OSPF, EIGRP, BGP).
+El dispositivo mas común de esta capa es el router, el cual divide en dominios de broadcast.
+Los datos en esta capa se llaman paquetes
+
+Capa de transporte
+Permite la comunicación entre clientes finales de la red.
+Los dos protocolos más comunes son TCP y UDP.
+TCP provee control de flujo y entrega confiable, pero agrega más datos.
+UDP provee mayor velocidad.
+Los datos en esta capa se llaman segmentos.
+La comunicación se realiza entre puertos, que indican en mayor o menor medida el servicio a usar.
+
+Puertos conocidos:
+21 FTP
+22 SSH
+23 telnet
+53 DNS (o facetime)
+80 HTTP
+443 HTTPS
+
+Capas de sesión/presentación/aplicación
+La sesión se centra en establecer la comunicación, gobernarla y cerrarla.
+La presentación se encarga de decir como los datos van a ser transmitidos para que los entienda todo el mundo. 
+Sesión y presentación son capas generalmente no implementadas explícitamente.
+La capa de aplicación se encarga de recibir la información de la red.
+
+APLICATION, PRESENTATION, SESSION, TRANSPORT 
+HTTP, FTP, SMTP, SSH, IMAP, VOIP, TCP, RTP, UDP
+
+
+AAA IN NETWORKS
+
+Network Access Server
+Sirve de punto de entrada a cualquier usuario a la red.
+Existen NAS inteligentes que revisan ciertas características de los sistemas antes de dejarlos entrar:
+Versión de Sistema Operativo
+Parches
+Antivirus
+Firewall
+Ejemplos:
+Captive
+VoIP
+Sistemas de acceso a ISP
+Generalmente se comunican con un servidor de AAA
+
+
+IEEE 802.1X
+Protocolo definido por la IEEE para autenticación en capa 2.
+Permite a un dispositivo que se va a conectar utilizar EAP over LAN (EAPOL) para comunicarse con un servidor de autenticación antes de entrar a los servicios.
+
+
+WPA/WPA2-Enterprise
+Estandar IEEE 802.11i que habla acerca de la autenticación en redes.
+Tiene un modo conocido como Pre-shared key (PSK), donde todos se autentican con la misma llave.
+El modo Enterprise utiliza RADIUS/EAP para conectarse y hacer la autenticación de la red.
+Además, genera llaves temporales para cifrar los paquetes, las cuales van cambiando.
+
+Remote Authentication Dial-In User Service (RADIUS)
+RFC 2865 y 2866
+Protocolo para triple AAA
+Permite hacer autenticación y autorización en un solo paso.
+Funciona con UDP en el puerto 1812.
+Comunicación en texto plano, cifrando los passwords a enviar.
+Generalmente cualquier servicio que requiera autenticarse en una red habla RADIUS. 
+
+RADIUS: Contabilidad
+
+Aunque RADIUS combina autorización con autenticación, tiene como ventaja que incluye en el protocolo la contabilidad.
+Se puede enviar datos de los paquetes y volúmenes de datos que ha manejado el cliente.
+
+Terminal Access Controller Access-Control System (TACACS)
+RFC 1492
+Usa TCP en Puerto 49
+Era muy usado para autenticación y autorización en sistemas UNIX.
+Existe una nueva versión llamada TACACS+propietaría de Cisco
+Tiene como ventaja que permite verificar que comandos se pueden ejecutar por cada usuario.
+Cifra toda la comunicación
+Muy usado en acceso a los dispositivos de administración de red.
+
+Password Authentication Protocol
+Protocolo muy sencillo donde el cliente que se quiere autenticar envía el password, o un hash de este y se le responde si o no.
+
+Es un protocolo ligero de autenticación, pero inseguro.
+
+Solo se hace la verificación al momento de establecerse el enlace. 
+
+Challenge-Handshake Authentication Protocol (CHAP)
+RFC 1994
+Estandar que mejorar PAP agregando un handhake. 
+Asume que los dos lados conocen la contraseña.
+Se emite un challenge y la respuesta es el hash de la combinación de la contraseña y el challenge.
+
+Extensible Authentication Protocol (EAP)
+Ultima versión en RFC 5247 
+Es un framework que indica el formato y tipo de mensajes a usar para autenticar.
+Usado en protocolos de autenticación para 802.1X y Wi-Fi Protected Access (WPA)
+
+
+Manejo de identidad
+
+Local
+Opción utilizada como backup cuando no hay acceso a la red.
+Solo debe estar disponible si se puede guardar una copia del hash de la contraseña, las políticas y se tiene forma de hacer contabilidad localmente. 
+Se recomienda copiar o enviar los eventos importantes de contabilidad cuando se conecte a la red.
+
+Servicios de Directorio/LDAP
+
+Estandar X.500 para almacenar datos de forma jerarquica con esquemas.
+Usado generalmente para guardar los datos de identidad, como usuarios, contraseñas, permisos, políticas y certificados.
+La implementación mas famosa es Active Directory de Microsoft, aunque existen otras como openLDAP o 389Directory.
+Elementos comunes
+DC: Domain Component
+OU: Organizational Unit
+CN: Common Name
+
+Identity Access Management
+
+
+TECNOLOGY
+Directorio
+Altas, bajas, cambios
+Políticas
+Auditoría y reporte
+Análisis de riesgos
+
+PROCESS
+Ciclo de vida de la identidad
+Auditoria
+
+PEOPLE
+RH
+Gobierno de la identidad
+Analistas
+
+NTLM challenge/response
+Protocolo de autenticación utilizado por Computadoras Windows cuando se sabe tiene un password guardado.
+Al igual que CHAP, envía un challenge y la respuesta es el hash del challenge y el password.
+
+Kerberos
+Tecnología de autenticación de acceso a servidores y otros dispositivos.
+Requiere de un reino (equivalente al dominio en AD).
+Útil para realizar single sign-on, donde se autentica una vez con Kerberos al cliente.
+Requiere de los siguientes elementos:
+Ticket Granting Ticket (TGT) 
+Ticket Granting Services (TGS)
+Key Distribution Center (KDC)
+Service Principal Name (SPN)
+
+Proceso Kerberos
+El cliente se autentica con el AS usando su usuario.
+AS regresa mensaje A, que esta cifrado con el hash del password de usuario y mensaje B, que es el TGT cifrado con llave del AS.
+El cliente para accede a un servidor envía el TGT (B) y un mensaje cifrado  D con su llave (generada del password, como mensaje A)
+El TGS responde el mensaje E que tiene un ticket para entrar al servicio, cifrado con el password del KDC y una llave de session F cifrada con la llave del usuario.
+El cliente envía el ticket del servidor (E) y un mensaje de autenticación cifrado con la llave del cliente  (G). 
+El servidor decripta E con su llave y obtiene la llave para decriptar G. Si E y G hacen match, entonces se verifica el servicio y se responde con H, que le da un timestamp al servicio.
+
+Accounting
+
+Simple network management protocolo (SNMP)
+Utiliza:
+Sistema administrador: Guarda los mensajes y permite enviar configuraciones
+Sistema administrado: Aquel sistema que va a enviar alertas y recibir comandos.
+Agente: Programa que se encarga de monitorear y enviar informes del dispositivo administrado
+Base de manejo de información: Colección de información que se va a administrar.
+
+Existen dos formas de operación básicas:
+Query: el sistema administrador solicita información acerca de un sistema administrado
+Trap: ocurre un evento predeterminado en el sistema administrado y envía una alerta.
+
+Syslog
+Estandar para mensajes que contienen información de logs.
+
+Utiliza:
+Servidor syslog: Donde se guardan todos los eventos de los mensajes recibidos.
+Cliente syslog: Aplicación que envía las alertas de un dispositivo al servidor.
+
+Los mensajes de syslog contienen el dispositivo que los genero, un mensaje acerca del evento, y el tipo del evento. 
+A diferencia de SNMP, no se pueden hacer preguntas a los clientes.
+Syslog
+Utiliza UDP en puerto 514, o TCP en puerto 6514.
+Existen muchos servidores gratuitos y de paga que pueden recibir mensajes Syslog.
+Generalmente, los equipos de red, seguridad y servidores Linux ya tienen incluido un cliente syslog por default.
+Windows es el único que no tiene un cliente Syslog, ya que maneja su propio formato de Logs.
+Algunos servidores y clientes famosos son Rsyslog y Kiwi.
+
+Security Information Event Management
+Sistemas que colectan la información de los eventos de seguridad en la red y dispositivos.
+Trabajan realizando correlación de eventos, por lo que dependen de una red bien sincronizada en el tiempo (Network Time Protocol).
+Tienen reglas que permiten filtrar lo importante de miles o millones de eventos.
+De nada sirven si no hay alguien revisando las consolas y ajustando las reglas.
+
+
+
+
+
+
+***
+
+## TAREAS ##
+
+Cracking user passwords
+
+```sh
+sudo cat /etc/shadow
+sudo adduser 'colinar'
+ls /home/
+sudo cat /etc/shadow
+cd Desktop
+mkdir Test
+cd Test
+sudo cp /etc/passwd usersPasswords.txt
+sudo cp /etc/shadow usersShadow.txt
+sudo unshadow usersPasswords.txt usersShadow.txt > johnFile
+cat johnFile
+sudo john johnFile --wordlist=/usr/share/wordlists/rockyou.txt --format=crypt
+sudo john --show johnFile
+
+labtec-colinar
+```
+
+Getting to Know Linux
+
+UNIX TUTORIAL FOR BEGINNERS
+TYPOGRAPHICAL CONVENTIONS
+INTRODUCTION TO THE UNIX OPERATING SYSTEM TUTORIAL ONE LISTING FILES AND DIRECTORIES
+
+
+
+
+```sh
+ls
+ls -a
+cd Desktop
+ls
+mkdir unixstuff
+ls
+cd unixstuff
+ls -a
+cd .
+cd ..
+pwd
+ls unixstuff
+cd unixstuff
+mkdir backups
+cd ..
+ls unixstuff/backups
+ls unixstuff
+ls ~/Desktop/unixstuff
+ls ~
+ls ~/..
+```
+
+ls to list files and directories
+ls -a to list all files and directories
+mkdir to make a directory
+cd dir to changed to named directory
+cd to change to home
+cd ~ to change to home
+cd .. to change to parent
+pwd display path of current directory
+
+
+whit a file called example.txt and text "This is a word test"
+
+```sh
+ls
+cp example.txt ~/Desktop/unixstuff/backups
+ls ./backups
+mv ./backups/example.txt ./rename.txt
+ls ./backups
+ls
+rm example.txt
+rmdir backups
+ls
+cp rename.txt text.txt
+rm rename.txt
+ls
+cat text.txt
+less text.txt
+head text.txt
+tail text.txt
+head -2 text.txt
+grep -i word text.txt
+wc -w text.txt
+wc -l text.txt
+```
+
+cp file1 file2 copy file1 and call it file2
+mv file1 file2 move or rename file1 to file2
+rm file remove file
+rmdir dir remove dir
+cat file display file
+more file display a file a page at a time
+head file display first few lines of file
+tail file display last few lines of a file
+grep keyword file search a file for keywords
+wc file count number of lines, words or chars
+
+
+```sh
+cat
+cat > list1
+ls
+cat list1
+cat > list2
+cat >> list1
+cat list1
+ls
+cat list1 list2 > biglist
+cat biglist
+sort
+sort < biglist
+sort < biglist > sortedlist
+ls
+cat sortedlist
+who
+who > names.txt
+cat names.txt
+sort < names.txt
+who | sort
+who | wc -1
+cat list1 list2 | grep p | sort | a2ps -Phockney
+```
+
+command > file redirect stdout to file
+command >> file append stdout to file
+command < file redirect stdin from a file
+command1 | command 2 pipe output from first command
+cat file1 file2 > file conacenate file1 and file2 to file
+sort sort data
+who list users currently logged in
+a2ps print text file to named printer
+lpr print postscript file to named printer
+
+```sh
+ls
+ls *list
+ls list*
+ls ?list
+ls *.txt
+man wc
+whatis wc
+apropos word
+```
+ 
+asterisc match any num of chars
+? match one char
+man command read the online manual page for a command
+whatis command brief drescription of command
+apropos keyword match commands with keyword from their man pages
+
+```sh
+ls
+ls -l
+chmod go-rwx biglist
+ls -l
+chmod a+rw biglist
+ls -l
+ps
+sleep 20
+sleep 60 &
+ps
+sleep 100
+bg
+jobs
+ps
+sleep 100 &
+jobs
+ps
+jobs
+fg %1
+jobs
+ps
+sleep 100
+jobs
+fg %1
+bg
+jobs
+kill %1
+sleep 100
+sleep 100 &
+ps
+kill 13183
+ps
+sleep 100&
+ps
+kill -9 13349
+jobs
+ps
+```
+
+ls -lag list access rights for all files
+chmod file change access rights for named file
+command & run command in background mode
+Control C kill the job running in foreground mode
+Control Z suspend the job running in foreground mode
+bg send a suspended job into background
+list currently running jobs
+fg %1 list foreground job number 1
+kill %1 kill foreground job number 1
+ps list current processes
+kill ID kill proicess with number ID
+
+```sh
+ls
+quota -v
+df .
+du
+cd ..
+du
+cd ..
+du
+cd Desktop/unixstuff
+ls
+ls -l
+compress biglist
+ls -l
+uncompress biglist.Z
+ls -l
+gzip biglist
+ls -l
+gunzip biglist
+file *
+history
+!!
+!-3
+!5
+!grep
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Primer Parcial
+
+--format=crypto for kali user passwords with john
+A virus comes in email attackments
+A spyware captures and transmits personal information
+A trojan masquaredes as a harmless application to steal personal data or launch an attack
+A ransomware encrypts files and then demands a ransom to return the data.
+A worm has the ability to copy themselves from machine to machine
+IT Security is the big component that includes cybersecurity as a small subset.
+The pillars of cyber secuyrity are people, processes and data information.
+DNS is a service for TCP that provdes mechanisms for delivery of data = FALSE
+Article of mexican federal penal code that deals with defense of computer systems 221bis1, bis2 and bis4
+A backdoor is a point of entry into a user computer bypassing authentication
+OTP is a cryptographic unconditionally secure system that cannot be broken even with infinite resources
+The main differfence between stream cipher and block cipher is that stream encrypts bits individually on a small and fast manner.
+Kerckhoff's Principle is concidered paramount in cryptography, it says that a system should be secure even if the attacker knows all the details
+Cyptography is divided into symmetric ciphers, asymemetric cyphers and stream ciphers.
+We need cryptoanalysis because there is no mathematical proof of security for any prarctical cipher.
+Three security properties of a hash are preimage resistance, second preimage resistance and coliision resitance
+When using a hash function the digest will always be the same length.
+Security life, assuming burte force an attack can be short term, long term or really long term (quantum resistance) the size inb bits for akey that is quantum resistance is 256
+
+
+
+
+
+
+
+
+***
+
 
 # Kali Linux #
 
@@ -410,3 +4273,60 @@ john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
 
 https://www.enisa.europa.eu/about-enisa/about/es
 https://www.ciscopress.com/series/series.asp?ser=2484573
+https://www.cybok.org/
+https://www.sans.org/
+https://twit.tv/shows/security-now
+https://www.grc.com/intro.htm
+www.crypto-textbook.com
+
+
+Addition to Understanding Cryptography . 
+A.Menezes, P. van Oorschot, S.  Vanstone, Handbook of Applied Cryptography. CRC Press, October 1996.
+H.v.Tilborg (ed.), Encyclopedia of Cryptography and Security, Springer, 2005
+History of Cryptography (great bedtime reading)
+S. Singh, The Code Book: The Science of Secrecy from Ancient Egypt to Quantum Cryptography, Anchor, 2000.
+D. Kahn, The Codebreakers: The Comprehensive History of Secret Communication from Ancient Times to the Internet. 2nd edition, Scribner, 1996.
+Software (excellent demonstration of many ancient and modern ciphers)
+Cryptool, http://www.cryptool.de
+
+
+SYLLABUS
+Introduction
+1.1  Why do we need computer security
+1.2  Goals of computer security: Integrity, availability and confidentiality
+1.3   Ethical and legal responsibilities
+1.4   Organizational panorama of computer security
+1.5.   Technological panorama of computer security
+1.6.   Legal aspects of computer security
+1.7.   Origins of insecurity: definition, implantation, operation
+1.8.   Individual level certifications: CompTIA/Security+, ISC2/CISSP, SANS/GIAC, ISACA/CISA and others
+1.9.   System level certifications: Orange Book, ITSEC, Common Criteria and others
+1.10. Organization level certifications: ISO/IEC 27001, BS7799, NIST 800-12 and others
+Security policies and Cyber
+2.1.   Security policy as infrastructure guiding axis
+2.2.   International frameworks of reference: COSO, ITIL, CoBit, etc.
+2.3.   Benefit, risk and threat identification
+2.4    Introduction to Cybersecurity.
+2.5    Common Attacks.
+2.6.   The process of drafting a security policy
+2.7.   Levels of a security policy: Global declaration, standards, guidelines and procedures.
+2.8.  Updating and managing a security policy.
+Cryptology
+3.1.   Cryptography and cryptoanalysis
+3.2.   Symmetrical vs asymmetrical cryptography.
+3.3.   Symmetrical cryptography.
+3.4.   Assymetrical cryptography.
+3.5.   Hybrid encryption systems.
+3.6.   Information cryptography and integrity..
+3.7.   Cryptography and authenticity.
+3.8.   Public key infrastructure
+3.9.   Virtual Private Networks (VPN).
+Network security
+4.1.  Basic concepts: Protocols, addressing, routing, topologies.
+4.2.  Internet. Reference model TCP/IP
+4.3.  Threats: vulnerabilities, protocol failure, identity theft and connections.
+4.4.  Attacks: Service refusal, session theft, data modification, message modification.
+4.5. Controls: Architecture, cryptography, access, alarms, alerts
+4.6. Protection technologies
+4.7. Wireless networks security
+
